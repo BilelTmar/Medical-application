@@ -14,51 +14,56 @@ import org.apache.commons.beanutils.BeanUtils;
  */
 public class Prozedur extends Document implements Serializable, Cloneable{
 
-    private Uebersicht uebersicht;
-    private Vorbereitung vorbereitung;
-    private Therapie therapie;
-    private Auswertung auswertung;
-    private Notes notes;
+    private TextModel uebersicht;
+    private TextModel diagnostik;
+    private TextModel therapie;
+    private TextModel beratung;
+    private String notes;
 
-    public Uebersicht getUebersicht() {
+    public TextModel getUebersicht() {
         return uebersicht;
     }
 
-    public void setUebersicht(Uebersicht uebersicht) {
+    public void setUebersicht(TextModel uebersicht) {
         this.uebersicht = uebersicht;
     }
 
-    public Vorbereitung getVorbereitung() {
-        return vorbereitung;
-    }
+ 
 
-    public void setVorbereitung(Vorbereitung vorbereitung) {
-        this.vorbereitung = vorbereitung;
-    }
-
-    public Therapie getTherapie() {
+    public TextModel getTherapie() {
         return therapie;
     }
 
-    public void setTherapie(Therapie therapie) {
+    public void setTherapie(TextModel therapie) {
         this.therapie = therapie;
     }
 
-    public Auswertung getAuswertung() {
-        return auswertung;
+    public TextModel getDiagnostik() {
+        return diagnostik;
     }
 
-    public void setAuswertung(Auswertung auswertung) {
-        this.auswertung = auswertung;
+    public void setDiagnostik(TextModel diagnostik) {
+        this.diagnostik = diagnostik;
     }
 
-    public Notes getNotes() {
+    public TextModel getBeratung() {
+        return beratung;
+    }
+
+    public void setBeratung(TextModel beratung) {
+        this.beratung = beratung;
+    }
+
+
+
+    public String getNotes() {
         return notes;
     }
 
-    public void setNotes(Notes notes) {
+    public void setNotes(String notes) {
         this.notes = notes;
     }
+
 
     
 @Override
