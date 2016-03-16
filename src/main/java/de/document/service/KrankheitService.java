@@ -10,14 +10,11 @@ import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.tdb.TDBFactory;
-import de.document.entity.Beratung;
-import de.document.entity.Diagnostik;
 import de.document.jenaspring.JenaTemplate;
 import de.document.jenaspring.SparqlTemplate;
 import de.document.entity.Krankheit;
-import de.document.entity.Notes;
-import de.document.entity.Therapie;
-import de.document.entity.Uebersicht;
+import de.document.entity.Prozedur;
+import de.document.entity.TextModel;
 import java.util.List;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -32,7 +29,7 @@ public class KrankheitService {
     JenaTemplate temp = new JenaTemplate();
     SparqlTemplate sparqlTemp = new SparqlTemplate();
     String NS = "http://document/";
-    String url = "D:\\TDB\\Document";
+    String url = "D:\\PC-Bilel\\Documents\\NetBeansProjects\\MedicalKnowledge\\TDB\\Document";
 
     public Krankheit save(Krankheit entry) {
 
@@ -55,87 +52,50 @@ public class KrankheitService {
             if (entry.getDate() != null) {
                 temp.add(NS + entry.getTitle(), NS + "date", entry.getDate());
             }
+//            if (entry.getProzedur().getTitle()!= null) {
+//                temp.addResource(NS + entry.getTitle(), NS + "/krankheit/prozedur", NS + "prozedur/"+entry.getProzedur().getTitle());
+//            }
             if (entry.getUebersicht() != null) {
                 if (entry.getUebersicht().getNotfall() != null) {
                     temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/uebersicht/notfall", entry.getUebersicht().getNotfall());
                 }
-                if (entry.getUebersicht().getFlowchart() != null) {
-                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/uebersicht/flowchart", entry.getUebersicht().getFlowchart());
-                }
-                if (entry.getUebersicht().getTabelle() != null) {
-                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/uebersicht/tabelle", entry.getUebersicht().getTabelle());
+                if (entry.getUebersicht().getText()!= null) {
+                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/uebersicht/text", entry.getUebersicht().getText());
                 }
             }
             if (entry.getDiagnostik() != null) {
 
-                if (entry.getDiagnostik().getAnamnese() != null) {
-                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/diagnostik/anamnese", entry.getDiagnostik().getAnamnese());
-                }
-                if (entry.getDiagnostik().getApperativeDiagnostik() != null) {
-                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/diagnostik/apperativeDiagnostik", entry.getDiagnostik().getApperativeDiagnostik());
-                }
-                if (entry.getDiagnostik().getDifferentialdiagnosen() != null) {
-                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/diagnostik/differentialdiagnosen", entry.getDiagnostik().getDifferentialdiagnosen());
-                }
-                if (entry.getDiagnostik().getErweiterteDiagnostik() != null) {
-                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/diagnostik/erweiterteDiagnostik", entry.getDiagnostik().getErweiterteDiagnostik());
-                }
-                if (entry.getDiagnostik().getKlinischeUntersuchung() != null) {
-                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/diagnostik/klinischeUntersuchung", entry.getDiagnostik().getKlinischeUntersuchung());
-                }
-                if (entry.getDiagnostik().getLeitsymptome() != null) {
-                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/diagnostik/leitsymptome", entry.getDiagnostik().getLeitsymptome());
+                
+                if (entry.getDiagnostik().getText()!= null) {
+                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/diagnostik/text", entry.getDiagnostik().getText());
                 }
                 if (entry.getDiagnostik().getNotfall() != null) {
                     temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/diagnostik/notfall", entry.getDiagnostik().getNotfall());
                 }
             }
             if (entry.getBeratung() != null) {
-
-                if (entry.getBeratung().getEntlassmanagement() != null) {
-                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/beratung/entlassmanagement", entry.getBeratung().getEntlassmanagement());
-                }
-                if (entry.getBeratung().getErwantendesKlinischesBild() != null) {
-                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/beratung/erwartenedesBild", entry.getBeratung().getErwantendesKlinischesBild());
-                }
                 if (entry.getBeratung().getNotfall() != null) {
                     temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/beratung/notfall", entry.getBeratung().getNotfall());
                 }
-                if (entry.getBeratung().getWeiteresProzedereNachEntlassung() != null) {
-                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/beratung/weiteresProzedere", entry.getBeratung().getWeiteresProzedereNachEntlassung());
+                if (entry.getBeratung().getText()!= null) {
+                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/beratung/text", entry.getBeratung().getText());
                 }
 
             }
             if (entry.getTherapie() != null) {
-
-                if (entry.getTherapie().getInitialtherapie() != null) {
-                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/therapie/initial", entry.getTherapie().getInitialtherapie());
-                }
-                if (entry.getTherapie().getMonitoring() != null) {
-                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/therapie/monotiring", entry.getTherapie().getMonitoring());
-                }
                 if (entry.getTherapie().getNotfall() != null) {
                     temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/therapie/notfall", entry.getTherapie().getNotfall());
                 }
-                if (entry.getTherapie().getWeiteresTherapieregime() != null) {
-                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/therapie/weiteresTherapie", entry.getTherapie().getWeiteresTherapieregime());
+                if (entry.getTherapie().getText()!= null) {
+                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/therapie/text", entry.getTherapie().getText());
                 }
             }
 
             if (entry.getNotes() != null) {
-
-                if (entry.getNotes().getDefinitionen() != null) {
-                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/notes/definitionen", entry.getNotes().getDefinitionen());
+                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/notes", entry.getNotes());
                 }
-                if (entry.getNotes().getICDNummern() != null) {
-                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/notes/ICD", entry.getNotes().getICDNummern());
-                }
-                if (entry.getNotes().getStandardarztbrief() != null) {
-                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/notes/brief", entry.getNotes().getStandardarztbrief());
-                }
-
-            }
-            // temp.getModel().write(System.out);
+                
+            temp.getModel().write(System.out);
             temp.getModel().close();
         } catch (Exception ex) {
             throw new RuntimeException(ex);
@@ -146,16 +106,17 @@ public class KrankheitService {
 
     public Krankheit create() {
         Krankheit krankheit = new Krankheit();
-        Uebersicht uebersicht = new Uebersicht();
-        Therapie therapie = new Therapie();
-        Notes notes = new Notes();
-        Beratung beratung = new Beratung();
-        Diagnostik diagnostik = new Diagnostik();
+        TextModel uebersicht = new TextModel();
+        TextModel therapie = new TextModel();
+        String notes = null ;
+        TextModel beratung = new TextModel();
+        TextModel diagnostik = new TextModel();
         krankheit.setUebersicht(uebersicht);
         krankheit.setBeratung(beratung);
         krankheit.setDiagnostik(diagnostik);
         krankheit.setNotes(notes);
         krankheit.setTherapie(therapie);
+        krankheit.setProzedur(new Prozedur());
         return krankheit;
     }
 
@@ -163,108 +124,76 @@ public class KrankheitService {
 
         if (sparqlTemp.getModel() == null) {
             this.connectSparqlTemp();
+            
         }
 
         String sparql = "PREFIX doc: <http://document/>"
                 + "PREFIX ueber: <http://document//krankheit/uebersicht/>"
+                + "PREFIX kra: <http://document//krankheit/>"
                 + "PREFIX diag: <http://document//krankheit/diagnostik/>"
                 + "PREFIX th: <http://document//krankheit/therapie/>"
                 + "PREFIX ber: <http://document//krankheit/beratung/>"
                 + "PREFIX no: <http://document//krankheit/notes/>"
-                + "SELECT ?title ?autor ?date ?uberNotfall ?flowchart ?tabelle "
-                + "?apperativeDiagnostik ?diagNotfall ?anamnese ?differentialdiagnosen ?erweiterteDiagnostik ?klinischeUntersuchung ?leitsymptome "
-                + "?thNotfall ?initial ?monotiring ?weiteresTherapie "
-                + "?entlassmanagement ?erwartenedesBild ?berNotfall "
-                + "?weiteresProzedere ?definitionen ?ICD ?brief WHERE {"
+                + "SELECT ?title ?autor ?date ?uberNotfall ?uberText "
+                + "?diagText ?diagNotfall "
+                + "?thText ?thNotfall  "
+                + "?berText ?berNotfall "
+                + "?notes WHERE {"
                 + " ?x doc:label 'krankheit'. "
                 + " OPTIONAL { ?x doc:date ?date}. "
                 + " ?x doc:title '" + title + "'. "
+              //  + " OPTIONAL { ?x kra:prozedur ?prozedur}. "
+              //  + " OPTIONAL { ?y doc:type ?prozedur}. "
+              //  + " OPTIONAL { ?y doc:title ?prozedurTitle}. "
                 + " OPTIONAL { ?x doc:autor ?autor}. "
                 + " OPTIONAL { ?x doc:type ?kr}. "
+                
                 + " OPTIONAL { ?kr ueber:notfall ?uberNotfall}. "
-                + " OPTIONAL { ?kr ueber:flowchart ?flowchart}. "
-                + " OPTIONAL { ?kr ueber:tabelle ?tabelle}. "
+                + " OPTIONAL { ?kr ueber:text ?uberText}. "
+                
                 + " OPTIONAL { ?kr diag:notfall ?diagNotfall}. "
-                + " OPTIONAL { ?kr diag:apperativeDiagnostik ?apperativeDiagnostik}. "
-                + " OPTIONAL { ?kr diag:differentialdiagnosen ?differentialdiagnosen}. "
-                + " OPTIONAL { ?kr diag:erweiterteDiagnostik ?erweiterteDiagnostik}. "
-                + " OPTIONAL { ?kr diag:klinischeUntersuchung ?klinischeUntersuchung}. "
-                + " OPTIONAL { ?kr diag:leitsymptome ?leitsymptome}. "
-                + " OPTIONAL { ?kr diag:anamnese ?anamnese}. "
+                + " OPTIONAL { ?kr diag:text ?diagText}. "
+                
                 + " OPTIONAL { ?kr th:notfall ?thNotfall}. "
-                + " OPTIONAL { ?kr th:initial ?initial}. "
-                + " OPTIONAL { ?kr th:monotiring ?monotiring}. "
-                + " OPTIONAL { ?kr th:weiteresTherapie ?weiteresTherapie}. "
-                + " OPTIONAL { ?kr ber:entlassmanagement ?entlassmanagement}. "
-                + " OPTIONAL { ?kr ber:erwartenedesBild ?erwartenedesBild}. "
+                + " OPTIONAL { ?kr th:text ?thText}. "
+               
                 + " OPTIONAL { ?kr ber:notfall ?berNotfall}. "
-                + " OPTIONAL { ?kr ber:weiteresProzedere ?weiteresProzedere}. "
-                + " OPTIONAL { ?kr no:definitionen ?definitionen}. "
-                + " OPTIONAL { ?kr no:ICD ?ICD}. "
-                + " OPTIONAL { ?kr no:brief ?brief}. "
+                + " OPTIONAL { ?kr ber:text ?berText}. "
+                
+                + " OPTIONAL { ?kr kra:notes ?notes}. "
+
                 + "}";
         List<Krankheit> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
             QuerySolution sln = rs.nextSolution();
 
             Krankheit krankheit = new Krankheit();
-            Uebersicht uebersicht = new Uebersicht();
-            Diagnostik diagnostik = new Diagnostik();
-            Therapie therapie = new Therapie();
-            Beratung beratung = new Beratung();
-            Notes notes = new Notes();
-            if (sln.get("definitionen") != null) {
-                notes.setDefinitionen(sln.get("definitionen").toString());
+            TextModel uebersicht = new TextModel();
+            TextModel therapie = new TextModel();
+            TextModel beratung = new TextModel();
+            TextModel diagnostik = new TextModel();
+            Prozedur prozedur = new Prozedur();
+            if (sln.get("notes") != null) {
+                krankheit.setNotes(sln.get("notes").toString());
             }
-            if (sln.get("ICD") != null) {
-                notes.setICDNummern(sln.get("ICD").toString());
-            }
-            if (sln.get("brief") != null) {
-                notes.setStandardarztbrief(sln.get("brief").toString());
-            }
+            
 
-            if (sln.get("entlassmanagement") != null) {
-                beratung.setEntlassmanagement(sln.get("entlassmanagement").toString());
-            }
-            if (sln.get("erwartenedesBild") != null) {
-                beratung.setErwantendesKlinischesBild(sln.get("erwartenedesBild").toString());
+            if (sln.get("berText") != null) {
+                beratung.setText(sln.get("berText").toString());
             }
             if (sln.get("berNotfall") != null) {
                 beratung.setNotfall(sln.get("berNotfall").toString());
             }
-            if (sln.get("weiteresProzedere") != null) {
-                beratung.setWeiteresProzedereNachEntlassung(sln.get("weiteresProzedere").toString());
-            }
-
-            if (sln.get("initial") != null) {
-                therapie.setInitialtherapie(sln.get("initial").toString());
-            }
-            if (sln.get("monotiring") != null) {
-                therapie.setMonitoring(sln.get("monotiring").toString());
-            }
+            
             if (sln.get("thNotfall") != null) {
                 therapie.setNotfall(sln.get("thNotfall").toString());
             }
-            if (sln.get("weiteresTherapie") != null) {
-                therapie.setWeiteresTherapieregime(sln.get("weiteresTherapie").toString());
+            if (sln.get("thText") != null) {
+                therapie.setText(sln.get("thText").toString());
             }
 
-            if (sln.get("anamnese") != null) {
-                diagnostik.setAnamnese(sln.get("anamnese").toString());
-            }
-            if (sln.get("apperativeDiagnostik") != null) {
-                diagnostik.setApperativeDiagnostik(sln.get("apperativeDiagnostik").toString());
-            }
-            if (sln.get("differentialdiagnosen") != null) {
-                diagnostik.setDifferentialdiagnosen(sln.get("differentialdiagnosen").toString());
-            }
-            if (sln.get("erweiterteDiagnostik") != null) {
-                diagnostik.setErweiterteDiagnostik(sln.get("erweiterteDiagnostik").toString());
-            }
-            if (sln.get("klinischeUntersuchung") != null) {
-                diagnostik.setKlinischeUntersuchung(sln.get("klinischeUntersuchung").toString());
-            }
-            if (sln.get("leitsymptome") != null) {
-                diagnostik.setLeitsymptome(sln.get("leitsymptome").toString());
+            
+            if (sln.get("diagText") != null) {
+                diagnostik.setText(sln.get("diagText").toString());
             }
             if (sln.get("diagNotfall") != null) {
                 diagnostik.setNotfall(sln.get("diagNotfall").toString());
@@ -273,32 +202,34 @@ public class KrankheitService {
             if (sln.get("autor") != null) {
                 krankheit.setAutor(sln.get("autor").toString());
             }
+            if (sln.get("prozedurTitle") != null) {
+                
+                prozedur.setTitle(sln.get("prozedurTitle").toString());
+            }
             krankheit.setTitle(title);
 
             if (sln.get("date") != null) {
                 krankheit.setDate(sln.get("date").toString());
             }
 
-            if (sln.get("flowchart") != null) {
-                uebersicht.setFlowchart(sln.get("flowchart").toString());
+            if (sln.get("uberText") != null) {
+                uebersicht.setText(sln.get("uberText").toString());
             }
             if (sln.get("uberNotfall") != null) {
                 uebersicht.setNotfall(sln.get("uberNotfall").toString());
             }
-            if (sln.get("tabelle") != null) {
-                uebersicht.setTabelle(sln.get("tabelle").toString());
-            }
+            
 
             krankheit.setUebersicht(uebersicht);
             krankheit.setBeratung(beratung);
             krankheit.setDiagnostik(diagnostik);
-            krankheit.setNotes(notes);
             krankheit.setTherapie(therapie);
             krankheit.setUebersicht(uebersicht);
+          //  krankheit.setProzedur(prozedur);
             return krankheit;
 
         });
-        //System.out.println(list.get(0).toString());
+        //System.out.println(list.get(0).getProzedur().getTitle());
         return list.get(0);
     }
 
@@ -309,11 +240,6 @@ public class KrankheitService {
         }
 
         String sparql = "PREFIX doc: <http://document/>"
-                + "PREFIX ueber: <http://document//krankheit/uebersicht/>"
-                + "PREFIX diag: <http://document//krankheit/diagnostik/>"
-                + "PREFIX th: <http://document//krankheit/therapie/>"
-                + "PREFIX ber: <http://document//krankheit/beratung/>"
-                + "PREFIX no: <http://document//krankheit/notes/>"
                 + "SELECT ?title ?autor ?date  WHERE {"
                 + " ?x doc:label 'krankheit'. "
                 + " OPTIONAL { ?x doc:date ?date}. "

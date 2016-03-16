@@ -5,24 +5,15 @@
  */
 package de.document.service;
 
-/**
- *
- * @author Bilel-PC
- */
 import com.hp.hpl.jena.query.Dataset;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.tdb.TDBFactory;
-import de.document.entity.Auswertung;
 import de.document.jenaspring.JenaTemplate;
 import de.document.jenaspring.SparqlTemplate;
-import de.document.entity.Document;
 import de.document.entity.Prozedur;
-import de.document.entity.Notes;
-import de.document.entity.Therapie;
-import de.document.entity.Uebersicht;
-import de.document.entity.Vorbereitung;
+import de.document.entity.TextModel;
 import java.util.List;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -39,178 +30,16 @@ public class ProzedurService {
     String NS = "http://document/";
     String url = "D:\\TDB\\Document";
 
-    public Prozedur read(String title) {
-
-        if (sparqlTemp.getModel() == null) {
-            this.connectSparqlTemp();
-        }
-
-        String sparql = "PREFIX doc: <http://document/>"
-                + "PREFIX ueber: <http://document//prozedur/uebersicht/>"
-                + "PREFIX vor: <http://document//prozedur/vorbereitung/>"
-                + "PREFIX th: <http://document//prozedur/therapie/>"
-                + "PREFIX aus: <http://document//prozedur/auswertung/>"
-                + "PREFIX no: <http://document//prozedur/notes/>"
-                + "SELECT ?autor ?date ?uberNotfall ?flowchart ?tabelle "
-                + "?indikation ?vorNotfall ?kontraindikation "
-                + "?thNotfall ?initial ?monotiring ?weiteresTherapie "
-                + "?interpretation ?auswertung ?ausNotfall ?weiteresProzedere "
-                + "?definitionen ?ICD ?brief WHERE {"
-                + " ?x doc:label 'prozedur'. "
-                + " OPTIONAL { ?x doc:date ?date. }"
-                + " ?x doc:title '" + title + "'. "
-                + " OPTIONAL { ?x doc:autor ?autor. }"
-                + " OPTIONAL { ?x doc:type ?pro. }"
-                + " OPTIONAL { ?pro ueber:notfall ?uberNotfall. }"
-                + " OPTIONAL { ?pro ueber:flowchart ?flowchart. }"
-                + " OPTIONAL { ?pro ueber:tabelle ?tabelle. }"
-                + " OPTIONAL { ?pro vor:notfall ?vorNotfall. }"
-                + " OPTIONAL { ?pro vor:indikation ?indikation. }"
-                + " OPTIONAL { ?pro vor:kontraindikation ?kontraindikation. }"
-                + " OPTIONAL { ?pro th:notfall ?thNotfall. }"
-                + " OPTIONAL { ?pro th:initial ?initial. }"
-                + " OPTIONAL { ?pro th:monotiring ?monotiring. }"
-                + " OPTIONAL { ?pro th:weiteresTherapie ?weiteresTherapie. }"
-                + " OPTIONAL { ?pro aus:interpretation ?interpretation. }"
-                + " OPTIONAL { ?pro aus:auswertung ?auswertung. }"
-                + " OPTIONAL { ?pro aus:notfall ?ausNotfall. }"
-                + " OPTIONAL { ?pro aus:weiteresProzedere ?weiteresProzedere. }"
-                + " OPTIONAL { ?pro no:definitionen ?definitionen. }"
-                + " OPTIONAL { ?pro no:ICD ?ICD. }"
-                + " OPTIONAL { ?pro no:brief ?brief. }"
-                + "}";
-        List<Prozedur> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
-            QuerySolution sln = rs.nextSolution();
-
-            Prozedur prozedur = new Prozedur();
-            Uebersicht uebersicht = new Uebersicht();
-            Vorbereitung vorbereitung = new Vorbereitung();
-            Therapie therapie = new Therapie();
-            Auswertung auswertung = new Auswertung();
-            Notes notes = new Notes();
-
-            if (sln.get("definitionen") != null) {
-                notes.setDefinitionen(sln.get("definitionen").toString());
-            }
-            if (sln.get("ICD") != null) {
-                notes.setICDNummern(sln.get("ICD").toString());
-            }
-            if (sln.get("brief") != null) {
-                notes.setStandardarztbrief(sln.get("brief").toString());
-            }
-            if (sln.get("auswertung") != null) {
-                auswertung.setAuswertung(sln.get("auswertung").toString());
-            }
-            if (sln.get("interpretation") != null) {
-                auswertung.setInterpretation(sln.get("interpretation").toString());
-            }
-            if (sln.get("ausNotfall") != null) {
-                auswertung.setNotfall(sln.get("ausNotfall").toString());
-            }
-            if (sln.get("weiteresProzedere") != null) {
-                auswertung.setWeiteresProzedere(sln.get("weiteresProzedere").toString());
-            }
-
-            if (sln.get("initial") != null) {
-                therapie.setInitialtherapie(sln.get("initial").toString());
-            }
-            if (sln.get("monotiring") != null) {
-                therapie.setMonitoring(sln.get("monotiring").toString());
-            }
-            if (sln.get("thNotfall") != null) {
-                therapie.setNotfall(sln.get("thNotfall").toString());
-            }
-            if (sln.get("weiteresTherapie") != null) {
-                therapie.setWeiteresTherapieregime(sln.get("weiteresTherapie").toString());
-            }
-            if (sln.get("indikation") != null) {
-                vorbereitung.setIndikation(sln.get("indikation").toString());
-            }
-            if (sln.get("kontraindikation") != null) {
-                vorbereitung.setKontraindikation(sln.get("kontraindikation").toString());
-            }
-            if (sln.get("vorNotfall") != null) {
-                vorbereitung.setNotfall(sln.get("vorNotfall").toString());
-            }
-
-            if (sln.get("autor") != null) {
-                prozedur.setAutor(sln.get("autor").toString());
-            }
-                prozedur.setTitle(title);
-                
-            
-            if (sln.get("date") != null) {
-                prozedur.setDate(sln.get("date").toString());
-            }
-            if (sln.get("flowchart") != null) {
-                uebersicht.setFlowchart(sln.get("flowchart").toString());
-            }
-            if (sln.get("uberNotfall") != null) {
-                uebersicht.setNotfall(sln.get("uberNotfall").toString());
-            }
-            if (sln.get("tabelle") != null) {
-                uebersicht.setTabelle(sln.get("tabelle").toString());
-            }
-
-            prozedur.setUebersicht(uebersicht);
-            prozedur.setAuswertung(auswertung);
-            prozedur.setVorbereitung(vorbereitung);
-            prozedur.setNotes(notes);
-            prozedur.setTherapie(therapie);
-            return prozedur;
-        });
-        System.out.println(list.toString());
-        return list.get(0);
-    }
-
-    public List<Prozedur> readAll() {
-
-        if (sparqlTemp.getModel() == null) {
-            this.connectSparqlTemp();
-        }
-
-        String sparql = "PREFIX doc: <http://document/>"
-                + "PREFIX ueber: <http://document//prozedur/uebersicht/>"
-                + "PREFIX vor: <http://document//prozedur/vorbereitung/>"
-                + "PREFIX th: <http://document//prozedur/therapie/>"
-                + "PREFIX aus: <http://document//prozedur/auswertung/>"
-                + "PREFIX no: <http://document//prozedur/notes/>"
-                + "SELECT ?title ?autor ?date WHERE {"
-                + " ?x doc:label 'prozedur'. "
-                + " OPTIONAL { ?x doc:date ?date. }"
-                + " ?x doc:title ?title. "
-                + " OPTIONAL { ?x doc:autor ?autor. }"
-                + "}";
-        List<Prozedur> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
-            QuerySolution sln = rs.nextSolution();
-            Prozedur prozedur = new Prozedur();
-
-            if (sln.get("autor") != null) {
-                prozedur.setAutor(sln.get("autor").toString());
-            }
-            if (sln.get("title") != null) {
-                prozedur.setTitle(sln.get("title").toString());
-            }
-            if (sln.get("date") != null) {
-                prozedur.setDate(sln.get("date").toString());
-            }
-            return prozedur;
-        });
-        System.out.println(list.toString());
-        return list;
-    }
-
-    public synchronized Prozedur save(Prozedur entry) {
+    public Prozedur save(Prozedur entry) {
 
         try {
             entry = (Prozedur) BeanUtils.cloneBean(entry);
             if (temp.getModel() == null) {
                 this.connectJenaTemp();
             }
-
+            //temp.getModel().write(System.out);
             temp.removeResource(NS + entry.getTitle());
             temp.removeResource(NS + "prozedur/" + entry.getTitle());
-
             if (entry.getTitle() != null) {
                 temp.addResource(NS + entry.getTitle(), NS + "type", NS + "prozedur/" + entry.getTitle());
                 temp.add(NS + entry.getTitle(), NS + "title", entry.getTitle());
@@ -222,76 +51,50 @@ public class ProzedurService {
             if (entry.getDate() != null) {
                 temp.add(NS + entry.getTitle(), NS + "date", entry.getDate());
             }
+//            if (entry.getProzedur().getTitle()!= null) {
+//                temp.addResource(NS + entry.getTitle(), NS + "/prozedur/prozedur", NS + "prozedur/"+entry.getProzedur().getTitle());
+//            }
             if (entry.getUebersicht() != null) {
                 if (entry.getUebersicht().getNotfall() != null) {
                     temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/uebersicht/notfall", entry.getUebersicht().getNotfall());
                 }
-                if (entry.getUebersicht().getFlowchart() != null) {
-                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/uebersicht/flowchart", entry.getUebersicht().getFlowchart());
-                }
-                if (entry.getUebersicht().getTabelle() != null) {
-                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/uebersicht/tabelle", entry.getUebersicht().getTabelle());
+                if (entry.getUebersicht().getText()!= null) {
+                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/uebersicht/text", entry.getUebersicht().getText());
                 }
             }
-            if (entry.getVorbereitung() != null) {
+            if (entry.getDiagnostik()!= null) {
 
-                if (entry.getVorbereitung().getIndikation() != null) {
-                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/vorbereitung/indikation", entry.getVorbereitung().getIndikation());
+                
+                if (entry.getDiagnostik().getText()!= null) {
+                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/diagnostik/text", entry.getDiagnostik().getText());
                 }
-                if (entry.getVorbereitung().getKontraindikation() != null) {
-                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/vorbereitung/kontraindikation", entry.getVorbereitung().getKontraindikation());
+                if (entry.getDiagnostik().getNotfall() != null) {
+                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/diagnostik/notfall", entry.getDiagnostik().getNotfall());
                 }
-                if (entry.getVorbereitung().getNotfall() != null) {
-                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/vorbereitung/notfall", entry.getVorbereitung().getNotfall());
-                }
-
             }
-            if (entry.getAuswertung() != null) {
-
-                if (entry.getAuswertung().getAuswertung() != null) {
-                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/auswertung/auswertung", entry.getAuswertung().getAuswertung());
+            if (entry.getBeratung()!= null) {
+                if (entry.getBeratung().getNotfall() != null) {
+                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/beratung/notfall", entry.getBeratung().getNotfall());
                 }
-                if (entry.getAuswertung().getInterpretation() != null) {
-                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/auswertung/interpretation", entry.getAuswertung().getInterpretation());
-                }
-                if (entry.getAuswertung().getNotfall() != null) {
-                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/auswertung/notfall", entry.getAuswertung().getNotfall());
-                }
-                if (entry.getAuswertung().getWeiteresProzedere() != null) {
-                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/auswertung/weiteresProzedere", entry.getAuswertung().getWeiteresProzedere());
+                if (entry.getBeratung().getText()!= null) {
+                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/beratung/text", entry.getBeratung().getText());
                 }
 
             }
             if (entry.getTherapie() != null) {
-
-                if (entry.getTherapie().getInitialtherapie() != null) {
-                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/therapie/initial", entry.getTherapie().getInitialtherapie());
-                }
-                if (entry.getTherapie().getMonitoring() != null) {
-                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/therapie/monotiring", entry.getTherapie().getMonitoring());
-                }
                 if (entry.getTherapie().getNotfall() != null) {
                     temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/therapie/notfall", entry.getTherapie().getNotfall());
                 }
-                if (entry.getTherapie().getWeiteresTherapieregime() != null) {
-                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/therapie/weiteresTherapie", entry.getTherapie().getWeiteresTherapieregime());
+                if (entry.getTherapie().getText()!= null) {
+                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/therapie/text", entry.getTherapie().getText());
                 }
             }
 
             if (entry.getNotes() != null) {
-
-                if (entry.getNotes().getDefinitionen() != null) {
-                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/notes/definitionen", entry.getNotes().getDefinitionen());
+                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/notes", entry.getNotes());
                 }
-                if (entry.getNotes().getICDNummern() != null) {
-                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/notes/ICD", entry.getNotes().getICDNummern());
-                }
-                if (entry.getNotes().getStandardarztbrief() != null) {
-                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/notes/brief", entry.getNotes().getStandardarztbrief());
-                }
-
-            }
-            // temp.getModel().write(System.out);
+                
+            temp.getModel().write(System.out);
             temp.getModel().close();
         } catch (Exception ex) {
             throw new RuntimeException(ex);
@@ -302,18 +105,163 @@ public class ProzedurService {
 
     public Prozedur create() {
         Prozedur prozedur = new Prozedur();
-        Uebersicht uebersicht = new Uebersicht();
-        Vorbereitung vorbereitung = new Vorbereitung();
-        Therapie therapie = new Therapie();
-        Auswertung auswertung = new Auswertung();
-        Notes notes = new Notes();
-
+        TextModel uebersicht = new TextModel();
+        TextModel therapie = new TextModel();
+        TextModel beratung = new TextModel();
+        TextModel diagnostik = new TextModel();
         prozedur.setUebersicht(uebersicht);
-        prozedur.setAuswertung(auswertung);
-        prozedur.setVorbereitung(vorbereitung);
-        prozedur.setNotes(notes);
+        prozedur.setBeratung(beratung);
+        prozedur.setDiagnostik(diagnostik);
         prozedur.setTherapie(therapie);
         return prozedur;
+    }
+
+    public Prozedur read(String title) {
+
+        if (sparqlTemp.getModel() == null) {
+            this.connectSparqlTemp();
+            
+        }
+
+        String sparql = "PREFIX doc: <http://document/>"
+                + "PREFIX ueber: <http://document//prozedur/uebersicht/>"
+                + "PREFIX pro: <http://document//prozedur/>"
+                + "PREFIX diag: <http://document//prozedur/diagnostik/>"
+                + "PREFIX th: <http://document//prozedur/therapie/>"
+                + "PREFIX ber: <http://document//prozedur/beratung/>"
+                + "PREFIX no: <http://document//prozedur/notes/>"
+                + "SELECT ?title ?autor ?date "
+                + "?ueberNotfall ?ueberText "
+                + "?diagText ?diagNotfall "
+                + "?thText ?thNotfall  "
+                + "?berText ?berNotfall "
+                + "?notes WHERE {"
+                + " ?x doc:label 'prozedur'. "
+                + " OPTIONAL { ?x doc:date ?date}. "
+                + " ?x doc:title '" + title + "'. "
+              //  + " OPTIONAL { ?x kra:prozedur ?prozedur}. "
+              //  + " OPTIONAL { ?y doc:type ?prozedur}. "
+              //  + " OPTIONAL { ?y doc:title ?prozedurTitle}. "
+                + " OPTIONAL { ?x doc:autor ?autor}. "
+                + " OPTIONAL { ?x doc:type ?kr}. "
+                
+                + " OPTIONAL { ?kr ueber:notfall ?ueberNotfall}. "
+                + " OPTIONAL { ?kr ueber:text ?ueberText}. "
+                
+                + " OPTIONAL { ?kr diag:notfall ?diagNotfall}. "
+                + " OPTIONAL { ?kr diag:text ?diagText}. "
+                
+                + " OPTIONAL { ?kr th:notfall ?thNotfall}. "
+                + " OPTIONAL { ?kr th:text ?thText}. "
+               
+                + " OPTIONAL { ?kr ber:notfall ?berNotfall}. "
+                + " OPTIONAL { ?kr ber:text ?berText}. "
+                
+                + " OPTIONAL { ?kr pro:notes ?notes}. "
+
+                + "}";
+        List<Prozedur> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
+            QuerySolution sln = rs.nextSolution();
+
+            Prozedur prozedur = new Prozedur();
+            TextModel uebersicht = new TextModel();
+            TextModel therapie = new TextModel();
+            TextModel beratung = new TextModel();
+            TextModel diagnostik = new TextModel();
+            if (sln.get("notes") != null) {
+                prozedur.setNotes(sln.get("notes").toString());
+            }
+            
+
+            if (sln.get("berText") != null) {
+                beratung.setText(sln.get("berText").toString());
+            }
+            if (sln.get("berNotfall") != null) {
+                beratung.setNotfall(sln.get("berNotfall").toString());
+            }
+            
+            if (sln.get("thNotfall") != null) {
+                therapie.setNotfall(sln.get("thNotfall").toString());
+            }
+            if (sln.get("thText") != null) {
+                therapie.setText(sln.get("thText").toString());
+            }
+
+            
+            if (sln.get("diagText") != null) {
+                diagnostik.setText(sln.get("diagText").toString());
+            }
+            if (sln.get("diagNotfall") != null) {
+                diagnostik.setNotfall(sln.get("diagNotfall").toString());
+            }
+
+            if (sln.get("autor") != null) {
+                prozedur.setAutor(sln.get("autor").toString());
+            }
+            if (sln.get("prozedurTitle") != null) {
+                
+                prozedur.setTitle(sln.get("prozedurTitle").toString());
+            }
+            prozedur.setTitle(title);
+
+            if (sln.get("date") != null) {
+                prozedur.setDate(sln.get("date").toString());
+            }
+
+            if (sln.get("ueberText") != null) {
+                uebersicht.setText(sln.get("ueberText").toString());
+            }
+            if (sln.get("ueberNotfall") != null) {
+                uebersicht.setNotfall(sln.get("ueberNotfall").toString());
+            }
+            
+
+            prozedur.setUebersicht(uebersicht);
+            prozedur.setBeratung(beratung);
+            prozedur.setDiagnostik(diagnostik);
+            prozedur.setTherapie(therapie);
+            prozedur.setUebersicht(uebersicht);
+          //  prozedur.setProzedur(prozedur);
+            return prozedur;
+
+        });
+        //System.out.println(list.get(0).getProzedur().getTitle());
+        return list.get(0);
+    }
+
+    public List<Prozedur> readAll() {
+
+        if (sparqlTemp.getModel() == null) {
+            this.connectSparqlTemp();
+        }
+
+        String sparql = "PREFIX doc: <http://document/>"
+                + "SELECT ?title ?autor ?date  WHERE {"
+                + " ?x doc:label 'prozedur'. "
+                + " OPTIONAL { ?x doc:date ?date}. "
+                + " ?x doc:title ?title. "
+                + " OPTIONAL { ?x doc:autor ?autor}. "
+                + "}";
+        List<Prozedur> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
+            QuerySolution sln = rs.nextSolution();
+
+            Prozedur prozedur = new Prozedur();
+
+            if (sln.get("autor") != null) {
+                prozedur.setAutor(sln.get("autor").toString());
+            }
+            if (sln.get("title") != null) {
+                prozedur.setTitle(sln.get("title").toString());
+            }
+            if (sln.get("date") != null) {
+                prozedur.setDate(sln.get("date").toString());
+            }
+
+            return prozedur;
+
+        });
+        //System.out.println(list.toString());
+        return list;
     }
 
     public void delete(String entry) {
@@ -328,7 +276,7 @@ public class ProzedurService {
             Dataset dataset = TDBFactory.createDataset(url);
             Model model = dataset.getDefaultModel();
             temp.setModel(model);
-            model.write(System.out);
+//            model.write(System.out);
 
         }
     }
@@ -338,7 +286,7 @@ public class ProzedurService {
             Dataset dataset = TDBFactory.createDataset(url);
             Model model = dataset.getDefaultModel();
             sparqlTemp.setModel(model);
-            model.write(System.out);
+            //model.write(System.out);
 
         }
     }
@@ -348,5 +296,4 @@ public class ProzedurService {
         Model model = dataset.getDefaultModel();
         return model;
     }
-
 }

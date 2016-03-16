@@ -6,7 +6,7 @@
 package de.document.jenaspring;
 
 import de.document.controller.KrankheitController;
-import de.document.controller.ProzedurController;
+//import de.document.controller.ProzedurController;
 import java.net.URISyntaxException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,7 +19,8 @@ import org.springframework.context.annotation.Configuration;
  */
 @SpringBootApplication
 @Configuration
-@ComponentScan(basePackageClasses = {KrankheitController.class, ProzedurController.class})
+//@ComponentScan(basePackageClasses = {KrankheitController.class, ProzedurController.class})
+@ComponentScan(basePackageClasses = {KrankheitController.class})
 
 public class Application {
 

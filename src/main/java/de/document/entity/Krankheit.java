@@ -14,51 +14,62 @@ import org.apache.commons.beanutils.BeanUtils;
  */
 public class Krankheit extends Document implements Serializable, Cloneable{
 
-    private Uebersicht uebersicht;
-    private Diagnostik diagnostik;
-    private Therapie therapie;
-    private Beratung beratung;
-    private Notes notes;
+    private TextModel uebersicht;
+    private TextModel diagnostik;
+    private TextModel therapie;
+    private TextModel beratung;
+    private String notes;
+    private Prozedur prozedur;
 
-    public Uebersicht getUebersicht() {
+    public TextModel getUebersicht() {
         return uebersicht;
     }
 
-    public void setUebersicht(Uebersicht uebersicht) {
+    public void setUebersicht(TextModel uebersicht) {
         this.uebersicht = uebersicht;
     }
 
-    public Diagnostik getDiagnostik() {
+    public TextModel getDiagnostik() {
         return diagnostik;
     }
 
-    public void setDiagnostik(Diagnostik diagnostik) {
+    public void setDiagnostik(TextModel diagnostik) {
         this.diagnostik = diagnostik;
     }
 
-    public Therapie getTherapie() {
+    public TextModel getTherapie() {
         return therapie;
     }
 
-    public void setTherapie(Therapie therapie) {
+    public void setTherapie(TextModel therapie) {
         this.therapie = therapie;
     }
 
-    public Beratung getBeratung() {
+    public TextModel getBeratung() {
         return beratung;
     }
 
-    public void setBeratung(Beratung beratung) {
+    public void setBeratung(TextModel beratung) {
         this.beratung = beratung;
     }
 
-    public Notes getNotes() {
+    public String getNotes() {
         return notes;
     }
 
-    public void setNotes(Notes notes) {
+    public void setNotes(String notes) {
         this.notes = notes;
     }
+
+   
+    public Prozedur getProzedur() {
+        return prozedur;
+    }
+
+    public void setProzedur(Prozedur prozedur) {
+        this.prozedur = prozedur;
+    }
+    
 @Override
     public Krankheit clone() throws CloneNotSupportedException {
         try {
