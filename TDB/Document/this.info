@@ -1,5 +1,5 @@
-#Metadata: Location: D:/TDB/Document
-#Thu Mar 03 14:21:31 CET 2016
+#Metadata: Location: D:/PC-Bilel/Documents/NetBeansProjects/MedicalKnowledge/TDB/Document
+#Thu Mar 17 15:55:18 CET 2016
 tdb.type=standalone
 tdb.record.triple=24
 tdb.record.quad=32
@@ -19,5 +19,5 @@ tdb.indexes.triples.primary=SPO
 tdb.indexes.triples=SPO,POS,OSP
 tdb.indexes.quads.primary=GSPO
 tdb.indexes.quads=GSPO,GPOS,GOSP,POSG,OSPG,SPOG
-tdb.created=2016-03-03T14\:21\:31.86+01\:00
+tdb.created=2016-03-17T15\:55\:18.35+01\:00
 tdb.create.version=0.8.10

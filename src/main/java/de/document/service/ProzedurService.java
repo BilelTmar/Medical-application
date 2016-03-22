@@ -28,7 +28,7 @@ public class ProzedurService {
     JenaTemplate temp = new JenaTemplate();
     SparqlTemplate sparqlTemp = new SparqlTemplate();
     String NS = "http://document/";
-    String url = "D:\\TDB\\Document";
+    String url = "D:\\PC-Bilel\\Documents\\NetBeansProjects\\MedicalKnowledge\\TDB\\Document";
 
     public Prozedur save(Prozedur entry) {
 
@@ -37,9 +37,9 @@ public class ProzedurService {
             if (temp.getModel() == null) {
                 this.connectJenaTemp();
             }
-            //temp.getModel().write(System.out);
             temp.removeResource(NS + entry.getTitle());
             temp.removeResource(NS + "prozedur/" + entry.getTitle());
+        //    temp.removeResource(NS + "prozedur/" + entry.getTitle());
             if (entry.getTitle() != null) {
                 temp.addResource(NS + entry.getTitle(), NS + "type", NS + "prozedur/" + entry.getTitle());
                 temp.add(NS + entry.getTitle(), NS + "title", entry.getTitle());
@@ -51,9 +51,7 @@ public class ProzedurService {
             if (entry.getDate() != null) {
                 temp.add(NS + entry.getTitle(), NS + "date", entry.getDate());
             }
-//            if (entry.getProzedur().getTitle()!= null) {
-//                temp.addResource(NS + entry.getTitle(), NS + "/prozedur/prozedur", NS + "prozedur/"+entry.getProzedur().getTitle());
-//            }
+            
             if (entry.getUebersicht() != null) {
                 if (entry.getUebersicht().getNotfall() != null) {
                     temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/uebersicht/notfall", entry.getUebersicht().getNotfall());
@@ -94,7 +92,6 @@ public class ProzedurService {
                     temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/notes", entry.getNotes());
                 }
                 
-            temp.getModel().write(System.out);
             temp.getModel().close();
         } catch (Exception ex) {
             throw new RuntimeException(ex);
@@ -139,9 +136,6 @@ public class ProzedurService {
                 + " ?x doc:label 'prozedur'. "
                 + " OPTIONAL { ?x doc:date ?date}. "
                 + " ?x doc:title '" + title + "'. "
-              //  + " OPTIONAL { ?x kra:prozedur ?prozedur}. "
-              //  + " OPTIONAL { ?y doc:type ?prozedur}. "
-              //  + " OPTIONAL { ?y doc:title ?prozedurTitle}. "
                 + " OPTIONAL { ?x doc:autor ?autor}. "
                 + " OPTIONAL { ?x doc:type ?kr}. "
                 
@@ -205,6 +199,7 @@ public class ProzedurService {
             prozedur.setTitle(title);
 
             if (sln.get("date") != null) {
+                System.out.println(sln.get("date").toString());
                 prozedur.setDate(sln.get("date").toString());
             }
 
@@ -221,11 +216,9 @@ public class ProzedurService {
             prozedur.setDiagnostik(diagnostik);
             prozedur.setTherapie(therapie);
             prozedur.setUebersicht(uebersicht);
-          //  prozedur.setProzedur(prozedur);
             return prozedur;
 
         });
-        //System.out.println(list.get(0).getProzedur().getTitle());
         return list.get(0);
     }
 
@@ -254,13 +247,12 @@ public class ProzedurService {
                 prozedur.setTitle(sln.get("title").toString());
             }
             if (sln.get("date") != null) {
-                prozedur.setDate(sln.get("date").toString());
+                prozedur.setDate(sln.get("date").toString().substring(0,10));
             }
 
             return prozedur;
 
         });
-        //System.out.println(list.toString());
         return list;
     }
 
@@ -268,7 +260,13 @@ public class ProzedurService {
         if (temp.getModel() == null) {
             this.connectJenaTemp();
         }
+
+        temp.removeResource(NS + "prozedur/" + entry);
         temp.removeResource(NS + entry);
+        
+                temp.getModel().write(System.out);
+
+        
     }
 
     public void connectJenaTemp() {
@@ -276,7 +274,6 @@ public class ProzedurService {
             Dataset dataset = TDBFactory.createDataset(url);
             Model model = dataset.getDefaultModel();
             temp.setModel(model);
-//            model.write(System.out);
 
         }
     }
@@ -286,7 +283,6 @@ public class ProzedurService {
             Dataset dataset = TDBFactory.createDataset(url);
             Model model = dataset.getDefaultModel();
             sparqlTemp.setModel(model);
-            //model.write(System.out);
 
         }
     }

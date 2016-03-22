@@ -38,9 +38,10 @@ public class KrankheitService {
             if (temp.getModel() == null) {
                 this.connectJenaTemp();
             }
-            //temp.getModel().write(System.out);
-            temp.removeResource(NS + entry.getTitle());
             temp.removeResource(NS + "krankheit/" + entry.getTitle());
+            temp.removeResource(NS + entry.getTitle());
+            
+            
             if (entry.getTitle() != null) {
                 temp.addResource(NS + entry.getTitle(), NS + "type", NS + "krankheit/" + entry.getTitle());
                 temp.add(NS + entry.getTitle(), NS + "title", entry.getTitle());
@@ -50,23 +51,22 @@ public class KrankheitService {
                 temp.add(NS + entry.getTitle(), NS + "autor", entry.getAutor());
             }
             if (entry.getDate() != null) {
-                temp.add(NS + entry.getTitle(), NS + "date", entry.getDate());
+                temp.add(NS + entry.getTitle(), NS + "date", entry.getDate().substring(0,10));
             }
-//            if (entry.getProzedur().getTitle()!= null) {
-//                temp.addResource(NS + entry.getTitle(), NS + "/krankheit/prozedur", NS + "prozedur/"+entry.getProzedur().getTitle());
-//            }
+            if (entry.getProzedur() != null) {
+                temp.addResource(NS + entry.getTitle(), NS + "/krankheit/prozedur", NS + "prozedur/" + entry.getProzedur().getTitle());
+            }
             if (entry.getUebersicht() != null) {
                 if (entry.getUebersicht().getNotfall() != null) {
                     temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/uebersicht/notfall", entry.getUebersicht().getNotfall());
                 }
-                if (entry.getUebersicht().getText()!= null) {
+                if (entry.getUebersicht().getText() != null) {
                     temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/uebersicht/text", entry.getUebersicht().getText());
                 }
             }
             if (entry.getDiagnostik() != null) {
 
-                
-                if (entry.getDiagnostik().getText()!= null) {
+                if (entry.getDiagnostik().getText() != null) {
                     temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/diagnostik/text", entry.getDiagnostik().getText());
                 }
                 if (entry.getDiagnostik().getNotfall() != null) {
@@ -77,7 +77,7 @@ public class KrankheitService {
                 if (entry.getBeratung().getNotfall() != null) {
                     temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/beratung/notfall", entry.getBeratung().getNotfall());
                 }
-                if (entry.getBeratung().getText()!= null) {
+                if (entry.getBeratung().getText() != null) {
                     temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/beratung/text", entry.getBeratung().getText());
                 }
 
@@ -86,16 +86,15 @@ public class KrankheitService {
                 if (entry.getTherapie().getNotfall() != null) {
                     temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/therapie/notfall", entry.getTherapie().getNotfall());
                 }
-                if (entry.getTherapie().getText()!= null) {
+                if (entry.getTherapie().getText() != null) {
                     temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/therapie/text", entry.getTherapie().getText());
                 }
             }
 
             if (entry.getNotes() != null) {
-                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/notes", entry.getNotes());
-                }
-                
-            temp.getModel().write(System.out);
+                temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/notes", entry.getNotes());
+            }
+
             temp.getModel().close();
         } catch (Exception ex) {
             throw new RuntimeException(ex);
@@ -108,7 +107,7 @@ public class KrankheitService {
         Krankheit krankheit = new Krankheit();
         TextModel uebersicht = new TextModel();
         TextModel therapie = new TextModel();
-        String notes = null ;
+        String notes = null;
         TextModel beratung = new TextModel();
         TextModel diagnostik = new TextModel();
         krankheit.setUebersicht(uebersicht);
@@ -124,7 +123,7 @@ public class KrankheitService {
 
         if (sparqlTemp.getModel() == null) {
             this.connectSparqlTemp();
-            
+
         }
 
         String sparql = "PREFIX doc: <http://document/>"
@@ -134,7 +133,8 @@ public class KrankheitService {
                 + "PREFIX th: <http://document//krankheit/therapie/>"
                 + "PREFIX ber: <http://document//krankheit/beratung/>"
                 + "PREFIX no: <http://document//krankheit/notes/>"
-                + "SELECT ?title ?autor ?date ?uberNotfall ?uberText "
+                + "SELECT ?title ?autor ?date ?prozedurTitle ?y"
+                + " ?uberNotfall ?uberText  "
                 + "?diagText ?diagNotfall "
                 + "?thText ?thNotfall  "
                 + "?berText ?berNotfall "
@@ -142,26 +142,20 @@ public class KrankheitService {
                 + " ?x doc:label 'krankheit'. "
                 + " OPTIONAL { ?x doc:date ?date}. "
                 + " ?x doc:title '" + title + "'. "
-              //  + " OPTIONAL { ?x kra:prozedur ?prozedur}. "
-              //  + " OPTIONAL { ?y doc:type ?prozedur}. "
-              //  + " OPTIONAL { ?y doc:title ?prozedurTitle}. "
+                + " OPTIONAL { ?x kra:prozedur ?prozedur. "
+                + " ?y doc:type ?prozedur. "
+                + "  ?y doc:title ?prozedurTitle}. "
                 + " OPTIONAL { ?x doc:autor ?autor}. "
                 + " OPTIONAL { ?x doc:type ?kr}. "
-                
                 + " OPTIONAL { ?kr ueber:notfall ?uberNotfall}. "
                 + " OPTIONAL { ?kr ueber:text ?uberText}. "
-                
                 + " OPTIONAL { ?kr diag:notfall ?diagNotfall}. "
                 + " OPTIONAL { ?kr diag:text ?diagText}. "
-                
                 + " OPTIONAL { ?kr th:notfall ?thNotfall}. "
                 + " OPTIONAL { ?kr th:text ?thText}. "
-               
                 + " OPTIONAL { ?kr ber:notfall ?berNotfall}. "
                 + " OPTIONAL { ?kr ber:text ?berText}. "
-                
                 + " OPTIONAL { ?kr kra:notes ?notes}. "
-
                 + "}";
         List<Krankheit> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
             QuerySolution sln = rs.nextSolution();
@@ -175,15 +169,19 @@ public class KrankheitService {
             if (sln.get("notes") != null) {
                 krankheit.setNotes(sln.get("notes").toString());
             }
-            
+            if (sln.get("prozedurTitle") != null) {
+                prozedur.setTitle(sln.get("prozedurTitle").toString());
+                System.out.println(sln.get("prozedurTitle"));
+                System.out.println(sln.get("y"));
 
+            }
             if (sln.get("berText") != null) {
                 beratung.setText(sln.get("berText").toString());
             }
             if (sln.get("berNotfall") != null) {
                 beratung.setNotfall(sln.get("berNotfall").toString());
             }
-            
+
             if (sln.get("thNotfall") != null) {
                 therapie.setNotfall(sln.get("thNotfall").toString());
             }
@@ -191,7 +189,6 @@ public class KrankheitService {
                 therapie.setText(sln.get("thText").toString());
             }
 
-            
             if (sln.get("diagText") != null) {
                 diagnostik.setText(sln.get("diagText").toString());
             }
@@ -202,13 +199,11 @@ public class KrankheitService {
             if (sln.get("autor") != null) {
                 krankheit.setAutor(sln.get("autor").toString());
             }
-            if (sln.get("prozedurTitle") != null) {
-                
-                prozedur.setTitle(sln.get("prozedurTitle").toString());
-            }
+
             krankheit.setTitle(title);
 
             if (sln.get("date") != null) {
+                String d = sln.get("date").toString();
                 krankheit.setDate(sln.get("date").toString());
             }
 
@@ -218,18 +213,16 @@ public class KrankheitService {
             if (sln.get("uberNotfall") != null) {
                 uebersicht.setNotfall(sln.get("uberNotfall").toString());
             }
-            
 
             krankheit.setUebersicht(uebersicht);
             krankheit.setBeratung(beratung);
             krankheit.setDiagnostik(diagnostik);
             krankheit.setTherapie(therapie);
             krankheit.setUebersicht(uebersicht);
-          //  krankheit.setProzedur(prozedur);
+            krankheit.setProzedur(prozedur);
             return krankheit;
 
         });
-        //System.out.println(list.get(0).getProzedur().getTitle());
         return list.get(0);
     }
 
@@ -238,6 +231,8 @@ public class KrankheitService {
         if (sparqlTemp.getModel() == null) {
             this.connectSparqlTemp();
         }
+                    sparqlTemp.getModel().write(System.out);
+
 
         String sparql = "PREFIX doc: <http://document/>"
                 + "SELECT ?title ?autor ?date  WHERE {"
@@ -264,7 +259,6 @@ public class KrankheitService {
             return krankheit;
 
         });
-        //System.out.println(list.toString());
         return list;
     }
 
@@ -272,6 +266,7 @@ public class KrankheitService {
         if (temp.getModel() == null) {
             this.connectJenaTemp();
         }
+        temp.removeResource(NS + "krankheit/" + entry);
         temp.removeResource(NS + entry);
     }
 
@@ -280,7 +275,7 @@ public class KrankheitService {
             Dataset dataset = TDBFactory.createDataset(url);
             Model model = dataset.getDefaultModel();
             temp.setModel(model);
-//            model.write(System.out);
+
 
         }
     }
@@ -290,7 +285,6 @@ public class KrankheitService {
             Dataset dataset = TDBFactory.createDataset(url);
             Model model = dataset.getDefaultModel();
             sparqlTemp.setModel(model);
-            //model.write(System.out);
 
         }
     }

@@ -8,7 +8,10 @@ package de.document.controller;
 import de.document.entity.Document;
 import de.document.entity.Krankheit;
 import de.document.service.KrankheitService;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import static org.springframework.core.convert.TypeDescriptor.array;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,10 +44,24 @@ public class KrankheitController {
         return entity;
     }
 
-    @RequestMapping(value = "/query")
-    public List<Krankheit> query() {
-
+//    @RequestMapping(value = "/query/page/{p}", method = {RequestMethod.GET})
+//    public HashMap query(@PathVariable("p") int p) {
+//        int beginn = (p - 1) * 5;
+//        int end = beginn + 5;
+//        List entity = this.service.readAll();
+//        List results = entity.subList(beginn, end);
+//        int total_pages = entity.size();
+//        HashMap l = new HashMap();
+//        l.put("results",results);
+//        l.put("total_pages",total_pages);
+//        return l;
+//    }
+        @RequestMapping(value = "/query", method = {RequestMethod.GET})
+    public List query() {
+        
         List entity = this.service.readAll();
+            System.out.println(entity.size());
+        
         return entity;
     }
 
