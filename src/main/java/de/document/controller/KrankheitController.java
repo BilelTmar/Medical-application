@@ -8,6 +8,7 @@ package de.document.controller;
 import de.document.entity.Document;
 import de.document.entity.Krankheit;
 import de.document.service.KrankheitService;
+import de.document.service.KrankheitService11;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/krankheit")
 public class KrankheitController {
 
-    KrankheitService service = new KrankheitService();
+    KrankheitService11 service = new KrankheitService11();
 
     @RequestMapping(value = "/save", method = {RequestMethod.POST})
     public Document saveKrankheit(@RequestBody Krankheit request) {

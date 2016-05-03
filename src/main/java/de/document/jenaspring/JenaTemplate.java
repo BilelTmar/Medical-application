@@ -14,11 +14,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
+import org.apache.jena.rdf.model.Literal;
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.Property;
+import org.apache.jena.rdf.model.Resource;
 
-import com.hp.hpl.jena.rdf.model.Literal;
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.Property;
-import com.hp.hpl.jena.rdf.model.Resource;
+
 
 /**
  * @author Al Baker
@@ -228,7 +229,7 @@ public class JenaTemplate {
 	 */
 	public void removeProperty(String uri, String property) {
 		Resource r = model.createResource(uri);
-		Property p = model.createProperty(property);
+		org.apache.jena.rdf.model.Property p = model.createProperty(property);
 		model.removeAll(r, p, null);
 	}
 	

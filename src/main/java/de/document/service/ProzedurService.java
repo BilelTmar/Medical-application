@@ -5,11 +5,11 @@
  */
 package de.document.service;
 
-import com.hp.hpl.jena.query.Dataset;
-import com.hp.hpl.jena.query.QuerySolution;
-import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.tdb.TDBFactory;
+import org.apache.jena.query.Dataset;
+import org.apache.jena.query.QuerySolution;
+import org.apache.jena.query.ResultSet;
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.tdb.TDBFactory;
 import de.document.jenaspring.JenaTemplate;
 import de.document.jenaspring.SparqlTemplate;
 import de.document.entity.Prozedur;
@@ -34,7 +34,12 @@ public class ProzedurService {
 
         try {
             entry = (Prozedur) BeanUtils.cloneBean(entry);
-            if (temp.getModel() == null) {
+            if (temp.getModel() != null) {
+
+                if (temp.getModel().isClosed()) {
+                    this.connectJenaTemp();
+                }
+            } else {
                 this.connectJenaTemp();
             }
             temp.removeResource(NS + entry.getTitle());
@@ -49,7 +54,7 @@ public class ProzedurService {
                 temp.add(NS + entry.getTitle(), NS + "autor", entry.getAutor());
             }
             if (entry.getDate() != null) {
-                temp.add(NS + entry.getTitle(), NS + "date", entry.getDate());
+                temp.add(NS + entry.getTitle(), NS + "date", entry.getDate().substring(0, 10));
             }
             
             if (entry.getUebersicht() != null) {
@@ -91,8 +96,8 @@ public class ProzedurService {
             if (entry.getNotes() != null) {
                     temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/notes", entry.getNotes());
                 }
-                
-            temp.getModel().close();
+                if (!temp.getModel().isClosed()) {
+            temp.getModel().close();}
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
@@ -115,9 +120,13 @@ public class ProzedurService {
 
     public Prozedur read(String title) {
 
-        if (sparqlTemp.getModel() == null) {
+        if (sparqlTemp.getModel() != null) {
+
+            if (sparqlTemp.getModel().isClosed()) {
+                this.connectSparqlTemp();
+            }
+        } else {
             this.connectSparqlTemp();
-            
         }
 
         String sparql = "PREFIX doc: <http://document/>"
@@ -224,7 +233,12 @@ public class ProzedurService {
 
     public List<Prozedur> readAll() {
 
-        if (sparqlTemp.getModel() == null) {
+        if (sparqlTemp.getModel() != null) {
+
+            if (sparqlTemp.getModel().isClosed()) {
+                this.connectSparqlTemp();
+            }
+        } else {
             this.connectSparqlTemp();
         }
 
@@ -257,9 +271,14 @@ public class ProzedurService {
     }
 
     public void delete(String entry) {
-        if (temp.getModel() == null) {
-            this.connectJenaTemp();
-        }
+        if (temp.getModel() != null) {
+
+                if (temp.getModel().isClosed()) {
+                    this.connectJenaTemp();
+                }
+            } else {
+                this.connectJenaTemp();
+            }
 
         temp.removeResource(NS + "prozedur/" + entry);
         temp.removeResource(NS + entry);
@@ -270,21 +289,19 @@ public class ProzedurService {
     }
 
     public void connectJenaTemp() {
-        if (temp.getModel() == null) {
             Dataset dataset = TDBFactory.createDataset(url);
             Model model = dataset.getDefaultModel();
             temp.setModel(model);
 
-        }
+        
     }
 
     public void connectSparqlTemp() {
-        if (sparqlTemp.getModel() == null) {
             Dataset dataset = TDBFactory.createDataset(url);
             Model model = dataset.getDefaultModel();
             sparqlTemp.setModel(model);
 
-        }
+        
     }
 
     public Model getModel() {

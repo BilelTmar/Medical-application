@@ -8,6 +8,7 @@ package de.document.controller;
 import de.document.entity.Document;
 import de.document.entity.Prozedur;
 import de.document.service.ProzedurService;
+import de.document.service.ProzedurService1;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/prozedur")
 public class ProzedurController {
 
-    ProzedurService service = new ProzedurService();
+    ProzedurService1 service = new ProzedurService1();
 
     @RequestMapping(value = "/save", method = {RequestMethod.POST})
     public Document saveDoc(@RequestBody Prozedur request) {

@@ -11,7 +11,7 @@ package de.document.jenaspring;
  */
 import java.util.Map;
 
-import com.hp.hpl.jena.query.ResultSet;
+import org.apache.jena.query.ResultSet;
 
 /**
  * SolutionDimensionalMapper

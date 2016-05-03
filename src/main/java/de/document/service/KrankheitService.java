@@ -5,18 +5,20 @@
  */
 package de.document.service;
 
-import com.hp.hpl.jena.query.Dataset;
-import com.hp.hpl.jena.query.QuerySolution;
-import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.tdb.TDBFactory;
 import de.document.jenaspring.JenaTemplate;
 import de.document.jenaspring.SparqlTemplate;
 import de.document.entity.Krankheit;
 import de.document.entity.Prozedur;
 import de.document.entity.TextModel;
+import de.document.jenaspring.TextSearch;
+import java.util.Iterator;
 import java.util.List;
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.jena.query.Dataset;
+import org.apache.jena.query.QuerySolution;
+import org.apache.jena.query.ResultSet;
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.tdb.TDBFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -26,22 +28,27 @@ import org.springframework.stereotype.Service;
 @Service
 public class KrankheitService {
 
-    JenaTemplate temp = new JenaTemplate();
-    SparqlTemplate sparqlTemp = new SparqlTemplate();
-    String NS = "http://document/";
-    String url = "D:\\PC-Bilel\\Documents\\NetBeansProjects\\MedicalKnowledge\\TDB\\Document";
+    private final JenaTemplate temp = new JenaTemplate();
+    private final SparqlTemplate sparqlTemp = new SparqlTemplate();
+    private final String NS = "http://document/";
+    private final String url = "D:\\PC-Bilel\\Documents\\NetBeansProjects\\MedicalKnowledge\\TDB\\Document";
 
     public Krankheit save(Krankheit entry) {
 
         try {
             entry = (Krankheit) BeanUtils.cloneBean(entry);
-            if (temp.getModel() == null) {
+            if (temp.getModel() != null) {
+
+                if (temp.getModel().isClosed()) {
+                    this.connectJenaTemp();
+                }
+            } else {
                 this.connectJenaTemp();
             }
+            System.out.println(temp.getModel().isClosed());
             temp.removeResource(NS + "krankheit/" + entry.getTitle());
             temp.removeResource(NS + entry.getTitle());
-            
-            
+
             if (entry.getTitle() != null) {
                 temp.addResource(NS + entry.getTitle(), NS + "type", NS + "krankheit/" + entry.getTitle());
                 temp.add(NS + entry.getTitle(), NS + "title", entry.getTitle());
@@ -51,7 +58,7 @@ public class KrankheitService {
                 temp.add(NS + entry.getTitle(), NS + "autor", entry.getAutor());
             }
             if (entry.getDate() != null) {
-                temp.add(NS + entry.getTitle(), NS + "date", entry.getDate().substring(0,10));
+                temp.add(NS + entry.getTitle(), NS + "date", entry.getDate().substring(0, 10));
             }
             if (entry.getProzedur() != null) {
                 temp.addResource(NS + entry.getTitle(), NS + "/krankheit/prozedur", NS + "prozedur/" + entry.getProzedur().getTitle());
@@ -95,7 +102,9 @@ public class KrankheitService {
                 temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/notes", entry.getNotes());
             }
 
-            temp.getModel().close();
+            if (!temp.getModel().isClosed()) {
+                temp.getModel().close();
+            }
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
@@ -121,9 +130,13 @@ public class KrankheitService {
 
     public Krankheit read(String title) {
 
-        if (sparqlTemp.getModel() == null) {
-            this.connectSparqlTemp();
+        if (sparqlTemp.getModel() != null) {
 
+            if (sparqlTemp.getModel().isClosed()) {
+                this.connectSparqlTemp();
+            }
+        } else {
+            this.connectSparqlTemp();
         }
 
         String sparql = "PREFIX doc: <http://document/>"
@@ -228,11 +241,15 @@ public class KrankheitService {
 
     public List<Krankheit> readAll() {
 
-        if (sparqlTemp.getModel() == null) {
+        if (sparqlTemp.getModel() != null) {
+
+            if (sparqlTemp.getModel().isClosed()) {
+                this.connectSparqlTemp();
+            }
+        } else {
             this.connectSparqlTemp();
         }
-                    sparqlTemp.getModel().write(System.out);
-
+        sparqlTemp.getModel().write(System.out);
 
         String sparql = "PREFIX doc: <http://document/>"
                 + "SELECT ?title ?autor ?date  WHERE {"
@@ -263,30 +280,32 @@ public class KrankheitService {
     }
 
     public void delete(String entry) {
-        if (temp.getModel() == null) {
-            this.connectJenaTemp();
-        }
+        if (temp.getModel() != null) {
+
+                if (temp.getModel().isClosed()) {
+                    this.connectJenaTemp();
+                }
+            } else {
+                this.connectJenaTemp();
+            }
         temp.removeResource(NS + "krankheit/" + entry);
         temp.removeResource(NS + entry);
     }
 
     public void connectJenaTemp() {
-        if (temp.getModel() == null) {
             Dataset dataset = TDBFactory.createDataset(url);
             Model model = dataset.getDefaultModel();
             temp.setModel(model);
 
-
-        }
+        
     }
 
     public void connectSparqlTemp() {
-        if (sparqlTemp.getModel() == null) {
             Dataset dataset = TDBFactory.createDataset(url);
             Model model = dataset.getDefaultModel();
             sparqlTemp.setModel(model);
 
-        }
+        
     }
 
     public Model getModel() {
