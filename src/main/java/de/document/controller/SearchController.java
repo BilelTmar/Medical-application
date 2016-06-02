@@ -6,9 +6,9 @@
 package de.document.controller;
 
 import de.document.service.SearchService;
-import de.document.service.SearchService1;
+import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
+import org.apache.lucene.queryparser.classic.ParseException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +28,7 @@ public class SearchController {
 
     
   @RequestMapping(value = "/{word}", method = {RequestMethod.GET})
-    public HashMap search(@PathVariable("word") String word) {
+    public HashMap search(@PathVariable("word") String word) throws IOException, ParseException {
         
         HashMap entity = this.service.searchText(word);
         System.out.println(entity.size());

@@ -10,9 +10,11 @@ import de.document.jenaspring.SparqlTemplate;
 import de.document.entity.Krankheit;
 import de.document.entity.Prozedur;
 import de.document.entity.TextModel;
-import de.document.jenaspring.TextSearch;
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.jena.query.Dataset;
 import org.apache.jena.query.QuerySolution;
@@ -30,9 +32,17 @@ public class KrankheitService {
 
     private final JenaTemplate temp = new JenaTemplate();
     private final SparqlTemplate sparqlTemp = new SparqlTemplate();
-    private final String NS = "http://document/";
-    private final String url = "D:\\PC-Bilel\\Documents\\NetBeansProjects\\MedicalKnowledge\\TDB\\Document";
+    private final String NS = "http://document/KR/";
+    private final String url = "D:\\PC-Bilel\\Documents\\NetBeansProjects\\MedicalKnowledge\\TDB\\test";
+    private String reTitle;
 
+    public String linkText(String text) {
+        System.out.println(text.replaceAll("\\\"", ""));
+        return text.replaceAll("\\\"", "");
+    }
+
+    ;
+    
     public Krankheit save(Krankheit entry) {
 
         try {
@@ -45,61 +55,65 @@ public class KrankheitService {
             } else {
                 this.connectJenaTemp();
             }
-            System.out.println(temp.getModel().isClosed());
-            temp.removeResource(NS + "krankheit/" + entry.getTitle());
-            temp.removeResource(NS + entry.getTitle());
+            // System.out.println(temp.getModel().isClosed());
+            //temp.removeResource(NS + "krankheit/" + entry.getTitle());
+            if (entry.getTitle() != null) {
+
+                reTitle = entry.getTitle().replaceAll(" ", "_");
+            }
+            temp.removeResource(NS + reTitle);
 
             if (entry.getTitle() != null) {
-                temp.addResource(NS + entry.getTitle(), NS + "type", NS + "krankheit/" + entry.getTitle());
-                temp.add(NS + entry.getTitle(), NS + "title", entry.getTitle());
-                temp.add(NS + entry.getTitle(), NS + "label", "krankheit");
+                // temp.addResource(NS + reTitle, NS + "type", NS + "krankheit/" + entry.getTitle());
+                temp.add(NS + reTitle, NS + "title", entry.getTitle());
+                temp.add(NS + reTitle, NS + "label", "krankheit");
             }
             if (entry.getAutor() != null) {
-                temp.add(NS + entry.getTitle(), NS + "autor", entry.getAutor());
+                temp.add(NS + reTitle, NS + "autor", entry.getAutor());
             }
             if (entry.getDate() != null) {
-                temp.add(NS + entry.getTitle(), NS + "date", entry.getDate().substring(0, 10));
+                temp.add(NS + reTitle, NS + "date", entry.getDate().substring(0, 10));
             }
             if (entry.getProzedur() != null) {
-                temp.addResource(NS + entry.getTitle(), NS + "/krankheit/prozedur", NS + "prozedur/" + entry.getProzedur().getTitle());
+                temp.addResource(NS + reTitle, NS + "prozedur", "http://document/PR/" + entry.getProzedur().getTitle());
             }
             if (entry.getUebersicht() != null) {
                 if (entry.getUebersicht().getNotfall() != null) {
-                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/uebersicht/notfall", entry.getUebersicht().getNotfall());
+                    temp.add(NS + reTitle, NS + "uebersicht/notfall", linkText(entry.getUebersicht().getNotfall()));
                 }
                 if (entry.getUebersicht().getText() != null) {
-                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/uebersicht/text", entry.getUebersicht().getText());
+                    temp.add(NS + reTitle, NS + "uebersicht/text", linkText(entry.getUebersicht().getText()));
                 }
             }
             if (entry.getDiagnostik() != null) {
 
                 if (entry.getDiagnostik().getText() != null) {
-                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/diagnostik/text", entry.getDiagnostik().getText());
+                    temp.add(NS + reTitle, NS + "diagnostik/text", linkText(entry.getDiagnostik().getText()));
                 }
                 if (entry.getDiagnostik().getNotfall() != null) {
-                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/diagnostik/notfall", entry.getDiagnostik().getNotfall());
+                    temp.add(NS + reTitle, NS + "diagnostik/notfall", linkText(entry.getDiagnostik().getNotfall()));
                 }
             }
             if (entry.getBeratung() != null) {
                 if (entry.getBeratung().getNotfall() != null) {
-                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/beratung/notfall", entry.getBeratung().getNotfall());
+                    temp.add(NS + reTitle, NS + "beratung/notfall", linkText(entry.getBeratung().getNotfall()));
                 }
                 if (entry.getBeratung().getText() != null) {
-                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/beratung/text", entry.getBeratung().getText());
+                    temp.add(NS + reTitle, NS + "beratung/text", linkText(entry.getBeratung().getText()));
                 }
 
             }
             if (entry.getTherapie() != null) {
                 if (entry.getTherapie().getNotfall() != null) {
-                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/therapie/notfall", entry.getTherapie().getNotfall());
+                    temp.add(NS + reTitle, NS + "therapie/notfall", linkText(entry.getTherapie().getNotfall()));
                 }
                 if (entry.getTherapie().getText() != null) {
-                    temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/therapie/text", entry.getTherapie().getText());
+                    temp.add(NS + reTitle, NS + "therapie/text", linkText(entry.getTherapie().getText()));
                 }
             }
 
             if (entry.getNotes() != null) {
-                temp.add(NS + "krankheit/" + entry.getTitle(), NS + "/krankheit/notes", entry.getNotes());
+                temp.add(NS + reTitle, NS + "notes", linkText(entry.getNotes()));
             }
 
             if (!temp.getModel().isClosed()) {
@@ -139,13 +153,14 @@ public class KrankheitService {
             this.connectSparqlTemp();
         }
 
-        String sparql = "PREFIX doc: <http://document/>"
-                + "PREFIX ueber: <http://document//krankheit/uebersicht/>"
-                + "PREFIX kra: <http://document//krankheit/>"
-                + "PREFIX diag: <http://document//krankheit/diagnostik/>"
-                + "PREFIX th: <http://document//krankheit/therapie/>"
-                + "PREFIX ber: <http://document//krankheit/beratung/>"
-                + "PREFIX no: <http://document//krankheit/notes/>"
+        String sparql = "PREFIX doc: <http://document/KR/>"
+                + "PREFIX doc2: <http://document/PR/>"
+                + "PREFIX ueber: <http://document/KR/uebersicht/>"
+                + "PREFIX kra: <http://document/KR/>"
+                + "PREFIX diag: <http://document/KR/diagnostik/>"
+                + "PREFIX th: <http://document/KR/therapie/>"
+                + "PREFIX ber: <http://document/KR/beratung/>"
+                + "PREFIX no: <http://document/KR/notes/>"
                 + "SELECT ?title ?autor ?date ?prozedurTitle ?y"
                 + " ?uberNotfall ?uberText  "
                 + "?diagText ?diagNotfall "
@@ -156,19 +171,17 @@ public class KrankheitService {
                 + " OPTIONAL { ?x doc:date ?date}. "
                 + " ?x doc:title '" + title + "'. "
                 + " OPTIONAL { ?x kra:prozedur ?prozedur. "
-                + " ?y doc:type ?prozedur. "
-                + "  ?y doc:title ?prozedurTitle}. "
+                + "  ?prozedur doc2:title ?prozedurTitle}. "
                 + " OPTIONAL { ?x doc:autor ?autor}. "
-                + " OPTIONAL { ?x doc:type ?kr}. "
-                + " OPTIONAL { ?kr ueber:notfall ?uberNotfall}. "
-                + " OPTIONAL { ?kr ueber:text ?uberText}. "
-                + " OPTIONAL { ?kr diag:notfall ?diagNotfall}. "
-                + " OPTIONAL { ?kr diag:text ?diagText}. "
-                + " OPTIONAL { ?kr th:notfall ?thNotfall}. "
-                + " OPTIONAL { ?kr th:text ?thText}. "
-                + " OPTIONAL { ?kr ber:notfall ?berNotfall}. "
-                + " OPTIONAL { ?kr ber:text ?berText}. "
-                + " OPTIONAL { ?kr kra:notes ?notes}. "
+                + " OPTIONAL { ?x ueber:notfall ?uberNotfall}. "
+                + " OPTIONAL { ?x ueber:text ?uberText}. "
+                + " OPTIONAL { ?x diag:notfall ?diagNotfall}. "
+                + " OPTIONAL { ?x diag:text ?diagText}. "
+                + " OPTIONAL { ?x th:notfall ?thNotfall}. "
+                + " OPTIONAL { ?x th:text ?thText}. "
+                + " OPTIONAL { ?x ber:notfall ?berNotfall}. "
+                + " OPTIONAL { ?x ber:text ?berText}. "
+                + " OPTIONAL { ?x kra:notes ?notes}. "
                 + "}";
         List<Krankheit> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
             QuerySolution sln = rs.nextSolution();
@@ -199,7 +212,7 @@ public class KrankheitService {
                 therapie.setNotfall(sln.get("thNotfall").toString());
             }
             if (sln.get("thText") != null) {
-                therapie.setText(sln.get("thText").toString());
+                therapie.setText(highlightText(sln.get("thText").toString()));
             }
 
             if (sln.get("diagText") != null) {
@@ -238,7 +251,50 @@ public class KrankheitService {
         });
         return list.get(0);
     }
+ private static String highlightText(String text){
+        text = addMedicamentHighlight(text);
+        text = addDosageHighlight(text);
+                return text;
+    }
+    
+    /*
+    Highlights any medicament in a textfield red.
+     */
+    private static String addMedicamentHighlight(String text) {
+        // load the MedicamentList
+        ArrayList<String> medicamentList = new ArrayList<>();
+        try (Scanner s = new Scanner((Thread.currentThread()
+                .getContextClassLoader().getResourceAsStream("MedicamentList")))) {
+            while (s.hasNextLine()) {
+                medicamentList.add(s.nextLine());
+            }
+        }
+        
+                for (String medicament : medicamentList) {
+                text = text.replace(medicament, "<span style=\"color:red;\">" + medicament +"</span>"); 
+        }
+        return text;
+    }
 
+        /*
+    Highlights dosage in a textfield pink.
+     */
+    private static String addDosageHighlight(String text) {
+        if(text.contains("Dosis:")){
+                text = text.replace("Dosis:", "<span style=\"color:magenta;\">" + "Dosis:"); 
+        }
+
+        String dosage ="";
+                     Pattern pattern = Pattern.compile("(\\(.[^\\(]*.\\d*\\,?\\d+)\\s?+(pg|ng|Âµg|mg|g|kg|Âµl|ml|l).*.\\)");
+
+                     Matcher matcher = pattern.matcher(text);
+    // Check all occurrences
+    if (matcher.find()) {
+        dosage = matcher.group();
+                                    text = text.replace(dosage, "<span style=\"color:magenta;\">" + dosage +"</span>"); 
+     }   
+        return text;
+    }
     public List<Krankheit> readAll() {
 
         if (sparqlTemp.getModel() != null) {
@@ -251,7 +307,7 @@ public class KrankheitService {
         }
         sparqlTemp.getModel().write(System.out);
 
-        String sparql = "PREFIX doc: <http://document/>"
+        String sparql = "PREFIX doc: <http://document/KR/>"
                 + "SELECT ?title ?autor ?date  WHERE {"
                 + " ?x doc:label 'krankheit'. "
                 + " OPTIONAL { ?x doc:date ?date}. "
@@ -282,30 +338,28 @@ public class KrankheitService {
     public void delete(String entry) {
         if (temp.getModel() != null) {
 
-                if (temp.getModel().isClosed()) {
-                    this.connectJenaTemp();
-                }
-            } else {
+            if (temp.getModel().isClosed()) {
                 this.connectJenaTemp();
             }
-        temp.removeResource(NS + "krankheit/" + entry);
-        temp.removeResource(NS + entry);
+        } else {
+            this.connectJenaTemp();
+        }
+        temp.removeResource(NS + "krankheit/" + entry.replaceAll(" ", "_"));
+        temp.removeResource(NS + entry.replaceAll(" ", "_"));
     }
 
     public void connectJenaTemp() {
-            Dataset dataset = TDBFactory.createDataset(url);
-            Model model = dataset.getDefaultModel();
-            temp.setModel(model);
+        Dataset dataset = TDBFactory.createDataset(url);
+        Model model = dataset.getDefaultModel();
+        temp.setModel(model);
 
-        
     }
 
     public void connectSparqlTemp() {
-            Dataset dataset = TDBFactory.createDataset(url);
-            Model model = dataset.getDefaultModel();
-            sparqlTemp.setModel(model);
+        Dataset dataset = TDBFactory.createDataset(url);
+        Model model = dataset.getDefaultModel();
+        sparqlTemp.setModel(model);
 
-        
     }
 
     public Model getModel() {

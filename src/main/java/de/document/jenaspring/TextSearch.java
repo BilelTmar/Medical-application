@@ -48,7 +48,6 @@ public class TextSearch {
     }
     static Logger log = LoggerFactory.getLogger("JenaTextExample");
 
-
     public Dataset createCode() {
         // Build a text dataset by code.
         // Here , in-memory base data and in-memeory Lucene index
@@ -58,37 +57,45 @@ public class TextSearch {
 
         // Define the index mapping 
         Model model = ds1.getDefaultModel();
-        Property k2 = model.createProperty("http://document//krankheit/uebersicht/notfall");
-        Property k3 = model.createProperty("http://document//krankheit/diagnostik/text");
-        Property k4 = model.createProperty("http://document//krankheit/uebersicht/text");
-        Property k5 = model.createProperty("http://document//krankheit/therapie/text");
-        Property k6 = model.createProperty("http://document//krankheit/beratung/text");
-        Property k7 = model.createProperty("http://document//krankheit/diagnostik/notfall");
-        Property k8 = model.createProperty("http://document//krankheit/uebersicht/notfall");
-        Property k9 = model.createProperty("http://document//krankheit/therapie/notfall");
-        Property k10 = model.createProperty("http://document//krankheit/beratung/notfall");
-        Property k11 = model.createProperty("http://document//krankheit/notes");
+        Property k2 = model.createProperty("http://document/KR/uebersicht/notfall");
+        Property k3 = model.createProperty("http://document/KR/diagnostik/text");
+        Property k4 = model.createProperty("http://document/KR/uebersicht/text");
+        Property k5 = model.createProperty("http://document/KR/therapie/text");
+        Property k6 = model.createProperty("http://document/KR/beratung/text");
+        Property k7 = model.createProperty("http://document/KR/diagnostik/notfall");
+        Property k8 = model.createProperty("http://document/KR/uebersicht/notfall");
+        Property k9 = model.createProperty("http://document/KR/therapie/notfall");
+        Property k10 = model.createProperty("http://document/KR/beratung/notfall");
+        Property k11 = model.createProperty("http://document/KR/notes");
 
-        Property p2 = model.createProperty("http://document//prozedur/uebersicht/notfall");
-        Property p3 = model.createProperty("http://document//prozedur/diagnostik/text");
-        Property p4 = model.createProperty("http://document//prozedur/uebersicht/text");
-        Property p5 = model.createProperty("http://document//prozedur/therapie/text");
-        Property p6 = model.createProperty("http://document//prozedur/beratung/text");
-        Property p7 = model.createProperty("http://document//prozedur/diagnostik/notfall");
-        Property p8 = model.createProperty("http://document//prozedur/uebersicht/notfall");
-        Property p9 = model.createProperty("http://document//prozedur/therapie/notfall");
-        Property p10 = model.createProperty("http://document//prozedur/beratung/notfall");
-        Property p11 = model.createProperty("http://document//prozedur/notes");
-        Property pr1 = model.createProperty("http://document/");
-        Property pr2 = model.createProperty("http://document/title");
-        Property pr3 = model.createProperty("http://document/autor");
-        Property pr4 = model.createProperty("http://document/label");
+        Property p2 = model.createProperty("http://document/PR/uebersicht/notfall");
+        Property p3 = model.createProperty("http://document/PR/diagnostik/text");
+        Property p4 = model.createProperty("http://document/PR/uebersicht/text");
+        Property p5 = model.createProperty("http://document/PR/therapie/text");
+        Property p6 = model.createProperty("http://document/PR/beratung/text");
+        Property p7 = model.createProperty("http://document/PR/diagnostik/notfall");
+        Property p8 = model.createProperty("http://document/PR/uebersicht/notfall");
+        Property p9 = model.createProperty("http://document/PR/therapie/notfall");
+        Property p10 = model.createProperty("http://document/PR/beratung/notfall");
+        Property p11 = model.createProperty("http://document/PR/notes");
+        Property pr1 = model.createProperty("http://document/PR/");
+        Property pr2 = model.createProperty("http://document/PR/title");
+        Property pr3 = model.createProperty("http://document/PR/autor");
+        Property pr4 = model.createProperty("http://document/PR/label");
+        Property kr1 = model.createProperty("http://document/KR/");
+        Property kr2 = model.createProperty("http://document/KR/title");
+        Property kr3 = model.createProperty("http://document/KR/autor");
+        Property kr4 = model.createProperty("http://document/KR/label");
 
         EntityDefinition entDef2 = new EntityDefinition("uri", "text");
         entDef2.setPrimaryPredicate(pr1.asNode());
         entDef2.setPrimaryPredicate(pr2.asNode());
         entDef2.setPrimaryPredicate(pr3.asNode());
         entDef2.setPrimaryPredicate(pr4.asNode());
+        entDef2.setPrimaryPredicate(kr1.asNode());
+        entDef2.setPrimaryPredicate(kr2.asNode());
+        entDef2.setPrimaryPredicate(kr3.asNode());
+        entDef2.setPrimaryPredicate(kr4.asNode());
         entDef2.setPrimaryPredicate(p2.asNode());
         entDef2.setPrimaryPredicate(p3.asNode());
         entDef2.setPrimaryPredicate(p4.asNode());
@@ -99,7 +106,7 @@ public class TextSearch {
         entDef2.setPrimaryPredicate(p9.asNode());
         entDef2.setPrimaryPredicate(p10.asNode());
         entDef2.setPrimaryPredicate(p11.asNode());
-        
+
         entDef2.setPrimaryPredicate(k2.asNode());
         entDef2.setPrimaryPredicate(k3.asNode());
         entDef2.setPrimaryPredicate(k4.asNode());
@@ -121,15 +128,14 @@ public class TextSearch {
 
     public List queryData(Dataset dataset, String searchWord, String tdbUrl) {
 
-        String pre = StrUtils.strjoinNL( "PREFIX doc: <http://document/>", "PREFIX text: <http://jena.apache.org/text#>", "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>");
+        String pre = StrUtils.strjoinNL("PREFIX doc: <http://document/KR/>", "PREFIX text: <http://jena.apache.org/text#>", "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>");
 
-        String qs = StrUtils.strjoinNL("SELECT * ",
-                " { ?s  text:query '" + searchWord + "'."
-                        + "?x doc:type ?s."
-                        + "?x doc:title ?t."
-                        + "?x doc:label ?l"
-                        + ";}");
-
+        String qs;
+//        qs = StrUtils.strjoinNL("SELECT ?s ",
+//                " { ?s  text:query (doc:title '" + searchWord + "') ;"
+//                + "   doc:title ?label }");
+qs = StrUtils.strjoinNL("SELECT ?s ",
+                " { ?s  text:query  '" + searchWord + "' ;}");
         Dataset ds2 = TDBFactory.createDataset(tdbUrl);
 
         Model model = dataset.getDefaultModel();
@@ -144,16 +150,13 @@ public class TextSearch {
             ResultSet results = qexec.execSelect();
             for (; results.hasNext();) {
                 QuerySolution soln = results.nextSolution();
-                                 System.out.println(soln.get("s"));
+                System.out.println(soln.get("s"));
+                RDFNode s = soln.get("s");// Get a result variable by name.
 
-                RDFNode t = soln.get("t");// Get a result variable by name.
-                RDFNode l = soln.get("l");
+                
                
-                    List list2 = new ArrayList();
-                    list2.add(l.toString());
-                    list2.add(t.toString());
-                    if (!list.contains(list2)) {
-                    list.add(list2);
+                if (!list.contains(s.toString())) {
+                    list.add(s.toString());
                 }
             }
         } finally {

@@ -15,11 +15,12 @@ import de.document.entity.Prozedur;
 import de.document.jenaspring.JenaTemplate;
 import de.document.jenaspring.SparqlTemplate;
 import de.document.jenaspring.TextSearch;
-import de.document.jenaspring.TextSearch11;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import org.apache.lucene.queryparser.classic.ParseException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -30,12 +31,14 @@ import org.springframework.stereotype.Service;
 public class SearchService {
 
     JenaTemplate temp = new JenaTemplate();
-    TextSearch11 search = new TextSearch11();
+    TextSearch search = new TextSearch();
     SparqlTemplate sparqlTemp = new SparqlTemplate();
+    ICDNummerService icdService = new ICDNummerService();
     String NS = "http://document/";
     String url = "TDB\\test";
 
-    public HashMap searchText(String word) {
+    @SuppressWarnings("empty-statement")
+    public HashMap searchText(String word) throws IOException, ParseException {
         if (sparqlTemp.getModel() == null) {
             this.connectSparqlTemp();
         }
@@ -45,16 +48,19 @@ public class SearchService {
 //        try{
         List list = search.queryData(ds, word, url);
         List<Krankheit> listKr = new ArrayList<>();
+        List<Krankheit> listKrHauf = new ArrayList<>();
+
         List<Prozedur> listPr = new ArrayList<>();
 
         for (Iterator it = list.iterator(); it.hasNext();) {
             String l = (String) it.next();
 
             String sparql = "PREFIX doc: <http://document/KR/>"
-                    + "SELECT ?autor ?date ?title  WHERE {"
+                    + "SELECT ?autor ?date ?title ?notes WHERE {"
                     + " OPTIONAL { <" + l + "> doc:date ?date}. "
                     + "  <" + l + "> doc:title ?title. "
                     + " OPTIONAL { <" + l + "> doc:autor ?autor}. "
+                    + " OPTIONAL { <" + l + "> doc:notes ?notes}. "
                     + "}";
             List<Krankheit> list2 = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
                 QuerySolution sln = rs.nextSolution();
@@ -71,14 +77,29 @@ public class SearchService {
                 if (sln.get("date") != null) {
                     krankheit.setDate(sln.get("date").toString());
                 }
+                if (sln.get("notes") != null) {
+                    krankheit.setNotes(sln.get("notes").toString());
+                }
 
                 return krankheit;
 
             });
             if (!list2.isEmpty()) {
-                listKr.add(list2.get(0));
+                System.out.println(list2.get(0).getNotes());
+                if (list2.get(0).getNotes() != null) {
+                    if (icdService.searchHauptICDNummer(list2.get(0).getNotes())) {
+                        listKrHauf.add(list2.get(0));
+                    } else {
+                        listKr.add(list2.get(0));
+                    }
+                } else {
+                    listKr.add(list2.get(0));
+                }
             }
-
+//            for (Krankheit krankheit : listKr) {
+//                
+//                if ( icdService.searchHauptICDNummer(krankheit.getNotes()));
+//            }
             String PR = "PREFIX doc: <http://document/PR/>"
                     + "SELECT ?autor ?title ?date  WHERE {"
                     + " OPTIONAL { <" + l + "> doc:date ?date}. "
@@ -110,10 +131,10 @@ public class SearchService {
         }
         HashMap h = new HashMap();
         h.put("krankheiten", listKr);
+        h.put("HaufKrankheiten", listKrHauf);
         h.put("prozeduren", listPr);
         return h;
     }
-
 
     public void connectJenaTemp() {
         if (temp.getModel() == null) {

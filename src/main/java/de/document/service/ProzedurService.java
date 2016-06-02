@@ -27,8 +27,8 @@ public class ProzedurService {
 
     JenaTemplate temp = new JenaTemplate();
     SparqlTemplate sparqlTemp = new SparqlTemplate();
-    String NS = "http://document/";
-    String url = "D:\\PC-Bilel\\Documents\\NetBeansProjects\\MedicalKnowledge\\TDB\\Document";
+    String NS = "http://document/PR/";
+    String url = "D:\\PC-Bilel\\Documents\\NetBeansProjects\\MedicalKnowledge\\TDB\\test";
 
     public Prozedur save(Prozedur entry) {
 
@@ -43,10 +43,10 @@ public class ProzedurService {
                 this.connectJenaTemp();
             }
             temp.removeResource(NS + entry.getTitle());
-            temp.removeResource(NS + "prozedur/" + entry.getTitle());
+           // temp.removeResource(NS + "prozedur/" + entry.getTitle());
         //    temp.removeResource(NS + "prozedur/" + entry.getTitle());
             if (entry.getTitle() != null) {
-                temp.addResource(NS + entry.getTitle(), NS + "type", NS + "prozedur/" + entry.getTitle());
+               // temp.addResource(NS + entry.getTitle(), NS + "type", NS + "prozedur/" + entry.getTitle());
                 temp.add(NS + entry.getTitle(), NS + "title", entry.getTitle());
                 temp.add(NS + entry.getTitle(), NS + "label", "prozedur");
             }
@@ -59,42 +59,42 @@ public class ProzedurService {
             
             if (entry.getUebersicht() != null) {
                 if (entry.getUebersicht().getNotfall() != null) {
-                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/uebersicht/notfall", entry.getUebersicht().getNotfall());
+                    temp.add(NS +  entry.getTitle(), NS + "uebersicht/notfall", entry.getUebersicht().getNotfall());
                 }
                 if (entry.getUebersicht().getText()!= null) {
-                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/uebersicht/text", entry.getUebersicht().getText());
+                    temp.add(NS +  entry.getTitle(), NS + "uebersicht/text", entry.getUebersicht().getText());
                 }
             }
             if (entry.getDiagnostik()!= null) {
 
                 
                 if (entry.getDiagnostik().getText()!= null) {
-                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/diagnostik/text", entry.getDiagnostik().getText());
+                    temp.add(NS +  entry.getTitle(), NS + "diagnostik/text", entry.getDiagnostik().getText());
                 }
                 if (entry.getDiagnostik().getNotfall() != null) {
-                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/diagnostik/notfall", entry.getDiagnostik().getNotfall());
+                    temp.add(NS +  entry.getTitle(), NS + "diagnostik/notfall", entry.getDiagnostik().getNotfall());
                 }
             }
             if (entry.getBeratung()!= null) {
                 if (entry.getBeratung().getNotfall() != null) {
-                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/beratung/notfall", entry.getBeratung().getNotfall());
+                    temp.add(NS +  entry.getTitle(), NS + "beratung/notfall", entry.getBeratung().getNotfall());
                 }
                 if (entry.getBeratung().getText()!= null) {
-                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/beratung/text", entry.getBeratung().getText());
+                    temp.add(NS +  entry.getTitle(), NS + "beratung/text", entry.getBeratung().getText());
                 }
 
             }
             if (entry.getTherapie() != null) {
                 if (entry.getTherapie().getNotfall() != null) {
-                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/therapie/notfall", entry.getTherapie().getNotfall());
+                    temp.add(NS +  entry.getTitle(), NS + "therapie/notfall", entry.getTherapie().getNotfall());
                 }
                 if (entry.getTherapie().getText()!= null) {
-                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/therapie/text", entry.getTherapie().getText());
+                    temp.add(NS +entry.getTitle(), NS + "therapie/text", entry.getTherapie().getText());
                 }
             }
 
             if (entry.getNotes() != null) {
-                    temp.add(NS + "prozedur/" + entry.getTitle(), NS + "/prozedur/notes", entry.getNotes());
+                    temp.add(NS +  entry.getTitle(), NS + "notes", entry.getNotes());
                 }
                 if (!temp.getModel().isClosed()) {
             temp.getModel().close();}
@@ -129,13 +129,13 @@ public class ProzedurService {
             this.connectSparqlTemp();
         }
 
-        String sparql = "PREFIX doc: <http://document/>"
-                + "PREFIX ueber: <http://document//prozedur/uebersicht/>"
-                + "PREFIX pro: <http://document//prozedur/>"
-                + "PREFIX diag: <http://document//prozedur/diagnostik/>"
-                + "PREFIX th: <http://document//prozedur/therapie/>"
-                + "PREFIX ber: <http://document//prozedur/beratung/>"
-                + "PREFIX no: <http://document//prozedur/notes/>"
+        String sparql = "PREFIX doc: <http://document/PR/>"
+                + "PREFIX ueber: <http://document/PR/uebersicht/>"
+                + "PREFIX pro: <http://document/PR/>"
+                + "PREFIX diag: <http://document/PR/diagnostik/>"
+                + "PREFIX th: <http://document/PR/therapie/>"
+                + "PREFIX ber: <http://document/PR/beratung/>"
+                + "PREFIX no: <http://document/PR/notes/>"
                 + "SELECT ?title ?autor ?date "
                 + "?ueberNotfall ?ueberText "
                 + "?diagText ?diagNotfall "
@@ -146,21 +146,20 @@ public class ProzedurService {
                 + " OPTIONAL { ?x doc:date ?date}. "
                 + " ?x doc:title '" + title + "'. "
                 + " OPTIONAL { ?x doc:autor ?autor}. "
-                + " OPTIONAL { ?x doc:type ?kr}. "
                 
-                + " OPTIONAL { ?kr ueber:notfall ?ueberNotfall}. "
-                + " OPTIONAL { ?kr ueber:text ?ueberText}. "
+                + " OPTIONAL { ?x ueber:notfall ?ueberNotfall}. "
+                + " OPTIONAL { ?x ueber:text ?ueberText}. "
                 
-                + " OPTIONAL { ?kr diag:notfall ?diagNotfall}. "
-                + " OPTIONAL { ?kr diag:text ?diagText}. "
+                + " OPTIONAL { ?x diag:notfall ?diagNotfall}. "
+                + " OPTIONAL { ?x diag:text ?diagText}. "
                 
-                + " OPTIONAL { ?kr th:notfall ?thNotfall}. "
-                + " OPTIONAL { ?kr th:text ?thText}. "
+                + " OPTIONAL { ?x th:notfall ?thNotfall}. "
+                + " OPTIONAL { ?x th:text ?thText}. "
                
-                + " OPTIONAL { ?kr ber:notfall ?berNotfall}. "
-                + " OPTIONAL { ?kr ber:text ?berText}. "
+                + " OPTIONAL { ?x ber:notfall ?berNotfall}. "
+                + " OPTIONAL { ?x ber:text ?berText}. "
                 
-                + " OPTIONAL { ?kr pro:notes ?notes}. "
+                + " OPTIONAL { ?x doc:notes ?notes}. "
 
                 + "}";
         List<Prozedur> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
@@ -242,7 +241,7 @@ public class ProzedurService {
             this.connectSparqlTemp();
         }
 
-        String sparql = "PREFIX doc: <http://document/>"
+        String sparql = "PREFIX doc: <http://document/PR/>"
                 + "SELECT ?title ?autor ?date  WHERE {"
                 + " ?x doc:label 'prozedur'. "
                 + " OPTIONAL { ?x doc:date ?date}. "
@@ -280,10 +279,9 @@ public class ProzedurService {
                 this.connectJenaTemp();
             }
 
-        temp.removeResource(NS + "prozedur/" + entry);
         temp.removeResource(NS + entry);
         
-                temp.getModel().write(System.out);
+              //  temp.getModel().write(System.out);
 
         
     }
