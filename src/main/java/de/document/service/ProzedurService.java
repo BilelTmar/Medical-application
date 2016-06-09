@@ -29,8 +29,13 @@ public class ProzedurService {
     SparqlTemplate sparqlTemp = new SparqlTemplate();
     String NS = "http://document/PR/";
     String url = "D:\\PC-Bilel\\Documents\\NetBeansProjects\\MedicalKnowledge\\TDB\\test";
+    private String reTitle;
 
-    public Prozedur save(Prozedur entry) {
+    public String linkText(String text) {
+        System.out.println(text.replaceAll("\\\"", ""));
+        return text.replaceAll("\\\"", "");
+    };
+     public Prozedur save(Prozedur entry) {
 
         try {
             entry = (Prozedur) BeanUtils.cloneBean(entry);
@@ -42,69 +47,73 @@ public class ProzedurService {
             } else {
                 this.connectJenaTemp();
             }
-            temp.removeResource(NS + entry.getTitle());
-           // temp.removeResource(NS + "prozedur/" + entry.getTitle());
-        //    temp.removeResource(NS + "prozedur/" + entry.getTitle());
+            // System.out.println(temp.getModel().isClosed());
+            //temp.removeResource(NS + "prozedur/" + entry.getTitle());
             if (entry.getTitle() != null) {
-               // temp.addResource(NS + entry.getTitle(), NS + "type", NS + "prozedur/" + entry.getTitle());
-                temp.add(NS + entry.getTitle(), NS + "title", entry.getTitle());
-                temp.add(NS + entry.getTitle(), NS + "label", "prozedur");
+
+                reTitle = entry.getTitle().replaceAll(" ", "_");
+            }
+            temp.removeResource(NS + reTitle);
+
+            if (entry.getTitle() != null) {
+                // temp.addResource(NS + reTitle, NS + "type", NS + "prozedur/" + entry.getTitle());
+                temp.add(NS + reTitle, NS + "title", entry.getTitle());
+                temp.add(NS + reTitle, NS + "label", "prozedur");
             }
             if (entry.getAutor() != null) {
-                temp.add(NS + entry.getTitle(), NS + "autor", entry.getAutor());
+                temp.add(NS + reTitle, NS + "autor", entry.getAutor());
             }
             if (entry.getDate() != null) {
-                temp.add(NS + entry.getTitle(), NS + "date", entry.getDate().substring(0, 10));
+                temp.add(NS + reTitle, NS + "date", entry.getDate().substring(0, 10));
             }
-            
             if (entry.getUebersicht() != null) {
                 if (entry.getUebersicht().getNotfall() != null) {
-                    temp.add(NS +  entry.getTitle(), NS + "uebersicht/notfall", entry.getUebersicht().getNotfall());
+                    temp.add(NS + reTitle, NS + "uebersicht/notfall", linkText(entry.getUebersicht().getNotfall()));
                 }
-                if (entry.getUebersicht().getText()!= null) {
-                    temp.add(NS +  entry.getTitle(), NS + "uebersicht/text", entry.getUebersicht().getText());
+                if (entry.getUebersicht().getText() != null) {
+                    temp.add(NS + reTitle, NS + "uebersicht/text", linkText(entry.getUebersicht().getText()));
                 }
             }
-            if (entry.getDiagnostik()!= null) {
+            if (entry.getDiagnostik() != null) {
 
-                
-                if (entry.getDiagnostik().getText()!= null) {
-                    temp.add(NS +  entry.getTitle(), NS + "diagnostik/text", entry.getDiagnostik().getText());
+                if (entry.getDiagnostik().getText() != null) {
+                    temp.add(NS + reTitle, NS + "diagnostik/text", linkText(entry.getDiagnostik().getText()));
                 }
                 if (entry.getDiagnostik().getNotfall() != null) {
-                    temp.add(NS +  entry.getTitle(), NS + "diagnostik/notfall", entry.getDiagnostik().getNotfall());
+                    temp.add(NS + reTitle, NS + "diagnostik/notfall", linkText(entry.getDiagnostik().getNotfall()));
                 }
             }
-            if (entry.getBeratung()!= null) {
+            if (entry.getBeratung() != null) {
                 if (entry.getBeratung().getNotfall() != null) {
-                    temp.add(NS +  entry.getTitle(), NS + "beratung/notfall", entry.getBeratung().getNotfall());
+                    temp.add(NS + reTitle, NS + "beratung/notfall", linkText(entry.getBeratung().getNotfall()));
                 }
-                if (entry.getBeratung().getText()!= null) {
-                    temp.add(NS +  entry.getTitle(), NS + "beratung/text", entry.getBeratung().getText());
+                if (entry.getBeratung().getText() != null) {
+                    temp.add(NS + reTitle, NS + "beratung/text", linkText(entry.getBeratung().getText()));
                 }
 
             }
             if (entry.getTherapie() != null) {
                 if (entry.getTherapie().getNotfall() != null) {
-                    temp.add(NS +  entry.getTitle(), NS + "therapie/notfall", entry.getTherapie().getNotfall());
+                    temp.add(NS + reTitle, NS + "therapie/notfall", linkText(entry.getTherapie().getNotfall()));
                 }
-                if (entry.getTherapie().getText()!= null) {
-                    temp.add(NS +entry.getTitle(), NS + "therapie/text", entry.getTherapie().getText());
+                if (entry.getTherapie().getText() != null) {
+                    temp.add(NS + reTitle, NS + "therapie/text", linkText(entry.getTherapie().getText()));
                 }
             }
 
             if (entry.getNotes() != null) {
-                    temp.add(NS +  entry.getTitle(), NS + "notes", entry.getNotes());
-                }
-                if (!temp.getModel().isClosed()) {
-            temp.getModel().close();}
+                temp.add(NS + reTitle, NS + "notes", linkText(entry.getNotes()));
+            }
+
+            if (!temp.getModel().isClosed()) {
+                temp.getModel().close();
+            }
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
         return entry;
 
     }
-
     public Prozedur create() {
         Prozedur prozedur = new Prozedur();
         TextModel uebersicht = new TextModel();

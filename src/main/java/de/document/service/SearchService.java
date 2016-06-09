@@ -48,9 +48,12 @@ public class SearchService {
 //        try{
         List list = search.queryData(ds, word, url);
         List<Krankheit> listKr = new ArrayList<>();
-        List<Krankheit> listKrHauf = new ArrayList<>();
+        List<Krankheit> listKrHaupt = new ArrayList<>();
+        List<Krankheit> listKrNeben = new ArrayList<>();
 
         List<Prozedur> listPr = new ArrayList<>();
+        List<Prozedur> listPrHaupt = new ArrayList<>();
+        List<Prozedur> listPrNeben = new ArrayList<>();
 
         for (Iterator it = list.iterator(); it.hasNext();) {
             String l = (String) it.next();
@@ -62,7 +65,7 @@ public class SearchService {
                     + " OPTIONAL { <" + l + "> doc:autor ?autor}. "
                     + " OPTIONAL { <" + l + "> doc:notes ?notes}. "
                     + "}";
-            List<Krankheit> list2 = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
+            List<Krankheit> listKrankheit = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
                 QuerySolution sln = rs.nextSolution();
 
                 Krankheit krankheit = new Krankheit();
@@ -84,29 +87,27 @@ public class SearchService {
                 return krankheit;
 
             });
-            if (!list2.isEmpty()) {
-                System.out.println(list2.get(0).getNotes());
-                if (list2.get(0).getNotes() != null) {
-                    if (icdService.searchHauptICDNummer(list2.get(0).getNotes())) {
-                        listKrHauf.add(list2.get(0));
+            if (!listKrankheit.isEmpty()) {
+                if (listKrankheit.get(0).getNotes() != null) {
+                    if (icdService.searchHauptICDNummer(listKrankheit.get(0).getNotes())) {
+                        listKrHaupt.add(listKrankheit.get(0));
+                    } else if (icdService.searchNebenICDNummer(listKrankheit.get(0).getNotes())) {
+                        listKrNeben.add(listKrankheit.get(0));
                     } else {
-                        listKr.add(list2.get(0));
+                        listKr.add(listKrankheit.get(0));
                     }
                 } else {
-                    listKr.add(list2.get(0));
+                    listKr.add(listKrankheit.get(0));
                 }
             }
-//            for (Krankheit krankheit : listKr) {
-//                
-//                if ( icdService.searchHauptICDNummer(krankheit.getNotes()));
-//            }
             String PR = "PREFIX doc: <http://document/PR/>"
-                    + "SELECT ?autor ?title ?date  WHERE {"
+                    + "SELECT ?autor ?title ?date ?notes WHERE {"
                     + " OPTIONAL { <" + l + "> doc:date ?date}. "
                     + " <" + l + "> doc:title ?title. "
-                    + " OPTIONAL { <" + l + "> doc:autor ?autor}. "
+                    + " OPTIONAL { <" + l + "> doc:autor ?autor}. "                   
+                    + " OPTIONAL { <" + l + "> doc:notes ?notes}. "
                     + "}";
-            List<Prozedur> list2PR = sparqlTemp.execSelectList(PR, (ResultSet rs, int rowNum) -> {
+            List<Prozedur> listProzedur = sparqlTemp.execSelectList(PR, (ResultSet rs, int rowNum) -> {
                 QuerySolution sln = rs.nextSolution();
 
                 Prozedur prozedur = new Prozedur();
@@ -120,19 +121,36 @@ public class SearchService {
                 if (sln.get("date") != null) {
                     prozedur.setDate(sln.get("date").toString());
                 }
+                if (sln.get("notes") != null) {
+                    prozedur.setNotes(sln.get("notes").toString());
+                }
 
                 return prozedur;
 
             });
-            if (!list2PR.isEmpty()) {
-                listPr.add(list2PR.get(0));
+
+            if (!listProzedur.isEmpty()) {
+                if (listProzedur.get(0).getNotes() != null) {
+                    if (icdService.searchHauptICDNummer(listProzedur.get(0).getNotes())) {
+                        listPrHaupt.add(listProzedur.get(0));
+                    } else if (icdService.searchNebenICDNummer(listProzedur.get(0).getNotes())) {
+                        listPrNeben.add(listProzedur.get(0));
+                    } else {
+                        listPr.add(listProzedur.get(0));
+                    }
+                } else {
+                    listPr.add(listProzedur.get(0));
+                }
             }
 
         }
         HashMap h = new HashMap();
         h.put("krankheiten", listKr);
-        h.put("HaufKrankheiten", listKrHauf);
+        h.put("HauptKrankheiten", listKrHaupt);
+        h.put("NebenKrankheiten", listKrNeben);
         h.put("prozeduren", listPr);
+        h.put("HauptProzeduren", listPrHaupt);
+        h.put("NebenProzeduren", listPrNeben);
         return h;
     }
 

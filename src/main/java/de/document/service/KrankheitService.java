@@ -39,9 +39,7 @@ public class KrankheitService {
     public String linkText(String text) {
         System.out.println(text.replaceAll("\\\"", ""));
         return text.replaceAll("\\\"", "");
-    }
-
-    ;
+    };
     
     public Krankheit save(Krankheit entry) {
 

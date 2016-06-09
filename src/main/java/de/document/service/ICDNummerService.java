@@ -36,11 +36,13 @@ import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.FSDirectory;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Bilel-PC
  */
+@Service
 public class ICDNummerService {
 
     private final JenaTemplate temp = new JenaTemplate();
@@ -329,21 +331,33 @@ public class ICDNummerService {
 
     public boolean searchHauptICDNummer(String text) throws IOException, ParseException {
 
-//        Directory dir = FSDirectory.open(new File(INDEX_PATH));
-//        Analyzer analyzer = new StandardAnalyzer();
-//        IndexWriterConfig iwc = new IndexWriterConfig(Version.LUCENE_4_10_2, analyzer);
-//        //iwc.setOpenMode(OpenMode.CREATE);
-//        IndexWriter writer = new IndexWriter(dir, iwc);
-//        writer.addDocument(createDocument("1", text));
-//        writer.close();
-//        
+      
         boolean b = false;
         List list = this.readHaupt();
         for (Iterator it = list.iterator(); it.hasNext();) {
             ICDNummer icd = (ICDNummer) it.next();
-//            if (searchIndex(icd.getCode())) {
-//                b = true;
-//            };
+
+            int intIndex = text.indexOf(icd.getCode());
+            if (intIndex == - 1) {
+            } else {
+                System.out.println("Found icd at index "
+                        + intIndex);
+                b=true;
+                           
+
+            }
+        }
+        return b;
+    }
+    
+    public boolean searchNebenICDNummer(String text) throws IOException, ParseException {
+
+      
+        boolean b = false;
+        List list = this.readNeben();
+        for (Iterator it = list.iterator(); it.hasNext();) {
+            ICDNummer icd = (ICDNummer) it.next();
+
             int intIndex = text.indexOf(icd.getCode());
             if (intIndex == - 1) {
             } else {
@@ -359,31 +373,9 @@ public class ICDNummerService {
 
     
 
-    private Document createDocument(String id, String content) {
-        Document doc = new Document();
-        doc.add(new StringField("id", id, Field.Store.YES));
-        doc.add(new TextField("contents", content, Store.YES));
-        List a = doc.getFields();
-        return doc;
-    }
 
-    public boolean searchIndex(String icdnummer) throws IOException, ParseException {
-//        IndexReader reader;
-//        reader = IndexReader.open(directory);
-//        IndexSearcher searcher = new IndexSearcher(reader);
-        IndexReader reader = DirectoryReader.open(FSDirectory.open(new File(INDEX_PATH)));
-        IndexSearcher searcher = new IndexSearcher(reader);
-        QueryParser parser = new QueryParser("content", new StandardAnalyzer());
-        Query query = null;
-        query = parser.parse(icdnummer);
-        TopDocs topDocs = searcher.search(query, 100);
-        ScoreDoc[] hits = topDocs.scoreDocs;
-        if (hits.length > 0) {
-            System.out.println("Existing icd: " + icdnummer);
-            return true;
-        }
-        return false;
-    }
+
+   
 
     public void connectJenaTemp() {
         Dataset dataset = TDBFactory.createDataset(url);
