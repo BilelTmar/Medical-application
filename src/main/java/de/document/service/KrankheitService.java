@@ -303,7 +303,6 @@ public class KrankheitService {
         } else {
             this.connectSparqlTemp();
         }
-        sparqlTemp.getModel().write(System.out);
 
         String sparql = "PREFIX doc: <http://document/KR/>"
                 + "SELECT ?title ?autor ?date  WHERE {"

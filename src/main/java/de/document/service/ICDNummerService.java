@@ -9,7 +9,6 @@ import de.document.entity.ICDNummer;
 import de.document.jenaspring.JenaTemplate;
 import de.document.jenaspring.SparqlTemplate;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -21,21 +20,7 @@ import org.apache.jena.query.ResultSet;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.tdb.TDBFactory;
 
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.apache.lucene.document.Document;
-import org.apache.lucene.document.Field;
-import org.apache.lucene.document.Field.Store;
-import org.apache.lucene.document.StringField;
-import org.apache.lucene.document.TextField;
-import org.apache.lucene.index.DirectoryReader;
-import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.queryparser.classic.ParseException;
-import org.apache.lucene.queryparser.classic.QueryParser;
-import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.Query;
-import org.apache.lucene.search.ScoreDoc;
-import org.apache.lucene.search.TopDocs;
-import org.apache.lucene.store.FSDirectory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -50,7 +35,7 @@ public class ICDNummerService {
     private final String NS = "http://ICDNummer/v1/";
     private final String NSHaupt = "http://ICDNummer/v1/haupt/";
     private final String NSNeben = "http://ICDNummer/v1/neben/";
-    private final String url = "D:\\PC-Bilel\\Documents\\NetBeansProjects\\MedicalKnowledge\\TDB\\test2";
+    private final String url = "D:\\PC-Bilel\\Documents\\NetBeansProjects\\MedicalKnowledge\\TDB\\test";
     //private final Directory directory = new RAMDirectory();
     private static final String INDEX_PATH = "/tmp/lucene";
     //private final Analyzer analyzer = new StandardAnalyzer();
@@ -202,7 +187,39 @@ public class ICDNummerService {
         System.out.println("Done");
 
     }
+public ICDNummer read(String code) {
 
+        if (sparqlTemp.getModel() != null) {
+
+            if (sparqlTemp.getModel().isClosed()) {
+                this.connectSparqlTemp();
+            }
+        } else {
+            this.connectSparqlTemp();
+        }
+        String sparql = "PREFIX icd: <http://ICDNummer/v1/neben/>"
+                + "SELECT ?diagnose  WHERE {"
+                + " ?x icd:code '" + code + "'. "
+                + " ?x icd:diagnose ?diagnose. "
+                + "}";
+        List<ICDNummer> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
+            QuerySolution sln = rs.nextSolution();
+
+            ICDNummer icdNummer = new ICDNummer();
+
+            
+                icdNummer.setCode(code);
+            
+            if (sln.get("diagnose") != null) {
+                icdNummer.setDiagnose(sln.get("diagnose").toString());
+            }
+
+            return icdNummer;
+
+        });
+        return list.get(0);
+    
+}
     public List<ICDNummer> readNeben() {
 
         if (sparqlTemp.getModel() != null) {
@@ -370,12 +387,6 @@ public class ICDNummerService {
         }
         return b;
     }
-
-    
-
-
-
-   
 
     public void connectJenaTemp() {
         Dataset dataset = TDBFactory.createDataset(url);

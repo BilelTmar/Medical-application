@@ -42,7 +42,7 @@ public class SearchService {
         if (sparqlTemp.getModel() == null) {
             this.connectSparqlTemp();
         }
-        sparqlTemp.getModel().write(System.out);
+       // sparqlTemp.getModel().write(System.out);
 
         org.apache.jena.query.Dataset ds = search.createCode();
 //        try{

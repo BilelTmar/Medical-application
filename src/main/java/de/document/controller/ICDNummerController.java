@@ -10,8 +10,11 @@ import de.document.service.ICDNummerService;
 import java.io.IOException;
 import java.util.List;
 import org.apache.lucene.queryparser.classic.ParseException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -61,14 +64,11 @@ public class ICDNummerController {
         return list;
     }
 
-    @RequestMapping(value = "/search/haupt")
-    public boolean checkHauptdiagnose() throws IOException, ParseException {
-      //  String text = "S06.0";
-        String text = "<p>S06.0 </p>";
-        List list = readHaupt();
-
-        service.searchHauptICDNummer(text);
-        return false;
+  
+    @RequestMapping(value = "/{code}", method = {RequestMethod.GET})
+    public ResponseEntity read(@PathVariable("code") String code) {
+        code = code.replace("-", ".");
+        ICDNummer entity = this.service.read(code);
+        return ResponseEntity.ok(entity);
     }
-
 }
