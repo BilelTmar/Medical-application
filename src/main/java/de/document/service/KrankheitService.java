@@ -305,11 +305,12 @@ public class KrankheitService {
         }
 
         String sparql = "PREFIX doc: <http://document/KR/>"
-                + "SELECT ?title ?autor ?date  WHERE {"
+                + "SELECT ?title ?autor ?date ?notes  WHERE {"
                 + " ?x doc:label 'krankheit'. "
                 + " OPTIONAL { ?x doc:date ?date}. "
                 + " ?x doc:title ?title. "
                 + " OPTIONAL { ?x doc:autor ?autor}. "
+                + " OPTIONAL { ?x doc:notes ?notes}. "
                 + "}";
         List<Krankheit> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
             QuerySolution sln = rs.nextSolution();
@@ -324,6 +325,9 @@ public class KrankheitService {
             }
             if (sln.get("date") != null) {
                 krankheit.setDate(sln.get("date").toString());
+            }
+            if (sln.get("notes") != null) {
+                krankheit.setNotes(sln.get("notes").toString());
             }
 
             return krankheit;

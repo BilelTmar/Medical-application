@@ -5,14 +5,18 @@
  */
 package de.document.controller;
 
+import de.document.entity.Document;
 import de.document.entity.ICDNummer;
+import de.document.entity.Krankheit;
 import de.document.service.ICDNummerService;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,12 +37,11 @@ public class ICDNummerController {
         service.saveAll();
 
     }
-
-    @RequestMapping(value = "/save/neben")
-    public void saveNeben() {
-        service.saveNebenDiagnose();
-
-    }
+//    @RequestMapping(value = "/save/neben/{version}", method = {RequestMethod.GET})
+//    public void saveNeben(@PathVariable("version") String version) {
+//        service.saveNebenDiagnose(version);
+//
+//    }
 
     @RequestMapping(value = "/save/haupt")
     public void saveHaupt() {
@@ -51,24 +54,74 @@ public class ICDNummerController {
         List<ICDNummer> list = service.readAll();
         return list;
     }
+//    @RequestMapping(value = "/version")
+//    public List<String> readVersionNeben() {
+//        List<String> list = service.readVersionNeben();
+//        return list;
+//    }
+//    @RequestMapping(value = "/read/neben")
+//    public List<ICDNummer> readDefaultNeben() {
+//        List<ICDNummer> list = service.readDefaultNeben();
+//        return list;
+//    }
+//    @RequestMapping(value = "/compare")
+//    public HashMap comparator() {
+//        List<ICDNummer> list = service.readDefaultNeben();
+//        List<ICDNummer> list2 = service.readAll();
+//        HashMap result = service.comparator(list, list2);
+//
+//        return result;
+//    }
 
-    @RequestMapping(value = "/read/neben")
-    public List<ICDNummer> readNeben() {
-        List<ICDNummer> list = service.readNeben();
-        return list;
-    }
-
-    @RequestMapping(value = "/read/haupt")
-    public List<ICDNummer> readHaupt() {
-        List<ICDNummer> list = service.readHaupt();
-        return list;
-    }
-
-  
     @RequestMapping(value = "/{code}", method = {RequestMethod.GET})
     public ResponseEntity read(@PathVariable("code") String code) {
         code = code.replace("-", ".");
         ICDNummer entity = this.service.read(code);
         return ResponseEntity.ok(entity);
     }
+
+    @RequestMapping(value = "/save/gesamt", method = {RequestMethod.POST})
+    public ICDNummer saveGesamt(@RequestBody ICDNummer request) {
+        return service.saveGesamt(request);
+
+    }
+ @RequestMapping(value = "/update/gesamt", method = {RequestMethod.POST})
+    public ICDNummer updateGesamt(@RequestBody ICDNummer request) {
+        return service.updateGesamt(request);
+
+    }
+    @RequestMapping(value = "/read/haupt")
+    public List<ICDNummer> readHaupt() {
+        List<ICDNummer> list = service.readHaupt();
+        return list;
+    }
+
+    @RequestMapping(value = "/read/gefaehrlich")
+    public List<ICDNummer> readGefaeh() {
+        List<ICDNummer> list = service.readGefaehrlich();
+        return list;
+    }
+
+    @RequestMapping(value = "/search/used/{code}")
+    public HashMap searchUsedIcd(@PathVariable("code") String code) throws ParseException, IOException {
+        HashMap list = service.searchUsedICDNummer(code);
+        return list;
+    }
+
+    @RequestMapping(value = "/id/{code}", method = {RequestMethod.GET})
+    public String deleteHaupt(@PathVariable("code") String code) {
+
+        String x = this.service.readId(code);
+        String y = x.replaceAll("http://ICDNummer/", "");
+        return y;
+    }
+
+    @RequestMapping(value = "/delete/gesamt/{code}", method = {RequestMethod.DELETE})
+    public ResponseEntity delete(@PathVariable("code") String code) {
+
+        this.service.delete(code);
+
+        return ResponseEntity.ok().build();
+    }
+
 }

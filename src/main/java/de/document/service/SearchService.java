@@ -91,7 +91,7 @@ public class SearchService {
                 if (listKrankheit.get(0).getNotes() != null) {
                     if (icdService.searchHauptICDNummer(listKrankheit.get(0).getNotes())) {
                         listKrHaupt.add(listKrankheit.get(0));
-                    } else if (icdService.searchNebenICDNummer(listKrankheit.get(0).getNotes())) {
+                    } else if (icdService.searchGefahrlichICDNummer(listKrankheit.get(0).getNotes())) {
                         listKrNeben.add(listKrankheit.get(0));
                     } else {
                         listKr.add(listKrankheit.get(0));
@@ -133,7 +133,7 @@ public class SearchService {
                 if (listProzedur.get(0).getNotes() != null) {
                     if (icdService.searchHauptICDNummer(listProzedur.get(0).getNotes())) {
                         listPrHaupt.add(listProzedur.get(0));
-                    } else if (icdService.searchNebenICDNummer(listProzedur.get(0).getNotes())) {
+                    } else if (icdService.searchGefahrlichICDNummer(listProzedur.get(0).getNotes())) {
                         listPrNeben.add(listProzedur.get(0));
                     } else {
                         listPr.add(listProzedur.get(0));

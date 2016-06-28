@@ -10,11 +10,30 @@ package de.document.entity;
  * @author Bilel-PC
  */
 public class ICDNummer {
-     private String code ;
-    private String diagnose ;
+
+    private String id;
+    private String code;
+    private String diagnose;
+    private String type;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getCode() {
         return code;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public void setCode(String code) {
@@ -31,5 +50,5 @@ public class ICDNummer {
 
     public ICDNummer() {
     }
-    
+
 }
