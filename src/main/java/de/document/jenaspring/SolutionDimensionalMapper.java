@@ -20,6 +20,8 @@ import org.apache.jena.query.ResultSet;
  * 
  * @author Al Baker
  * @author Michael Soren
+ * @param <T>
+ * @param <V>
  *
  */
 public interface SolutionDimensionalMapper<T, V> {

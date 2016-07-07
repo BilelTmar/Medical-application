@@ -15,6 +15,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -69,13 +70,13 @@ public class ICDNummerService {
             if (!temp.getModel().isClosed()) {
                 temp.getModel().close();
             }
-        } catch (Exception ex) {
+        } catch (IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException ex) {
             throw new RuntimeException(ex);
         }
         return entry;
 
     }
-    
+
     public ICDNummer updateGesamt(ICDNummer entry) {
 
         try {
@@ -100,7 +101,7 @@ public class ICDNummerService {
             if (!temp.getModel().isClosed()) {
                 temp.getModel().close();
             }
-        } catch (Exception ex) {
+        } catch (IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException ex) {
             throw new RuntimeException(ex);
         }
         return entry;
@@ -162,7 +163,6 @@ public class ICDNummerService {
         return list;
     }
 
-   
     public ICDNummer read(String code) {
 
         if (sparqlTemp.getModel() != null) {
@@ -235,7 +235,6 @@ public class ICDNummerService {
         return list.get(0);
 
     }
-
 
     public List<ICDNummer> readHaupt() {
 
@@ -328,6 +327,72 @@ public class ICDNummerService {
         return b;
     }
 
+    public void notesBearbeiten(Object request) {
+        List list = (List) request;
+        HashMap h1 = (HashMap) list.get(0);
+        String alteCode = (String) h1.get("alteCode");
+        HashMap h2 = (HashMap) list.get(1);
+        String neuCode = (String) h2.get("neuCode");
+        HashMap h3 = (HashMap) list.get(2);
+        List<Krankheit> krankheits = (List<Krankheit>) h3.get("krankheits");
+        HashMap h4 = (HashMap) list.get(3);
+        List<Prozedur> prozedurs = (List<Prozedur>) h4.get("prozedurs");
+        for (Iterator it = krankheits.iterator(); it.hasNext();) {
+            HashMap hashMap = (HashMap) it.next();
+            String title = (String) hashMap.get("title");
+            Krankheit kr = this.krankheitService.read(title);
+            String notes = kr.getNotes();
+            if (notes != null) {
+                String note = notes.replaceAll(alteCode, neuCode);
+                kr.setNotes(note);
+                this.krankheitService.save(kr);
+            }
+        }
+        for (Iterator it = prozedurs.iterator(); it.hasNext();) {
+            HashMap hashMap = (HashMap) it.next();
+            String title = (String) hashMap.get("title");
+            Prozedur pr = this.prozedurService.read(title);
+            String notes = pr.getNotes();
+            if (notes != null) {
+                String note = notes.replaceAll(alteCode, neuCode);
+                pr.setNotes(note);
+                this.prozedurService.save(pr);
+            }
+        }
+    }
+
+    ;
+    public void notesEntfernen(Object request) {
+        List list = (List) request;
+        HashMap h1 = (HashMap) list.get(0);
+        String code = (String) h1.get("code");
+        HashMap h2 = (HashMap) list.get(1);
+        List<Krankheit> krankheits = (List<Krankheit>) h2.get("krankheits");
+        HashMap h3 = (HashMap) list.get(2);
+        List<Prozedur> prozedurs = (List<Prozedur>) h3.get("prozedurs");
+        for (Iterator it = krankheits.iterator(); it.hasNext();) {
+            HashMap hashMap = (HashMap) it.next();
+            String title = (String) hashMap.get("title");
+            Krankheit kr = this.krankheitService.read(title);
+            String notes = kr.getNotes();
+            if (notes != null) {
+                String note = notes.replaceAll(code+" ", " ");
+                kr.setNotes(note);
+                this.krankheitService.save(kr);
+            }
+        }
+        for (Iterator it = prozedurs.iterator(); it.hasNext();) {
+            HashMap hashMap = (HashMap) it.next();
+            String title = (String) hashMap.get("title");
+            Prozedur pr = this.prozedurService.read(title);
+            String notes = pr.getNotes();
+            if (notes != null) {
+                String note = notes.replaceAll(code+" ", " ");
+                pr.setNotes(note);
+                this.prozedurService.save(pr);
+            }
+        }
+    };
     public boolean searchGefahrlichICDNummer(String text) throws IOException, ParseException {
 
         boolean b = false;
@@ -357,7 +422,7 @@ public class ICDNummerService {
             Krankheit krankheit = (Krankheit) it.next();
             String note = krankheit.getNotes();
             if (note != null) {
-                int intIndex = note.indexOf(code);
+                int intIndex = note.indexOf(code+" ");
                 if (intIndex == - 1) {
                 } else {
                     System.out.println("Found icd at index "
@@ -371,10 +436,10 @@ public class ICDNummerService {
             Prozedur prozedur = (Prozedur) itPr.next();
             String notePr = prozedur.getNotes();
             if (notePr != null) {
-                int intIndex = notePr.indexOf(code);
+                int intIndex = notePr.indexOf(code+" ");
                 if (intIndex == - 1) {
                 } else {
-                    System.out.println("Found icd at index "
+                    System.out.println("Found icd at prozedur index "
                             + intIndex);
                     prozedurs.add(prozedur);
 
@@ -386,8 +451,8 @@ public class ICDNummerService {
         result.put("prozedurs", prozedurs);
         return result;
     }
-    
-     public void saveAll() {
+
+    public void saveAll() {
 
         String csvFile = "C:\\Users\\Bilel-PC\\Desktop\\ICD.csv";
         BufferedReader br = null;
@@ -427,15 +492,12 @@ public class ICDNummerService {
             }
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
         } finally {
             if (br != null) {
                 try {
                     br.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
                 }
             }
         }
@@ -482,15 +544,12 @@ public class ICDNummerService {
             }
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
         } finally {
             if (br != null) {
                 try {
                     br.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
                 }
             }
         }
@@ -645,7 +704,6 @@ public class ICDNummerService {
 //        result.put("list2", cp2);
 //        return result;
 //    };
-
     public void connectJenaTemp() {
         Dataset dataset = TDBFactory.createDataset(url);
         Model model = dataset.getDefaultModel();

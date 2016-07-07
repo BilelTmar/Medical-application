@@ -8,14 +8,16 @@ package de.document.controller;
 import de.document.entity.Document;
 import de.document.entity.ICDNummer;
 import de.document.entity.Krankheit;
+import de.document.entity.Prozedur;
 import de.document.service.ICDNummerService;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -73,9 +75,10 @@ public class ICDNummerController {
 //        return result;
 //    }
 
-    @RequestMapping(value = "/{code}", method = {RequestMethod.GET})
-    public ResponseEntity read(@PathVariable("code") String code) {
-        code = code.replace("-", ".");
+    @RequestMapping(value = "/read/", method = {RequestMethod.POST})
+    public ResponseEntity read(@RequestBody String code) {
+        //code = code.replace("-", ".");
+        
         ICDNummer entity = this.service.read(code);
         return ResponseEntity.ok(entity);
     }
@@ -85,11 +88,13 @@ public class ICDNummerController {
         return service.saveGesamt(request);
 
     }
- @RequestMapping(value = "/update/gesamt", method = {RequestMethod.POST})
+
+    @RequestMapping(value = "/update/gesamt", method = {RequestMethod.POST})
     public ICDNummer updateGesamt(@RequestBody ICDNummer request) {
         return service.updateGesamt(request);
 
     }
+
     @RequestMapping(value = "/read/haupt")
     public List<ICDNummer> readHaupt() {
         List<ICDNummer> list = service.readHaupt();
@@ -102,26 +107,38 @@ public class ICDNummerController {
         return list;
     }
 
-    @RequestMapping(value = "/search/used/{code}")
-    public HashMap searchUsedIcd(@PathVariable("code") String code) throws ParseException, IOException {
+    @RequestMapping(value = "/search/used/" , method = {RequestMethod.POST})
+    public HashMap searchUsedIcd(@RequestBody String code) throws ParseException, IOException {
         HashMap list = service.searchUsedICDNummer(code);
         return list;
     }
 
-    @RequestMapping(value = "/id/{code}", method = {RequestMethod.GET})
-    public String deleteHaupt(@PathVariable("code") String code) {
+    @RequestMapping(value = "/id/", method = {RequestMethod.POST})
+    public String deleteHaupt(@RequestBody String code) {
 
         String x = this.service.readId(code);
         String y = x.replaceAll("http://ICDNummer/", "");
         return y;
     }
 
-    @RequestMapping(value = "/delete/gesamt/{code}", method = {RequestMethod.DELETE})
-    public ResponseEntity delete(@PathVariable("code") String code) {
-
+    @RequestMapping(value = "/delete/gesamt/", method = {RequestMethod.POST})
+    public ResponseEntity delete(@RequestBody String code) {
         this.service.delete(code);
 
         return ResponseEntity.ok().build();
     }
 
+    @RequestMapping(value = "/notes/bearbeiten", method = {RequestMethod.POST})
+    public void notesBearbeiten(@RequestBody Object request) {
+
+        this.service.notesBearbeiten(request);
+
+    }
+
+    @RequestMapping(value = "/notes/entfernen", method = {RequestMethod.POST})
+    public void notesEntfernen(@RequestBody Object request) {
+
+        this.service.notesEntfernen(request);
+
+    }
 }

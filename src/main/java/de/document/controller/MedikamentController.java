@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/medikament")
 public class MedikamentController {
-    private MedikamentService service = new MedikamentService();
+    private final MedikamentService service = new MedikamentService();
 
     @RequestMapping(value = "/query")
     public List<Medikament> readAll() {

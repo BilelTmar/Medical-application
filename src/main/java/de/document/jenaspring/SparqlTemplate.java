@@ -105,7 +105,7 @@ public class SparqlTemplate {
             return null;
         }
         QueryExecution qe = QueryExecutionFactory.create(QueryFactory.create(sparql, Syntax.syntaxARQ), model);
-        ArrayList<T> list = new ArrayList<T>();
+        ArrayList<T> list = new ArrayList<>();
         try {
             for (ResultSet rs = qe.execSelect(); rs.hasNext();) {
                 list.add(mapper.mapSelect(rs, rs.getRowNumber()));
@@ -121,16 +121,13 @@ public class SparqlTemplate {
             return null;
         }
 
-        QueryExecution qe = QueryExecutionFactory.create(QueryFactory.create(sparql, Syntax.syntaxARQ), model);
-        try {
+        try (QueryExecution qe = QueryExecutionFactory.create(QueryFactory.create(sparql, Syntax.syntaxARQ), model)) {
             ResultSet rs = qe.execSelect();
             if (rs.hasNext()) {
                 return mapper.mapSelect(rs, rs.getRowNumber());
             } else {
                 return null;
             }
-        } finally {
-            qe.close();
         }
 
     }
@@ -147,7 +144,7 @@ public class SparqlTemplate {
     public <T, V> Map<T, V> execSelectMap(String sparql, SolutionDimensionalMapper<T, V> mapper) {
         Query query = QueryFactory.create(sparql, Syntax.syntaxARQ);
         QueryExecution qe = QueryExecutionFactory.create(query, model);
-        Map<T, V> list = new HashMap<T, V>();
+        Map<T, V> list = new HashMap<>();
         try {
             for (ResultSet rs = qe.execSelect(); rs.hasNext();) {
                 list.putAll(mapper.mapSelect(rs, rs.getRowNumber()));
@@ -169,9 +166,10 @@ public class SparqlTemplate {
      */
     public Model execConstruct(String sparql) {
         Query query = QueryFactory.create(sparql);
-        QueryExecution qe = QueryExecutionFactory.create(query, model);
-        Model m = qe.execConstruct();
-        qe.close();
+        Model m;
+        try (QueryExecution qe = QueryExecutionFactory.create(query, model)) {
+            m = qe.execConstruct();
+        }
         return m;
     }
 
@@ -184,9 +182,10 @@ public class SparqlTemplate {
      */
     class mapSolutionMapper implements SolutionMapper<Map<String, String>> {
 
+        @Override
         public Map<String, String> mapSelect(ResultSet rs, int number) {
             QuerySolution sol = rs.nextSolution();
-            Map<String, String> row = new HashMap<String, String>();
+            Map<String, String> row = new HashMap<>();
             for (Iterator<String> varNames = sol.varNames(); varNames.hasNext();) {
                 String varName = varNames.next();
                 row.put(varName, sol.get(varName).toString());
@@ -204,9 +203,10 @@ public class SparqlTemplate {
      */
     class genericMapSolutionMapper implements SolutionMapper<Map<String, Object>> {
 
+        @Override
         public Map<String, Object> mapSelect(ResultSet rs, int number) {
             QuerySolution sol = rs.nextSolution();
-            Map<String, Object> row = new HashMap<String, Object>();
+            Map<String, Object> row = new HashMap<>();
             for (Iterator<String> varNames = sol.varNames(); varNames.hasNext();) {
                 String varName = varNames.next();
                 RDFNode varNode = sol.get(varName);
@@ -233,7 +233,6 @@ public class SparqlTemplate {
     /**
      * <code>execSelectOne</code>
      *
-     * @param model - model to be queried
      * @param sparql - SELECT based sparql query
      * @return single map of property to value
      */
@@ -241,9 +240,8 @@ public class SparqlTemplate {
         if (sparql == null || sparql.equals("")) {
             return null;
         }
-        Map<String, String> result = new HashMap<String, String>();
-        QueryExecution qe = QueryExecutionFactory.create(QueryFactory.create(sparql), model);
-        try {
+        Map<String, String> result = new HashMap<>();
+        try (QueryExecution qe = QueryExecutionFactory.create(QueryFactory.create(sparql), model)) {
             ResultSet rs = qe.execSelect();
             while (rs.hasNext()) {
                 QuerySolution sol = rs.nextSolution();
@@ -252,8 +250,6 @@ public class SparqlTemplate {
                     result.put(varName, sol.get(varName).toString());
                 }
             }
-        } finally {
-            qe.close();
         }
         return result;
     }
@@ -269,8 +265,7 @@ public class SparqlTemplate {
             return null;
         }
         String result = null;
-        QueryExecution qe = QueryExecutionFactory.create(QueryFactory.create(sparql, Syntax.syntaxARQ), model);
-        try {
+        try (QueryExecution qe = QueryExecutionFactory.create(QueryFactory.create(sparql, Syntax.syntaxARQ), model)) {
             ResultSet rs = qe.execSelect();
             while (rs.hasNext()) {
                 QuerySolution sol = rs.nextSolution();
@@ -279,8 +274,6 @@ public class SparqlTemplate {
                     result = sol.get(varName).toString();
                 }
             }
-        } finally {
-            qe.close();
         }
         return result;
     }
@@ -293,13 +286,9 @@ public class SparqlTemplate {
         String sparql = "SELECT ?x ?y ?z WHERE { ?x ?y ?z} ";
 
         Query query = QueryFactory.create(sparql);
-        QueryExecution qe = QueryExecutionFactory.create(query, model);
-
-        try {
+        try (QueryExecution qe = QueryExecutionFactory.create(query, model)) {
             ResultSet rs = qe.execSelect();
             ResultSetFormatter.out(System.out, rs);
-        } finally {
-            qe.close();
         }
 
     }

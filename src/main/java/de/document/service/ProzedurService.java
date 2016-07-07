@@ -14,6 +14,7 @@ import de.document.jenaspring.JenaTemplate;
 import de.document.jenaspring.SparqlTemplate;
 import de.document.entity.Prozedur;
 import de.document.entity.TextModel;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,9 @@ public class ProzedurService {
     public String linkText(String text) {
         System.out.println(text.replaceAll("\\\"", ""));
         return text.replaceAll("\\\"", "");
-    };
+    }
+
+    ;
      public Prozedur save(Prozedur entry) {
 
         try {
@@ -108,12 +111,13 @@ public class ProzedurService {
             if (!temp.getModel().isClosed()) {
                 temp.getModel().close();
             }
-        } catch (Exception ex) {
+        } catch (IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException ex) {
             throw new RuntimeException(ex);
         }
         return entry;
 
     }
+
     public Prozedur create() {
         Prozedur prozedur = new Prozedur();
         TextModel uebersicht = new TextModel();
@@ -155,21 +159,15 @@ public class ProzedurService {
                 + " OPTIONAL { ?x doc:date ?date}. "
                 + " ?x doc:title '" + title + "'. "
                 + " OPTIONAL { ?x doc:autor ?autor}. "
-                
                 + " OPTIONAL { ?x ueber:notfall ?ueberNotfall}. "
                 + " OPTIONAL { ?x ueber:text ?ueberText}. "
-                
                 + " OPTIONAL { ?x diag:notfall ?diagNotfall}. "
                 + " OPTIONAL { ?x diag:text ?diagText}. "
-                
                 + " OPTIONAL { ?x th:notfall ?thNotfall}. "
                 + " OPTIONAL { ?x th:text ?thText}. "
-               
                 + " OPTIONAL { ?x ber:notfall ?berNotfall}. "
                 + " OPTIONAL { ?x ber:text ?berText}. "
-                
                 + " OPTIONAL { ?x doc:notes ?notes}. "
-
                 + "}";
         List<Prozedur> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
             QuerySolution sln = rs.nextSolution();
@@ -182,7 +180,6 @@ public class ProzedurService {
             if (sln.get("notes") != null) {
                 prozedur.setNotes(sln.get("notes").toString());
             }
-            
 
             if (sln.get("berText") != null) {
                 beratung.setText(sln.get("berText").toString());
@@ -190,7 +187,7 @@ public class ProzedurService {
             if (sln.get("berNotfall") != null) {
                 beratung.setNotfall(sln.get("berNotfall").toString());
             }
-            
+
             if (sln.get("thNotfall") != null) {
                 therapie.setNotfall(sln.get("thNotfall").toString());
             }
@@ -198,7 +195,6 @@ public class ProzedurService {
                 therapie.setText(sln.get("thText").toString());
             }
 
-            
             if (sln.get("diagText") != null) {
                 diagnostik.setText(sln.get("diagText").toString());
             }
@@ -210,7 +206,7 @@ public class ProzedurService {
                 prozedur.setAutor(sln.get("autor").toString());
             }
             if (sln.get("prozedurTitle") != null) {
-                
+
                 prozedur.setTitle(sln.get("prozedurTitle").toString());
             }
             prozedur.setTitle(title);
@@ -226,7 +222,6 @@ public class ProzedurService {
             if (sln.get("ueberNotfall") != null) {
                 uebersicht.setNotfall(sln.get("ueberNotfall").toString());
             }
-            
 
             prozedur.setUebersicht(uebersicht);
             prozedur.setBeratung(beratung);
@@ -251,11 +246,12 @@ public class ProzedurService {
         }
 
         String sparql = "PREFIX doc: <http://document/PR/>"
-                + "SELECT ?title ?autor ?date  WHERE {"
+                + "SELECT ?title ?autor ?date ?notes WHERE {"
                 + " ?x doc:label 'prozedur'. "
                 + " OPTIONAL { ?x doc:date ?date}. "
                 + " ?x doc:title ?title. "
                 + " OPTIONAL { ?x doc:autor ?autor}. "
+                + " OPTIONAL { ?x doc:notes ?notes}. "
                 + "}";
         List<Prozedur> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
             QuerySolution sln = rs.nextSolution();
@@ -269,9 +265,11 @@ public class ProzedurService {
                 prozedur.setTitle(sln.get("title").toString());
             }
             if (sln.get("date") != null) {
-                prozedur.setDate(sln.get("date").toString().substring(0,10));
+                prozedur.setDate(sln.get("date").toString().substring(0, 10));
             }
-
+            if (sln.get("notes") != null) {
+                prozedur.setNotes(sln.get("notes").toString());
+            }
             return prozedur;
 
         });
@@ -281,34 +279,30 @@ public class ProzedurService {
     public void delete(String entry) {
         if (temp.getModel() != null) {
 
-                if (temp.getModel().isClosed()) {
-                    this.connectJenaTemp();
-                }
-            } else {
+            if (temp.getModel().isClosed()) {
                 this.connectJenaTemp();
             }
+        } else {
+            this.connectJenaTemp();
+        }
 
         temp.removeResource(NS + entry);
-        
-              //  temp.getModel().write(System.out);
 
-        
+              //  temp.getModel().write(System.out);
     }
 
     public void connectJenaTemp() {
-            Dataset dataset = TDBFactory.createDataset(url);
-            Model model = dataset.getDefaultModel();
-            temp.setModel(model);
+        Dataset dataset = TDBFactory.createDataset(url);
+        Model model = dataset.getDefaultModel();
+        temp.setModel(model);
 
-        
     }
 
     public void connectSparqlTemp() {
-            Dataset dataset = TDBFactory.createDataset(url);
-            Model model = dataset.getDefaultModel();
-            sparqlTemp.setModel(model);
+        Dataset dataset = TDBFactory.createDataset(url);
+        Model model = dataset.getDefaultModel();
+        sparqlTemp.setModel(model);
 
-        
     }
 
     public Model getModel() {

@@ -37,7 +37,6 @@ public class KrankheitService {
     private String reTitle;
 
     public String linkText(String text) {
-        System.out.println(text.replaceAll("\\\"", ""));
         return text.replaceAll("\\\"", "");
     };
     
@@ -195,8 +194,7 @@ public class KrankheitService {
             }
             if (sln.get("prozedurTitle") != null) {
                 prozedur.setTitle(sln.get("prozedurTitle").toString());
-                System.out.println(sln.get("prozedurTitle"));
-                System.out.println(sln.get("y"));
+                
 
             }
             if (sln.get("berText") != null) {
