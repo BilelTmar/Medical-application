@@ -41,12 +41,12 @@ public class KrankheitController {
         return entity;
     }
 
-        @RequestMapping(value = "/query", method = {RequestMethod.GET})
+    @RequestMapping(value = "/query", method = {RequestMethod.GET})
     public List query() {
-        
+
         List entity = this.service.readAll();
-            System.out.println(entity.size());
-        
+        System.out.println(entity.size());
+
         return entity;
     }
 
@@ -55,6 +55,13 @@ public class KrankheitController {
 
         Krankheit entity = this.service.read(name);
         return ResponseEntity.ok(entity);
+    }
+
+    @RequestMapping(value = "/versionnig/bearbeiten", method = {RequestMethod.POST})
+    public ResponseEntity versionnigBearbeiten(@RequestBody Krankheit request) {
+
+        this.service.versionnigBearbeiten(request);
+        return ResponseEntity.ok().build();
     }
 
     @RequestMapping(value = "/{title}", method = {RequestMethod.DELETE})

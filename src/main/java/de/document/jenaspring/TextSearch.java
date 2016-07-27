@@ -87,42 +87,43 @@ public class TextSearch {
         Property kr3 = model.createProperty("http://document/KR/autor");
         Property kr4 = model.createProperty("http://document/KR/label");
 
-        EntityDefinition entDef2 = new EntityDefinition("uri", "text");
-        entDef2.setPrimaryPredicate(pr1.asNode());
-        entDef2.setPrimaryPredicate(pr2.asNode());
-        entDef2.setPrimaryPredicate(pr3.asNode());
-        entDef2.setPrimaryPredicate(pr4.asNode());
-        entDef2.setPrimaryPredicate(kr1.asNode());
-        entDef2.setPrimaryPredicate(kr2.asNode());
-        entDef2.setPrimaryPredicate(kr3.asNode());
-        entDef2.setPrimaryPredicate(kr4.asNode());
-        entDef2.setPrimaryPredicate(p2.asNode());
-        entDef2.setPrimaryPredicate(p3.asNode());
-        entDef2.setPrimaryPredicate(p4.asNode());
-        entDef2.setPrimaryPredicate(p5.asNode());
-        entDef2.setPrimaryPredicate(p6.asNode());
-        entDef2.setPrimaryPredicate(p7.asNode());
-        entDef2.setPrimaryPredicate(p8.asNode());
-        entDef2.setPrimaryPredicate(p9.asNode());
-        entDef2.setPrimaryPredicate(p10.asNode());
-        entDef2.setPrimaryPredicate(p11.asNode());
+        EntityDefinition entDef = new EntityDefinition("uri", "text");
+        entDef.setUidField("uid");
+        entDef.setPrimaryPredicate(pr1.asNode());
+        entDef.setPrimaryPredicate(pr2.asNode());
+        entDef.setPrimaryPredicate(pr3.asNode());
+        entDef.setPrimaryPredicate(pr4.asNode());
+        entDef.setPrimaryPredicate(kr1.asNode());
+        entDef.setPrimaryPredicate(kr2.asNode());
+        entDef.setPrimaryPredicate(kr3.asNode());
+        entDef.setPrimaryPredicate(kr4.asNode());
+        entDef.setPrimaryPredicate(p2.asNode());
+        entDef.setPrimaryPredicate(p3.asNode());
+        entDef.setPrimaryPredicate(p4.asNode());
+        entDef.setPrimaryPredicate(p5.asNode());
+        entDef.setPrimaryPredicate(p6.asNode());
+        entDef.setPrimaryPredicate(p7.asNode());
+        entDef.setPrimaryPredicate(p8.asNode());
+        entDef.setPrimaryPredicate(p9.asNode());
+        entDef.setPrimaryPredicate(p10.asNode());
+        entDef.setPrimaryPredicate(p11.asNode());
 
-        entDef2.setPrimaryPredicate(k2.asNode());
-        entDef2.setPrimaryPredicate(k3.asNode());
-        entDef2.setPrimaryPredicate(k4.asNode());
-        entDef2.setPrimaryPredicate(k5.asNode());
-        entDef2.setPrimaryPredicate(k6.asNode());
-        entDef2.setPrimaryPredicate(k7.asNode());
-        entDef2.setPrimaryPredicate(k8.asNode());
-        entDef2.setPrimaryPredicate(k9.asNode());
-        entDef2.setPrimaryPredicate(k10.asNode());
-        entDef2.setPrimaryPredicate(k11.asNode());
+        entDef.setPrimaryPredicate(k2.asNode());
+        entDef.setPrimaryPredicate(k3.asNode());
+        entDef.setPrimaryPredicate(k4.asNode());
+        entDef.setPrimaryPredicate(k5.asNode());
+        entDef.setPrimaryPredicate(k6.asNode());
+        entDef.setPrimaryPredicate(k7.asNode());
+        entDef.setPrimaryPredicate(k8.asNode());
+        entDef.setPrimaryPredicate(k9.asNode());
+        entDef.setPrimaryPredicate(k10.asNode());
+        entDef.setPrimaryPredicate(k11.asNode());
 
         // Lucene, in memory.
         Directory dir = new RAMDirectory();
 
         // Join together into a dataset
-        Dataset ds = TextDatasetFactory.createLucene(ds1, dir, new TextIndexConfig(entDef2));
+        Dataset ds = TextDatasetFactory.createLucene(ds1, dir, new TextIndexConfig(entDef));
         return ds;
     }
 
@@ -134,7 +135,7 @@ public class TextSearch {
 //        qs = StrUtils.strjoinNL("SELECT ?s ",
 //                " { ?s  text:query (doc:title '" + searchWord + "') ;"
 //                + "   doc:title ?label }");
-qs = StrUtils.strjoinNL("SELECT ?s ",
+        qs = StrUtils.strjoinNL("SELECT ?s ",
                 " { ?s  text:query  '" + searchWord + "' ;}");
         Dataset ds2 = TDBFactory.createDataset(tdbUrl);
 
@@ -150,11 +151,8 @@ qs = StrUtils.strjoinNL("SELECT ?s ",
             ResultSet results = qexec.execSelect();
             for (; results.hasNext();) {
                 QuerySolution soln = results.nextSolution();
-                System.out.println(soln.get("s"));
                 RDFNode s = soln.get("s");// Get a result variable by name.
 
-                
-               
                 if (!list.contains(s.toString())) {
                     list.add(s.toString());
                 }

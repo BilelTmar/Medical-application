@@ -61,4 +61,12 @@ public class ProzedurController {
         this.service.delete(title);
         return ResponseEntity.ok().build();
     }
+
+    @RequestMapping(value = "/versionnig/bearbeiten", method = {RequestMethod.POST})
+    public ResponseEntity versionnigBearbeiten(@RequestBody Prozedur request) {
+
+        this.service.versionnigBearbeiten(request);
+        return ResponseEntity.ok().build();
+    }
+
 }

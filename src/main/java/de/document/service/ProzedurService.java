@@ -233,6 +233,55 @@ public class ProzedurService {
         });
         return list.get(0);
     }
+ 
+    public void versionnigBearbeiten(Prozedur prozedur ) {
+        Prozedur kr = this.read(prozedur.getTitle());
+        kr.setTherapie(prozedur.getTherapie());
+       this.save(kr);
+    }
+
+    
+    public List<Prozedur> readTherapie() {
+
+        if (sparqlTemp.getModel() != null) {
+
+            if (sparqlTemp.getModel().isClosed()) {
+                this.connectSparqlTemp();
+            }
+        } else {
+            this.connectSparqlTemp();
+        }
+
+        String sparql = "PREFIX doc: <http://document/PR/>"
+                + "PREFIX th: <http://document/PR/therapie/>"
+                + "SELECT ?title ?thNotfall ?thText  WHERE {"
+                + " ?x doc:label 'prozedur'. "
+                + " ?x doc:title ?title. "
+                + " OPTIONAL { ?x th:notfall ?thNotfall}. "
+                + " OPTIONAL { ?x th:text ?thText}. "
+                + "}";
+        List<Prozedur> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
+            QuerySolution sln = rs.nextSolution();
+
+            Prozedur prozedur = new Prozedur();
+            TextModel therapie = new TextModel();
+
+            if (sln.get("title") != null) {
+                prozedur.setTitle(sln.get("title").toString());
+            }
+            if (sln.get("thNotfall") != null) {
+                therapie.setNotfall(sln.get("thNotfall").toString());
+            }
+            if (sln.get("thText") != null) {
+                therapie.setText(sln.get("thText").toString());
+            }
+            prozedur.setTherapie(therapie);
+
+            return prozedur;
+
+        });
+        return list;
+    }
 
     public List<Prozedur> readAll() {
 
@@ -288,7 +337,7 @@ public class ProzedurService {
 
         temp.removeResource(NS + entry);
 
-              //  temp.getModel().write(System.out);
+        //  temp.getModel().write(System.out);
     }
 
     public void connectJenaTemp() {
