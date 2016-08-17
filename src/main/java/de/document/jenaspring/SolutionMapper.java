@@ -9,7 +9,7 @@ package de.document.jenaspring;
  *
  * @author Bilel-PC
  */
-import com.hp.hpl.jena.query.ResultSet;
+import org.apache.jena.query.ResultSet;
 
 /**
  * <code>SolutionMapper<T></code>

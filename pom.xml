@@ -71,12 +71,7 @@
             <version>1.9.2</version>
             <type>jar</type>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>MedicalKnowledge</artifactId>
-            <version>0.1.0</version>
-            <type>jar</type>
-        </dependency>
+        
     </dependencies>
     <build>
         <plugins>
