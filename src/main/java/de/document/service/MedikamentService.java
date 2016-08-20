@@ -110,12 +110,12 @@ public class MedikamentService {
         }
 
         HashMap response = this.comparator(medikamementList);
-        this.saveMedikament(medikamementList,version);
+        this.saveMedikament(medikamementList, version);
         return response;
 
     }
 
-    public void saveMedikament(List<Medikament> MedikamentList,String version) throws Throwable {
+    public void saveMedikament(List<Medikament> MedikamentList, String version) throws Throwable {
 
         if (temp.getModel() != null) {
 
@@ -195,8 +195,7 @@ public class MedikamentService {
 
             String version = null;
             if (sln.get("version") != null) {
-                version = sln.get("version").toString().replaceAll(NS , "");
-                                
+                version = sln.get("version").toString().replaceAll(NS, "");
 
             }
 
@@ -253,7 +252,7 @@ public class MedikamentService {
         } else {
             this.connectSparqlTemp();
         }
-       // sparqlTemp.getModel().write(System.out);
+        // sparqlTemp.getModel().write(System.out);
 
         String sparql = "PREFIX med: <http://Medikament/>"
                 + "SELECT ?bezeichnung ?einheit ?roteListe ?pzn ?darr ?inhaltsstoff ?y   WHERE {"
@@ -466,6 +465,11 @@ public class MedikamentService {
         } else {
             List<Medikament> cp1 = new ArrayList<>(list1);
             List<Medikament> cp2 = new ArrayList<>(list2);
+            List<Medikament> bezeichnung = new ArrayList<>();
+            List<Medikament> einheit = new ArrayList<>();
+            List<Medikament> roteListe = new ArrayList<>();
+            List<Medikament> inhaltsstoff = new ArrayList<>();
+
 
             for (Medikament icdL2 : list2) {
 
@@ -474,13 +478,31 @@ public class MedikamentService {
 
                         cp1.remove(icdL1);
                         cp2.remove(icdL2);
+                        if (!icdL2.getEinheit().equals(icdL1.getEinheit())) {
+                            einheit.add(icdL2);
+                        }
 
+                        if (!icdL2.getRoteListe().equals(icdL1.getRoteListe())) {
+                            roteListe.add(icdL2);
+                        }
+
+                        if (!icdL2.getInhaltsstoff().equals(icdL1.getInhaltsstoff())) {
+                            inhaltsstoff.add(icdL2);
+                        }
+
+                        if (!icdL2.getBezeichnung().equals(icdL1.getBezeichnung())) {
+                            bezeichnung.add(icdL2);
+                        }
                     }
                 }
             }
             HashMap result = new HashMap();
             result.put("new", cp1);
             result.put("deleted", cp2);
+            result.put("bezeichnung", bezeichnung);
+            result.put("einheit", einheit);
+            result.put("inhaltsstoff", inhaltsstoff);
+            result.put("roteListe", roteListe);
             return result;
         }
     }

@@ -1,6 +1,6 @@
 Lfd.Nr.;PZN;Bezeichnung;Darr;Einheit;HerstKz;Rote Liste;Inhaltsstoff
 1;7759053;Accu Chek Dextrose O G T;Saf ;300 ml;Roche;DIAGNOSTIKA/DIAGNOSEVORBEREITUNG;Glucose
-2;3064785;Acic 250 Pi Via;Pif;10 St;Hexal;ANTIBIOTIKA/ANTIINFEKTIVA;Aciclovir
+2;3064785;Acic 250 Pi Via äöüß;Pif;10 St;Hexal;ANTIBIOTIKA/ANTIINFEKTIVA;Aciclovir
 3;3065543;Acic 500 Pi Via;Pif;10 St;Hexal;ANTIBIOTIKA/ANTIINFEKTIVA;Aciclovir !
 4;1087121;Acic Creme Bei Lippenherp;Cre;2 g;Hexal;DERMATIKA;Aciclovir
 5;536433;Actrapid Penfill Zam;Zam;5X3 ml;Novon;ANTIDIABETIKA;Insulin, normal (human)
@@ -17,9 +17,6 @@ Lfd.Nr.;PZN;Bezeichnung;Darr;Einheit;HerstKz;Rote Liste;Inhaltsstoff
 16;8018318;Amoxicillin Rat Comp 250ts;Tsa;100 ml;Ratio;ANTIBIOTIKA/ANTIINFEKTIVA;Amoxicillin und Enzym-Inhibitoren
 17;8013887;Amoxicillin Ratio C875/125;Fta;20 St;Ratio;ANTIBIOTIKA/ANTIINFEKTIVA;Amoxicillin und Enzym-Inhibitoren
 18;8014125;Amoxihexal;Tsa;100 ml;Hexal;ANTIBIOTIKA/ANTIINFEKTIVA;Amoxicillin
-19;8016727;Amoxihexal Forte;Tsa;100 ml;Hexal;ANTIBIOTIKA/ANTIINFEKTIVA;Amoxicillin
-20;8012215;Ampicillin Ratio 0.5;Tss;10 St;Ratio;ANTIBIOTIKA/ANTIINFEKTIVA;Ampicillin
-21;8012221;Ampicillin Ratio 1.0;Tss;10 St;Ratio;ANTIBIOTIKA/ANTIINFEKTIVA;Ampicillin
 22;8019401;Ampicillin U Sulba 1g+500m;Tss;10 X 20 ml;Ibisq;ANTIBIOTIKA/ANTIINFEKTIVA;Ampicillin, Sulbactam
 23;8018347;Ampuwa Freka;Iil;20X50 ml;Frese;INFUSIONS-/STANDARDINJEKTIONSLOESUNGEN;Wasser für Injektionszwecke
 24;8018399;Ampuwa Freka;Ilo;20X100 ml;Frese;INFUSIONS-/STANDARDINJEKTIONSLOESUNGEN;Wasser für Injektionszwecke

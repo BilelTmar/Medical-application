@@ -16,6 +16,15 @@ public class ICDNummer {
     private String diagnose;
     private String type;
 
+    public ICDNummer() {
+    }
+
+    public ICDNummer(String code, String diagnose, String type) {
+        this.code = code;
+        this.diagnose = diagnose;
+        this.type = type;
+    }
+
     public String getId() {
         return id;
     }
@@ -46,9 +55,6 @@ public class ICDNummer {
 
     public void setDiagnose(String diagnose) {
         this.diagnose = diagnose;
-    }
-
-    public ICDNummer() {
     }
 
 }

@@ -239,6 +239,11 @@ public class ProzedurService {
         kr.setTherapie(prozedur.getTherapie());
        this.save(kr);
     }
+    public void versionnigIcdBearbeiten(Prozedur prozedur ) {
+        Prozedur kr = this.read(prozedur.getTitle());
+        kr.setNotes(prozedur.getNotes());
+       this.save(kr);
+    }
 
     
     public List<Prozedur> readTherapie() {

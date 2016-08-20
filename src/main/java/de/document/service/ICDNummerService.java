@@ -1,34 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+///*
 package de.document.service;
 
-import de.document.entity.ICDNummer;
 import de.document.entity.Krankheit;
+import de.document.entity.Med;
+import de.document.entity.ICDNummer;
+import de.document.entity.Icd;
 import de.document.entity.Prozedur;
 import de.document.jenaspring.JenaTemplate;
 import de.document.jenaspring.SparqlTemplate;
 import de.document.util.IdService;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import org.apache.commons.beanutils.BeanUtils;
+import java.util.Scanner;
 import org.apache.jena.query.Dataset;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.tdb.TDBFactory;
-
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -40,75 +39,70 @@ public class ICDNummerService {
     private final JenaTemplate temp = new JenaTemplate();
     private final SparqlTemplate sparqlTemp = new SparqlTemplate();
     private final String NS = "http://ICDNummer/";
-    private final String NSHaupt = "http://ICDNummer/haupt/";
-    private final String NSGefah = "http://ICDNummer/gefaehrlich/";
     private final String url = "D:\\PC-Bilel\\Documents\\NetBeansProjects\\MedicalKnowledge\\TDB\\test2";
-    KrankheitService krankheitService = new KrankheitService();
-    ProzedurService prozedurService = new ProzedurService();
+    private String version;
+    private final KrankheitService krankheitService = new KrankheitService();
+    private final ProzedurService prozedurService = new ProzedurService();
 
-    public ICDNummer saveGesamt(ICDNummer entry) {
+    public String transferToFile(MultipartFile file) throws Throwable {
+        String filePath2 = Thread.currentThread()
+                .getContextClassLoader().getResource("icdNummer") + "\\" + file.getOriginalFilename();
+        String filePath = filePath2.substring(6);
 
-        try {
-            entry = (ICDNummer) BeanUtils.cloneBean(entry);
-            if (temp.getModel() != null) {
+        if (!file.isEmpty()) {
+            try {
+                byte[] bytes = file.getBytes();
+                BufferedOutputStream stream
+                        = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
+                stream.write(bytes);
+                stream.close();
+                return filePath;
 
-                if (temp.getModel().isClosed()) {
-                    this.connectJenaTemp();
-                }
-            } else {
-                this.connectJenaTemp();
+            } catch (Exception e) {
+                System.out.println("You failed to upload " + file.getOriginalFilename() + " => " + e.getMessage());
             }
-            // System.out.println(temp.getModel().isClosed());
-            //temp.removeResource(NS + "krankheit/" + entry.getTitle());
-
-            entry.setId(IdService.next());
-            temp.addResource(NS, NS + "has", NS + entry.getId());
-            temp.add(NS + entry.getId(), NS + "code", entry.getCode());
-            temp.add(NS + entry.getId(), NS + "diagnose", entry.getDiagnose());
-            temp.add(NS + entry.getId(), NS + "type", entry.getType());
-
-            if (!temp.getModel().isClosed()) {
-                temp.getModel().close();
-            }
-        } catch (IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException ex) {
-            throw new RuntimeException(ex);
+        } else {
+            System.out.println("You failed to upload " + file.getOriginalFilename() + " because the file was empty.");
         }
-        return entry;
+        return null;
+    }
+
+    public HashMap readFileICDNummer(MultipartFile file, String version) throws Throwable {
+        String csvFile = this.transferToFile(file);
+        BufferedReader br = null;
+        String line = "";
+        String cvsSplitBy = ";";
+        int i = 0;
+        List<ICDNummer> icdNummerList = new ArrayList<>();
+        try {
+            br = new BufferedReader(new FileReader(csvFile));
+            while ((line = br.readLine()) != null) {
+
+                // use comma as separator
+                if (i != 0) {
+                    String[] icdNummer = line.split(cvsSplitBy);
+
+                    if ("Diagnose".equals(icdNummer[0])) {
+                    } else {
+                        icdNummerList.add(new ICDNummer(icdNummer[1], icdNummer[0], icdNummer[2]));
+                    }
+                }
+                i++;
+            }
+        } finally {
+            if (br != null) {
+                br.close();
+            }
+        }
+
+        HashMap response = this.comparator(icdNummerList);
+        this.saveICDNummer(icdNummerList, version);
+        return response;
 
     }
 
-    public ICDNummer updateGesamt(ICDNummer entry) {
+    public void saveICDNummer(List<ICDNummer> ICDNummerList, String version) throws Throwable {
 
-        try {
-            entry = (ICDNummer) BeanUtils.cloneBean(entry);
-            if (temp.getModel() != null) {
-
-                if (temp.getModel().isClosed()) {
-                    this.connectJenaTemp();
-                }
-            } else {
-                this.connectJenaTemp();
-            }
-            // System.out.println(temp.getModel().isClosed());
-            //temp.removeResource(NS + "krankheit/" + entry.getTitle());
-
-            temp.removeResource(NS + entry.getId());
-            temp.addResource(NS, NS + "has", NS + entry.getId());
-            temp.add(NS + entry.getId(), NS + "code", entry.getCode());
-            temp.add(NS + entry.getId(), NS + "diagnose", entry.getDiagnose());
-            temp.add(NS + entry.getId(), NS + "type", entry.getType());
-
-            if (!temp.getModel().isClosed()) {
-                temp.getModel().close();
-            }
-        } catch (IllegalAccessException | InstantiationException | InvocationTargetException | NoSuchMethodException ex) {
-            throw new RuntimeException(ex);
-        }
-        return entry;
-
-    }
-
-    public void delete(String entry) {
         if (temp.getModel() != null) {
 
             if (temp.getModel().isClosed()) {
@@ -117,53 +111,49 @@ public class ICDNummerService {
         } else {
             this.connectJenaTemp();
         }
-        temp.removeResource(NS + readId(entry));
-    }
-
-    public List<ICDNummer> readAll() {
-
-        if (sparqlTemp.getModel() != null) {
-
-            if (sparqlTemp.getModel().isClosed()) {
-                this.connectSparqlTemp();
-            }
-        } else {
-            this.connectSparqlTemp();
-        }
-        //   sparqlTemp.getModel().write(System.out);
-
-        String sparql = "PREFIX icd: <http://ICDNummer/>"
-                + "SELECT ?x ?code ?diagnose ?type  WHERE {"
-                + " ?x icd:code ?code. "
-                + " ?x icd:diagnose ?diagnose. "
-                + " ?x icd:type ?type. "
-                + "}";
-        List<ICDNummer> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
-            QuerySolution sln = rs.nextSolution();
-
-            ICDNummer icdNummer = new ICDNummer();
-
-            if (sln.get("code") != null) {
-                icdNummer.setCode(sln.get("code").toString());
-            }
-            if (sln.get("diagnose") != null) {
-                icdNummer.setDiagnose(sln.get("diagnose").toString());
-            }
-            if (sln.get("type") != null) {
-                icdNummer.setType(sln.get("type").toString());
-            }
-            if (sln.get("x") != null) {
-                String x = sln.get("x").toString();
-                icdNummer.setId(x.replaceAll("http://ICDNummer/", ""));
-
-            }
+        ICDNummerList.stream().map((ICDNummer icdNummer) -> {
+            temp.removeProperty(NS, NS + "default");
             return icdNummer;
-
+        }).forEach((icdNummer) -> {
+            String id = IdService.next();
+            temp.addResource(NS, NS + "default", NS + version);
+            temp.addResource(NS, NS + "version", NS + version);
+            temp.addResource(NS + version, NS + "has", NS + version + "/" + id);
+            temp.add(NS + version + "/" + id, NS + "code", icdNummer.getCode());
+            temp.add(NS + version + "/" + id, NS + "diagnose", icdNummer.getDiagnose());
+            temp.add(NS + version + "/" + id, NS + "type", icdNummer.getType());
         });
-        return list;
+        temp.getModel().write(System.out);
+        if (!temp.getModel().isClosed()) {
+            temp.getModel().close();
+        }
+
     }
 
-    public ICDNummer read(String code) {
+    public void saveICDNummer(ICDNummer icdNummer) throws Throwable {
+
+        if (temp.getModel() != null) {
+
+            if (temp.getModel().isClosed()) {
+                this.connectJenaTemp();
+            }
+        } else {
+            this.connectJenaTemp();
+        }
+        version = this.readDefaultVersion();
+        String id = IdService.next();
+        temp.addResource(version, NS + "has", version + "/" + id);
+        temp.add(version + "/" + id, NS + "code", icdNummer.getCode());
+        temp.add(version + "/" + id, NS + "diagnose", icdNummer.getDiagnose());
+        temp.add(version + "/" + id, NS + "type", icdNummer.getType());
+
+        if (!temp.getModel().isClosed()) {
+            temp.getModel().close();
+        }
+
+    }
+
+    public List<String> readVersion() {
 
         if (sparqlTemp.getModel() != null) {
 
@@ -173,70 +163,154 @@ public class ICDNummerService {
         } else {
             this.connectSparqlTemp();
         }
+        // sparqlTemp.getModel().write(System.out);
+
         String sparql = "PREFIX icd: <http://ICDNummer/>"
-                + "SELECT ?diagnose ?type ?x WHERE {"
-                + " ?x icd:code '" + code + "'. "
-                + " ?x icd:diagnose ?diagnose. "
-                + " ?x icd:type ?type. "
-                + "}";
-        List<ICDNummer> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
-            QuerySolution sln = rs.nextSolution();
-
-            ICDNummer icdNummer = new ICDNummer();
-
-            icdNummer.setCode(code);
-
-            if (sln.get("diagnose") != null) {
-                icdNummer.setDiagnose(sln.get("diagnose").toString());
-            }
-            if (sln.get("type") != null) {
-                icdNummer.setType(sln.get("type").toString());
-            }
-            if (sln.get("x") != null) {
-                String x = sln.get("x").toString();
-                icdNummer.setId(x.replaceAll("http://ICDNummer/", ""));
-
-            }
-            return icdNummer;
-
-        });
-        return list.get(0);
-
-    }
-
-    public String readId(String code) {
-
-        if (sparqlTemp.getModel() != null) {
-
-            if (sparqlTemp.getModel().isClosed()) {
-                this.connectSparqlTemp();
-            }
-        } else {
-            this.connectSparqlTemp();
-        }
-        String sparql = "PREFIX icd: <http://ICDNummer/>"
-                + "SELECT ?x   WHERE {"
-                + " ?x icd:code '" + code + "'. "
+                + "SELECT ?version  WHERE {"
+                + " ?x icd:version ?version. "
                 + "}";
         List<String> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
             QuerySolution sln = rs.nextSolution();
 
-            String y = null;
-
-            if (sln.get("x") != null) {
-                String x = sln.get("x").toString();
-                y = x.replaceAll("http://ICDNummer/", "");
+            String version = null;
+            if (sln.get("version") != null) {
+                version = sln.get("version").toString().replaceAll(NS, "");
 
             }
 
-            return y;
+            return version;
+
+        });
+        return list;
+    }
+
+    public String readDefaultVersion() {
+
+        if (sparqlTemp.getModel() != null) {
+
+            if (sparqlTemp.getModel().isClosed()) {
+                this.connectSparqlTemp();
+            }
+        } else {
+            this.connectSparqlTemp();
+        }
+        // sparqlTemp.getModel().write(System.out);
+
+        String sparql = "PREFIX icd: <http://ICDNummer/>"
+                + "SELECT ?version  WHERE {"
+                + " ?x icd:default ?version. "
+                + "}";
+        List<String> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
+            QuerySolution sln = rs.nextSolution();
+
+            String version = null;
+            if (sln.get("version") != null) {
+                version = sln.get("version").toString();
+            }
+
+            return version;
+
+        });
+        if (list.isEmpty()) {
+            return null;
+        } else {
+            return list.get(0);
+        }
+    }
+
+    public List<ICDNummer> readDefault() {
+        version = this.readDefaultVersion();
+        if (version == null) {
+            return null;
+        }
+        if (sparqlTemp.getModel() != null) {
+
+            if (sparqlTemp.getModel().isClosed()) {
+                this.connectSparqlTemp();
+            }
+        } else {
+            this.connectSparqlTemp();
+        }
+        // sparqlTemp.getModel().write(System.out);
+
+        String sparql = "PREFIX icd: <http://ICDNummer/>"
+                + "SELECT ?code ?diagnose ?type?y   WHERE {"
+                + " ?x icd:default ?version. "
+                + " ?version icd:has ?y. "
+                + " OPTIONAL {?y icd:code ?code}. "
+                + " OPTIONAL {?y icd:diagnose ?diagnose}. "
+                + " OPTIONAL {?y icd:type ?type}. "
+                + "}";
+        List<ICDNummer> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
+            QuerySolution sln = rs.nextSolution();
+
+            ICDNummer icdNummer = new ICDNummer();
+
+            if (sln.get("code") != null) {
+                icdNummer.setCode(sln.get("code").toString());
+            }
+            if (sln.get("diagnose") != null) {
+                icdNummer.setDiagnose(sln.get("diagnose").toString());
+            }
+            if (sln.get("type") != null) {
+                icdNummer.setType(sln.get("type").toString());
+            }
+            if (sln.get("y") != null) {
+                String x = sln.get("y").toString();
+                icdNummer.setId(x.replaceAll(version + "/", ""));
+
+            }
+            return icdNummer;
+
+        });
+        return list;
+    }
+
+    public ICDNummer readICDNummer(String code) {
+        version = this.readDefaultVersion();
+
+        if (sparqlTemp.getModel() != null) {
+
+            if (sparqlTemp.getModel().isClosed()) {
+                this.connectSparqlTemp();
+            }
+        } else {
+            this.connectSparqlTemp();
+        }
+        String sparql = "PREFIX icd: <http://ICDNummer/>"
+                + "SELECT  ?diagnose ?type?y   WHERE {"
+                + " ?x icd:default ?version. "
+                + " ?version icd:has ?y. "
+                + " OPTIONAL {?y icd:diagnose ?diagnose}. "
+                + " OPTIONAL {?y icd:type ?type}. "
+                + " ?y icd:code '" + code + "'. "
+                + "}";
+        List<ICDNummer> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
+            QuerySolution sln = rs.nextSolution();
+
+            ICDNummer icdNummer = new ICDNummer();
+
+            if (sln.get("diagnose") != null) {
+                icdNummer.setDiagnose(sln.get("diagnose").toString());
+            }
+            if (sln.get("type") != null) {
+                icdNummer.setType(sln.get("type").toString());
+            }
+            if (sln.get("y") != null) {
+                String x = sln.get("y").toString();
+                icdNummer.setId(x.replaceAll(version + "/", ""));
+
+            }
+            icdNummer.setCode(code);
+            return icdNummer;
 
         });
         return list.get(0);
 
     }
 
-    public List<ICDNummer> readHaupt() {
+    public List readHaupt() {
+        version = this.readDefaultVersion();
 
         if (sparqlTemp.getModel() != null) {
 
@@ -246,13 +320,14 @@ public class ICDNummerService {
         } else {
             this.connectSparqlTemp();
         }
-        //       sparqlTemp.getModel().write(System.out);
-
+        String type = "Hauptdiagnose";
         String sparql = "PREFIX icd: <http://ICDNummer/>"
-                + "SELECT ?code ?diagnose  WHERE {"
-                + " ?x icd:code ?code. "
-                + " ?x icd:diagnose ?diagnose. "
-                + " ?x icd:type 'Hauptdiagnose'. "
+                + "SELECT  ?code ?diagnose?y   WHERE {"
+                + " ?x icd:default ?version. "
+                + " ?version icd:has ?y. "
+                + " OPTIONAL {?y icd:code ?code}. "
+                + " OPTIONAL {?y icd:diagnose ?diagnose}. "
+                + " ?y icd:type '" + type + "'. "
                 + "}";
         List<ICDNummer> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
             QuerySolution sln = rs.nextSolution();
@@ -265,47 +340,238 @@ public class ICDNummerService {
             if (sln.get("diagnose") != null) {
                 icdNummer.setDiagnose(sln.get("diagnose").toString());
             }
+            if (sln.get("y") != null) {
+                String x = sln.get("y").toString();
+                icdNummer.setId(x.replaceAll(version + "/", ""));
 
+            }
+            icdNummer.setType(type);
+            return icdNummer;
+
+        });
+        return list;
+
+    }
+
+    public List readGefaehrlich() {
+        version = this.readDefaultVersion();
+
+        if (sparqlTemp.getModel() != null) {
+
+            if (sparqlTemp.getModel().isClosed()) {
+                this.connectSparqlTemp();
+            }
+        } else {
+            this.connectSparqlTemp();
+        }
+        String type = "Gefährlich";
+        String sparql = "PREFIX icd: <http://ICDNummer/>"
+                + "SELECT  ?code ?diagnose ?y   WHERE {"
+                + " ?x icd:default ?version. "
+                + " ?version icd:has ?y. "
+                + " OPTIONAL {?y icd:code ?code}. "
+                + " OPTIONAL {?y icd:diagnose ?diagnose}. "
+                + " ?y icd:type '" + type + "'. "
+                + "}";
+        List<ICDNummer> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
+            QuerySolution sln = rs.nextSolution();
+
+            ICDNummer icdNummer = new ICDNummer();
+
+            if (sln.get("code") != null) {
+                icdNummer.setCode(sln.get("code").toString());
+            }
+            if (sln.get("diagnose") != null) {
+                icdNummer.setDiagnose(sln.get("diagnose").toString());
+            }
+            if (sln.get("y") != null) {
+                String x = sln.get("y").toString();
+                icdNummer.setId(x.replaceAll(version + "/", ""));
+
+            }
+            icdNummer.setType(type);
+            return icdNummer;
+
+        });
+        return list;
+
+    }
+
+    public List<ICDNummer> read(String version) {
+
+        if (sparqlTemp.getModel() != null) {
+
+            if (sparqlTemp.getModel().isClosed()) {
+                this.connectSparqlTemp();
+            }
+        } else {
+            this.connectSparqlTemp();
+        }
+        // sparqlTemp.getModel().write(System.out);
+
+        String sparql = "PREFIX icd: <http://ICDNummer/>"
+                + "SELECT ?code ?diagnose ?type?y   WHERE {"
+                //   + " ?x icd:default '" + version + "'. "
+                + " <http://ICDNummer/" + version + "> icd:has ?y. "
+                + " OPTIONAL {?y icd:code ?code}. "
+                + " OPTIONAL {?y icd:diagnose ?diagnose}. "
+                + " OPTIONAL {?y icd:type ?type}. "
+                + "}";
+        List<ICDNummer> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
+            QuerySolution sln = rs.nextSolution();
+
+            ICDNummer icdNummer = new ICDNummer();
+
+            if (sln.get("code") != null) {
+                icdNummer.setCode(sln.get("code").toString());
+            }
+            if (sln.get("diagnose") != null) {
+                icdNummer.setDiagnose(sln.get("diagnose").toString());
+            }
+            if (sln.get("type") != null) {
+                icdNummer.setType(sln.get("type").toString());
+            }
+            if (sln.get("y") != null) {
+                String x = sln.get("y").toString();
+                icdNummer.setId(x.replaceAll(version + "/", ""));
+
+            }
             return icdNummer;
 
         });
         return list;
     }
 
-    public List<ICDNummer> readGefaehrlich() {
+    public ICDNummer updateICDNummer(ICDNummer icdNummer) {
 
-        if (sparqlTemp.getModel() != null) {
+        if (temp.getModel() != null) {
 
-            if (sparqlTemp.getModel().isClosed()) {
-                this.connectSparqlTemp();
+            if (temp.getModel().isClosed()) {
+                this.connectJenaTemp();
             }
         } else {
-            this.connectSparqlTemp();
+            this.connectJenaTemp();
         }
-        //       sparqlTemp.getModel().write(System.out);
+        // System.out.println(temp.getModel().isClosed());
+        //temp.removeResource(NS + "krankheit/" + entry.getTitle());
+        version = this.readDefaultVersion();
+        String id = icdNummer.getId();
+        temp.removeResource(version + "/" + icdNummer.getId());
+        temp.addResource(version, NS + "has", version + "/" + id);
+        temp.add(version + "/" + id, NS + "code", icdNummer.getCode());
+        temp.add(version + "/" + id, NS + "diagnose", icdNummer.getDiagnose());
+        temp.add(version + "/" + id, NS + "type", icdNummer.getType());
 
-        String sparql = "PREFIX icd: <http://ICDNummer/>"
-                + "SELECT ?code ?diagnose  WHERE {"
-                + " ?x icd:code ?code. "
-                + " ?x icd:diagnose ?diagnose. "
-                + " ?x icd:type 'Gefährlich'. "
-                + "}";
-        List<ICDNummer> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
-            QuerySolution sln = rs.nextSolution();
+        if (!temp.getModel().isClosed()) {
+            temp.getModel().close();
+        }
 
-            ICDNummer icdNummer = new ICDNummer();
+        return icdNummer;
 
-            if (sln.get("code") != null) {
-                icdNummer.setCode(sln.get("code").toString());
+    }
+
+    public void delete(ICDNummer icdNummer) {
+        if (temp.getModel() != null) {
+
+            if (temp.getModel().isClosed()) {
+                this.connectJenaTemp();
             }
-            if (sln.get("diagnose") != null) {
-                icdNummer.setDiagnose(sln.get("diagnose").toString());
+        } else {
+            this.connectJenaTemp();
+        }
+        temp.getModel().write(System.out);
+        version = this.readDefaultVersion();
+        temp.removeTriplet(version, NS + "has", version + "/" + icdNummer.getId());
+
+    }
+
+    public HashMap comparator(List<ICDNummer> list1) {
+        List<ICDNummer> list2 = this.readDefault();
+        if (list2 == null) {
+            HashMap result = new HashMap();
+            result.put("new", list1);
+            result.put("deleted", list2);
+            return result;
+        } else {
+            List<ICDNummer> cp1 = new ArrayList<>(list1);
+            List<ICDNummer> cp2 = new ArrayList<>(list2);
+            List<ICDNummer> diagnose = new ArrayList<>();
+            List<ICDNummer> type = new ArrayList<>();
+
+            for (ICDNummer icdL2 : list2) {
+
+                for (ICDNummer icdL1 : list1) {
+                    if (icdL2.getCode().equals(icdL1.getCode())) {
+
+                        cp1.remove(icdL1);
+                        cp2.remove(icdL2);
+                        if (!icdL2.getDiagnose().equals(icdL1.getDiagnose())) {
+                            diagnose.add(icdL2);
+                        }
+                        if (!icdL2.getType().equals(icdL1.getType())) {
+                            type.add(icdL2);
+                        }
+
+                    }
+                }
             }
+            HashMap result = new HashMap();
+            result.put("new", cp1);
+            result.put("deleted", cp2);
+            result.put("diagnose", diagnose);
+            result.put("type", type);
+            return result;
+        }
+    }
 
-            return icdNummer;
+    public List searchUsedICDNummer(List<ICDNummer> icdNummerList) throws IOException, ParseException {
+        List<Icd> result = new ArrayList();
+        List listKrankheits = krankheitService.readAll();
+        List listProzedurs = prozedurService.readAll();
 
+        icdNummerList.stream().forEach((icdNummer) -> {
+            List krankheits = new ArrayList();
+            List prozedurs = new ArrayList();
+            for (Iterator it = listKrankheits.iterator(); it.hasNext();) {
+                Krankheit krankheit = (Krankheit) it.next();
+                String note = krankheit.getNotes();
+                if (note != null) {
+                    int intIndex = note.indexOf(icdNummer.getCode());
+                    if (intIndex == - 1) {
+
+                    } else {
+                        System.out.println("Found icdNummer at index "
+                                + intIndex);
+                        krankheits.add(krankheit);
+
+                    }
+                }
+
+            }
+            for (Iterator itPr = listProzedurs.iterator(); itPr.hasNext();) {
+                Prozedur prozedur = (Prozedur) itPr.next();
+                String note = prozedur.getNotes();
+                if (note != null) {
+                    int intIndex = note.indexOf(icdNummer.getCode());
+                    if (intIndex == - 1) {
+                    } else {
+                        System.out.println("Found icdNummer at prozedur index "
+                                + intIndex);
+                        prozedurs.add(prozedur);
+
+                    }
+                }
+            }
+            if (!krankheits.isEmpty() || !prozedurs.isEmpty()) {
+                Icd icdNummerStandardList = new Icd();
+                icdNummerStandardList.setKrankheits(krankheits);
+                icdNummerStandardList.setProzedurs(prozedurs);
+                icdNummerStandardList.setICDNummer(icdNummer);
+                result.add(icdNummerStandardList);
+            }
         });
-        return list;
+        return result;
+
     }
 
     public boolean searchHauptICDNummer(String text) throws IOException, ParseException {
@@ -327,72 +593,6 @@ public class ICDNummerService {
         return b;
     }
 
-    public void notesBearbeiten(Object request) {
-        List list = (List) request;
-        HashMap h1 = (HashMap) list.get(0);
-        String alteCode = (String) h1.get("alteCode");
-        HashMap h2 = (HashMap) list.get(1);
-        String neuCode = (String) h2.get("neuCode");
-        HashMap h3 = (HashMap) list.get(2);
-        List<Krankheit> krankheits = (List<Krankheit>) h3.get("krankheits");
-        HashMap h4 = (HashMap) list.get(3);
-        List<Prozedur> prozedurs = (List<Prozedur>) h4.get("prozedurs");
-        for (Iterator it = krankheits.iterator(); it.hasNext();) {
-            HashMap hashMap = (HashMap) it.next();
-            String title = (String) hashMap.get("title");
-            Krankheit kr = this.krankheitService.read(title);
-            String notes = kr.getNotes();
-            if (notes != null) {
-                String note = notes.replaceAll(alteCode, neuCode);
-                kr.setNotes(note);
-                this.krankheitService.save(kr);
-            }
-        }
-        for (Iterator it = prozedurs.iterator(); it.hasNext();) {
-            HashMap hashMap = (HashMap) it.next();
-            String title = (String) hashMap.get("title");
-            Prozedur pr = this.prozedurService.read(title);
-            String notes = pr.getNotes();
-            if (notes != null) {
-                String note = notes.replaceAll(alteCode, neuCode);
-                pr.setNotes(note);
-                this.prozedurService.save(pr);
-            }
-        }
-    }
-
-    ;
-    public void notesEntfernen(Object request) {
-        List list = (List) request;
-        HashMap h1 = (HashMap) list.get(0);
-        String code = (String) h1.get("code");
-        HashMap h2 = (HashMap) list.get(1);
-        List<Krankheit> krankheits = (List<Krankheit>) h2.get("krankheits");
-        HashMap h3 = (HashMap) list.get(2);
-        List<Prozedur> prozedurs = (List<Prozedur>) h3.get("prozedurs");
-        for (Iterator it = krankheits.iterator(); it.hasNext();) {
-            HashMap hashMap = (HashMap) it.next();
-            String title = (String) hashMap.get("title");
-            Krankheit kr = this.krankheitService.read(title);
-            String notes = kr.getNotes();
-            if (notes != null) {
-                String note = notes.replaceAll(code+" ", " ");
-                kr.setNotes(note);
-                this.krankheitService.save(kr);
-            }
-        }
-        for (Iterator it = prozedurs.iterator(); it.hasNext();) {
-            HashMap hashMap = (HashMap) it.next();
-            String title = (String) hashMap.get("title");
-            Prozedur pr = this.prozedurService.read(title);
-            String notes = pr.getNotes();
-            if (notes != null) {
-                String note = notes.replaceAll(code+" ", " ");
-                pr.setNotes(note);
-                this.prozedurService.save(pr);
-            }
-        }
-    };
     public boolean searchGefahrlichICDNummer(String text) throws IOException, ParseException {
 
         boolean b = false;
@@ -412,298 +612,6 @@ public class ICDNummerService {
         return b;
     }
 
-    public HashMap searchUsedICDNummer(String code) throws IOException, ParseException {
-        List listKrankheits = krankheitService.readAll();
-        List listProzedurs = prozedurService.readAll();
-
-        List krankheits = new ArrayList();
-        List prozedurs = new ArrayList();
-        for (Iterator it = listKrankheits.iterator(); it.hasNext();) {
-            Krankheit krankheit = (Krankheit) it.next();
-            String note = krankheit.getNotes();
-            if (note != null) {
-                int intIndex = note.indexOf(code+" ");
-                if (intIndex == - 1) {
-                } else {
-                    System.out.println("Found icd at index "
-                            + intIndex);
-                    krankheits.add(krankheit);
-
-                }
-            }
-        }
-        for (Iterator itPr = listProzedurs.iterator(); itPr.hasNext();) {
-            Prozedur prozedur = (Prozedur) itPr.next();
-            String notePr = prozedur.getNotes();
-            if (notePr != null) {
-                int intIndex = notePr.indexOf(code+" ");
-                if (intIndex == - 1) {
-                } else {
-                    System.out.println("Found icd at prozedur index "
-                            + intIndex);
-                    prozedurs.add(prozedur);
-
-                }
-            }
-        }
-        HashMap result = new HashMap();
-        result.put("krankheits", krankheits);
-        result.put("prozedurs", prozedurs);
-        return result;
-    }
-
-    public void saveAll() {
-
-        String csvFile = "C:\\Users\\Bilel-PC\\Desktop\\ICD.csv";
-        BufferedReader br = null;
-        String line = "";
-        String cvsSplitBy = ";";
-        int i = 0;
-        try {
-            if (temp.getModel() != null) {
-
-                if (temp.getModel().isClosed()) {
-                    this.connectJenaTemp();
-                }
-            } else {
-                this.connectJenaTemp();
-            }
-            br = new BufferedReader(new FileReader(csvFile));
-            while ((line = br.readLine()) != null) {
-
-                // use comma as separator
-                if (i != 0) {
-                    String[] ICDNummer = line.split(cvsSplitBy);
-
-                    if (ICDNummer[1].equals("")) {
-                        System.out.println(ICDNummer[0]);
-                    } else {
-                        temp.addResource(NS, NS + "has", NS + ICDNummer[1]);
-                        temp.add(NS + ICDNummer[1], NS + "code", ICDNummer[1]);
-                        temp.add(NS + ICDNummer[1], NS + "diagnose", ICDNummer[0]);
-                    }
-
-                }
-                i++;
-            }
-            //  temp.getModel().write(System.out);
-            if (!temp.getModel().isClosed()) {
-                temp.getModel().close();
-            }
-
-        } catch (FileNotFoundException e) {
-        } catch (IOException e) {
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                }
-            }
-        }
-
-        System.out.println("Done");
-    }
-
-    public void saveHauptDiagnose() {
-
-        String csvFile = "C:\\Users\\Bilel-PC\\Desktop\\ICDHauptdiagnose.csv";
-        BufferedReader br = null;
-        String line = "";
-        String cvsSplitBy = ";";
-        int i = 0;
-        try {
-            if (temp.getModel() != null) {
-
-                if (temp.getModel().isClosed()) {
-                    this.connectJenaTemp();
-                }
-            } else {
-                this.connectJenaTemp();
-            }
-            br = new BufferedReader(new FileReader(csvFile));
-            while ((line = br.readLine()) != null) {
-
-                // use comma as separator
-                if (i != 0) {
-                    String[] ICDNummerHaupt = line.split(cvsSplitBy);
-
-                    if (ICDNummerHaupt[1].equals("")) {
-                    } else {
-                        temp.addResource(NSHaupt, NSHaupt + "has", NSHaupt + ICDNummerHaupt[1]);
-                        temp.add(NSHaupt + ICDNummerHaupt[1], NSHaupt + "code", ICDNummerHaupt[1]);
-                        temp.add(NSHaupt + ICDNummerHaupt[1], NSHaupt + "diagnose", ICDNummerHaupt[0]);
-                    }
-
-                }
-                i++;
-            }
-            //    temp.getModel().write(System.out);
-            if (!temp.getModel().isClosed()) {
-                temp.getModel().close();
-            }
-
-        } catch (FileNotFoundException e) {
-        } catch (IOException e) {
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                }
-            }
-        }
-
-        System.out.println("Done");
-
-    }
-
-//  public void saveNebenDiagnose(String version) {
-//
-//        String csvFile = "C:\\Users\\Bilel-PC\\Desktop\\ICDNebendiagnose.csv";
-//        BufferedReader br = null;
-//        String line = "";
-//        String cvsSplitBy = ";";
-//        int i = 0;
-//        try {
-//            if (temp.getModel() != null) {
-//
-//                if (temp.getModel().isClosed()) {
-//                    this.connectJenaTemp();
-//                }
-//            } else {
-//                this.connectJenaTemp();
-//            }
-//            br = new BufferedReader(new FileReader(csvFile));
-//            while ((line = br.readLine()) != null) {
-//
-//                // use comma as separator
-//                if (i != 0) {
-//                    String[] ICDNummerNeben = line.split(cvsSplitBy);
-//
-//                    if ("".equals(ICDNummerNeben[1])) {
-//                    } else {
-//                        temp.removeProperty(NSNeben, NSNeben + "default");
-//                        temp.addResource(NSNeben, NSNeben + "default", NSNeben + version);
-//                        temp.addResource(NSNeben, NSNeben + "version", NSNeben + version);
-//                        temp.addResource(NSNeben + version, NSNeben +"has", NSNeben + version+"/" + ICDNummerNeben[1]);
-//                        temp.add(NSNeben +  version+"/" + ICDNummerNeben[1], NSNeben +"code", ICDNummerNeben[1]);
-//                        temp.add(NSNeben +  version+"/" + ICDNummerNeben[1], NSNeben +"diagnose", ICDNummerNeben[0]);
-//                    }
-//
-//                }
-//                i++;
-//            }
-//            // temp.getModel().write(System.out);
-//            if (!temp.getModel().isClosed()) {
-//                temp.getModel().close();
-//            }
-//
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } finally {
-//            if (br != null) {
-//                try {
-//                    br.close();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//
-//        System.out.println("Done");
-//
-//    }
-//
-//    public List<String> readVersionNeben() {
-//
-//        if (sparqlTemp.getModel() != null) {
-//
-//            if (sparqlTemp.getModel().isClosed()) {
-//                this.connectSparqlTemp();
-//            }
-//        } else {
-//            this.connectSparqlTemp();
-//        }
-//         sparqlTemp.getModel().write(System.out);
-//
-//        String sparql = "PREFIX icd: <http://ICDNummer/neben/>"
-//                + "SELECT ?version  WHERE {"
-//                + " ?x icd:version ?version. "
-//
-//                + "}";
-//        List<String> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
-//            QuerySolution sln = rs.nextSolution();
-//
-//            String version = null;
-//            if (sln.get("version") != null) {
-//                version = sln.get("version").toString();
-//            }
-//
-//            return version;
-//
-//        });
-//        return list;
-//    }
-//
-//    public List<ICDNummer> readDefaultNeben() {
-//
-//        if (sparqlTemp.getModel() != null) {
-//
-//            if (sparqlTemp.getModel().isClosed()) {
-//                this.connectSparqlTemp();
-//            }
-//        } else {
-//            this.connectSparqlTemp();
-//        }
-//        // sparqlTemp.getModel().write(System.out);
-//
-//        String sparql = "PREFIX icd: <http://ICDNummer/neben/>"
-//                + "SELECT ?code ?diagnose   WHERE {"
-//                + " ?x icd:default ?version. "
-//                + " ?version icd:has ?y. "
-//                + " ?y icd:diagnose ?diagnose. "
-//                + " ?y icd:code ?code. "
-//                + "}";
-//        List<ICDNummer> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
-//            QuerySolution sln = rs.nextSolution();
-//
-//            ICDNummer icdNummer = new ICDNummer();
-//
-//            if (sln.get("code") != null) {
-//                icdNummer.setCode(sln.get("code").toString());
-//            }
-//            if (sln.get("diagnose") != null) {
-//                icdNummer.setDiagnose(sln.get("diagnose").toString());
-//            }
-//
-//            return icdNummer;
-//
-//        });
-//        return list;
-//    }
-//
-//    public HashMap comparator(List<ICDNummer> l1, List<ICDNummer> l2) {
-//        ArrayList<ICDNummer> cp1 = new ArrayList<>(l1);
-//        ArrayList<ICDNummer> cp2 = new ArrayList<>(l2);
-//
-//        for (ICDNummer icdL2 : l2) {
-//            for (ICDNummer icdL1 : l1) {
-//                if (icdL2.getCode().equals(icdL1.getCode())) {
-//
-//                    cp1.remove(icdL1);
-//                    cp2.remove(icdL2);
-//
-//                }
-//            }
-//        }
-//        HashMap result = new HashMap();
-//        result.put("list1", cp1);
-//        result.put("list2", cp2);
-//        return result;
-//    };
     public void connectJenaTemp() {
         Dataset dataset = TDBFactory.createDataset(url);
         Model model = dataset.getDefaultModel();
@@ -723,5 +631,4 @@ public class ICDNummerService {
         Model model = dataset.getDefaultModel();
         return model;
     }
-
 }

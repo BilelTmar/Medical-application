@@ -5,23 +5,23 @@
  */
 package de.document.controller;
 
-import de.document.entity.Document;
+import de.document.entity.Icd;
 import de.document.entity.ICDNummer;
-import de.document.entity.Krankheit;
-import de.document.entity.Prozedur;
 import de.document.service.ICDNummerService;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import org.apache.lucene.queryparser.classic.ParseException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -32,113 +32,88 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/icdnummer")
 public class ICDNummerController {
 
-    ICDNummerService service = new ICDNummerService();
+    private final ICDNummerService service = new ICDNummerService();
 
-    @RequestMapping(value = "/save")
-    public void saveAll() {
-        service.saveAll();
-
-    }
-//    @RequestMapping(value = "/save/neben/{version}", method = {RequestMethod.GET})
-//    public void saveNeben(@PathVariable("version") String version) {
-//        service.saveNebenDiagnose(version);
-//
-//    }
-
-    @RequestMapping(value = "/save/haupt")
-    public void saveHaupt() {
-        service.saveHauptDiagnose();
-
-    }
-
-    @RequestMapping(value = "/query")
-    public List<ICDNummer> readAll() {
-        List<ICDNummer> list = service.readAll();
+    @RequestMapping(value = "/version")
+    public List<String> readVersion() {
+        List<String> list = service.readVersion();
         return list;
     }
-//    @RequestMapping(value = "/version")
-//    public List<String> readVersionNeben() {
-//        List<String> list = service.readVersionNeben();
-//        return list;
-//    }
-//    @RequestMapping(value = "/read/neben")
-//    public List<ICDNummer> readDefaultNeben() {
-//        List<ICDNummer> list = service.readDefaultNeben();
-//        return list;
-//    }
-//    @RequestMapping(value = "/compare")
-//    public HashMap comparator() {
-//        List<ICDNummer> list = service.readDefaultNeben();
-//        List<ICDNummer> list2 = service.readAll();
-//        HashMap result = service.comparator(list, list2);
-//
-//        return result;
-//    }
 
-    @RequestMapping(value = "/read/", method = {RequestMethod.POST})
-    public ResponseEntity read(@RequestBody String code) {
-        //code = code.replace("-", ".");
-        
-        ICDNummer entity = this.service.read(code);
-        return ResponseEntity.ok(entity);
+    @RequestMapping(value = "/read")
+    public List<ICDNummer> readDefault() {
+        List<ICDNummer> list = service.readDefault();
+        return list;
     }
-
-    @RequestMapping(value = "/save/gesamt", method = {RequestMethod.POST})
-    public ICDNummer saveGesamt(@RequestBody ICDNummer request) {
-        return service.saveGesamt(request);
-
-    }
-
-    @RequestMapping(value = "/update/gesamt", method = {RequestMethod.POST})
-    public ICDNummer updateGesamt(@RequestBody ICDNummer request) {
-        return service.updateGesamt(request);
-
-    }
-
     @RequestMapping(value = "/read/haupt")
     public List<ICDNummer> readHaupt() {
         List<ICDNummer> list = service.readHaupt();
         return list;
     }
-
     @RequestMapping(value = "/read/gefaehrlich")
-    public List<ICDNummer> readGefaeh() {
+    public List<ICDNummer> readGefaehrlich() {
         List<ICDNummer> list = service.readGefaehrlich();
         return list;
     }
 
-    @RequestMapping(value = "/search/used/" , method = {RequestMethod.POST})
-    public HashMap searchUsedIcd(@RequestBody String code) throws ParseException, IOException {
-        HashMap list = service.searchUsedICDNummer(code);
-        return list;
-    }
-
-    @RequestMapping(value = "/id/", method = {RequestMethod.POST})
-    public String deleteHaupt(@RequestBody String code) {
-
-        String x = this.service.readId(code);
-        String y = x.replaceAll("http://ICDNummer/", "");
-        return y;
-    }
-
-    @RequestMapping(value = "/delete/gesamt/", method = {RequestMethod.POST})
-    public ResponseEntity delete(@RequestBody String code) {
-        this.service.delete(code);
-
-        return ResponseEntity.ok().build();
-    }
-
-    @RequestMapping(value = "/notes/bearbeiten", method = {RequestMethod.POST})
-    public void notesBearbeiten(@RequestBody Object request) {
-
-        this.service.notesBearbeiten(request);
+    @RequestMapping(value = "/save/{version}", headers = "Content-Type= multipart/form-data", method = {RequestMethod.POST})
+    public HashMap save(@PathVariable("version") String version, @RequestParam("file") MultipartFile file) throws Throwable {
+        return service.readFileICDNummer(file, version);
 
     }
 
-    @RequestMapping(value = "/notes/entfernen", method = {RequestMethod.POST})
-    public void notesEntfernen(@RequestBody Object request) {
+    @RequestMapping(value = "/version/read", method = {RequestMethod.POST})
+    public List<ICDNummer> read(@RequestBody String version) {
+        return service.read(version);
 
-        this.service.notesEntfernen(request);
+    }
+
+    @RequestMapping(value = "/info", method = {RequestMethod.POST})
+    public ICDNummer readICDNummer(@RequestBody String pzn) {
+        return service.readICDNummer(pzn);
+    }
+
+    @RequestMapping(value = "/save", method = {RequestMethod.POST})
+    public void saveICDNummer(@RequestBody ICDNummer ICDNummer) throws Throwable {
+        service.saveICDNummer(ICDNummer);
+    }
+
+    @RequestMapping(value = "/update", method = {RequestMethod.POST})
+    public void updateICDNummer(@RequestBody ICDNummer ICDNummer) throws Throwable {
+        service.updateICDNummer(ICDNummer);
+    }
+
+    @RequestMapping(value = "/delete", method = {RequestMethod.POST})
+    public void deleteICDNummer(@RequestBody ICDNummer ICDNummer) throws Throwable {
+        service.delete(ICDNummer);
+    }
+
+    @RequestMapping(value = "/search/used/", method = {RequestMethod.POST})
+    public List searchUsedListICDNummer(@RequestBody Object listICDNummer) throws IOException, ParseException {
+        List request = new ArrayList();
+        List<ICDNummer> request2 = new ArrayList();
+        request = (List) listICDNummer;
+        for (Object item : request) {
+            LinkedHashMap itemx = (LinkedHashMap) item;
+            request2.add(new ICDNummer(itemx.get("code").toString(), itemx.get("diagnose").toString(), itemx.get("type").toString()));
+        }
+        System.out.println(request2);
+        if (!request2.isEmpty()) {
+            return service.searchUsedICDNummer(request2);
+        }
+        return null;
+    }
+
+    @RequestMapping(value = "/search/used/icdnummer", method = {RequestMethod.POST})
+    public Icd searchUsedICDNummer(@RequestBody ICDNummer ICDNummer) throws IOException, ParseException {
+        List<ICDNummer> request = new ArrayList();
+        request.add(ICDNummer);
+        List<Icd> result = service.searchUsedICDNummer(request);
+        if (result.isEmpty()) {
+            return null;
+        } else {
+            return result.get(0);
+        }
 
     }
 }

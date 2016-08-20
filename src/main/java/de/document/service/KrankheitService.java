@@ -255,6 +255,11 @@ public class KrankheitService {
        this.save(kr);
     }
     
+    public void versionnigIcdBearbeiten(Krankheit krankheit ) {
+        Krankheit kr = this.read(krankheit.getTitle());
+        kr.setNotes(krankheit.getNotes());
+       this.save(kr);
+    }
     public List<Krankheit> readTherapie() {
         
         if (sparqlTemp.getModel() != null) {

@@ -244,6 +244,19 @@ public class JenaTemplate {
         Literal l = model.createLiteral(value);
         model.removeAll(r, p, l);
     }
+    /**
+     * <code>removePropertyValue</code> Remove a full triple, including value
+     *
+     * @param uri
+     * @param property
+     * @param uri2
+     */
+    public void removeTriplet(String uri, String property, String uri2) {
+        Resource r = model.createResource(uri);
+        Property p = model.createProperty(property);
+        Resource r2 = model.createResource(uri2);
+        model.removeAll(r, p, r2);
+    }
 
     /**
      * <code>connect</code> Connect two resources with a predicate

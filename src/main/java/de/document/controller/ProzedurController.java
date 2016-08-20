@@ -68,5 +68,11 @@ public class ProzedurController {
         this.service.versionnigBearbeiten(request);
         return ResponseEntity.ok().build();
     }
+    @RequestMapping(value = "/versionnig/icd/bearbeiten", method = {RequestMethod.POST})
+    public ResponseEntity versionnigIcdBearbeiten(@RequestBody Prozedur request) {
+
+        this.service.versionnigIcdBearbeiten(request);
+        return ResponseEntity.ok().build();
+    }
 
 }

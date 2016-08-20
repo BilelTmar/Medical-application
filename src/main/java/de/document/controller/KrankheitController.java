@@ -50,10 +50,10 @@ public class KrankheitController {
         return entity;
     }
 
-    @RequestMapping(value = "/{name}", method = {RequestMethod.GET})
-    public ResponseEntity read(@PathVariable("name") String name) {
+    @RequestMapping(value = "/{title}", method = {RequestMethod.GET})
+    public ResponseEntity read(@PathVariable("title") String title) {
 
-        Krankheit entity = this.service.read(name);
+        Krankheit entity = this.service.read(title);
         return ResponseEntity.ok(entity);
     }
 
@@ -63,7 +63,12 @@ public class KrankheitController {
         this.service.versionnigBearbeiten(request);
         return ResponseEntity.ok().build();
     }
+ @RequestMapping(value = "/versionnig/icd/bearbeiten", method = {RequestMethod.POST})
+    public ResponseEntity versionnigIcdBearbeiten(@RequestBody Krankheit request) {
 
+        this.service.versionnigIcdBearbeiten(request);
+        return ResponseEntity.ok().build();
+    }
     @RequestMapping(value = "/{title}", method = {RequestMethod.DELETE})
     public ResponseEntity delete(@PathVariable("title") String title) {
 
