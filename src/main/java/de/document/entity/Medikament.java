@@ -1,28 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.document.entity;
 
-/**
- *
- * @author Bilel-PC
- */
 public class Medikament {
-    
+
     private String id;
+
     private String bezeichnung;
+
     private String pzn;
+
     private String einheit;
+
     private String roteListe;
+
     private String inhaltsstoff;
+
     private String darr;
 
     public Medikament() {
     }
 
-    public Medikament(String bezeichnung, String pzn, String einheit, String roteListe,String darr, String inhaltsstoff) {
+    public Medikament(String bezeichnung, String pzn, String einheit, String roteListe, String darr, String inhaltsstoff) {
         this.bezeichnung = bezeichnung;
         this.pzn = pzn;
         this.einheit = einheit;
@@ -90,6 +87,4 @@ public class Medikament {
     public void setInhaltsstoff(String inhaltsstoff) {
         this.inhaltsstoff = inhaltsstoff;
     }
-    
-    
 }

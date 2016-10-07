@@ -88,7 +88,11 @@ public class ICDNummerService {
                     }
                 }
                 i++;
+
             }
+        } catch (IndexOutOfBoundsException e) {
+            System.err.println("IndexOutOfBoundsException: " + e.getMessage());
+            return null;
         } finally {
             if (br != null) {
                 br.close();
@@ -119,11 +123,17 @@ public class ICDNummerService {
             temp.addResource(NS, NS + "default", NS + version);
             temp.addResource(NS, NS + "version", NS + version);
             temp.addResource(NS + version, NS + "has", NS + version + "/" + id);
-            temp.add(NS + version + "/" + id, NS + "code", icdNummer.getCode());
-            temp.add(NS + version + "/" + id, NS + "diagnose", icdNummer.getDiagnose());
-            temp.add(NS + version + "/" + id, NS + "type", icdNummer.getType());
+            if (icdNummer.getCode() != null) {
+                temp.add(NS + version + "/" + id, NS + "code", icdNummer.getCode());
+            }
+            if (icdNummer.getDiagnose() != null) {
+                temp.add(NS + version + "/" + id, NS + "diagnose", icdNummer.getDiagnose());
+            }
+            if (icdNummer.getType() != null) {
+                temp.add(NS + version + "/" + id, NS + "type", icdNummer.getType());
+            }
         });
-        temp.getModel().write(System.out);
+
         if (!temp.getModel().isClosed()) {
             temp.getModel().close();
         }
@@ -141,11 +151,22 @@ public class ICDNummerService {
             this.connectJenaTemp();
         }
         version = this.readDefaultVersion();
+        if (version == null) {
+            version = NS + "default";
+            temp.addResource(NS, NS + "default", version);
+            temp.addResource(NS, NS + "version", version);
+        }
         String id = IdService.next();
         temp.addResource(version, NS + "has", version + "/" + id);
-        temp.add(version + "/" + id, NS + "code", icdNummer.getCode());
-        temp.add(version + "/" + id, NS + "diagnose", icdNummer.getDiagnose());
-        temp.add(version + "/" + id, NS + "type", icdNummer.getType());
+        if (icdNummer.getCode() != null) {
+            temp.add(version + "/" + id, NS + "code", icdNummer.getCode());
+        }
+        if (icdNummer.getDiagnose() != null) {
+            temp.add( version + "/" + id, NS + "diagnose", icdNummer.getDiagnose());
+        }
+        if (icdNummer.getType() != null) {
+            temp.add(version + "/" + id, NS + "type", icdNummer.getType());
+        }
 
         if (!temp.getModel().isClosed()) {
             temp.getModel().close();
@@ -163,8 +184,8 @@ public class ICDNummerService {
         } else {
             this.connectSparqlTemp();
         }
-        // sparqlTemp.getModel().write(System.out);
 
+        
         String sparql = "PREFIX icd: <http://ICDNummer/>"
                 + "SELECT ?version  WHERE {"
                 + " ?x icd:version ?version. "
@@ -194,8 +215,8 @@ public class ICDNummerService {
         } else {
             this.connectSparqlTemp();
         }
-        // sparqlTemp.getModel().write(System.out);
 
+        
         String sparql = "PREFIX icd: <http://ICDNummer/>"
                 + "SELECT ?version  WHERE {"
                 + " ?x icd:default ?version. "
@@ -479,7 +500,6 @@ public class ICDNummerService {
         } else {
             this.connectJenaTemp();
         }
-        temp.getModel().write(System.out);
         version = this.readDefaultVersion();
         temp.removeTriplet(version, NS + "has", version + "/" + icdNummer.getId());
 

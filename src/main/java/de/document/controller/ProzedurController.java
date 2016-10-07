@@ -33,6 +33,11 @@ public class ProzedurController {
         return service.save(request);
 
     }
+    @RequestMapping(value = "/update", method = {RequestMethod.POST})
+    public Document update(@RequestBody Prozedur request) {
+        return service.update(request);
+
+    }
 
     @RequestMapping(value = "/new")
     public Prozedur newProzedur() {
@@ -55,7 +60,7 @@ public class ProzedurController {
         return ResponseEntity.ok(entity);
     }
 
-    @RequestMapping(value = "/{title}", method = {RequestMethod.DELETE})
+    @RequestMapping(value = "/delete/{title}", method = {RequestMethod.GET})
     public ResponseEntity delete(@PathVariable("title") String title) {
 
         this.service.delete(title);

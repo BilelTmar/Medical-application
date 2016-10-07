@@ -13,12 +13,20 @@ import org.apache.commons.beanutils.BeanUtils;
  * @author Bilel-PC
  */
 public class Prozedur extends Document implements Serializable, Cloneable{
-
+private String id;
     private TextModel uebersicht;
     private TextModel diagnostik;
     private TextModel therapie;
     private TextModel beratung;
     private String notes;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public TextModel getUebersicht() {
         return uebersicht;

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package de.document.controller;
 
 import de.document.entity.Med;
@@ -28,14 +23,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-/**
- *
- * @author Bilel-PC
- */
 @CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping("/medikament")
@@ -50,35 +40,25 @@ public class MedikamentController {
     }
 
     @RequestMapping(value = "/version")
-    public List<String> readVersionNeben() {
+    public List<String> readVersion() {
         List<String> list = service.readVersion();
         return list;
     }
 
     @RequestMapping(value = "/read")
-    public List<Medikament> readDefaultNeben() {
+    public List<Medikament> readDefault() {
         List<Medikament> list = service.readDefault();
         return list;
     }
 
-//    @RequestMapping(value = "/compare")
-//    public HashMap comparator() {
-//        List<Medikament> list = service.read("2014");
-//        List<Medikament> list2 = service.read("2013");
-//        HashMap result = service.comparator(list, list2);
-//
-//        return result;
-//    }
     @RequestMapping(value = "/save/{version}", headers = "Content-Type= multipart/form-data", method = {RequestMethod.POST})
     public HashMap save(@PathVariable("version") String version, @RequestParam("file") MultipartFile file) throws Throwable {
         return service.readFileMedikament(file, version);
-
     }
 
     @RequestMapping(value = "/version/read", method = {RequestMethod.POST})
     public List<Medikament> read(@RequestBody String version) {
         return service.read(version);
-
     }
 
     @RequestMapping(value = "/info", method = {RequestMethod.POST})
@@ -108,8 +88,7 @@ public class MedikamentController {
         request = (List) listMedikament;
         for (Object item : request) {
             LinkedHashMap itemx = (LinkedHashMap) item;
-            request2.add(new Medikament(itemx.get("bezeichnung").toString(), itemx.get("pzn").toString(), itemx.get("einheit").toString(),
-                    itemx.get("roteListe").toString(), itemx.get("darr").toString(), itemx.get("inhaltsstoff").toString()));
+            request2.add(new Medikament((String) itemx.get("bezeichnung"), itemx.get("pzn").toString(), itemx.get("einheit").toString(), itemx.get("roteListe").toString(), itemx.get("darr").toString(), itemx.get("inhaltsstoff").toString()));
         }
         System.out.println(request2);
         if (!request2.isEmpty()) {
@@ -118,6 +97,15 @@ public class MedikamentController {
         return null;
     }
 
+    public String test(Object o) {
+        if (o == null) {
+            return null;
+        } else {
+            return o.toString();
+        }
+    }
+
+    ;
     @RequestMapping(value = "/search/used/medikament", method = {RequestMethod.POST})
     public Med searchUsedMedikament(@RequestBody Medikament medikament) throws IOException, ParseException {
         List<Medikament> request = new ArrayList();
@@ -128,6 +116,5 @@ public class MedikamentController {
         } else {
             return result.get(0);
         }
-
     }
 }
