@@ -7,11 +7,15 @@ package de.document.controller;
 
 import de.document.entity.Medikament;
 import de.document.service.MedikamentService;
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -21,20 +25,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/medikament")
 public class MedikamentController {
-    private MedikamentService service = new MedikamentService();
+    MedikamentService service = new MedikamentService();
 
     @RequestMapping(value = "/query")
     public List<Medikament> readAll() {
-                        System.out.println("Query");
-
         List<Medikament> list = service.readAll();
         return list;
     }
     
-        @RequestMapping(value = "/setMedikamentList")
-    public void setMedikamentList() {
-                System.out.println("SetMedikamentList");
-
-                service.setMedikamentList();
+        @RequestMapping(value = "/info", method = {RequestMethod.POST})
+    public Medikament readMedikament(@RequestBody String pzn) {
+        return service.readMedikament(pzn);
     }
+
+    @RequestMapping(value = "/save/", headers = "Content-Type= multipart/form-data", method = {RequestMethod.POST})
+    public HashMap save(@RequestParam("file") MultipartFile file) throws Throwable {
+        return service.readFileMedikament(file);
+
+    }
+    
+
 }

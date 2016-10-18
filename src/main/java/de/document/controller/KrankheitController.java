@@ -41,27 +41,22 @@ public class KrankheitController {
         return entity;
     }
 
-//    @RequestMapping(value = "/query/page/{p}", method = {RequestMethod.GET})
-//    public HashMap query(@PathVariable("p") int p) {
-//        int beginn = (p - 1) * 5;
-//        int end = beginn + 5;
-//        List entity = this.service.readAll();
-//        List results = entity.subList(beginn, end);
-//        int total_pages = entity.size();
-//        HashMap l = new HashMap();
-//        l.put("results",results);
-//        l.put("total_pages",total_pages);
-//        return l;
-//    }
         @RequestMapping(value = "/query", method = {RequestMethod.GET})
     public List query() {
         
         List entity = this.service.readAll();
-            System.out.println(entity.size());
 
         return entity;
     }
 
+            @RequestMapping(value = "/queryKUpdate")
+    public List<Krankheit> queryKUpdate() {
+
+        List entity = this.service.readKUpdateKoflikte();
+        return entity;
+    }
+    
+    
     @RequestMapping(value = "/{name}", method = {RequestMethod.GET})
     public ResponseEntity read(@PathVariable("name") String name) {
 

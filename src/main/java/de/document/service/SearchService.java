@@ -12,7 +12,6 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.tdb.TDBFactory;
 import de.document.entity.Krankheit;
 import de.document.entity.Prozedur;
-import de.document.entity.Medikament2;
 import de.document.jenaspring.JenaTemplate;
 import de.document.jenaspring.SparqlTemplate;
 import de.document.jenaspring.TextSearch;
@@ -55,10 +54,6 @@ public class SearchService {
         List<Prozedur> listPr = new ArrayList<>();
         List<Prozedur> listPrHaupt = new ArrayList<>();
         List<Prozedur> listPrNeben = new ArrayList<>();
-        
-        List<Medikament2> listM2 = new ArrayList<>();
-        List<Medikament2> listM2Haupt = new ArrayList<>();
-        List<Medikament2> listM2Neben = new ArrayList<>();
 
         for (Iterator it = list.iterator(); it.hasNext();) {
             String l = (String) it.next();
@@ -147,48 +142,7 @@ public class SearchService {
                     listPr.add(listProzedur.get(0));
                 }
             }
-            String M2 = "PREFIX doc: <http://document/M2/>"
-                    + "SELECT ?autor ?title ?date ?notes WHERE {"
-                    + " OPTIONAL { <" + l + "> doc:date ?date}. "
-                    + " <" + l + "> doc:title ?title. "
-                    + " OPTIONAL { <" + l + "> doc:autor ?autor}. "                   
-                    + " OPTIONAL { <" + l + "> doc:notes ?notes}. "
-                    + "}";
-            List<Medikament2> listMedikament2 = sparqlTemp.execSelectList(M2, (ResultSet rs, int rowNum) -> {
-                QuerySolution sln = rs.nextSolution();
-
-                Medikament2 medikament2 = new Medikament2();
-
-                if (sln.get("autor") != null) {
-                    medikament2.setAutor(sln.get("autor").toString());
-                }
-                if (sln.get("title") != null) {
-                    medikament2.setTitle(sln.get("title").toString());
-                }
-                if (sln.get("date") != null) {
-                    medikament2.setDate(sln.get("date").toString());
-                }
-                if (sln.get("notes") != null) {
-                    medikament2.setNotes(sln.get("notes").toString());
-                }
-
-                return medikament2;
-
-            });
-
-            if (!listMedikament2.isEmpty()) {
-                if (listMedikament2.get(0).getNotes() != null) {
-                    if (icdService.searchHauptICDNummer(listMedikament2.get(0).getNotes())) {
-                        listM2Haupt.add(listMedikament2.get(0));
-                    } else if (icdService.searchGefahrlichICDNummer(listMedikament2.get(0).getNotes())) {
-                        listM2Neben.add(listMedikament2.get(0));
-                    } else {
-                        listM2.add(listMedikament2.get(0));
-                    }
-                } else {
-                    listM2.add(listMedikament2.get(0));
-                }
-            }
+         
         }
         HashMap h = new HashMap();
         h.put("krankheiten", listKr);
@@ -198,8 +152,6 @@ public class SearchService {
         h.put("HauptProzeduren", listPrHaupt);
         h.put("NebenProzeduren", listPrNeben);
         h.put("prozeduren", listPr);
-        h.put("HauptMedikament2en", listPrHaupt);
-        h.put("NebenMedikament2en", listPrNeben);
         return h;
     }
 

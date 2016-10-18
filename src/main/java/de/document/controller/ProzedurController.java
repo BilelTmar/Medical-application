@@ -48,6 +48,14 @@ public class ProzedurController {
         return entity;
     }
 
+        @RequestMapping(value = "/queryPUpdate")
+    public List<Prozedur> queryPUpdate() {
+
+        List entity = this.service.readPUpdateKonflikte();
+        return entity;
+    }
+
+    
     @RequestMapping(value = "/{name}", method = {RequestMethod.GET})
     public ResponseEntity read(@PathVariable("name") String name) {
 

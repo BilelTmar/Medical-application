@@ -9,19 +9,21 @@ import de.document.entity.Medikament;
 import de.document.jenaspring.JenaTemplate;
 import de.document.jenaspring.SparqlTemplate;
 import java.io.FileReader;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.jena.query.Dataset;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.tdb.TDBFactory;
 import org.springframework.stereotype.Service;
-import com.opencsv.CSVReader;
-import java.io.IOException;
-import java.util.Arrays;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -37,78 +39,166 @@ public class MedikamentService {
 //    String url = "D:\\PC-Bilel\\Documents\\NetBeansProjects\\MedicalKnowledge\\TDB\\test";
     private String reTitle;
 
-    public String linkText(String text) {
-        System.out.println(text.replaceAll("\\\"", ""));
-        return text.replaceAll("\\\"", "");
-    }
-
-    public void setMedikamentList() {
-        CSVReader reader = null;
-        String path = "/Users/Fabian/desktop/medikament.csv";
+    public HashMap readFileMedikament(MultipartFile file) throws Throwable {
+        String csvFile = this.transferToFile(file);
+        BufferedReader br = null;
+        String line = "";
+        String cvsSplitBy = ";";
+        int i = 0;
+        List<Medikament> medikamementList = new ArrayList<>();
         try {
-                                System.out.println("1");
+            br = new BufferedReader(new FileReader(csvFile));
+            while ((line = br.readLine()) != null) {
 
-            //Get the CSVReader instance with specifying the seperator to be used
-            reader = new CSVReader(new FileReader(path), ';');
-            //Read one line at a time
-            String[] nextLine;
+                // use comma as separator
+                if (i != 0) {
+                    String[] medikament = line.split(cvsSplitBy);
 
-            // jumping over the first(discription) line of the csv as it has to be excluded
-            reader.readNext();
-
-            int i = 0;
-                                            System.out.println("2");
-
-            while ((nextLine = reader.readNext()) != null) {
-                int j = 0;
-                for (String token : nextLine) {
-                                            System.out.println("3");
-
-                    Medikament medikament = new Medikament();
-                    if (j == 1) {
-                        medikament.setName(token);
+                    if ("PZN".equals(medikament[1])) {
+                    } else {
+                        medikamementList.add(new Medikament(medikament[2], medikament[1], medikament[4], medikament[6], medikament[3], medikament[7]));
                     }
-                    if (j == 2) {
-                        medikament.setDarr(token);
-                    }
-                    if (j == 3) {
-                        medikament.setEinheit(token);
-                    }
-                    if (j == 4) {
-                        medikament.setBzn(token);
-                    }
-                    if (j == 6) {
-                        medikament.setRoteListe(token);
-                    }
-                    if (j == 7) {
-                        medikament.setInhaltsstoff(token);
-                    }
-                                                                System.out.println("4");
-
-                    save(medikament);
-                    j++;
                 }
-                                                            System.out.println("52");
-
                 i++;
             }
-                    System.out.println("Success");
-
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
-            try {
-                reader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (br != null) {
+                br.close();
             }
+        }
+        HashMap response = this.comparator(medikamementList);
+        this.saveMedikamentList(medikamementList);
+        return response;
+    }
+
+    public String transferToFile(MultipartFile file) throws Throwable {
+        String filePath2 = Thread.currentThread()
+                .getContextClassLoader().getResource("medikament") + "\\" + file.getOriginalFilename();
+        String filePath = filePath2.substring(6);
+
+        if (!file.isEmpty()) {
+            try {
+                byte[] bytes = file.getBytes();
+                BufferedOutputStream stream
+                        = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
+                stream.write(bytes);
+                stream.close();
+                return filePath;
+
+            } catch (Exception e) {
+                System.out.println("You failed to upload " + file.getOriginalFilename() + " => " + e.getMessage());
+            }
+        } else {
+            System.out.println("You failed to upload " + file.getOriginalFilename() + " because the file was empty.");
+        }
+        return null;
+    }
+
+    public HashMap comparator(List<Medikament> list1) {
+        List<Medikament> list2 = this.readAll();
+        if (list2 == null) {
+            HashMap result = new HashMap();
+            result.put("new", list1);
+            result.put("deleted", list2);
+            return result;
+        } else {
+            List<Medikament> cp1 = new ArrayList<>(list1);
+            List<Medikament> cp2 = new ArrayList<>(list2);
+            List<Medikament> bezeichnung = new ArrayList<>();
+            List<Medikament> einheit = new ArrayList<>();
+            List<Medikament> roteListe = new ArrayList<>();
+            List<Medikament> inhaltsstoff = new ArrayList<>();
+
+            for (Medikament icdL2 : list2) {
+
+                for (Medikament icdL1 : list1) {
+                    if (icdL2.getPzn().equals(icdL1.getPzn())) {
+
+                        cp1.remove(icdL1);
+                        cp2.remove(icdL2);
+                        if (!icdL2.getEinheit().equals(icdL1.getEinheit())) {
+                            einheit.add(icdL2);
+                        }
+
+                        if (!icdL2.getRoteListe().equals(icdL1.getRoteListe())) {
+                            roteListe.add(icdL2);
+                        }
+
+                        if (!icdL2.getInhaltsstoff().equals(icdL1.getInhaltsstoff())) {
+                            inhaltsstoff.add(icdL2);
+                        }
+
+                        if (!icdL2.getBezeichnung().equals(icdL1.getBezeichnung())) {
+                            bezeichnung.add(icdL2);
+                        }
+                    }
+                }
+            }
+            HashMap result = new HashMap();
+            result.put("new", cp1);
+            result.put("deleted", cp2);
+            result.put("bezeichnung", bezeichnung);
+            result.put("einheit", einheit);
+            result.put("inhaltsstoff", inhaltsstoff);
+            result.put("roteListe", roteListe);
+            return result;
         }
     }
 
-    public Medikament save(Medikament entry) {
+    public void saveMedikamentList(List<Medikament> MedikamentList) {
+        recolorMedicamentsInDocuments("orange");
+        deleteDatabase();
+        for (Medikament med : MedikamentList) {
+            save(med);
+        }
+        recolorMedicamentsInDocuments("blue");
+    }
+    
+    public void deleteDatabase() {
+        if (temp.getModel() != null) {
+            if (temp.getModel().isClosed()) {
+                this.connectJenaTemp();
+            }
+        } else {
+            this.connectJenaTemp();
+        }
+        List<String> pznList = readAllPZNs();
+        readAllPZNs().stream().forEach((pzn) -> {
+            temp.removeResource(NS + pzn);
+        });
+    }
+    
+    private void recolorMedicamentsInDocuments(String color) {
+        List<String> medicamentPZNList = readAllPZNs();
+        ProzedurService serviceP = new ProzedurService();
+        serviceP.recolorMedicamentsInProzedurs(medicamentPZNList, color);
+        KrankheitService serviceK = new KrankheitService();
+        serviceK.recolorMedicamentsInKrankheits(medicamentPZNList, color);
+    }
 
+    public List<String> readAllPZNs() {
+        if (sparqlTemp.getModel() != null) {
+            if (sparqlTemp.getModel().isClosed()) {
+                this.connectSparqlTemp();
+            }
+        } else {
+            this.connectSparqlTemp();
+        }
+        String sparql = "PREFIX med: <http://ME/>"
+                + "SELECT ?pzn "
+                + "  WHERE {"
+                + " ?x med:pzn ?pzn. "
+                + "}";
+        List<String> pznList = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
+            QuerySolution sln = rs.nextSolution();
+
+            return sln.get("pzn").toString();
+        });
+        return pznList;
+    }
+
+    public Medikament save(Medikament entry) {
         try {
-            entry = (Medikament) BeanUtils.cloneBean(entry);
             if (temp.getModel() != null) {
 
                 if (temp.getModel().isClosed()) {
@@ -117,17 +207,13 @@ public class MedikamentService {
             } else {
                 this.connectJenaTemp();
             }
-            // System.out.println(temp.getModel().isClosed());
-            //temp.removeResource(NS + "medikament2/" + entry.getTitle());
-            if (entry.getName() != null) {
-
-                reTitle = entry.getName().replaceAll(" ", "_");
+            if (entry.getPzn() != null) {
+                reTitle = entry.getPzn().replaceAll(" ", "_");
             }
             temp.removeResource(NS + reTitle);
 
-            if (entry.getName() != null) {
-                // temp.addResource(NS + reTitle, NS + "type", NS + "medikament2/" + entry.getTitle());
-                temp.add(NS + reTitle, NS + "name", entry.getName());
+            if (entry.getBezeichnung() != null) {
+                temp.add(NS + reTitle, NS + "bezeichnung", entry.getBezeichnung());
             }
             if (entry.getDarr() != null) {
                 temp.add(NS + reTitle, NS + "darr", entry.getDarr());
@@ -135,13 +221,13 @@ public class MedikamentService {
             if (entry.getEinheit() != null) {
                 temp.add(NS + reTitle, NS + "einheit", entry.getEinheit());
             }
-            if (entry.getDarr() != null) {
-                temp.add(NS + reTitle, NS + "bzn", entry.getBzn());
+            if (entry.getPzn() != null) {
+                temp.add(NS + reTitle, NS + "pzn", entry.getPzn());
             }
-            if (entry.getDarr() != null) {
+            if (entry.getRoteListe() != null) {
                 temp.add(NS + reTitle, NS + "roteListe", entry.getRoteListe());
             }
-            if (entry.getDarr() != null) {
+            if (entry.getInhaltsstoff() != null) {
                 temp.add(NS + reTitle, NS + "inhaltsstoff", entry.getInhaltsstoff());
             }
 
@@ -152,11 +238,9 @@ public class MedikamentService {
             throw new RuntimeException(ex);
         }
         return entry;
-
     }
 
-    public List<Medikament> readAll() {
-
+    public Medikament readMedikament(String pzn) {
         if (sparqlTemp.getModel() != null) {
 
             if (sparqlTemp.getModel().isClosed()) {
@@ -165,41 +249,86 @@ public class MedikamentService {
         } else {
             this.connectSparqlTemp();
         }
-
         String sparql = "PREFIX med: <http://ME/>"
-                + "SELECT ?name ?darr ?Einheit ?Bzn ?RoteListe ?Inhaltsstoff  "
-                + "  WHERE {"
-                + " OPTIONAL { ?x med:darr ?darr}. "
-                + " ?x med:name ?name. "
-                + " OPTIONAL { ?x med:Einheit ?Einheit}. "
-                + " OPTIONAL { ?x med:Bzn ?Bzn}. "
-                + " OPTIONAL { ?x med:RoteListe ?RoteListe}. "
-                + " OPTIONAL { ?x med:Inhaltsstoff ?Inhaltsstoff}. "
+                + "SELECT ?bezeichnung ?einheit ?roteListe ?darr ?inhaltsstoff WHERE {"
+                + " ?x med:pzn '" + pzn + "'. "
+                + " OPTIONAL {?x med:bezeichnung ?bezeichnung}. "
+                + " OPTIONAL {?x med:einheit ?einheit}. "
+                + " OPTIONAL {?x med:darr ?darr}. "
+                + " OPTIONAL {?x med:roteListe ?roteListe}. "
+                + " OPTIONAL {?x med:inhaltsstoff ?inhaltsstoff}. "
                 + "}";
         List<Medikament> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
             QuerySolution sln = rs.nextSolution();
 
             Medikament medikament = new Medikament();
 
-            if (sln.get("Inhaltsstoff") != null) {
-                medikament.setInhaltsstoff(sln.get("Inhaltsstoff").toString());
+            if (sln.get("bezeichnung") != null) {
+                medikament.setBezeichnung(sln.get("bezeichnung").toString());
             }
-            if (sln.get("RoteListe") != null) {
-                medikament.setRoteListe(sln.get("RoteListe").toString());
+            if (sln.get("einheit") != null) {
+                medikament.setEinheit(sln.get("einheit").toString());
+            }
+            if (sln.get("roteListe") != null) {
+                medikament.setRoteListe(sln.get("roteListe").toString());
+            }
+            if (sln.get("darr") != null) {
+                medikament.setDarr(sln.get("darr").toString());
+            }
+            if (sln.get("inhaltsstoff") != null) {
+                medikament.setInhaltsstoff(sln.get("inhaltsstoff").toString());
+            }
+            medikament.setPzn(pzn);
+            return medikament;
+
+        });
+        return list.get(0);
+
+    }
+
+    public List<Medikament> readAll() {
+        if (sparqlTemp.getModel() != null) {
+            if (sparqlTemp.getModel().isClosed()) {
+                this.connectSparqlTemp();
+            }
+        } else {
+            this.connectSparqlTemp();
+        }
+
+        String sparql = "PREFIX med: <http://ME/>"
+                + "SELECT ?bezeichnung ?darr ?einheit ?pzn ?roteListe ?inhaltsstoff  "
+                + "  WHERE {"
+                + " ?x med:pzn ?pzn. "
+                + " OPTIONAL { ?x med:bezeichnung ?bezeichnung}. "
+                + " OPTIONAL { ?x med:darr ?darr}. "
+                + " OPTIONAL { ?x med:einheit ?einheit}. "
+                + " OPTIONAL { ?x med:roteListe ?roteListe}. "
+                + " OPTIONAL { ?x med:inhaltsstoff ?inhaltsstoff}. "
+                + "}";
+        List<Medikament> list = sparqlTemp.execSelectList(sparql, (ResultSet rs, int rowNum) -> {
+            QuerySolution sln = rs.nextSolution();
+
+            Medikament medikament = new Medikament();
+
+            if (sln.get("inhaltsstoff") != null) {
+                medikament.setInhaltsstoff(sln.get("inhaltsstoff").toString());
+            }
+            if (sln.get("roteListe") != null) {
+                medikament.setRoteListe(sln.get("roteListe").toString());
             }
 
-            if (sln.get("Bzn") != null) {
-                medikament.setBzn(sln.get("Bzn").toString());
+            if (sln.get("pzn") != null) {
+                medikament.setPzn(sln.get("pzn").toString());
             }
-            if (sln.get("Einheit") != null) {
-                medikament.setEinheit(sln.get("Einheit").toString());
+            if (sln.get("einheit") != null) {
+                medikament.setEinheit(sln.get("einheit").toString());
             }
 
             if (sln.get("darr") != null) {
                 medikament.setDarr(sln.get("darr").toString());
             }
-            if (sln.get("name") != null) {
-                medikament.setName(sln.get("name").toString());
+            if (sln.get("bezeichnung") != null) {
+                medikament.setBezeichnung(sln.get("bezeichnung").toString());
             }
             return medikament;
 
@@ -207,16 +336,6 @@ public class MedikamentService {
         return list;
     }
 
-//    public List<Medikament> readAll() {
-//        List<Medikament> medicamentList = new ArrayList<>();
-//        try (Scanner s = new Scanner((Thread.currentThread()
-//                .getContextClassLoader().getResourceAsStream("MedicamentList")))) {
-//            while (s.hasNextLine()) {
-//                medicamentList.add(new Medikament(s.nextLine()));
-//            }
-//        }
-//        return medicamentList;
-//    }
     public void connectJenaTemp() {
         Dataset dataset = TDBFactory.createDataset(url);
         Model model = dataset.getDefaultModel();
@@ -236,4 +355,5 @@ public class MedikamentService {
         Model model = dataset.getDefaultModel();
         return model;
     }
+
 }

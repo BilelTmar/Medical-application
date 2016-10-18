@@ -10,27 +10,40 @@ package de.document.entity;
  * @author Bilel-PC
  */
 public class Medikament {
-
-    private String name;
-    private String darr;
+    private String id;
+    private String bezeichnung;
+    private String pzn;
     private String einheit;
-    private String bzn;
     private String roteListe;
     private String inhaltsstoff;
+    private String darr;
 
-        public Medikament(){};
-
-    
-    public String getName() {
-        return name;
+    public Medikament() {
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Medikament(String bezeichnung, String pzn, String einheit, String roteListe,String darr, String inhaltsstoff) {
+        this.bezeichnung = bezeichnung;
+        this.pzn = pzn;
+        this.einheit = einheit;
+        this.roteListe = roteListe;
+        this.darr = darr;
+        this.inhaltsstoff = inhaltsstoff;
     }
 
-    public Medikament(String name) {
-        this.name = name;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getBezeichnung() {
+        return bezeichnung;
+    }
+
+    public void setBezeichnung(String bezeichnung) {
+        this.bezeichnung = bezeichnung;
     }
 
     public String getDarr() {
@@ -41,20 +54,24 @@ public class Medikament {
         this.darr = darr;
     }
 
+    public Medikament(String bezeichnung) {
+        this.bezeichnung = bezeichnung;
+    }
+
+    public String getPzn() {
+        return pzn;
+    }
+
+    public void setPzn(String pzn) {
+        this.pzn = pzn;
+    }
+
     public String getEinheit() {
         return einheit;
     }
 
     public void setEinheit(String einheit) {
         this.einheit = einheit;
-    }
-
-    public String getBzn() {
-        return bzn;
-    }
-
-    public void setBzn(String bzn) {
-        this.bzn = bzn;
     }
 
     public String getRoteListe() {
@@ -71,6 +88,27 @@ public class Medikament {
 
     public void setInhaltsstoff(String inhaltsstoff) {
         this.inhaltsstoff = inhaltsstoff;
+    }
+
+
+
+    
+        @Override
+    public String toString() {
+        String output = new String();
+        output += (getBezeichnung() + "/ ");
+
+        output += (getEinheit() + "/ ");
+
+        output += (getPzn() + "/ ");
+
+        output += (getDarr() + "/ ");
+
+        output += (getRoteListe() + "/ ");
+
+        output += (getInhaltsstoff());
+
+        return output;
     }
 
 }
