@@ -22,19 +22,43 @@ import org.hibernate.search.annotations.Field;
 @Indexed
 public class User implements Serializable
 {
-    //! Auto generated database ID
+    //! \name Account
+    //@{
+    //! Auto generated database ID.
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
-    //! User's first name
+    //! User's user name.
     @Field
     @Column(length = 70, nullable = true)
-    private String firstName;
+    private String userName;
+    //! User's password.
+    @Field
+    @Column(length = 70, nullable = true)
+    private String password;
+    //@}
+
+    //! \name Personal data
+    //@{
+    //! User's titels.
+    @Field
+    @Column(length = 70, nullable = true)
+    private String titles;    
+    //! User's family names.
+    @Field
+    @Column(length = 70, nullable = true)
+    private String familyNames;
+    //! User's first names
+    @Field
+    @Column(length = 70, nullable = true)
+    private String firstNames;
+    //@}
+    
 
     //! Constructor.
-    public User(String id, String firstName) {
+    public User(String id, String firstNames) {
         this.id = id;
-        this.firstName = firstName;
+        this.firstNames = firstNames;
     }
     //! Standard constructor.
     public User() {
@@ -45,11 +69,11 @@ public class User implements Serializable
     @Override
     public String toString() {
         String str = ""; 
-        str += "Krankheit {";
+        str += "User {";
         {
             str += "id="        + id;
             str += " ";
-            str += "firstName=" + firstName;
+            str += "firstNames=" + firstNames;
         }
         str += "}";
         return str;

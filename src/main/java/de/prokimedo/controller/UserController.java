@@ -24,6 +24,7 @@ public class UserController {
 
     
     public UserController() {
+        
     }
 
     @RequestMapping(value = "/addNewUser", method = {RequestMethod.POST})

@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface UserService {
 
-    public User read(String firstName);
+    public User read(String firstNames);
 
     public User save(User user);
 

@@ -20,12 +20,10 @@ public class UserServiceImpl implements UserService {
         this.repo = repo;
     }
 
-
     @Override
-    public User read(String firstName) {
-
-        List<User> list = repo.findByFirstName(firstName);
-        if (list.isEmpty()) {
+    public User read(String firstNames) {
+        List<User> list = repo.findByFirstNames(firstNames);
+        if(list.isEmpty()) {
             return null;
         } else {
             return list.get(0);
