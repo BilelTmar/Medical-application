@@ -5,22 +5,22 @@
  */
 package de.prokimedo.service;
 
+import com.google.common.collect.Lists;
+import de.prokimedo.QueryService;
 import de.prokimedo.entity.Image;
-import de.prokimedo.entity.Medikament;
+import de.prokimedo.entity.Krankheit;
 import de.prokimedo.repository.ImageRepo;
-import java.io.BufferedOutputStream;
+import de.prokimedo.repository.KrankheitRepo;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jxl.Cell;
-import jxl.CellType;
-import jxl.Sheet;
-import jxl.Workbook;
-import jxl.read.biff.BiffException;
+import javax.persistence.EntityManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -33,9 +33,24 @@ public class ImageServiceImpl implements ImageService {
 
     ImageRepo repo;
 
+    @Autowired
+    public ImageServiceImpl(ImageRepo repo, EntityManager em) {
+        this.repo = repo;
+
+    }
+
     @Override
-    public Image read(String id) {
-        return this.repo.findById(id).get(0);
+    public Image read(String title) {
+        Image img = this.repo.findByTitle(title).get(0);
+//        try {
+//            //FileOutputStream fos = new FileOutputStream("images\\output.jpg");  //windows
+//            FileOutputStream fos = new FileOutputStream("C:\\Users\\Tmar\\Pictures\\hallo.jpg");
+//            fos.write(img.getImage());
+//            fos.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        return img;
     }
 
     @Override
@@ -45,48 +60,45 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public List saveExcel(MultipartFile file) {
-        List<Medikament> listMed = new ArrayList();
+    public List<Image> query() {
+        Iterable<Image> images = this.repo.findAll();
+        return Lists.newArrayList(images);
+    }
+
+    @Override
+    public Image update(Image image) {
+        return this.repo.save(image);
+    }
+
+    @Override
+    public void delete(String title) {
+        this.repo.delete(this.repo.findByTitle(title));
+    }
+
+    @Override
+    public Image save(MultipartFile file, String title) {
+        String filename = file.getOriginalFilename();
+        File convFile = new File(filename);
+        byte[] bFile = new byte[(int) convFile.length()];
         try {
+            convFile.createNewFile();
+            FileOutputStream fos;
+            fos = new FileOutputStream(convFile);
+            fos.write(file.getBytes());
+            fos.close();
 
-            File inputWorkbook = convert(file);
-            Workbook w;
-            try {
-                w = Workbook.getWorkbook(inputWorkbook);
-                // Get the first sheet
-                Sheet sheet = w.getSheet(1);
-                //loop over first 10 column and lines
-
-                for (int i = 1; i < sheet.getRows(); i++) {
-                    // for (int j = 1; j < sheet.getColumns(); j++) {
-                    Medikament med = new Medikament(null, sheet.getCell(2, i).getContents(),
-                            sheet.getCell(1, i).getContents(), sheet.getCell(4, i).getContents(),
-                            sheet.getCell(6, i).getContents(), sheet.getCell(3, i).getContents(),
-                            sheet.getCell(7, i).getContents());
-                    listMed.add(med);
-                    System.out.println(sheet.getCell(7, i).getContents());
-
-                }
-
-            } catch (BiffException e) {
-                System.out.println("BiffException");
-            } catch (IOException ex) {
-                Logger.getLogger(ImageServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            try (FileInputStream fileInputStream = new FileInputStream(convFile)) {
+                fileInputStream.read(bFile);
             }
-
-        } catch (Throwable ex) {
-            Logger.getLogger(ImageServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return listMed;
+        Image image = new Image();
+        image.setTitle(title);
+        image.setImage(bFile);
+        Image img = this.repo.save(image);
+        return img;
     }
 
-    public File convert(MultipartFile file) throws IOException {
-        File convFile = new File(file.getOriginalFilename());
-        convFile.createNewFile();
-        FileOutputStream fos = new FileOutputStream(convFile);
-        fos.write(file.getBytes());
-        fos.close();
-        return convFile;
-    }
 
 }

@@ -24,7 +24,7 @@ public class Image implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
 
-    private String name;
+    private String title;
 
     @Lob
     @Column( columnDefinition = "mediumblob")
@@ -38,12 +38,12 @@ public class Image implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public byte[] getImage() {

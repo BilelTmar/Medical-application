@@ -6,7 +6,7 @@
 package de.prokimedo.service;
 
 import de.prokimedo.entity.Image;
-import java.io.File;
+import de.prokimedo.entity.Krankheit;
 import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,10 +16,18 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public interface ImageService {
     
-    public Image read(String id);
+    public Image read(String title);
 
     public Image save(Image image);
     
-    public List saveExcel(MultipartFile file);
+    public List<Image> query();
+
+ //   public List<Krankheit> query(String query);
+
+    public Image update(Image image);
+
+    public void delete(String title);
+
+    public Image save(MultipartFile file, String title);
     
 }

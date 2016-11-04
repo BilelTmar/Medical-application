@@ -16,5 +16,6 @@ import org.springframework.data.repository.CrudRepository;
 public interface ImageRepo extends CrudRepository<Image, Long> {
 
     List<Image> findById(String id);
+    List<Image> findByTitle(String title);
 
 }
