@@ -1,0 +1,1982 @@
+Diagnose;Schlüssel;Anzahl von Diagnose
+Gesunde Begleitperson einer kranken Person;Z76.3;Hauptdiagnose
+Sonstige näher bezeichnete prophylaktische Maßnahmen;Z29.8;Hauptdiagnose
+Sonstige Symptome, die die Nahrungs- und Flüssigkeitsaufnahme betreffen;R63.8;Hauptdiagnose
+Akute Rhinopharyngitis [Erkältungsschnupfen];J00;Hauptdiagnose
+Beobachtung bei Verdacht auf neurologische Krankheit;Z03.3;Hauptdiagnose
+Volumenmangel;E86;Hauptdiagnose
+Kandidose der Haut und der Nägel;B37.2;Hauptdiagnose
+Akute respiratorische Insuffizienz, anderenorts nicht klassifiziert: Typ I [hypoxisch];J96.00;Hauptdiagnose
+Übelkeit und Erbrechen;R11;Normal
+Trinkunlust beim Neugeborenen;P92.2;Normal
+Obstipation;K59.0;Normal
+Ernährungsprobleme und unsachgemäße Ernährung;R63.3;Normal
+Flatulenz und verwandte Zustände;R14;Normal
+Hypokaliämie;E87.6;Normal
+Hypothermie beim Neugeborenen, nicht näher bezeichnet;P80.9;Normal
+Akute Infektion der oberen Atemwege, nicht näher bezeichnet;J06.9;Normal
+Windeldermatitis;L22;Normal
+Schwierigkeit beim Neugeborenen bei Brusternährung;P92.5;Normal
+Fieber, nicht näher bezeichnet;R50.9;Normal
+Respiratorisches Versagen beim Neugeborenen;P28.5;Normal
+Nicht näher bezeichnete Harninkontinenz;R32;Gefährlich
+Stuhlinkontinenz;R15;Gefährlich
+Sonstige und nicht näher bezeichnete Gastroenteritis und Kolitis infektiösen Ursprungs;A09.0;Gefährlich
+Sonstiges näher bezeichnetes Fieber;R50.88;Gefährlich
+Verzögertes Erreichen von Entwicklungsstufen;R62.0;Gefährlich
+Dysphasie und Aphasie;R47.0;Gefährlich
+Sonstige Apnoe beim Neugeborenen;P28.4;Gefährlich
+Sonstige näher bezeichnete abnorme Befunde der Blutchemie;R79.8;Gefährlich
+Atemnotsyndrom [Respiratory distress syndrome] des Neugeborenen;P22.0;Gefährlich
+Sonstige und nicht näher bezeichnete Bauchschmerzen;R10.4;Gefährlich
+Fieberkrämpfe;R56.0;Gefährlich
+Sonstige Hypoglykämie beim Neugeborenen;P70.4;Gefährlich
+Langzeitige Abhängigkeit vom Rollstuhl;Z99.3;Gefährlich
+Versorgung eines Gastrostomas;Z43.1;Gefährlich
+Neugeborenenikterus in Verbindung mit vorzeitiger Geburt;P59.0;Gefährlich
+Sonstige akute Infektionen an mehreren Lokalisationen der oberen Atemwege;J06.8;Gefährlich
+Lokalisationsbezogene (fokale) (partielle) symptomatische Epilepsie und epileptische Syndrome mit komplexen fokalen Anfällen;G40.2;Gefährlich
+Kopfschmerz;R51;Gefährlich
+Spastische tetraplegische Zerebralparese;G80.0;Gefährlich
+Akute Bronchitis, nicht näher bezeichnet;J20.9;Gefährlich
+Xerosis cutis;L85.3;Gefährlich
+Ruhelosigkeit und Erregung;R45.1;Gefährlich
+Abnorme Ergebnisse von Funktionsprüfungen des Zentralnervensystems;R94.0;Gefährlich
+Gefäßkomplikationen nach Infusion, Transfusion oder Injektion zu therapeutischen Zwecken;T80.1;Gefährlich
+Sonstige transitorische Störungen des Kalzium- und Magnesiumstoffwechsels beim Neugeborenen;P71.8;Gefährlich
+Akute seröse Otitis media;H65.0;Gefährlich
+Andere Kontaktanlässe mit Bezug auf den engeren Familienkreis;Z63;Gefährlich
+Bestimmte in der Perinatalperiode entstandene Zustände in der Eigenanamnese;Z87.6;Gefährlich
+Candida-Stomatitis;B37.0;Gefährlich
+Oberflächliche Verletzung sonstiger Teile des Kopfes: Prellung;S00.85;Gefährlich
+Sonstiges Ausbleiben der erwarteten physiologischen Entwicklung;R62.8;Gefährlich
+Größerer operativer Eingriff in der Eigenanamnese, anderenorts nicht klassifiziert;Z92.4;Gefährlich
+Notwendigkeit der Impfung gegen sonstige Kombinationen von Infektionskrankheiten;Z27.8;Gefährlich
+Angeborene Fehlbildungen, Deformitäten oder Chromosomenanomalien in der Eigenanamnese;Z87.7;Gefährlich
+Systemische prophylaktische Chemotherapie;Z29.21;Gefährlich
+Mukopurulente Konjunktivitis;H10.0;Gefährlich
+Hypothyreose, nicht näher bezeichnet;E03.9;Gefährlich
+Unwohlsein und Ermüdung;R53;Gefährlich
+Hypoosmolalität und Hyponatriämie;E87.1;Gefährlich
+Vorhandensein sonstiger und nicht näher bezeichneter medizinischer Geräte oder Hilfsmittel;Z97.8;Gefährlich
+Schwindel und Taumel;R42;Gefährlich
+Sonstige akute Gastritis;K29.1;Gefährlich
+Angeborene infektiöse oder parasitäre Krankheit, nicht näher bezeichnet;P37.9;Gefährlich
+Instabiles Hüftgelenk (angeboren);Q65.6;Gefährlich
+Benigne und akzidentelle Herzgeräusche;R01.0;Gefährlich
+Andere Intelligenzminderung: Keine oder geringfügige Verhaltensstörung;F78.0;Gefährlich
+Sonstige und nicht näher bezeichnete Störungen der Atmung;R06.88;Gefährlich
+Notwendigkeit der Impfung gegen sonstige einzelne bakterielle Krankheiten;Z23.8;Gefährlich
+Asthma bronchiale, nicht näher bezeichnet;J45.9;Gefährlich
+Infektiöse oder parasitäre Krankheiten in der Familienanamnese;Z83.1;Gefährlich
+Gehirnerschütterung;S06.0;Gefährlich
+Vorhandensein einer Drainage des Liquor cerebrospinalis;Z98.2;Gefährlich
+Versorgen mit und Anpassen von sonstigen näher bezeichneten medizinischen Geräten oder Hilfsmitteln;Z46.8;Gefährlich
+Sonstige akute Konjunktivitis;H10.2;Gefährlich
+Erhöhung der Transaminasenwerte und des Laktat-Dehydrogenase-Wertes [LDH];R74.0;Gefährlich
+Beobachtung bei sonstigen Verdachtsfällen;Z03.8;Gefährlich
+Akute eitrige Otitis media;H66.0;Gefährlich
+Seltsames und unerklärliches Verhalten;R46.2;Gefährlich
+Akute Pharyngitis, nicht näher bezeichnet;J02.9;Gefährlich
+Sonstige generalisierte Epilepsie und epileptische Syndrome;G40.4;Gefährlich
+Psychische Krankheiten oder Verhaltensstörungen in der Familienanamnese;Z81;Gefährlich
+Hautausschlag und sonstige unspezifische Hauteruptionen;R21;Gefährlich
+Akute Tonsillitis, nicht näher bezeichnet;J03.9;Gefährlich
+Vorhandensein eines Gastrostomas;Z93.1;Gefährlich
+Sonstige und nicht näher bezeichnete Krämpfe;R56.8;Gefährlich
+Adipositas durch übermäßige Kalorienzufuhr: Body-Mass-Index [BMI] nicht näher bezeichnet;E66.09;Gefährlich
+Keimträger anderer näher bezeichneter bakterieller Krankheiten;Z22.3;Gefährlich
+Diabetes mellitus in der Familienanamnese;Z83.3;Gefährlich
+Einfache Aktivitäts- und Aufmerksamkeitsstörung;F90.0;Gefährlich
+Offener Ductus arteriosus;Q25.0;Gefährlich
+Sonstige infantile Zerebralparese;G80.8;Gefährlich
+Abnorme Ergebnisse von Funktionsprüfungen des peripheren Nervensystems und bestimmter Sinnesorgane;R94.1;Gefährlich
+Dentitionskrankheit;K00.7;Gefährlich
+Akute Gastroenteritis durch Norovirus [Norwalk-Virus];A08.1;Gefährlich
+Für das Gestationsalter zu kleine Neugeborene;P05.1;Gefährlich
+Erbrechen beim Neugeborenen;P92.0;Gefährlich
+Nicht näher bezeichnete offene Wunde sonstiger Teile des Kopfes;S01.80;Gefährlich
+Synkope und Kollaps;R55;Gefährlich
+Sonstige und nicht näher bezeichnete abnorme Urinbefunde;R82.9;Gefährlich
+Obstruktives Schlafapnoe-Syndrom;G47.31;Gefährlich
+Chronische respiratorische Insuffizienz, anderenorts nicht klassifiziert: Typ I [hypoxisch];J96.10;Gefährlich
+Erhöhter Blutdruckwert ohne Diagnose eines Bluthochdrucks;R03.0;Gefährlich
+Andere Kontaktanlässe mit Bezug auf die Erziehung;Z62;Gefährlich
+Krankheiten des Atmungssystems in der Eigenanamnese;Z87.0;Gefährlich
+Krankheiten des Nervensystems oder der Sinnesorgane in der Eigenanamnese;Z86.6;Gefährlich
+Allergie, nicht näher bezeichnet;T78.4;Gefährlich
+Andere psychische Krankheiten oder Verhaltensstörungen in der Eigenanamnese;Z86.5;Gefährlich
+Transitorische Tachypnoe beim Neugeborenen;P22.1;Gefährlich
+Krankheiten des Kreislaufsystems in der Eigenanamnese;Z86.7;Gefährlich
+Abnorme Ergebnisse von kardiovaskulären Funktionsprüfungen;R94.3;Gefährlich
+Trisomie 21, meiotische Non-disjunction;Q90.0;Gefährlich
+Orthostatische Hypotonie;I95.1;Gefährlich
+Laktoseintoleranz, nicht näher bezeichnet;E73.9;Gefährlich
+Anpassung und Handhabung eines implantierten medizinischen Gerätes, nicht näher bezeichnet;Z45.9;Gefährlich
+Anoxische Hirnschädigung, anderenorts nicht klassifiziert;G93.1;Gefährlich
+Anämie bei Prämaturität;P61.2;Gefährlich
+Abnorme Gewichtsabnahme;R63.4;Gefährlich
+Sonstige Nahrungsmittelunverträglichkeit, anderenorts nicht klassifiziert;T78.1;Gefährlich
+Vorhofseptumdefekt;Q21.1;Gefährlich
+Sonstige näher bezeichnete Nachbehandlung nach chirurgischem Eingriff;Z48.8;Gefährlich
+Azidose;E87.2;Gefährlich
+Folgen einer intrazerebralen Blutung;I69.1;Gefährlich
+Sonstige medizinische Behandlung in der Eigenanamnese;Z92.8;Gefährlich
+Sonstige näher bezeichnete Zustände nach chirurgischen Eingriffen;Z98.8;Gefährlich
+Mundatmung;R06.5;Gefährlich
+Zystische Fibrose mit sonstigen multiplen Manifestationen;E84.87;Gefährlich
+Sonstiges atopisches [endogenes] Ekzem;L20.8;Gefährlich
+Husten;R05;Gefährlich
+Folgen einer sonstigen nichttraumatischen intrakraniellen Blutung;I69.2;Gefährlich
+Sonstige und nicht näher bezeichnete Symptome, die das Nervensystem und das Muskel-Skelett-System betreffen;R29.8;Gefährlich
+Somnolenz;R40.0;Gefährlich
+Hyperventilation;R06.4;Gefährlich
+Verstauchung und Zerrung der Halswirbelsäule;S13.4;Gefährlich
+Störungen des Natriumgleichgewichtes beim Neugeborenen;P74.2;Gefährlich
+Bradykardie, nicht näher bezeichnet;R00.1;Gefährlich
+Abnorme Befunde bei der mikrobiologischen Urinuntersuchung;R82.7;Gefährlich
+Sonstige Brustschmerzen;R07.3;Gefährlich
+Meningismus;R29.1;Gefährlich
+Tachykardie, nicht näher bezeichnet;R00.0;Gefährlich
+Entfernung einer Metallplatte oder einer anderen inneren Fixationsvorrichtung;Z47.0;Gefährlich
+Ein- und Durchschlafstörungen;G47.0;Gefährlich
+Vitamin-D-Mangel, nicht näher bezeichnet;E55.9;Gefährlich
+Sonstige und nicht näher bezeichnete Dysphagie;R13.9;Gefährlich
+Vorwiegend allergisches Asthma bronchiale;J45.0;Gefährlich
+Krankheiten des Verdauungssystems in der Eigenanamnese;Z87.1;Gefährlich
+Anpassungsstörungen;F43.2;Gefährlich
+Akute obstruktive Laryngitis [Krupp];J05.0;Gefährlich
+Vorhandensein von endokrinen Implantaten;Z96.4;Gefährlich
+Oberflächliche Verletzung der Nase: Prellung;S00.35;Gefährlich
+Sonstige abnorme Befunde bei der bildgebenden Diagnostik des Zentralnervensystems;R90.8;Gefährlich
+Kontaktanlässe mit Bezug auf die Ausbildung;Z55;Gefährlich
+Infektiöse oder parasitäre Krankheiten in der Eigenanamnese;Z86.1;Gefährlich
+Abnorme Befunde bei der bildgebenden Diagnostik der Harnorgane;R93.4;Gefährlich
+Fazialisparese;G51.0;Gefährlich
+Störungen des Fruktosestoffwechsels;E74.1;Gefährlich
+Oberflächliche Verletzung sonstiger Teile des Kopfes: Schürfwunde;S00.81;Gefährlich
+Sonstige näher bezeichnete Chromosomenanomalien;Q99.8;Gefährlich
+Langzeitige Abhängigkeit vom Respirator;Z99.1;Gefährlich
+Krankheiten des Urogenitalsystems in der Eigenanamnese;Z87.4;Gefährlich
+Epistaxis;R04.0;Gefährlich
+Bronchopulmonale Dysplasie mit Ursprung in der Perinatalperiode;P27.1;Gefährlich
+Sonstige Reaktion auf Spinal- und Lumbalpunktion;G97.1;Gefährlich
+Kontaktanlässe mit Bezug auf Kindheitserlebnisse;Z61;Gefährlich
+Eisenmangelanämie, nicht näher bezeichnet;D50.9;Gefährlich
+Sonstige näher bezeichnete Verhaltens- und emotionale Störungen mit Beginn in der Kindheit und Jugend;F98.8;Gefährlich
+Gastroösophageale Refluxkrankheit mit Ösophagitis;K21.0;Gefährlich
+Konjunktivitis und Dakryozystitis beim Neugeborenen;P39.1;Gefährlich
+Desensibilisierung gegenüber Allergenen;Z51.6;Gefährlich
+Streptokokken-Tonsillitis;J03.0;Gefährlich
+Gastroösophageale Refluxkrankheit ohne Ösophagitis;K21.9;Gefährlich
+Hyperplasie der Gaumenmandeln mit Hyperplasie der Rachenmandel;J35.3;Gefährlich
+Fieber unbekannter Ursache;R50.80;Gefährlich
+Störungen des Schlaf-Wach-Rhythmus;G47.2;Gefährlich
+Sonstige Laktoseintoleranz;E73.8;Gefährlich
+Parästhesie der Haut;R20.2;Gefährlich
+Prellung des Thorax;S20.2;Gefährlich
+Notwendigkeit der Impfung gegen Tetanus, nicht kombiniert;Z23.5;Gefährlich
+Mischformen des Asthma bronchiale;J45.8;Gefährlich
+Generalisierte idiopathische Epilepsie und epileptische Syndrome;G40.3;Gefährlich
+Retinopathia praematurorum;H35.1;Gefährlich
+Kontaktanlässe mit Bezug auf die soziale Umgebung;Z60;Gefährlich
+Dermatitis vesicularis durch Herpesviren;B00.1;Gefährlich
+Dyspnoe;R06.0;Gefährlich
+Sonstige näher bezeichnete lokale Infektionen der Haut und der Unterhaut;L08.8;Gefährlich
+Sonstige Epilepsien;G40.8;Gefährlich
+Sonstige Eisenmangelanämien;D50.8;Gefährlich
+Schlafbezogenes Hypoventilations-Syndrom;G47.32;Gefährlich
+Mäßige Energie- und Eiweißmangelernährung;E44.0;Gefährlich
+Gingivostomatitis herpetica und Pharyngotonsillitis herpetica;B00.2;Gefährlich
+Hyperplasie der Rachenmandel;J35.2;Gefährlich
+Enteritis durch Adenoviren;A08.2;Gefährlich
+Spontane Ekchymosen;R23.3;Gefährlich
+Schmerzen mit Lokalisation in anderen Teilen des Unterbauches;R10.3;Gefährlich
+Nicht näher bezeichnete Hämaturie;R31;Gefährlich
+Nicht näher bezeichnete erhebliche Energie- und Eiweißmangelernährung;E43;Gefährlich
+Gelenkkontraktur: Mehrere Lokalisationen;M24.50;Gefährlich
+Harnwegsinfektion, Lokalisation nicht näher bezeichnet;N39.0;Gefährlich
+Hernia inguinalis, einseitig oder ohne Seitenangabe, ohne Einklemmung und ohne Gangrän: Nicht als Rezidivhernie bezeichnet;K40.90;Gefährlich
+Autoimmunthyreoiditis;E06.3;Gefährlich
+Chronische seröse Otitis media;H65.2;Gefährlich
+Zentrales Schlafapnoe-Syndrom;G47.30;Gefährlich
+Sonstige näher bezeichnete Krankheiten oder Zustände in der Eigenanamnese;Z87.8;Gefährlich
+Kombinierte umschriebene Entwicklungsstörungen;F83;Gefährlich
+Hyperplasie der Gaumenmandeln;J35.1;Gefährlich
+Umschriebenes Ödem;R60.0;Gefährlich
+Sonstiger Hydrozephalus;G91.8;Gefährlich
+Schmerzen im Bereich des Oberbauches;R10.1;Gefährlich
+Meläna;K92.1;Gefährlich
+Nichtorganische Insomnie;F51.0;Gefährlich
+Mikrozephalie;Q02;Gefährlich
+Nichtorganische Enuresis;F98.0;Gefährlich
+Akute Sinusitis frontalis;J01.1;Gefährlich
+Chronische respiratorische Insuffizienz, anderenorts nicht klassifiziert: Typ II [hyperkapnisch];J96.11;Gefährlich
+Sonstige Hypotonie;I95.8;Gefährlich
+Nicht näher bezeichnete Verletzung des Abdomens, der Lumbosakralgegend und des Beckens;S39.9;Gefährlich
+Abnorme Körperhaltung;R29.3;Gefährlich
+Sonstige oberflächliche Verletzungen des Unterschenkels: Schürfwunde;S80.81;Gefährlich
+Spezielle Verfahren zur Untersuchung auf infektiöse und parasitäre Krankheiten;Z11;Gefährlich
+Muskeldystrophie;G71.0;Gefährlich
+Halsschmerzen;R07.0;Gefährlich
+Abnorme Befunde bei der bildgebenden Diagnostik des Schädels und des Kopfes, anderenorts nicht klassifiziert;R93.0;Gefährlich
+Bestimmte Behinderungen oder chronische Krankheiten in der Familienanamnese, die zu Schädigung oder Behinderung führen;Z82;Gefährlich
+Blindheit und hochgradige Sehbehinderung, binokular;H54.0;Gefährlich
+Anpassung und Handhabung eines operativ implantierten vaskulären Katheterverweilsystems;Z45.20;Gefährlich
+Ventrikelseptumdefekt;Q21.0;Gefährlich
+Sonstiger näher bezeichneter Diabetes mellitus: Ohne Komplikationen: Nicht als entgleist bezeichnet;E13.90;Gefährlich
+Sonstige Schlafapnoe;G47.38;Gefährlich
+Spastische diplegische Zerebralparese;G80.1;Gefährlich
+Sonstige Hypoglykämie;E16.1;Gefährlich
+Krankheiten des Blutes und der blutbildenden Organe sowie bestimmte Störungen mit Beteiligung des Immunsystems in der Eigenanamnese;Z86.2;Gefährlich
+Benigne essentielle Hypertonie: Ohne Angabe einer hypertensiven Krise;I10.00;Gefährlich
+Abnorme Befunde bei der bildgebenden Diagnostik des Herzens und des Koronarkreislaufes;R93.1;Gefährlich
+Folgen eines Hirninfarktes;I69.3;Gefährlich
+Dauertherapie (gegenwärtig) mit Antikoagulanzien in der Eigenanamnese;Z92.1;Gefährlich
+Versorgung eines Tracheostomas;Z43.0;Gefährlich
+Sonstige näher bezeichnete medizinische Behandlung;Z51.88;Gefährlich
+Prellung der Lumbosakralgegend und des Beckens;S30.0;Gefährlich
+Lumbale Spina bifida mit Hydrozephalus;Q05.2;Gefährlich
+Lymphknotenvergrößerung, umschrieben;R59.0;Gefährlich
+Epilepsie, nicht näher bezeichnet;G40.9;Gefährlich
+Balanoposthitis;N48.1;Gefährlich
+Akute tubulointerstitielle Nephritis;N10;Gefährlich
+Spezielle Verfahren zur Untersuchung auf Diabetes mellitus;Z13.1;Gefährlich
+Störungen des Fettsäurestoffwechsels;E71.3;Gefährlich
+Offene Wunde der behaarten Kopfhaut;S01.0;Gefährlich
+Neugeborenenikterus, nicht näher bezeichnet;P59.9;Gefährlich
+Infektion und entzündliche Reaktion durch sonstige interne Prothesen, Implantate oder Transplantate;T85.78;Gefährlich
+Isolierung als prophylaktische Maßnahme;Z29.0;Gefährlich
+Akute Konjunktivitis, nicht näher bezeichnet;H10.3;Gefährlich
+Bakterielle Pneumonie, nicht näher bezeichnet;J15.9;Gefährlich
+Vorhandensein eines operativ implantierten vaskulären Katheterverweilsystems;Z95.81;Gefährlich
+Störungen des Kaliumgleichgewichtes beim Neugeborenen;P74.3;Gefährlich
+Seborrhoea capitis;L21.0;Gefährlich
+Sonstige abnorme Serumenzymwerte;R74.8;Gefährlich
+Prellung der Schulter und des Oberarmes;S40.0;Gefährlich
+Otitis media, nicht näher bezeichnet;H66.9;Gefährlich
+Intraventrikuläre (nichttraumatische) Blutung 1. Grades beim Feten und Neugeborenen;P52.0;Gefährlich
+Arnold-Chiari-Syndrom;Q07.0;Gefährlich
+Alkalose;E87.3;Gefährlich
+Akute Zystitis;N30.0;Gefährlich
+Chronische Nierenkrankheit, Stadium 3;N18.3;Gefährlich
+Anpassung und Handhabung von sonstigen implantierten medizinischen Geräten;Z45.88;Gefährlich
+Vorhauthypertrophie, Phimose und Paraphimose;N47;Gefährlich
+Veränderung der Leukozyten, anderenorts nicht klassifiziert;R72;Gefährlich
+Perikarderguss (nichtentzündlich);I31.3;Gefährlich
+Hallervorden-Spatz-Syndrom;G23.0;Gefährlich
+Langzeitige Abhängigkeit von sonstigen unterstützenden Apparaten, medizinischen Geräten oder Hilfsmitteln;Z99.8;Gefährlich
+Lokalisationsbezogene (fokale) (partielle) symptomatische Epilepsie und epileptische Syndrome mit einfachen fokalen Anfällen;G40.1;Gefährlich
+Hydrocephalus occlusus;G91.1;Gefährlich
+Enteritis durch Rotaviren;A08.0;Gefährlich
+Sonstige Symptome, die die Stimmung betreffen;R45.8;Gefährlich
+Sonstige näher bezeichnete Veränderungen der Plasmaproteine;R77.88;Gefährlich
+Sonstige vererbte spinale Muskelatrophie;G12.1;Gefährlich
+Spastische Paraparese und Paraplegie: Nicht näher bezeichnet;G82.19;Gefährlich
+Sonstige Sehstörungen;H53.8;Gefährlich
+Sonstige näher bezeichnete abnorme immunologische Serumbefunde;R76.8;Gefährlich
+Prellung der Bauchdecke;S30.1;Gefährlich
+Primär insulinabhängiger Diabetes mellitus [Typ-1-Diabetes]: Ohne Komplikationen: Nicht als entgleist bezeichnet;E10.90;Gefährlich
+Phlegmone an Zehen;L03.02;Gefährlich
+Mekoniumpfropf-Syndrom;P76.0;Gefährlich
+Krämpfe beim Neugeborenen;P90;Gefährlich
+Hyperosmolalität und Hypernatriämie;E87.0;Gefährlich
+Lungenkollaps;J98.1;Gefährlich
+Generalisiertes Ödem;R60.1;Gefährlich
+Hypothermie;T68;Gefährlich
+Allergische Rhinopathie durch Pollen;J30.1;Gefährlich
+Atopisches [endogenes] Ekzem, nicht näher bezeichnet;L20.9;Gefährlich
+Tuberöse (Hirn-) Sklerose;Q85.1;Gefährlich
+Spastische Tetraparese und Tetraplegie: Nicht näher bezeichnet;G82.49;Gefährlich
+Zöliakie;K90.0;Gefährlich
+Sonstige transitorische Störungen des Elektrolythaushaltes beim Neugeborenen;P74.4;Gefährlich
+Sonstige näher bezeichnete angeborene Fehlbildungssyndrome, anderenorts nicht klassifiziert;Q87.8;Gefährlich
+Prellung des Augenlides und der Periokularregion;S00.1;Gefährlich
+Sonstige Mukopolysaccharidosen;E76.2;Gefährlich
+Retrograde Amnesie;R41.2;Gefährlich
+Hypoplastisches Linksherzsyndrom;Q23.4;Gefährlich
+Adipositas, nicht näher bezeichnet: Body-Mass-Index [BMI] nicht näher bezeichnet;E66.99;Gefährlich
+Umschriebene Entwicklungsstörung der Fein- und Graphomotorik;F82.1;Gefährlich
+Sonstige Reduktionsdeformitäten des Gehirns;Q04.3;Gefährlich
+Zyanose;R23.0;Gefährlich
+Sonstige Probleme mit Bezug auf die Lebensführung;Z72.8;Gefährlich
+Palpitationen;R00.2;Gefährlich
+Offene Wunde: Lippe;S01.51;Gefährlich
+Psychische und Verhaltensstörungen durch Alkohol: Akute Intoxikation [akuter Rausch];F10.0;Gefährlich
+Sonstige näher bezeichnete angeborene Fehlbildungen des Gehirns;Q04.8;Gefährlich
+Harnverhaltung;R33;Gefährlich
+Hämatemesis;K92.0;Gefährlich
+Neuromyopathische Skoliose: Mehrere Lokalisationen der Wirbelsäule;M41.40;Gefährlich
+Hernia diaphragmatica ohne Einklemmung und ohne Gangrän;K44.9;Gefährlich
+Leichte Intelligenzminderung: Keine oder geringfügige Verhaltensstörung;F70.0;Gefährlich
+Akute Sinusitis maxillaris;J01.0;Gefährlich
+Eisenmangelanämie nach Blutverlust (chronisch);D50.0;Gefährlich
+Sonstige und nicht näher bezeichnete Koordinationsstörungen;R27.8;Gefährlich
+Versorgung eines Ileostomas;Z43.2;Gefährlich
+Sonstige und nicht näher bezeichnete Ovarialzysten;N83.2;Gefährlich
+Stenose der A. pulmonalis (angeboren);Q25.6;Gefährlich
+Zyanoseanfälle beim Neugeborenen;P28.2;Gefährlich
+Stridor;R06.1;Gefährlich
+Schädigung des Feten und Neugeborenen durch Tabakkonsum der Mutter;P04.2;Gefährlich
+Sepsis, nicht näher bezeichnet;A41.9;Gefährlich
+Sonstige näher bezeichnete Krankheiten der Niere und des Ureters;N28.8;Gefährlich
+Kreuzschmerz;M54.5;Gefährlich
+Gangrän, anderenorts nicht klassifiziert;R02;Gefährlich
+Für das Gestationsalter zu leichte Neugeborene;P05.0;Gefährlich
+Hämangiom: Haut und Unterhaut;D18.01;Gefährlich
+Hereditärer Faktor-VIII-Mangel;D66;Gefährlich
+Dermatitis, nicht näher bezeichnet;L30.9;Gefährlich
+Akute Belastungsreaktion;F43.0;Gefährlich
+Diplopie;H53.2;Gefährlich
+Andere Intelligenzminderung: Deutliche Verhaltensstörung, die Beobachtung oder Behandlung erfordert;F78.1;Gefährlich
+Erhöhter Antikörpertiter;R76.0;Gefährlich
+Sonstige näher bezeichnete Krankheiten der Zähne und des Zahnhalteapparates;K08.88;Gefährlich
+Sonstige und nicht näher bezeichnete Störungen des Ganges und der Mobilität;R26.8;Gefährlich
+Sonstige näher bezeichnete kardiale Arrhythmien;I49.8;Gefährlich
+Sonstige (angeborene) obstruktive Defekte des Nierenbeckens und des Ureters;Q62.3;Gefährlich
+Koma, nicht näher bezeichnet;R40.2;Gefährlich
+Hyperkaliämie;E87.5;Gefährlich
+Nichtbefolgung ärztlicher Anordnungen [Non-compliance] in der Eigenanamnese;Z91.1;Gefährlich
+Leichte Energie- und Eiweißmangelernährung;E44.1;Gefährlich
+Hypoglykämie, nicht näher bezeichnet;E16.2;Gefährlich
+Keimträger anderer infektiöser Darmkrankheiten;Z22.1;Gefährlich
+Hydrozephalus, nicht näher bezeichnet;G91.9;Gefährlich
+Hirnzysten;G93.0;Gefährlich
+Hernia umbilicalis ohne Einklemmung und ohne Gangrän;K42.9;Gefährlich
+Gallenblasenstein ohne Cholezystitis: Ohne Angabe einer Gallenwegsobstruktion;K80.20;Gefährlich
+Allergische Urtikaria;L50.0;Gefährlich
+Dauertherapie (gegenwärtig) mit anderen Arzneimitteln in der Eigenanamnese;Z92.2;Gefährlich
+Sonstiger angeborener Hydrozephalus;Q03.8;Gefährlich
+Sonstige oberflächliche Verletzungen des Unterarmes: Schürfwunde;S50.81;Gefährlich
+Untersuchung und Beobachtung nach anderem Unfall;Z04.3;Gefährlich
+Sonstige Stuhlveränderungen;R19.5;Gefährlich
+Sonstige transitorische Störungen des Kohlenhydratstoffwechsels beim Feten und Neugeborenen;P70.8;Gefährlich
+Thrombozytopenie, nicht näher bezeichnet: Nicht als transfusionsrefraktär bezeichnet;D69.61;Gefährlich
+Notwendigkeit der Impfung gegen Diphtherie-Pertussis-Tetanus [DPT];Z27.1;Gefährlich
+Pneumothorax mit Ursprung in der Perinatalperiode;P25.1;Gefährlich
+Prellung des Knies;S80.0;Gefährlich
+Sonstige näher bezeichnete Hypothyreose;E03.8;Gefährlich
+Sonstige lokalisationsbezogene (fokale) (partielle) idiopathische Epilepsie und epileptische Syndrome mit fokal beginnenden Anfällen;G40.08;Gefährlich
+Notwendigkeit der Impfung gegen sonstige näher bezeichnete einzelne Viruskrankheiten;Z25.8;Gefährlich
+Pavor nocturnus;F51.4;Gefährlich
+Oberflächliche Verletzung der Nase: Schürfwunde;S00.31;Gefährlich
+Hypertonie als Folge von sonstigen Nierenkrankheiten: Ohne Angabe einer hypertensiven Krise;I15.10;Gefährlich
+Neuromyopathische Skoliose: Nicht näher bezeichnete Lokalisation;M41.49;Gefährlich
+Infektionen nach Infusion, Transfusion oder Injektion zu therapeutischen Zwecken;T80.2;Gefährlich
+Kephalhämatom durch Geburtsverletzung;P12.0;Gefährlich
+Hypopituitarismus;E23.0;Gefährlich
+Lese- und Rechtschreibstörung;F81.0;Gefährlich
+Mitochondriale Zytopathie;G31.81;Gefährlich
+Infantile hemiplegische Zerebralparese;G80.2;Gefährlich
+Krankheiten des Muskel-Skelett-Systems und des Bindegewebes in der Eigenanamnese;Z87.3;Gefährlich
+Angeborene Muskelhypotonie;P94.2;Gefährlich
+Angeborene Fehlbildungssyndrome, die vorwiegend mit Kleinwuchs einhergehen;Q87.1;Gefährlich
+Abnorme Befunde bei der bildgebenden Diagnostik sonstiger Abdominalregionen, einschließlich des Retroperitoneums;R93.5;Gefährlich
+Austritt von Liquor cerebrospinalis nach Lumbalpunktion;G97.0;Gefährlich
+Zeruminalpfropf;H61.2;Gefährlich
+Sonstige näher bezeichnete sekundäre pulmonale Hypertonie;I27.28;Gefährlich
+Sonstige oberflächliche Verletzungen der Schulter und des Oberarmes: Schürfwunde;S40.81;Gefährlich
+Trommelfellperforation, nicht näher bezeichnet;H72.9;Gefährlich
+Vorhandensein von sonstigen kardialen oder vaskulären Implantaten oder Transplantaten;Z95.88;Gefährlich
+Sonstige Schlafstörungen;G47.8;Gefährlich
+Spezifische (isolierte) Phobien;F40.2;Gefährlich
+Unspezifische mesenteriale Lymphadenitis;I88.0;Gefährlich
+Sonstige Miktionsstörungen;R39.1;Gefährlich
+Sonstige Entwicklungsstörungen schulischer Fertigkeiten;F81.8;Gefährlich
+Peritoneale Adhäsionen;K66.0;Gefährlich
+Sonstige näher bezeichnete angeborene Fehlbildungen des Rückenmarks;Q06.8;Gefährlich
+Pes equinovarus congenitus;Q66.0;Gefährlich
+Prellung sonstiger Teile des Handgelenkes und der Hand;S60.2;Gefährlich
+Sekundäre Rechtsherzinsuffizienz;I50.01;Gefährlich
+Plagiozephalie;Q67.3;Gefährlich
+Pupillenfunktionsstörungen;H57.0;Gefährlich
+Neuromuskuläre Dysfunktion der Harnblase, nicht näher bezeichnet;N31.9;Gefährlich
+Koarktation der Aorta;Q25.1;Gefährlich
+Gelenkschmerz: Unterschenkel [Fibula, Tibia, Kniegelenk];M25.56;Gefährlich
+Missbrauch einer psychotropen Substanz in der Eigenanamnese;Z86.4;Gefährlich
+Grippe mit sonstigen Manifestationen an den Atemwegen, sonstige Influenzaviren nachgewiesen;J10.1;Gefährlich
+Hypertrophische obstruktive Kardiomyopathie;I42.1;Gefährlich
+Hypotonie, nicht näher bezeichnet;I95.9;Gefährlich
+Karies des Dentins;K02.1;Gefährlich
+Nichtorganische Enkopresis;F98.1;Gefährlich
+Herzrhythmusstörung beim Neugeborenen;P29.1;Gefährlich
+Hyperglykämie, nicht näher bezeichnet;R73.9;Gefährlich
+Intrazerebrale (nichttraumatische) Blutung beim Feten und Neugeborenen;P52.4;Gefährlich
+Neurogene Darmstörung, anderenorts nicht klassifiziert;K59.2;Gefährlich
+Herzgeräusch, nicht näher bezeichnet;R01.1;Gefährlich
+Dysmenorrhoe, nicht näher bezeichnet;N94.6;Gefährlich
+Brustschmerzen, nicht näher bezeichnet;R07.4;Gefährlich
+Andere endokrine, Ernährungs- oder Stoffwechselkrankheiten in der Familienanamnese;Z83.4;Gefährlich
+Defekt des Vorhof- und Kammerseptums;Q21.2;Gefährlich
+Auf den familiären Rahmen beschränkte Störung des Sozialverhaltens;F91.0;Gefährlich
+Angeborene Fehlbildungssyndrome mit vorwiegender Beteiligung des Gesichtes;Q87.0;Gefährlich
+Verbrennung Grad 2a der Hüfte und des Beines, ausgenommen Knöchelregion und Fuß;T24.20;Gefährlich
+Sonstige näher bezeichnete Krankheiten oder Zustände in der Familienanamnese;Z84.8;Gefährlich
+Sonstige näher bezeichnete Risikofaktoren in der Eigenanamnese, anderenorts nicht klassifiziert;Z91.8;Gefährlich
+Transitorische Thrombozytopenie beim Neugeborenen;P61.0;Gefährlich
+Sonstige Urtikaria;L50.8;Gefährlich
+Sonstige und nicht näher bezeichnete Sensibilitätsstörungen der Haut;R20.8;Gefährlich
+Supraventrikuläre Tachykardie;I47.1;Gefährlich
+Persistierender Fetalkreislauf;P29.3;Gefährlich
+Personen, die Einrichtungen des Gesundheitswesens wegen spezifischer Maßnahmen aufgesucht haben, die aber nicht durchgeführt wurden;Z53;Gefährlich
+Schlafwandeln [Somnambulismus];F51.3;Gefährlich
+Schädeldachfraktur;S02.0;Gefährlich
+Kandidose der Vulva und der Vagina;B37.3;Gefährlich
+Herzstillstand mit erfolgreicher Wiederbelebung;I46.0;Gefährlich
+Krankheiten des Blutes und der blutbildenden Organe sowie bestimmte Störungen mit Beteiligung des Immunsystems in der Familienanamnese;Z83.2;Gefährlich
+Komplizierte Migräne;G43.3;Gefährlich
+Linksherzinsuffizienz: Nicht näher bezeichnet;I50.19;Gefährlich
+Hyperkinetische Störung des Sozialverhaltens;F90.1;Gefährlich
+Expressive Sprachstörung;F80.1;Gefährlich
+Akute Sinusitis, nicht näher bezeichnet;J01.9;Gefährlich
+Abnorme Befunde bei der bildgebenden Diagnostik der Lunge;R91;Gefährlich
+Chronische Tonsillitis;J35.0;Gefährlich
+Abnormer Glukosetoleranztest;R73.0;Gefährlich
+Angeborene Hydrozele;P83.5;Gefährlich
+Azetonurie;R82.4;Gefährlich
+Beschleunigte Blutkörperchensenkungsreaktion;R70.0;Gefährlich
+Darmperforation in der Perinatalperiode;P78.0;Gefährlich
+Angeborene Gehirnzysten;Q04.6;Gefährlich
+Endokrine, Ernährungs- oder Stoffwechselkrankheiten in der Eigenanamnese;Z86.3;Gefährlich
+Sonstige näher bezeichnete Muskelkrankheiten: Sonstige [Hals, Kopf, Rippen, Rumpf, Schädel, Wirbelsäule];M62.88;Gefährlich
+Sonstige oberflächliche Verletzungen des Handgelenkes und der Hand: Schürfwunde;S60.81;Gefährlich
+Viruswarzen;B07;Gefährlich
+Untersuchung und Beobachtung nach Transportmittelunfall;Z04.1;Gefährlich
+Sonstige nichtorganische Schlafstörungen;F51.8;Gefährlich
+Verbrennung Grad 2a der Schulter und des Armes, ausgenommen Handgelenk und Hand: Unterarm und Ellenbogen;T22.21;Gefährlich
+Sonstige oberflächliche Verletzungen der Hüfte und des Oberschenkels: Schürfwunde;S70.81;Gefährlich
+Sonstige näher bezeichnete Krankheiten des Trommelfells;H73.8;Gefährlich
+Vorhandensein eines kardialen elektronischen Geräts;Z95.0;Gefährlich
+Sonstige näher bezeichnete Geburtsverletzungen;P15.8;Gefährlich
+Sonstige Konjunktivitis;H10.8;Gefährlich
+Pyodermie;L08.0;Gefährlich
+Pneumonie durch Nahrung oder Erbrochenes;J69.0;Gefährlich
+Sekundärer Normaldruckhydrozephalus;G91.21;Gefährlich
+Prellung eines oder mehrerer Finger ohne Schädigung des Nagels;S60.0;Gefährlich
+Pedikulose durch Pediculus humanus capitis;B85.0;Gefährlich
+Primär insulinabhängiger Diabetes mellitus [Typ-1-Diabetes]: Ohne Komplikationen: Als entgleist bezeichnet;E10.91;Gefährlich
+Sonstige näher bezeichnete Dermatitis;L30.8;Gefährlich
+Kleinwuchs, anderenorts nicht klassifiziert;E34.3;Gefährlich
+Neutropenie, nicht näher bezeichnet;D70.7;Gefährlich
+Hypästhesie der Haut;R20.1;Gefährlich
+Hautabszess, Furunkel und Karbunkel am Rumpf;L02.2;Gefährlich
+Akute respiratorische Insuffizienz, anderenorts nicht klassifiziert: Typ II [hyperkapnisch];J96.01;Gefährlich
+Entzugssymptome beim Neugeborenen bei Einnahme von abhängigkeitserzeugenden Arzneimitteln oder Drogen durch die Mutter;P96.1;Gefährlich
+Dekubitus 3. Grades: Kopf;L89.20;Gefährlich
+Diabetes mellitus, Typ 1: Ohne Komplikationen: Nicht als entgleist bezeichnet;E10.90;Gefährlich
+Akute Kolpitis;N76.0;Gefährlich
+Zahnkaries, nicht näher bezeichnet;K02.9;Gefährlich
+Verbrennung Grad 2a des Rumpfes: Bauchdecke;T21.23;Gefährlich
+Splenomegalie, anderenorts nicht klassifiziert;R16.1;Gefährlich
+Sonstige und nicht näher bezeichnete Hydronephrose;N13.3;Gefährlich
+Sonstige und nicht näher bezeichnete Hautveränderungen;R23.8;Gefährlich
+Sonstige Störungen des Stoffwechsels verzweigter Aminosäuren;E71.1;Gefährlich
+Zahnluxation;S03.2;Gefährlich
+Sonstige Störungen des Kalziumstoffwechsels;E83.58;Gefährlich
+Zervikalneuralgie;M54.2;Gefährlich
+Sonstige somatoforme Störungen;F45.8;Gefährlich
+Urtikaria, nicht näher bezeichnet;L50.9;Gefährlich
+Zustand nach Lungentransplantation;Z94.2;Gefährlich
+Sonstige Deletionen eines Chromosomenteils;Q93.5;Gefährlich
+Osteoporose, nicht näher bezeichnet: Sonstige [Hals, Kopf, Rippen, Rumpf, Schädel, Wirbelsäule];M81.98;Gefährlich
+Sonstige hypertrophische Kardiomyopathie;I42.2;Gefährlich
+Schwere Intelligenzminderung: Keine oder geringfügige Verhaltensstörung;F72.0;Gefährlich
+Sonstige angeborene Deformitäten des Schädels, des Gesichtes und des Kiefers;Q67.4;Gefährlich
+Schwerste Intelligenzminderung: Ohne Angabe einer Verhaltensstörung;F73.9;Gefährlich
+Schmerzen in den Extremitäten: Unterschenkel [Fibula, Tibia, Kniegelenk];M79.66;Gefährlich
+Rechter Doppelausstromventrikel [Double outlet right ventricle];Q20.1;Gefährlich
+Probleme mit Bezug auf Schwierigkeiten bei der Lebensbewältigung;Z73;Gefährlich
+Schlaffe Paraparese und Paraplegie: Nicht näher bezeichnet;G82.09;Gefährlich
+Omphalitis beim Neugeborenen mit oder ohne leichte Blutung;P38;Gefährlich
+Oberflächliche Verletzung an einer nicht näher bezeichneten Körperregion: Insektenbiss oder -stich (ungiftig);T14.03;Gefährlich
+Gelappte Niere, verschmolzene Niere und Hufeisenniere;Q63.1;Gefährlich
+Hypoxisch-ischämische Enzephalopathie beim Neugeborenen [HIE];P91.6;Gefährlich
+Intraventrikuläre (nichttraumatische) Blutung 3. Grades beim Feten und Neugeborenen;P52.2;Gefährlich
+Malabsorption nach chirurgischem Eingriff, anderenorts nicht klassifiziert;K91.2;Gefährlich
+Kontaktanlässe mit Bezug auf das Wohnumfeld oder die wirtschaftliche Lage;Z59;Gefährlich
+Gastrointestinale Blutung, nicht näher bezeichnet;K92.2;Gefährlich
+Infektion nach einem Eingriff, anderenorts nicht klassifiziert;T81.4;Gefährlich
+Myalgie: Sonstige [Hals, Kopf, Rippen, Rumpf, Schädel, Wirbelsäule];M79.18;Gefährlich
+Akute Lymphadenitis an Gesicht, Kopf und Hals;L04.0;Gefährlich
+Abnorme Befunde bei der zytologischen und histologischen Urinuntersuchung;R82.8;Gefährlich
+Down-Syndrom, nicht näher bezeichnet;Q90.9;Gefährlich
+Beobachtung bei Verdacht auf toxische Wirkung von aufgenommenen Substanzen;Z03.6;Gefährlich
+Crohn-Krankheit der Speiseröhre und des Magen-Darm-Traktes, mehrere Teilbereiche betreffend;K50.82;Gefährlich
+Abnorme Befunde in Untersuchungsmaterialien aus Verdauungsorganen und Bauchhöhle: Sonstige abnorme Befunde;R85.8;Gefährlich
+Emotionale Störung mit Geschwisterrivalität;F93.3;Gefährlich
+Sonstige Trommelfellperforationen;H72.8;Gefährlich
+Spezielle Verfahren zur Untersuchung auf angeborene Fehlbildungen, Deformitäten und Chromosomenanomalien;Z13.7;Gefährlich
+Zustand nach Lebertransplantation;Z94.4;Gefährlich
+Sonstige Sphingolipidosen;E75.2;Gefährlich
+Vorhandensein eines Tracheostomas;Z93.0;Gefährlich
+Versorgen mit und Anpassen eines Gerätes im Harntrakt;Z46.6;Gefährlich
+Umschriebene Entwicklungsstörung der Grobmotorik;F82.0;Gefährlich
+Vesikuläre Pharyngitis durch Enteroviren;B08.5;Gefährlich
+Zentrale Perforation des Trommelfells;H72.0;Gefährlich
+Sonstige Zahnkaries;K02.8;Gefährlich
+Sonstige und nicht näher bezeichnete Symptome, die das Erkennungsvermögen und das Bewusstsein betreffen;R41.8;Gefährlich
+Spastische Paraparese und Paraplegie: Chronische komplette Querschnittlähmung;G82.12;Gefährlich
+Überprüfung der Funktionsparameter einer Medikamentenpumpe;Z45.82;Gefährlich
+Offene Wunde eines oder mehrerer Finger ohne Schädigung des Nagels;S61.0;Gefährlich
+Periodische Beinbewegungen im Schlaf;G25.80;Gefährlich
+Sonstige entzündliche Krankheiten des Penis;N48.2;Gefährlich
+Sonstige akute Sinusitis;J01.8;Gefährlich
+Skoliose, nicht näher bezeichnet: Nicht näher bezeichnete Lokalisation;M41.99;Gefährlich
+Sonstige angeborene Deformitäten der Füße;Q66.8;Gefährlich
+Nystagmus und sonstige abnorme Augenbewegungen;H55;Gefährlich
+Notwendigkeit der Impfung gegen Virushepatitis;Z24.6;Gefährlich
+Nondescensus testis, einseitig;Q53.1;Gefährlich
+Sonstige angeborene Fehlbildungen des Hodens und des Skrotums;Q55.2;Gefährlich
+Nierendysplasie;Q61.4;Gefährlich
+Sonstige chronische nichteitrige Otitis media;H65.4;Gefährlich
+Phlegmone an Fingern;L03.01;Gefährlich
+Präexzitations-Syndrom;I45.6;Gefährlich
+Oberflächliche Verletzung der behaarten Kopfhaut: Prellung;S00.05;Gefährlich
+Sonstige emotionale Störungen des Kindesalters;F93.8;Gefährlich
+Pleuraerguss, anderenorts nicht klassifiziert;J90;Gefährlich
+Mechanische Komplikation durch gastrointestinale Prothesen, Implantate oder Transplantate;T85.5;Gefährlich
+Nicht näher bezeichnete unerwünschte Nebenwirkung eines Arzneimittels oder einer Droge;T88.7;Gefährlich
+Nicht näher bezeichnete Intelligenzminderung: Ohne Angabe einer Verhaltensstörung;F79.9;Gefährlich
+Kardiomegalie;I51.7;Gefährlich
+Hypovolämischer Schock;R57.1;Gefährlich
+Intraventrikuläre (nichttraumatische) Blutung 2. Grades beim Feten und Neugeborenen;P52.1;Gefährlich
+Hypothermie, nicht in Verbindung mit niedriger Umgebungstemperatur;R68.0;Gefährlich
+Nasenbeinfraktur;S02.2;Gefährlich
+Hypertrophie der Nasenmuscheln;J34.3;Gefährlich
+Generalisierte Hauteruption durch Drogen oder Arzneimittel;L27.0;Gefährlich
+Mononukleose durch Gamma-Herpesviren;B27.0;Gefährlich
+Hyperhidrose, nicht näher bezeichnet;R61.9;Gefährlich
+Herzinsuffizienz, nicht näher bezeichnet;I50.9;Gefährlich
+Myoklonus;G25.3;Gefährlich
+Akute Blutungsanämie;D62;Gefährlich
+Allergie, ausgenommen Allergie gegenüber Arzneimitteln, Drogen oder biologisch aktiven Substanzen, in der Eigenanamnese;Z91.0;Gefährlich
+Abnormer Mineral-Blutwert;R79.0;Gefährlich
+Distale Fraktur des Radius: Nicht näher bezeichnet;S52.50;Gefährlich
+Abnormer Wert nicht näher bezeichneter Serumenzyme;R74.9;Gefährlich
+Akute Tonsillitis durch sonstige näher bezeichnete Erreger;J03.8;Gefährlich
+Akute hämorrhagische Gastritis;K29.0;Gefährlich
+Akute Mastoiditis;H70.0;Gefährlich
+Atemstillstand;R09.2;Gefährlich
+Abnorme Befunde bei der bildgebenden Diagnostik sonstiger Teile des Verdauungstraktes;R93.3;Gefährlich
+Enterokolitis durch Clostridium difficile;A04.7;Gefährlich
+Erworbene Klauenhand, Klumphand, erworbener Klauenfuß und Klumpfuß: Knöchel und Fuß [Fußwurzel, Mittelfuß, Zehen, Sprunggelenk, sonstige Gelenke des Fußes];M21.57;Gefährlich
+Abnorme Befunde in Untersuchungsmaterialien aus Verdauungsorganen und Bauchhöhle: Abnorme mikrobiologische Befunde;R85.5;Gefährlich
+Angeborene Fehlbildungen des Corpus callosum;Q04.0;Gefährlich
+Aufreißen einer Operationswunde, anderenorts nicht klassifiziert;T81.3;Gefährlich
+Sonstige oberflächliche Verletzungen des Abdomens, der Lumbosakralgegend und des Beckens: Schürfwunde;S30.81;Gefährlich
+Störungen des Magnesiumstoffwechsels;E83.4;Gefährlich
+Zahnfraktur;S02.5;Gefährlich
+Ventrikuläre Extrasystolie;I49.3;Gefährlich
+Sonstige und nicht näher bezeichnete Gastroenteritis und Kolitis nicht näher bezeichneten Ursprungs;A09.9;Gefährlich
+Sonstige und nicht näher bezeichnete Störungen des Herzschlages;R00.8;Gefährlich
+Ureterstein;N20.1;Gefährlich
+Sonstige oberflächliche Verletzungen des Abdomens, der Lumbosakralgegend und des Beckens: Insektenbiss oder -stich (ungiftig);S30.83;Gefährlich
+Unguis incarnatus;L60.0;Gefährlich
+Sonstige oberflächliche Verletzungen des Unterarmes: Insektenbiss oder -stich (ungiftig);S50.83;Gefährlich
+Zahnverlust durch Unfall, Extraktion oder lokalisierte parodontale Krankheit;K08.1;Gefährlich
+Sonstige und nicht näher bezeichnete Extrasystolie;I49.4;Gefährlich
+Sonstige oberflächliche Verletzungen der Knöchelregion und des Fußes: Schürfwunde;S90.81;Gefährlich
+Umschriebene Entwicklungsstörung der motorischen Funktionen, nicht näher bezeichnet;F82.9;Gefährlich
+Stenose der Aorta (angeboren);Q25.3;Gefährlich
+Toxische Leberkrankheit mit Cholestase;K71.0;Gefährlich
+Verbrennung Grad 2a des Handgelenkes und der Hand;T23.20;Gefährlich
+Spastische Tetraparese und Tetraplegie: Chronische komplette Querschnittlähmung;G82.42;Gefährlich
+Sonstige und nicht näher bezeichnete abnorme unwillkürliche Bewegungen;R25.8;Gefährlich
+Ungehemmte neurogene Blasenentleerung, anderenorts nicht klassifiziert;N31.0;Gefährlich
+Sonstige angeborene Fehlbildungen der A. pulmonalis;Q25.7;Gefährlich
+Sonstige näher bezeichnete angeborene infektiöse und parasitäre Krankheiten;P37.8;Gefährlich
+Sonstige Formen der Stomatitis;K12.1;Gefährlich
+Reaktive Bindungsstörung des Kindesalters;F94.1;Gefährlich
+Prellung des Oberschenkels;S70.1;Gefährlich
+Reizbarkeit und Wut;R45.4;Gefährlich
+Sonstige erworbene Deformitäten des Knöchels und des Fußes;M21.6;Gefährlich
+Sonstige näher bezeichnete kardiale Erregungsleitungsstörungen;I45.8;Gefährlich
+Pes adductus (congenitus);Q66.2;Gefährlich
+Offene Wunde: Sonstige und mehrere Teile der Lippe und der Mundhöhle;S01.59;Gefährlich
+Sonstige näher bezeichnete entzündliche Krankheit der Vagina und Vulva;N76.88;Gefährlich
+Schlaffe Tetraparese und Tetraplegie: Nicht näher bezeichnet;G82.39;Gefährlich
+Sonstige angeborene Deformitäten der Hüfte;Q65.8;Gefährlich
+Schmerzen in den Extremitäten: Mehrere Lokalisationen;M79.60;Gefährlich
+Sonstige angeborene Fehlbildungen der oberen Extremität(en) und des Schultergürtels;Q74.0;Gefährlich
+Sehstörung, nicht näher bezeichnet;H53.9;Gefährlich
+Sonstige Essstörungen;F50.8;Gefährlich
+Sekundäre Amenorrhoe;N91.1;Gefährlich
+Sonstige Hydrozele;N43.2;Gefährlich
+Sepsis durch sonstige näher bezeichnete Staphylokokken;A41.1;Gefährlich
+Pilonidalzyste ohne Abszess;L05.9;Gefährlich
+Prellung des Ellenbogens;S50.0;Gefährlich
+Sonstige allergische Rhinopathie;J30.3;Gefährlich
+Sonstige Amnesie;R41.3;Gefährlich
+Grippe durch bestimmte nachgewiesene Influenzaviren;J09;Gefährlich
+Nichtinfektiöse Gastroenteritis und Kolitis, nicht näher bezeichnet;K52.9;Gefährlich
+Hydrozele, nicht näher bezeichnet;N43.3;Gefährlich
+Intestinale Adhäsionen [Briden] mit Obstruktion;K56.5;Gefährlich
+Impetigo contagiosa [jeder Erreger] [jede Lokalisation];L01.0;Gefährlich
+Komplikationen einer offenen Wunde: Sonstige;T89.03;Gefährlich
+Gesichtsfelddefekte;H53.4;Gefährlich
+Neuromyopathische Skoliose: Thorakalbereich;M41.44;Gefährlich
+Nicht näher bezeichnete offene Wunde sonstiger Teile des Unterarmes;S51.80;Gefährlich
+Kontaktanlässe mit Bezug auf andere psychosoziale Umstände;Z65;Gefährlich
+Krankheiten der Haut und der Unterhaut in der Eigenanamnese;Z87.2;Gefährlich
+Frühkindlicher Autismus;F84.0;Gefährlich
+Krankheiten der Niere oder des Ureters in der Familienanamnese;Z84.1;Gefährlich
+Krankheiten des Verdauungssystems in der Familienanamnese;Z83.7;Gefährlich
+Multiple oberflächliche Verletzungen, nicht näher bezeichnet;T00.9;Gefährlich
+Kachexie;R64;Gefährlich
+Kandidose der Lunge;B37.1;Gefährlich
+Dysphagie bei absaugpflichtigem Tracheostoma mit (teilweise) geblockter Trachealkanüle;R13.1;Gefährlich
+Di-George-Syndrom;D82.1;Gefährlich
+Epidurale Blutung;S06.4;Gefährlich
+Abnorme Befunde in Untersuchungsmaterialien aus Verdauungsorganen und Bauchhöhle: Nicht näher bezeichneter abnormer Befund;R85.9;Gefährlich
+Diskordante ventrikuloarterielle Verbindung;Q20.3;Gefährlich
+Angeborene Pneumonie, nicht näher bezeichnet;P23.9;Gefährlich
+Enterobiasis;B80;Gefährlich
+Angeborener Megaureter;Q62.2;Gefährlich
+Erworbener Mangel an Gerinnungsfaktoren;D68.4;Gefährlich
+Atypischer Autismus;F84.1;Gefährlich
+Dilatative Kardiomyopathie;I42.0;Gefährlich
+Chronische Gastritis, nicht näher bezeichnet;K29.5;Gefährlich
+Dyskinetische Zerebralparese;G80.3;Gefährlich
+Faszikulation;R25.3;Gefährlich
+AB0-Isoimmunisierung beim Feten und Neugeborenen;P55.1;Gefährlich
+Dehydratation beim Neugeborenen;P74.1;Gefährlich
+Entwicklungsstörung des Sprechens oder der Sprache, nicht näher bezeichnet;F80.9;Gefährlich
+Dekubitus 1. Grades: Sonstige Lokalisationen der unteren Extremität;L89.08;Gefährlich
+Anaphylaktischer Schock, nicht näher bezeichnet;T78.2;Gefährlich
+Dekubitus 4. Grades: Kopf;L89.30;Gefährlich
+Essentielle Hypertonie, nicht näher bezeichnet: Ohne Angabe einer hypertensiven Krise;I10.90;Gefährlich
+Diabetes mellitus, Typ 1: Ohne Komplikationen: Als entgleist bezeichnet;E10.91;Gefährlich
+Akute Analfissur;K60.0;Gefährlich
+Sonstige primäre Thrombozytopenie: Nicht als transfusionsrefraktär bezeichnet;D69.41;Gefährlich
+Sonstige näher bezeichnete spezielle Untersuchungen;Z01.88;Gefährlich
+Status asthmaticus;J46;Gefährlich
+Sonstige transitorische Gerinnungsstörungen beim Neugeborenen;P61.6;Gefährlich
+Spalte des harten und des weichen Gaumens;Q35.5;Gefährlich
+Valgusdeformität, anderenorts nicht klassifiziert: Beckenregion und Oberschenkel [Becken, Femur, Gesäß, Hüfte, Hüftgelenk, Iliosakralgelenk];M21.05;Gefährlich
+Zustand nach Nierentransplantation;Z94.0;Gefährlich
+Varizellen ohne Komplikation;B01.9;Gefährlich
+Tremor, nicht näher bezeichnet;R25.1;Gefährlich
+Sonstige oberflächliche Verletzungen des Augenlides und der Periokularregion: Insektenbiss oder -stich (ungiftig);S00.23;Gefährlich
+Sonstige oberflächliche Verletzungen des Unterschenkels: Insektenbiss oder -stich (ungiftig);S80.83;Gefährlich
+Sturzneigung, anderenorts nicht klassifiziert;R29.6;Gefährlich
+Störung des Sozialverhaltens bei fehlenden sozialen Bindungen;F91.1;Gefährlich
+Verbrennung Grad 2a des Kopfes und des Halses;T20.20;Gefährlich
+Versorgung sonstiger künstlicher Körperöffnungen des Harntraktes;Z43.6;Gefährlich
+Sonstiges akutes Nierenversagen;N17.8;Gefährlich
+Sonstige näher bezeichnete Krankheiten des Magens und des Duodenums;K31.88;Gefährlich
+Verbrennung Grad 2a des Rumpfes: Thoraxwand mit Ausnahme von Brustdrüse und -warze;T21.22;Gefährlich
+Traumatische subarachnoidale Blutung;S06.6;Gefährlich
+Vergiftung: 4-Aminophenol-Derivate;T39.1;Gefährlich
+Sonstige und nicht näher bezeichnete intestinale Obstruktion;K56.6;Gefährlich
+Verschmelzung der Labien;Q52.5;Gefährlich
+Vorhandensein von sonstigen näher bezeichneten funktionellen Implantaten;Z96.88;Gefährlich
+Sonstige oberflächliche Verletzungen des Augenlides und der Periokularregion: Schürfwunde;S00.21;Gefährlich
+Stauungspapille, nicht näher bezeichnet;H47.1;Gefährlich
+Sonstige näher bezeichnete Tremorformen;G25.2;Gefährlich
+Stenose und Insuffizienz der Tränenwege;H04.5;Gefährlich
+Sonstige Obturation des Darmes;K56.4;Gefährlich
+Sonstiger näher bezeichneter Diabetes mellitus: Ohne Komplikationen: Als entgleist bezeichnet;E13.91;Gefährlich
+Tetanie;R29.0;Gefährlich
+Versorgung eines Zystostomas;Z43.5;Gefährlich
+Tortikollis;M43.6;Gefährlich
+Schmerzen in den Extremitäten: Beckenregion und Oberschenkel [Becken, Femur, Gesäß, Hüfte, Hüftgelenk, Iliosakralgelenk];M79.65;Gefährlich
+Phlegmone im Gesicht;L03.2;Gefährlich
+Oberflächliche Verletzung des Ohres: Insektenbiss oder -stich (ungiftig);S00.43;Gefährlich
+Prellung der Hüfte;S70.0;Gefährlich
+Prellung sonstiger und nicht näher bezeichneter Teile des Fußes;S90.3;Gefährlich
+Optische Halluzinationen;R44.1;Gefährlich
+Sonstige Hypokalzämie beim Neugeborenen;P71.1;Gefährlich
+Seborrhoisches Ekzem der Kinder;L21.1;Gefährlich
+Sonstige näher bezeichnete angeborene Fehlbildungen der Niere;Q63.8;Gefährlich
+Probleme mit Bezug auf: Konsum von Alkohol, Tabak, Arzneimitteln oder Drogen;Z72.0;Gefährlich
+Schmerzen in den Extremitäten: Nicht näher bezeichnete Lokalisation;M79.69;Gefährlich
+Sekundäre Impetiginisation anderer Dermatosen;L01.1;Gefährlich
+Offene Wunde: Zunge und Mundboden;S01.54;Gefährlich
+Orientierungsstörung, nicht näher bezeichnet;R41.0;Gefährlich
+Schmerzen in den Extremitäten: Knöchel und Fuß [Fußwurzel, Mittelfuß, Zehen, Sprunggelenk, sonstige Gelenke des Fußes];M79.67;Gefährlich
+Offene Wunde sonstiger Teile des Fußes;S91.3;Gefährlich
+Sonstige Krankheiten des Kehlkopfes;J38.7;Gefährlich
+Nierenstein;N20.0;Gefährlich
+Sonstige näher bezeichnete Anämien;D64.8;Gefährlich
+Pruritus, nicht näher bezeichnet;L29.9;Gefährlich
+Sonstige näher bezeichnete angeborene Fehlbildungen des Darmes;Q43.8;Gefährlich
+Schädigung des Feten und Neugeborenen durch transplazentare Transfusionssyndrome;P02.3;Gefährlich
+Sonstige angeborene Fehlbildungen der zerebralen Gefäße;Q28.38;Gefährlich
+Schwere Asphyxie unter der Geburt;P21.0;Gefährlich
+Neugeborenes: Geburtsgewicht 1500 bis unter 2500 Gramm;P07.12;Gefährlich
+Hydrocephalus communicans;G91.0;Gefährlich
+Hitzschlag und Sonnenstich;T67.0;Gefährlich
+Hepatomegalie, anderenorts nicht klassifiziert;R16.0;Gefährlich
+Intertriginöses Ekzem;L30.4;Gefährlich
+Lokale Infektion der Haut und der Unterhaut, nicht näher bezeichnet;L08.9;Gefährlich
+Hirschsprung-Krankheit;Q43.1;Gefährlich
+Komplikationen einer offenen Wunde: Infektion;T89.02;Gefährlich
+Lähmung des N. abducens [VI. Hirnnerv];H49.2;Gefährlich
+Magnesiummangel;E61.2;Gefährlich
+Leichte Intelligenzminderung: Deutliche Verhaltensstörung, die Beobachtung oder Behandlung erfordert;F70.1;Gefährlich
+Infantile Zerebralparese, nicht näher bezeichnet;G80.9;Gefährlich
+Narben und Fibrosen der Haut;L90.5;Gefährlich
+Geburtsgeschwulst durch Geburtsverletzung;P12.1;Gefährlich
+Neurogene Reflexblase, anderenorts nicht klassifiziert;N31.1;Gefährlich
+Herzkrankheit, nicht näher bezeichnet;I51.9;Gefährlich
+Isolierte Proteinurie;R80;Gefährlich
+Metabolische Spätazidose beim Neugeborenen;P74.0;Gefährlich
+Hordeolum und sonstige tiefe Entzündung des Augenlides;H00.0;Gefährlich
+Mittelgradige depressive Episode;F32.1;Gefährlich
+Hypoplastisches Rechtsherzsyndrom;Q22.6;Gefährlich
+Molluscum contagiosum;B08.1;Gefährlich
+Hautabszess, Furunkel und Karbunkel an Extremitäten;L02.4;Gefährlich
+Anomalien des Kiefer-Schädelbasis-Verhältnisses;K07.1;Gefährlich
+Angeborene(s) Fehlen, Atresie und Stenose des Anus ohne Fistel;Q42.3;Gefährlich
+Duodenitis;K29.8;Gefährlich
+Akute Gingivitis;K05.0;Gefährlich
+Ankylose eines Gelenkes: Knöchel und Fuß [Fußwurzel, Mittelfuß, Zehen, Sprunggelenk, sonstige Gelenke des Fußes];M24.67;Gefährlich
+Aszites;R18;Gefährlich
+Diabetes insipidus;E23.2;Gefährlich
+Atemnotsyndrom des Erwachsenen [ARDS];J80;Gefährlich
+Angeborene Tracheomalazie;Q32.0;Gefährlich
+Beidseitiger Hörverlust durch Schallempfindungsstörung;H90.3;Gefährlich
+Enteritis durch Campylobacter;A04.5;Gefährlich
+Beobachtung bei Verdacht auf sonstige kardiovaskuläre Krankheiten;Z03.5;Gefährlich
+Dekubitus 1. Grades: Obere Extremität;L89.01;Gefährlich
+Abnorme Liquorbefunde: Nicht näher bezeichneter abnormer Befund;R83.9;Gefährlich
+Akute Bronchitis durch sonstige näher bezeichnete Erreger;J20.8;Gefährlich
+Abnormer Befund der Blutchemie, nicht näher bezeichnet;R79.9;Gefährlich
+Disseminierte intravasale Gerinnung [DIG, DIC];D65.1;Gefährlich
+Bösartige Neubildung sonstiger Organe und Systeme in der Familienanamnese;Z80.8;Gefährlich
+Dysarthrie und Anarthrie;R47.1;Gefährlich
+Bösartige Neubildungen sonstiger Organe oder Systeme in der Eigenanamnese;Z85.8;Gefährlich
+Dysphagie mit Beaufsichtigungspflicht während der Nahrungsaufnahme;R13.0;Gefährlich
+Akute Salpingitis und Oophoritis;N70.0;Gefährlich
+Emotionale Störung mit Trennungsangst des Kindesalters;F93.0;Gefährlich
+Chronische Rhinitis;J31.0;Gefährlich
+Angeborene Aortenklappenstenose;Q23.0;Gefährlich
+Akute Vulvitis;N76.2;Gefährlich
+Andere bösartige Neubildungen des lymphatischen, blutbildenden oder verwandten Gewebes in der Eigenanamnese;Z85.7;Gefährlich
+Akute Bronchitis durch Mycoplasma pneumoniae;J20.0;Gefährlich
+Angeborene Hydronephrose;Q62.0;Gefährlich
+Störungen des Phosphorstoffwechsels und der Phosphatase, nicht näher bezeichnet;E83.39;Gefährlich
+Unspezifische reaktive Hepatitis;K75.2;Gefährlich
+Unglücklichsein;R45.2;Gefährlich
+Verbrennung 1. Grades des Kopfes und des Halses;T20.1;Gefährlich
+Unspezifischer niedriger Blutdruckwert;R03.1;Gefährlich
+Vorhandensein eines Ileostomas;Z93.2;Gefährlich
+Sonstige rezeptive Sprachstörung;F80.28;Gefährlich
+Sonstige näher bezeichnete Krankheiten des Verdauungssystems in der Perinatalperiode;P78.8;Gefährlich
+Zerebrale Übererregbarkeit des Neugeborenen;P91.3;Gefährlich
+Versorgung eines Kolostomas;Z43.3;Gefährlich
+Soziale Phobien;F40.1;Gefährlich
+Sonstiger Pruritus;L29.8;Gefährlich
+Zoster ohne Komplikation;B02.9;Gefährlich
+Sonstige Neutropenie;D70.6;Gefährlich
+Störungen der Speichelsekretion;K11.7;Gefährlich
+Syndrom des Kindes einer diabetischen Mutter;P70.1;Gefährlich
+Versorgen mit und Anpassen von kieferorthopädischen Geräten;Z46.4;Gefährlich
+Sonstige näher bezeichnete Krankheiten des Weichteilgewebes: Knöchel und Fuß [Fußwurzel, Mittelfuß, Zehen, Sprunggelenk, sonstige Gelenke des Fußes];M79.87;Gefährlich
+Sonstige Rückenschmerzen: Lumbalbereich;M54.86;Gefährlich
+Sonstiger näher bezeichneter Darmverschluss beim Neugeborenen;P76.8;Gefährlich
+Sonstige näher bezeichnete Sepsis;A41.8;Gefährlich
+Verstauchung und Zerrung des oberen Sprunggelenkes: Teil nicht näher bezeichnet;S93.40;Gefährlich
+Vitamin-K-Mangel;E56.1;Gefährlich
+Tinnitus aurium;H93.1;Gefährlich
+Zu starke oder zu häufige Menstruation bei regelmäßigem Menstruationszyklus;N92.0;Gefährlich
+Vesikuläre Stomatitis mit Exanthem durch Enteroviren;B08.4;Gefährlich
+Sonstige näher bezeichnete Krankheiten der Tuba auditiva;H69.8;Gefährlich
+Virusinfektion, nicht näher bezeichnet;B34.9;Gefährlich
+Sonstige oberflächliche Verletzungen des Handgelenkes und der Hand: Insektenbiss oder -stich (ungiftig);S60.83;Gefährlich
+Sopor;R40.1;Gefährlich
+Sonstige näher bezeichnete Krankheiten der oberen Atemwege;J39.88;Gefährlich
+Sonstige oberflächliche Verletzungen der Knöchelregion und des Fußes: Insektenbiss oder -stich (ungiftig);S90.83;Gefährlich
+Oberflächliche Verletzung des Kopfes, Teil nicht näher bezeichnet: Prellung;S00.95;Gefährlich
+Sonstige Affektionen mit Auswirkung auf die Augenlidfunktion;H02.5;Gefährlich
+Sonstige angeborene Anämien, anderenorts nicht klassifiziert;P61.4;Gefährlich
+Scharlach;A38;Gefährlich
+Offene Wunde des Augenlides und der Periokularregion;S01.1;Gefährlich
+Sonstige angeborene Fehlbildungen der Aorta;Q25.4;Gefährlich
+Primäre pulmonale Hypertonie;I27.0;Gefährlich
+Sonstige angeborene Fehlbildungen der Herzsepten;Q21.88;Gefährlich
+Sonstige gastrointestinale Blutung beim Neugeborenen;P54.3;Gefährlich
+Schlaffe neurogene Harnblase, anderenorts nicht klassifiziert;N31.2;Gefährlich
+Pneumonie durch sonstige feste und flüssige Substanzen;J69.8;Gefährlich
+Sonstige angeborene Fehlbildungen der Wirbelsäule ohne Skoliose;Q76.4;Gefährlich
+Sonstige kontrazeptive Maßnahmen;Z30.8;Gefährlich
+Sepsis: Pseudomonas;A41.52;Gefährlich
+Primäre Thrombophilie;D68.5;Gefährlich
+Prellung einer oder mehrerer Zehen ohne Schädigung des Nagels;S90.1;Gefährlich
+Offene Wunde: Ohrmuschel;S01.31;Gefährlich
+Nierenhypoplasie, einseitig;Q60.3;Gefährlich
+Renale Osteodystrophie;N25.0;Gefährlich
+Oberflächliche Verletzung sonstiger Teile des Kopfes: Insektenbiss oder -stich (ungiftig);S00.83;Gefährlich
+Periapikaler Abszess ohne Fistel;K04.7;Gefährlich
+Pneumonie durch Pseudomonas;J15.1;Gefährlich
+Nondescensus testis, nicht näher bezeichnet;Q53.9;Gefährlich
+Oberflächliche Verletzung der Lippe und der Mundhöhle: Schürfwunde;S00.51;Gefährlich
+Sonstige Agranulozytose;D70.3;Gefährlich
+Prellung der Knöchelregion;S90.0;Gefährlich
+Sonstige interstitielle Lungenkrankheiten mit Fibrose;J84.1;Gefährlich
+Prellung sonstiger und nicht näher bezeichneter Teile des Unterarmes;S50.1;Gefährlich
+Paralytischer Ileus;K56.0;Gefährlich
+Prellung sonstiger und nicht näher bezeichneter Teile des Unterschenkels;S80.1;Gefährlich
+Polyurie;R35;Gefährlich
+Sonstige erworbene Deformität des Kopfes;M95.2;Gefährlich
+Phlegmone an der oberen Extremität;L03.10;Gefährlich
+Oberflächliche Verletzung sonstiger Teile des Halses: Schürfwunde;S10.81;Gefährlich
+Sonstige näher bezeichnete alimentäre Anämien;D53.8;Gefährlich
+Otalgie;H92.0;Gefährlich
+Notwendigkeit der Impfung gegen Masern-Mumps-Röteln [MMR];Z27.4;Gefährlich
+Rückenschmerzen, nicht näher bezeichnet: Nicht näher bezeichnete Lokalisation;M54.99;Gefährlich
+Psychische und Verhaltensstörungen durch multiplen Substanzgebrauch und Konsum anderer psychotroper Substanzen: Abhängigkeitssyndrom;F19.2;Gefährlich
+Sonstige für das Gestationsalter zu schwere Neugeborene;P08.1;Gefährlich
+Sonstige Gastritis;K29.6;Gefährlich
+Oberflächliche Verletzung der Lippe und der Mundhöhle: Prellung;S00.55;Gefährlich
+Sonstige Deletionen der Autosomen;Q93.8;Gefährlich
+Sonstige akute nichteitrige Otitis media;H65.1;Gefährlich
+Fraktur des Jochbeins und des Oberkiefers;S02.4;Gefährlich
+Gelenkschmerz: Schulterregion [Klavikula, Skapula, Akromioklavikular-, Schulter-, Sternoklavikulargelenk];M25.51;Gefährlich
+Hernia inguinalis, einseitig oder ohne Seitenangabe, mit Einklemmung, ohne Gangrän: Nicht als Rezidivhernie bezeichnet;K40.30;Gefährlich
+Hypersplenismus;D73.1;Gefährlich
+Fremdkörper im Bronchus;T17.5;Gefährlich
+Hämatemesis beim Neugeborenen;P54.0;Gefährlich
+Nicht näher bezeichnete Niereninsuffizienz;N19;Gefährlich
+Interkostalneuropathie;G58.0;Gefährlich
+Neuritis nervi optici;H46;Gefährlich
+Kontrazeptive Maßnahme, nicht näher bezeichnet;Z30.9;Gefährlich
+Neuromuskuläre Krankheit, nicht näher bezeichnet;G70.9;Gefährlich
+Frakturen sonstiger Teile der Unterschenkels;S82.88;Gefährlich
+Konjunktivitis, nicht näher bezeichnet;H10.9;Gefährlich
+Lyme-Krankheit;A69.2;Gefährlich
+Fraktur des Radiusschaftes, Teil nicht näher bezeichnet;S52.30;Gefährlich
+Kontrolle von Verbänden und Nähten;Z48.0;Gefährlich
+Fraktur des Femurschaftes;S72.3;Gefährlich
+Lymphknotenvergrößerung, nicht näher bezeichnet;R59.9;Gefährlich
+Koagulopathie, nicht näher bezeichnet;D68.9;Gefährlich
+Leichte depressive Episode;F32.0;Gefährlich
+Herzstillstand, nicht näher bezeichnet;I46.9;Gefährlich
+Hereditärer Faktor-V-Mangel;D68.22;Gefährlich
+Hirnödem;G93.6;Gefährlich
+Gelenkschmerz: Mehrere Lokalisationen;M25.50;Gefährlich
+Fraktur des distalen Endes des Humerus: Suprakondylär;S42.41;Gefährlich
+Krankheit des Verdauungssystems in der Perinatalperiode, nicht näher bezeichnet;P78.9;Gefährlich
+Invagination;K56.1;Gefährlich
+Krankheiten der Atemwege in der Familienanamnese;Z83.6;Gefährlich
+Nicht näher bezeichnete Energie- und Eiweißmangelernährung;E46;Gefährlich
+Intestinale Adhäsionen [Briden] mit Ileus;K56.5;Gefährlich
+Meläna beim Neugeborenen;P54.1;Gefährlich
+Makrozephalie;Q75.3;Gefährlich
+Laboruntersuchung;Z01.7;Gefährlich
+Krankheiten der Lippen;K13.0;Gefährlich
+Lokalisierte Schwellung, Raumforderung und Knoten der Haut und der Unterhaut am Rumpf;R22.2;Gefährlich
+Neubildung unsicheren oder unbekannten Verhaltens: Bindegewebe und andere Weichteilgewebe;D48.1;Gefährlich
+Langzeitige Abhängigkeit vom Aspirator;Z99.0;Gefährlich
+Funikulozele;N43.0;Gefährlich
+Migräne mit Aura [Klassische Migräne];G43.1;Gefährlich
+Intrakranielle und intraspinale Phlebitis und Thrombophlebitis;G08;Gefährlich
+Mukokutanes Lymphknotensyndrom [Kawasaki-Krankheit];M30.3;Gefährlich
+Gelenkschmerz: Knöchel und Fuß [Fußwurzel, Mittelfuß, Zehen, Sprunggelenk, sonstige Gelenke des Fußes];M25.57;Gefährlich
+Interstitielles Emphysem mit Ursprung in der Perinatalperiode;P25.0;Gefährlich
+Körperlicher Missbrauch;T74.1;Gefährlich
+Kandidose beim Neugeborenen;P37.5;Gefährlich
+Eisenmangel;E61.1;Gefährlich
+Anurie und Oligurie;R34;Gefährlich
+Analfissur, nicht näher bezeichnet;K60.2;Gefährlich
+Abszess der Vulva;N76.4;Gefährlich
+Candida-Sepsis;B37.7;Gefährlich
+Darmverschluss beim Neugeborenen durch eingedickte Milch;P76.2;Gefährlich
+Angeborene Fehlbildungssyndrome mit vorwiegender Beteiligung der Extremitäten;Q87.2;Gefährlich
+Apallisches Syndrom;G93.80;Gefährlich
+Abnorme Befunde in Untersuchungsmaterialien aus Atemwegen und Thorax: Abnorme mikrobiologische Befunde;R84.5;Gefährlich
+Akute Pankreatitis, nicht näher bezeichnet: Ohne Angabe einer Organkomplikation;K85.90;Gefährlich
+Atrioventrikulärer Block 1. Grades;I44.0;Gefährlich
+Dekubitus 1. Grades: Kreuzbein;L89.04;Gefährlich
+Choanalatresie;Q30.0;Gefährlich
+Akute Pansinusitis;J01.4;Gefährlich
+Emotioneller Schock oder Stress, nicht näher bezeichnet;R45.7;Gefährlich
+Abnorme Befunde bei der bildgebenden Diagnostik sonstiger Abschnitte des Muskel-Skelett-Systems;R93.7;Gefährlich
+Angeborener Hydrozephalus, nicht näher bezeichnet;Q03.9;Gefährlich
+Dekubitus 1. Grades: Trochanter;L89.06;Gefährlich
+Anhaltende somatoforme Schmerzstörung;F45.40;Gefährlich
+Akute Pharyngitis durch sonstige näher bezeichnete Erreger;J02.8;Gefährlich
+Akute Appendizitis, nicht näher bezeichnet;K35.8;Gefährlich
+Dekubitus 4. Grades: Trochanter;L89.36;Gefährlich
+Akute Laryngitis;J04.0;Gefährlich
+Depressive Episode, nicht näher bezeichnet;F32.9;Gefährlich
+Angeborene Zytomegalie;P35.1;Gefährlich
+Dermatitis solaris acuta 1. Grades;L55.0;Gefährlich
+Dysurie;R30.0;Gefährlich
+Dermatitis solaris acuta, nicht näher bezeichnet;L55.9;Gefährlich
+Einling, Geburt außerhalb des Krankenhauses;Z38.1;Gefährlich
+Akutes nephritisches Syndrom: Art der morphologischen Veränderung nicht näher bezeichnet;N00.9;Gefährlich
+Angeborene Fehlbildungen, die die Darmfixation betreffen;Q43.3;Gefährlich
+Ataktische Zerebralparese;G80.4;Gefährlich
+Allergische Kontaktdermatitis durch sonstige chemische Produkte;L23.5;Gefährlich
+Angeborene Hypothyreose ohne Struma;E03.1;Gefährlich
+Angeborene(s) Fehlen, Atresie und Stenose des Duodenums;Q41.0;Gefährlich
+Diagnostische Haut- und Sensibilisierungstestung;Z01.5;Gefährlich
+Folgen entzündlicher Krankheiten des Zentralnervensystems;G09;Gefährlich
+Angeborene Niereninsuffizienz;P96.0;Gefährlich
+Anämie, nicht näher bezeichnet;D64.9;Gefährlich
+Angeborene arteriovenöse Fistel der zerebralen Gefäße;Q28.21;Gefährlich
+Ankyloglosson;Q38.1;Gefährlich
+Angeborene Stenose und Striktur des Canaliculus lacrimalis;Q10.5;Gefährlich
+Akute Bronchiolitis durch Respiratory-Syncytial-Viren [RS-Viren];J21.0;Gefährlich
+Ataxie, nicht näher bezeichnet;R27.0;Gefährlich
+Doppelseitige Hernia inguinalis, ohne Einklemmung und ohne Gangrän: Nicht als Rezidivhernie bezeichnet;K40.20;Gefährlich
+Chronische Nierenkrankheit, Stadium 2;N18.2;Gefährlich
+Folgezustände sonstiger näher bezeichneter infektiöser und parasitärer Krankheiten;B94.8;Gefährlich
+Chronische Pansinusitis;J32.4;Gefährlich
+Chronische Schmerzstörung mit somatischen und psychischen Faktoren;F45.41;Gefährlich
+Verbrennung Grad 2b der Schulter und des Armes, ausgenommen Handgelenk und Hand: Unterarm und Ellenbogen;T22.81;Gefährlich
+Zwangsgedanken und -handlungen, gemischt;F42.2;Gefährlich
+Sonstige näher bezeichnete Krankheiten des Harnsystems;N39.88;Gefährlich
+Sonstige und nicht näher bezeichnete Sprech- und Sprachstörungen;R47.8;Gefährlich
+Verbrennung Grad 2a des Rumpfes: (Äußeres) Genitale;T21.25;Gefährlich
+Zystische Fibrose mit Lungen- und Darm-Manifestation;E84.80;Gefährlich
+Zerebrale Ischämie beim Neugeborenen;P91.0;Gefährlich
+Verstauchung und Zerrung der Brustwirbelsäule;S23.3;Gefährlich
+Zu starke oder zu häufige Menstruation bei unregelmäßigem Menstruationszyklus;N92.1;Gefährlich
+Sonstige näher bezeichnete Krankheitszustände der Haut, die für den Feten und das Neugeborene spezifisch sind;P83.8;Gefährlich
+Sonstige näher bezeichnete Muskelkrankheiten: Nicht näher bezeichnete Lokalisation;M62.89;Gefährlich
+Thyreoiditis, nicht näher bezeichnet;E06.9;Gefährlich
+Verbrennung Grad 2a des Rumpfes: Rücken [jeder Teil];T21.24;Gefährlich
+Spezielle Verfahren zur Untersuchung auf sonstige näher bezeichnete Krankheiten oder Störungen;Z13.8;Gefährlich
+Ulcus cruris, anderenorts nicht klassifiziert;L97;Gefährlich
+Untersuchung und Beobachtung aus sonstigen näher bezeichneten Gründen;Z04.8;Gefährlich
+Zerebraler Depressionszustand des Neugeborenen;P91.4;Gefährlich
+Sonstige oberflächliche Verletzungen der vorderen Thoraxwand: Insektenbiss oder -stich (ungiftig);S20.33;Gefährlich
+Versorgen mit und Anpassen eines Ileostomas oder von sonstigen Vorrichtungen im Magen-Darmtrakt;Z46.5;Gefährlich
+Sonstige näher bezeichnete Krankheiten der Synovialis und der Sehnen: Unterschenkel [Fibula, Tibia, Kniegelenk];M67.86;Gefährlich
+Sonstige näher bezeichnete Symptome, die das Verdauungssystem und das Abdomen betreffen;R19.8;Gefährlich
+Sonstige näher bezeichnete Störungen der Temperaturregulation beim Neugeborenen;P81.8;Gefährlich
+Undifferenzierte Somatisierungsstörung;F45.1;Gefährlich
+Toxische Wirkung: Alkohol, nicht näher bezeichnet;T51.9;Gefährlich
+Sonstige transitorische Stoffwechselstörungen beim Neugeborenen;P74.8;Gefährlich
+Toxische Wirkung: Gift sonstiger Arthropoden;T63.4;Gefährlich
+Sonstige näher bezeichnete Krankheiten der Wirbelsäule und des Rückens: Zervikalbereich;M53.82;Gefährlich
+Volvulus;K56.2;Gefährlich
+Sonstige vor dem Termin Geborene;P07.3;Gefährlich
+Sonstige oberflächliche Verletzungen der Schulter und des Oberarmes: Insektenbiss oder -stich (ungiftig);S40.83;Gefährlich
+Verbrennung Grad 2b des Rumpfes: Thoraxwand mit Ausnahme von Brustdrüse und -warze;T21.82;Gefährlich
+Sonstige näher bezeichnete Krankheiten des Peritoneums;K66.8;Gefährlich
+Vergiftung: Sonstige nichtopioidhaltige Analgetika und Antipyretika, anderenorts nicht klassifiziert;T39.8;Gefährlich
+Valgusdeformität, anderenorts nicht klassifiziert: Unterschenkel [Fibula, Tibia, Kniegelenk];M21.06;Gefährlich
+Verlangsamung und herabgesetztes Reaktionsvermögen;R46.4;Gefährlich
+Spalte des harten und des weichen Gaumens mit einseitiger Lippenspalte;Q37.5;Gefährlich
+Verlust der Niere(n);Z90.5;Gefährlich
+Transitorischer Hypoparathyreoidismus beim Neugeborenen;P71.4;Gefährlich
+Syndrom des Kindes einer Mutter mit gestationsbedingtem Diabetes mellitus;P70.0;Gefährlich
+Strabismus, nicht näher bezeichnet;H50.9;Gefährlich
+Versorgen mit und Anpassen von anderen medizinischen Geräten oder Hilfsmitteln für das Nervensystem oder für spezielle Sinnesorgane;Z46.2;Gefährlich
+Traumatische subdurale Blutung;S06.5;Gefährlich
+Störung des Sozialverhaltens bei vorhandenen sozialen Bindungen;F91.2;Gefährlich
+Sonstige Rückenschmerzen: Mehrere Lokalisationen der Wirbelsäule;M54.80;Gefährlich
+Störung des Sozialverhaltens mit depressiver Störung;F92.0;Gefährlich
+Sonstige Thrombophilien;D68.6;Gefährlich
+Umschriebenes zerebrales Hämatom;S06.33;Gefährlich
+Verbrennung Grad 2a der Schulter und des Armes, ausgenommen Handgelenk und Hand: (Ober-) Arm und Schulterregion;T22.22;Gefährlich
+Zyste der Niere, erworben;N28.1;Gefährlich
+Sonstige sekundäre Thrombozytopenien, nicht als transfusionsrefraktär bezeichnet;D69.58;Gefährlich
+Truncus arteriosus communis;Q20.0;Gefährlich
+Thrombose, Phlebitis und Thrombophlebitis oberflächlicher Gefäße der oberen Extremitäten;I80.80;Gefährlich
+Sonstige näher bezeichnete Krankheiten des Anus und des Rektums;K62.8;Gefährlich
+Posttraumatische Belastungsstörung;F43.1;Gefährlich
+Offene Wunde: Zahnfleisch (Processus alveolaris);S01.53;Gefährlich
+Nondescensus testis, beidseitig;Q53.2;Gefährlich
+Pulpitis;K04.0;Gefährlich
+Primäre Dysmenorrhoe;N94.4;Gefährlich
+Offene Wunde: Gaumen;S01.55;Gefährlich
+Sonstige näher bezeichnete angeborene Fehlbildungen;Q89.8;Gefährlich
+Rh-Isoimmunisierung beim Feten und Neugeborenen;P55.0;Gefährlich
+Pleuritis;R09.1;Gefährlich
+Offene Wunde an einer nicht näher bezeichneten Körperregion;T14.1;Gefährlich
+Regurgitation und Rumination beim Neugeborenen;P92.1;Gefährlich
+Pneumonie durch Mycoplasma pneumoniae;J15.7;Gefährlich
+Sonstige Krankheiten des Verdauungssystems nach medizinischen Maßnahmen, anderenorts nicht klassifiziert;K91.88;Gefährlich
+Prellung der äußeren Genitalorgane;S30.2;Gefährlich
+Sonstige Affektionen der Papille;H47.3;Gefährlich
+Sonstige angeborene Fehlbildungen der Bauchdecke;Q79.5;Gefährlich
+Oberflächliche Verletzung des Ohres: Schürfwunde;S00.41;Gefährlich
+Offene Wunde des Unterarmes, Teil nicht näher bezeichnet;S51.9;Gefährlich
+Polyzystische Niere, autosomal-rezessiv;Q61.1;Gefährlich
+Schwere depressive Episode ohne psychotische Symptome;F32.2;Gefährlich
+Sepsis: Escherichia coli [E. coli];A41.51;Gefährlich
+Portale Hypertonie;K76.6;Gefährlich
+Skabies;B86;Gefährlich
+Schwerste Intelligenzminderung: Keine oder geringfügige Verhaltensstörung;F73.0;Gefährlich
+Sonstige Komplikationen nach Impfung [Immunisierung], anderenorts nicht klassifiziert;T88.1;Gefährlich
+Salmonellenenteritis;A02.0;Gefährlich
+Sonstige Krankheiten der Zunge;K14.8;Gefährlich
+Sonstige angeborene Funktionsstörungen des Kolons;Q43.2;Gefährlich
+Schlaffe Paraparese und Paraplegie: Chronische inkomplette Querschnittlähmung;G82.03;Gefährlich
+Sonstige angeborene Valgusdeformitäten der Füße;Q66.6;Gefährlich
+Phlegmone am Rumpf;L03.3;Gefährlich
+Optikusatrophie;H47.2;Gefährlich
+Schlafstörung, nicht näher bezeichnet;G47.9;Gefährlich
+Sonstige Appendizitis;K36;Gefährlich
+Sonstige näher bezeichnete angeborene Fehlbildungen der Schädel- und Gesichtsschädelknochen;Q75.8;Gefährlich
+Sonstige bakterielle Infektionen nicht näher bezeichneter Lokalisation;A49.8;Gefährlich
+Posttraumatischer Hydrozephalus, nicht näher bezeichnet;G91.3;Gefährlich
+Sonstige biomechanische Funktionsstörungen: Kopfbereich [okzipitozervikal];M99.80;Gefährlich
+Oberflächliche Verletzung sonstiger Teile des Halses: Prellung;S10.85;Gefährlich
+Paroxysmale Tachykardie, nicht näher bezeichnet;I47.9;Gefährlich
+Schmerzen in den Extremitäten: Hand [Finger, Handwurzel, Mittelhand, Gelenke zwischen diesen Knochen];M79.64;Gefährlich
+Pneumomediastinum mit Ursprung in der Perinatalperiode;P25.2;Gefährlich
+Sonstige granulomatöse Krankheiten der Haut und der Unterhaut;L92.8;Gefährlich
+Sonstige Colitis ulcerosa;K51.8;Gefährlich
+Prellung und Hämatom der Lunge;S27.31;Gefährlich
+Sonstige Crohn-Krankheit;K50.88;Gefährlich
+Septischer Schock;R57.2;Gefährlich
+Schädelbasisfraktur;S02.1;Gefährlich
+Periorale Dermatitis;L71.0;Gefährlich
+Orchitis, Epididymitis und Epididymoorchitis ohne Abszess;N45.9;Gefährlich
+Skoliose, nicht näher bezeichnet: Thorakolumbalbereich;M41.95;Gefährlich
+Pylorospasmus, anderenorts nicht klassifiziert;K31.3;Gefährlich
+Sonstige Komplikationen nach Infusion, Transfusion oder Injektion zu therapeutischen Zwecken;T80.8;Gefährlich
+Polyglobulie beim Neugeborenen;P61.1;Gefährlich
+Somatoforme autonome Funktionsstörung: Oberes Verdauungssystem;F45.31;Gefährlich
+Sonstige Entwicklungsstörungen des Sprechens oder der Sprache;F80.8;Gefährlich
+Ösophagusulkus;K22.1;Gefährlich
+Sonstige näher bezeichnete Komplikationen bei chirurgischen Eingriffen und medizinischer Behandlung, anderenorts nicht klassifiziert;T88.8;Gefährlich
+Oberflächliche Verletzung der unteren Extremität, Höhe nicht näher bezeichnet: Insektenbiss oder -stich (ungiftig);T13.03;Gefährlich
+Sekundäre biliäre Zirrhose;K74.4;Gefährlich
+Sonstige Lungenblutung mit Ursprung in der Perinatalperiode;P26.8;Gefährlich
+Penile Hypospadie;Q54.1;Gefährlich
+Schlaffe Tetraparese und Tetraplegie: Chronische komplette Querschnittlähmung;G82.32;Gefährlich
+Sonstige Ernährungsprobleme beim Neugeborenen;P92.8;Gefährlich
+Sonstige Myositis: Unterschenkel [Fibula, Tibia, Kniegelenk];M60.86;Gefährlich
+Offene Wunde des Oberschenkels;S71.1;Gefährlich
+Offene Wunde des Knies;S81.0;Gefährlich
+Offene Wunde: Unterkieferregion;S01.43;Gefährlich
+Oberflächliche Verletzung der Lippe und der Mundhöhle: Art der Verletzung nicht näher bezeichnet;S00.50;Gefährlich
+Sonstige erworbene Deformitäten des Knöchels und des Fußes: Knöchel und Fuß [Fußwurzel, Mittelfuß, Zehen, Sprunggelenk, sonstige Gelenke des Fußes];M21.67;Gefährlich
+Panikstörung [episodisch paroxysmale Angst];F41.0;Gefährlich
+Sekundärer Laktasemangel;E73.1;Gefährlich
+Psychische und Verhaltensstörungen durch Tabak: Schädlicher Gebrauch;F17.1;Gefährlich
+Sonstige Formen der Skoliose: Mehrere Lokalisationen der Wirbelsäule;M41.80;Gefährlich
+Sonstige näher bezeichnete angeborene Fehlbildungen des Herzens;Q24.8;Gefährlich
+Sonstige Formen der Skoliose: Thorakalbereich;M41.84;Gefährlich
+Sonstige akute Pankreatitis: Ohne Angabe einer Organkomplikation;K85.80;Gefährlich
+Rechenstörung;F81.2;Gefährlich
+Sonstige näher bezeichnete bakterielle Darminfektionen;A04.8;Gefährlich
+Sonstige Formen des Schocks;R57.8;Gefährlich
+Primäre Rechtsherzinsuffizienz;I50.00;Gefährlich
+Psychische und Verhaltensstörungen durch Cannabinoide: Schädlicher Gebrauch;F12.1;Gefährlich
+Primäre Schlafapnoe beim Neugeborenen;P28.3;Gefährlich
+Schizophrenie, nicht näher bezeichnet;F20.9;Gefährlich
+Sonstige näher bezeichnete Harninkontinenz;N39.48;Gefährlich
+Sepsis durch Streptokokken, Gruppe D;A40.2;Gefährlich
+Ösophagusatresie mit Ösophagotrachealfistel;Q39.1;Gefährlich
+Sonstige näher bezeichnete Koagulopathien;D68.8;Gefährlich
+Nierenagenesie, einseitig;Q60.0;Gefährlich
+Sonstige näher bezeichnete Krankheiten der Leukozyten;D72.8;Gefährlich
+Schädigung des Feten und Neugeborenen durch Anästhesie und Analgesie bei der Mutter während Schwangerschaft, Wehen und Entbindung;P04.0;Gefährlich
+Schädigung des Feten und Neugeborenen durch sonstige Formen der Plazentalösung und -blutung;P02.1;Gefährlich
+Schäden durch elektrischen Strom;T75.4;Gefährlich
+Nicht näher bezeichnete offene Wunde sonstiger und nicht näher bezeichneter Teile des Schultergürtels;S41.80;Gefährlich
+Hypermetropie;H52.0;Gefährlich
+Immobilität;R26.3;Gefährlich
+Mechanische Komplikation durch eine interne Osteosynthesevorrichtung an Extremitätenknochen;T84.1;Gefährlich
+Lokalisierte Schwellung, Raumforderung und Knoten der Haut und der Unterhaut am Kopf;R22.0;Gefährlich
+Intrauterine Mangelentwicklung, nicht näher bezeichnet;P05.9;Gefährlich
+Mangel an sonstigen näher bezeichneten Vitaminen des Vitamin-B-Komplexes;E53.8;Gefährlich
+Megakolon, anderenorts nicht klassifiziert;K59.3;Gefährlich
+Neugeborenes: Geburtsgewicht 500 bis unter 750 Gramm;P07.01;Gefährlich
+Gastritis, nicht näher bezeichnet;K29.7;Gefährlich
+Konjunktivitis durch Adenoviren;B30.1;Gefährlich
+Krämpfe und Spasmen der Muskulatur;R25.2;Gefährlich
+Lumbale Spina bifida ohne Hydrozephalus;Q05.7;Gefährlich
+Gelenkerguss: Knöchel und Fuß [Fußwurzel, Mittelfuß, Zehen, Sprunggelenk, sonstige Gelenke des Fußes];M25.47;Gefährlich
+Nichtallergisches Asthma bronchiale;J45.1;Gefährlich
+Gesundheitsüberwachung und Betreuung eines anderen gesunden Säuglings und Kindes;Z76.2;Gefährlich
+Neugeborenenikterus durch sonstige und nicht näher bezeichnete Leberzellschädigung;P59.2;Gefährlich
+Meningokokkenmeningitis;A39.0;Gefährlich
+Neugeborenes: Geburtsgewicht 1250 bis unter 1500 Gramm;P07.11;Gefährlich
+Holoprosenzephalie-Syndrom;Q04.2;Gefährlich
+Fraktur sonstiger Teile des Unterarmes;S52.8;Gefährlich
+Krankheiten der Haut und der Unterhaut in der Familienanamnese;Z84.0;Gefährlich
+Gelenkschmerz: Unterarm [Radius, Ulna, Handgelenk];M25.53;Gefährlich
+Migräne ohne Aura [Gewöhnliche Migräne];G43.0;Gefährlich
+Herzinsuffizienz beim Neugeborenen;P29.0;Gefährlich
+Hautabszess, Furunkel und Karbunkel im Gesicht;L02.0;Gefährlich
+Lokalisierte Schwellung, Raumforderung und Knoten der Haut und der Unterhaut an den unteren Extremitäten;R22.4;Gefährlich
+Hörverlust, nicht näher bezeichnet;H91.9;Gefährlich
+Fraktur des Tibiaschaftes: Sonstige;S82.28;Gefährlich
+Isolierte Rechtschreibstörung;F81.1;Gefährlich
+Hämatom der Milz;S36.01;Gefährlich
+Gelenkerguss: Unterschenkel [Fibula, Tibia, Kniegelenk];M25.46;Gefährlich
+Hämoglobinurie;R82.3;Gefährlich
+Mitralklappeninsuffizienz;I34.0;Gefährlich
+Nichtorganische Schlafstörung, nicht näher bezeichnet;F51.9;Gefährlich
+Juvenile Osteochondrose des Femurkopfes [Perthes-Legg-Calvé-Krankheit];M91.1;Gefährlich
+Ileus, nicht näher bezeichnet;K56.7;Gefährlich
+Haut-Erysipeloid;A26.0;Gefährlich
+Neugeborenes: Geburtsgewicht 1000 bis unter 1250 Gramm;P07.10;Gefährlich
+Kandidose an sonstigen Lokalisationen;B37.88;Gefährlich
+Hereditärer Mangel an sonstigen Gerinnungsfaktoren;D68.28;Gefährlich
+Monoparese und Monoplegie einer oberen Extremität;G83.2;Gefährlich
+Fraktur eines sonstigen Mittelhandknochens: Kopf;S62.34;Gefährlich
+Nichtrheumatische Trikuspidalklappeninsuffizienz;I36.1;Gefährlich
+Fraktur des Außenknöchels;S82.6;Gefährlich
+Grand-mal-Anfälle, nicht näher bezeichnet (mit oder ohne Petit mal);G40.6;Gefährlich
+Leichte oder mäßige Asphyxie unter der Geburt;P21.1;Gefährlich
+Multiple Frakturen des Unterschenkels;S82.7;Gefährlich
+Geburtsverletzung sonstiger Röhrenknochen;P13.3;Gefährlich
+Hydronephrose bei Ureterstriktur, anderenorts nicht klassifiziert;N13.1;Gefährlich
+Neuromyopathische Skoliose: Thorakolumbalbereich;M41.45;Gefährlich
+Multiple offene Wunden des Handgelenkes und der Hand;S61.7;Gefährlich
+Geburtsverletzungen an sonstigen Teilen des Skeletts;P13.8;Gefährlich
+Grand-mal-Status;G41.0;Gefährlich
+Konstitutioneller Hochwuchs;E34.4;Gefährlich
+Kardiogener Schock;R57.0;Gefährlich
+Kontakt mit und Exposition gegenüber sonstigen übertragbaren Krankheiten;Z20.8;Gefährlich
+Fraktur eines Brustwirbels: T9 und T10;S22.05;Gefährlich
+Nicht näher bezeichnete offene Wunde sonstiger Teile des Handgelenkes und der Hand;S61.80;Gefährlich
+Lagophthalmus;H02.2;Gefährlich
+Intermittierender Strabismus concomitans;H50.3;Gefährlich
+Myopie;H52.1;Gefährlich
+Interstitielles Emphysem;J98.2;Gefährlich
+Hereditärer Faktor-X-Mangel;D68.24;Gefährlich
+Nicht primär insulinabhängiger Diabetes mellitus [Typ-2-Diabetes]: Ohne Komplikationen: Als entgleist bezeichnet;E11.91;Gefährlich
+Narbenhernie ohne Einklemmung und ohne Gangrän;K43.2;Gefährlich
+Hämatometra;N85.7;Gefährlich
+Idiopathische thrombozytopenische Purpura;D69.3;Gefährlich
+Hyperurikämie ohne Zeichen von entzündlicher Arthritis oder tophischer Gicht;E79.0;Gefährlich
+Nasenseptumdeviation;J34.2;Gefährlich
+Fremdkörper in den Atemwegen, Teil nicht näher bezeichnet;T17.9;Gefährlich
+Idiopathischer Hypoparathyreoidismus;E20.0;Gefährlich
+Mastozytose (angeboren);Q82.2;Gefährlich
+Neugeborenenikterus durch Muttermilch-Inhibitor;P59.3;Gefährlich
+Fraktur der Mittelfußknochen;S92.3;Gefährlich
+Abnorme Befunde bei der bildgebenden Diagnostik der Leber und der Gallenwege;R93.2;Gefährlich
+Abnorme Ergebnisse von Funktionsprüfungen sonstiger Organe und Organsysteme;R94.8;Gefährlich
+Andere Entwicklungsstörungen;F88;Gefährlich
+Augenschmerzen;H57.1;Gefährlich
+Duplikatur des Ureters;Q62.5;Gefährlich
+Ausbleiben der erwarteten physiologischen Entwicklung, nicht näher bezeichnet;R62.9;Gefährlich
+Erhöhte Urinwerte für Drogen, Arzneimittel und biologisch aktive Substanzen;R82.5;Gefährlich
+Abnorme Befunde bei der bildgebenden Diagnostik der Extremitäten;R93.6;Gefährlich
+Fragiles X-Chromosom;Q99.2;Gefährlich
+Abnorme Kopfbewegungen;R25.0;Gefährlich
+Dissoziative Krampfanfälle;F44.5;Gefährlich
+Bakterielle Infektion, nicht näher bezeichnet;A49.9;Gefährlich
+Ekstrophie der Harnblase;Q64.1;Gefährlich
+Bakterielle Meningitis, nicht näher bezeichnet;G00.9;Gefährlich
+Ahornsirup- (Harn-) Krankheit;E71.0;Gefährlich
+Abnorme Befunde in Untersuchungsmaterialien aus anderen Körperorganen, -systemen und -geweben: Abnorme mikrobiologische Befunde;R89.5;Gefährlich
+Ertrinken und nichttödliches Untertauchen;T75.1;Gefährlich
+Akute Otitis externa, nichtinfektiös;H60.5;Gefährlich
+Andere Intelligenzminderung: Ohne Angabe einer Verhaltensstörung;F78.9;Gefährlich
+Angeborene Pneumonie durch sonstige Bakterien;P23.6;Gefährlich
+Diabetes mellitus, Typ 1: Mit sonstigen näher bezeichneten Komplikationen: Als entgleist bezeichnet;E10.61;Gefährlich
+Benigner paroxysmaler Schwindel;H81.1;Gefährlich
+Akzessorische(r) Finger;Q69.0;Gefährlich
+Angeborene Pulmonalklappeninsuffizienz;Q22.2;Gefährlich
+Distale Fraktur der Ulna und des Radius, kombiniert;S52.6;Gefährlich
+Angeborene Pulmonalklappenstenose;Q22.1;Gefährlich
+Abnorme Ergebnisse von Lungenfunktionsprüfungen;R94.2;Gefährlich
+Blepharitis;H01.0;Gefährlich
+Embryonale Zyste der Tuba uterina;Q50.4;Gefährlich
+Blutung aus dem Rachen;R04.1;Gefährlich
+Agoraphobie: Mit Panikstörung;F40.01;Gefährlich
+Blutung aus sonstigen Lokalisationen in den Atemwegen;R04.8;Gefährlich
+Angeborene Mitralklappeninsuffizienz;Q23.3;Gefährlich
+Blutung und Hämatom als Komplikation eines Eingriffes, anderenorts nicht klassifiziert;T81.0;Gefährlich
+Akne, nicht näher bezeichnet;L70.9;Gefährlich
+Bösartige Neubildung der Verdauungsorgane in der Familienanamnese;Z80.0;Gefährlich
+Erysipel [Wundrose];A46;Gefährlich
+Bronchiektasen;J47;Gefährlich
+Floride Rachitis;E55.0;Gefährlich
+Bronchopneumonie, nicht näher bezeichnet;J18.0;Gefährlich
+Angeborene Fehlbildung des Gehirns, nicht näher bezeichnet;Q04.9;Gefährlich
+Akute Sinusitis ethmoidalis;J01.2;Gefährlich
+Akutes Nierenversagen, nicht näher bezeichnet: Stadium 3;N17.93;Gefährlich
+Abnormer immunologischer Serumbefund, nicht näher bezeichnet;R76.9;Gefährlich
+Abknickung und Striktur des Ureters ohne Hydronephrose;N13.5;Gefährlich
+Chronische muköse Otitis media;H65.3;Gefährlich
+Anterograde Amnesie;R41.1;Gefährlich
+Angeborene(s) Fehlen, Atresie und Stenose des Anus mit Fistel;Q42.2;Gefährlich
+Disseminierte intravasale Gerinnung beim Feten und Neugeborenen;P60;Gefährlich
+Abnorme Befunde in Untersuchungsmaterialien aus anderen Körperorganen, -systemen und -geweben: Sonstige abnorme Befunde;R89.8;Gefährlich
+Distale Fraktur der Tibia: Sonstige;S82.38;Gefährlich
+Chronische Nierenkrankheit, Stadium 4;N18.4;Gefährlich
+Alimentärer Zinkmangel;E60;Gefährlich
+Angeborene(s) Fehlen, Atresie und Stenose des Ileums;Q41.2;Gefährlich
+Arzneimittelinduziertes Cushing-Syndrom;E24.2;Gefährlich
+Chronische Sinusitis sphenoidalis;J32.3;Gefährlich
+Astigmatismus;H52.2;Gefährlich
+Colitis ulcerosa, nicht näher bezeichnet;K51.9;Gefährlich
+Embolie und Thrombose der Arterien der unteren Extremitäten;I74.3;Gefährlich
+Akute Tracheitis;J04.1;Gefährlich
+Emotionale Störung des Kindesalters, nicht näher bezeichnet;F93.9;Gefährlich
+Darmfistel;K63.2;Gefährlich
+Angeborene Laryngomalazie;Q31.5;Gefährlich
+Akute und subakute Iridozyklitis;H20.0;Gefährlich
+Enterocolitis necroticans beim Feten und Neugeborenen;P77;Gefährlich
+Angeborener nichtneoplastischer Nävus;Q82.5;Gefährlich
+Enzephalitis durch Enteroviren;A85.0;Gefährlich
+Dekubitus 1. Grades: Ferse;L89.07;Gefährlich
+Epiphyseolysis capitis femoris (nichttraumatisch);M93.0;Gefährlich
+Dekubitus 1. Grades: Kopf;L89.00;Gefährlich
+Akute Laryngopharyngitis;J06.0;Gefährlich
+Dekubitus 1. Grades: Sitzbein;L89.05;Gefährlich
+Atresie der Aorta;Q25.2;Gefährlich
+Dekubitus 2. Grades: Kopf;L89.10;Gefährlich
+Erworbene Deformität des Brustkorbes und der Rippen;M95.4;Gefährlich
+Dekubitus 2. Grades: Kreuzbein;L89.14;Gefährlich
+Exomphalus;Q79.2;Gefährlich
+Demoralisierung und Apathie;R45.3;Gefährlich
+Atypische Anorexia nervosa;F50.1;Gefährlich
+Akutes lebensbedrohliches Ereignis im Säuglingsalter;R06.80;Gefährlich
+Akute Appendizitis mit generalisierter Peritonitis;K35.2;Gefährlich
+Anorexia nervosa;F50.0;Gefährlich
+Folgen einer Subarachnoidalblutung;I69.0;Gefährlich
+Dermatitis durch aufgenommene Nahrungsmittel;L27.2;Gefährlich
+Akute Laryngotracheitis;J04.2;Gefährlich
+Anorexie;R63.0;Gefährlich
+Akutes Nierenversagen, nicht näher bezeichnet;N17.9;Gefährlich
+Akute Entzündung der Orbita;H05.0;Gefährlich
+Sonstige näher bezeichnete Krankheiten des Gehirns;G93.88;Gefährlich
+Thrombose, Phlebitis und Thrombophlebitis der V. femoralis;I80.1;Gefährlich
+Sonstige näher bezeichnete Krankheiten des Weichteilgewebes: Sonstige [Hals, Kopf, Rippen, Rumpf, Schädel, Wirbelsäule];M79.88;Gefährlich
+Toxische Wirkung: Sonstige näher bezeichnete anorganische Substanzen;T57.8;Gefährlich
+Verletzung der langen Beugemuskeln und -sehnen des Daumens in Höhe des Handgelenkes und der Hand;S66.0;Gefährlich
+Transitorische erworbene isolierte aplastische Anämie;D60.1;Gefährlich
+Sonstige oberflächliche Verletzungen der hinteren Thoraxwand: Insektenbiss oder -stich (ungiftig);S20.43;Gefährlich
+Transitorische Störung des Kohlenhydratstoffwechsels beim Feten und Neugeborenen, nicht näher bezeichnet;P70.9;Gefährlich
+Vorzeitige Pubertät [Pubertas praecox];E30.1;Gefährlich
+Sonstige näher bezeichnete Symptome, die das Kreislaufsystem und das Atmungssystem betreffen;R09.8;Gefährlich
+Sonstige Zytomegalie;B25.88;Gefährlich
+Sonstiger Hypoparathyreoidismus;E20.8;Gefährlich
+Verschluss des Gallenganges;K83.1;Gefährlich
+Sonstige oberflächliche Verletzungen der vorderen Thoraxwand: Art der Verletzung nicht näher bezeichnet;S20.30;Gefährlich
+Störungen des Kalziumstoffwechsels, nicht näher bezeichnet;E83.59;Gefährlich
+Transitorischer Ileus beim Neugeborenen;P76.1;Gefährlich
+Stottern [Stammeln];F98.5;Gefährlich
+Traumatische Ruptur von Bändern in Höhe des oberen Sprunggelenkes und des Fußes;S93.2;Gefährlich
+Zytostatische Chemotherapie wegen bösartiger Neubildung in der Eigenanamnese;Z92.6;Gefährlich
+Sonstiger näher bezeichneter Diabetes mellitus: Mit sonstigen näher bezeichneten Komplikationen: Nicht als entgleist bezeichnet;E13.60;Gefährlich
+Sonstige sekundäre Hypertonie: Ohne Angabe einer hypertensiven Krise;I15.80;Gefährlich
+Sonstige Störungen der Hypophyse;E23.6;Gefährlich
+Zustand nach hämatopoetischer Stammzelltransplantation ohne gegenwärtige Immunsuppression;Z94.80;Gefährlich
+Traumatischer Schock;T79.4;Gefährlich
+Vergiftung: Sonstige primär systemisch und auf das Blut wirkende Mittel, anderenorts nicht klassifiziert;T45.8;Gefährlich
+Sonstige Störungen des binokularen Sehens;H53.3;Gefährlich
+Verletzung von Muskeln und Sehnen in Halshöhe;S16;Gefährlich
+Trigeminusneuralgie;G50.0;Gefährlich
+Störung des Mineralstoffwechsels, nicht näher bezeichnet;E83.9;Gefährlich
+Trikuspidalklappeninsuffizienz;I07.1;Gefährlich
+Sonstige prophylaktische Chemotherapie;Z29.28;Gefährlich
+Sonstige näher bezeichnete Krankheiten der Wirbelsäule und des Rückens: Lumbosakralbereich;M53.87;Gefährlich
+Störungen des Kupferstoffwechsels;E83.0;Gefährlich
+Trisomie 18, meiotische Non-disjunction;Q91.0;Gefährlich
+Sonstige oberflächliche Verletzungen der hinteren Thoraxwand: Schürfwunde;S20.41;Gefährlich
+Sonstiger Pneumothorax;J93.8;Gefährlich
+Sonstige näher bezeichnete Krankheiten des Weichteilgewebes: Nicht näher bezeichnete Lokalisation;M79.89;Gefährlich
+Sonstige näher bezeichnete Muskelkrankheiten: Unterschenkel [Fibula, Tibia, Kniegelenk];M62.86;Gefährlich
+Sonstige näher bezeichnete Krankheiten des Mittelohres und des Warzenfortsatzes;H74.8;Gefährlich
+Sonstiger Status epilepticus;G41.8;Gefährlich
+Vorhofextrasystolie;I49.1;Gefährlich
+Tuberkulose der Haut und des Unterhautgewebes;A18.4;Gefährlich
+Syndrom polyzystischer Ovarien;E28.2;Gefährlich
+Sonstiger und nicht näher bezeichneter mechanischer Ileus;K56.6;Gefährlich
+Zerebrale Leukomalazie beim Neugeborenen;P91.2;Gefährlich
+Tubulointerstitielle Nephritis, nicht als akut oder chronisch bezeichnet;N12;Gefährlich
+Thrombose, Phlebitis und Thrombophlebitis tiefer Gefäße der oberen Extremitäten;I80.81;Gefährlich
+Sonstige Störungen des Phosphorstoffwechsels und der Phosphatase;E83.38;Gefährlich
+Tinea pedis;B35.3;Gefährlich
+Übergewichtige Neugeborene;P08.0;Gefährlich
+Zystitis, nicht näher bezeichnet;N30.9;Gefährlich
+Sonstiges akutes Nierenversagen: Stadium 1;N17.81;Gefährlich
+Stereotype Bewegungsstörungen;F98.4;Gefährlich
+Überprüfung der Funktionsparameter eines Zwerchfellstimulators;Z45.81;Gefährlich
+Verletzung eines nicht näher bezeichneten Blutgefäßes in Höhe der Schulter und des Oberarmes;S45.9;Gefährlich
+Sonstige Störungen des Sozialverhaltens;F91.8;Gefährlich
+Störung der Blickbewegungen, nicht näher bezeichnet;H51.9;Gefährlich
+Ulcus ventriculi: Akut, mit Blutung;K25.0;Gefährlich
+Störung der Hautpigmentierung, nicht näher bezeichnet;L81.9;Gefährlich
+Ulzeröse (chronische) Pankolitis;K51.0;Gefährlich
+Sonstige nichtentzündliche Krankheiten des Ovars, der Tuba uterina und des Lig. latum uteri;N83.8;Gefährlich
+Sonstige oberflächliche Verletzungen der vorderen Thoraxwand: Schürfwunde;S20.31;Gefährlich
+Störung des Sozialverhaltens, nicht näher bezeichnet;F91.9;Gefährlich
+Sonstiges fehlgebildetes Ohr;Q17.3;Gefährlich
+Sonstige und nicht näher bezeichnete Läsionen der Mundschleimhaut;K13.7;Gefährlich
+Sonstige Störungen des Wasser- und Elektrolythaushaltes, anderenorts nicht klassifiziert;E87.8;Gefährlich
+Verstauchung und Zerrung des Handgelenkes: Teil nicht näher bezeichnet;S63.50;Gefährlich
+Umschriebene Hirnatrophie;G31.0;Gefährlich
+Verstauchung und Zerrung sonstiger und nicht näher bezeichneter Teile des Fußes;S93.6;Gefährlich
+Umschriebene Hirnkontusion;S06.31;Gefährlich
+Störungen des Plasmaprotein-Stoffwechsels, anderenorts nicht klassifiziert;E88.0;Gefährlich
+Sonstiges und nicht näher bezeichnetes Ödem, das für den Feten und das Neugeborene spezifisch ist;P83.3;Gefährlich
+Störungen in der Zahnbildung;K00.4;Gefährlich
+Sonstige oberflächliche Verletzungen des Abdomens, der Lumbosakralgegend und des Beckens: Art der Verletzung nicht näher bezeichnet;S30.80;Gefährlich
+Sonstige näher bezeichnete Krankheiten der Wirbelsäule und des Rückens: Zervikothorakalbereich;M53.83;Gefährlich
+Sonstige Symptome, die das äußere Erscheinungsbild und das Verhalten betreffen;R46.8;Gefährlich
+Streptokokken-Pharyngitis;J02.0;Gefährlich
+Spalte des harten Gaumens;Q35.1;Gefährlich
+Struma beim Neugeborenen, anderenorts nicht klassifiziert;P72.0;Gefährlich
+Spalte des harten Gaumens mit beidseitiger Lippenspalte;Q37.0;Gefährlich
+Vorhandensein von Implantaten im Gehörorgan;Z96.2;Gefährlich
+Sonstige näher bezeichnete Krankheiten des Pankreas;K86.8;Gefährlich
+Vorhandensein von urogenitalen Implantaten;Z96.0;Gefährlich
+Spalte des harten und des weichen Gaumens mit beidseitiger Lippenspalte;Q37.4;Gefährlich
+Syndrom der inadäquaten Sekretion von Adiuretin;E22.2;Gefährlich
+Sonstige oberflächliche Verletzungen des Abdomens, der Lumbosakralgegend und des Beckens: Prellung;S30.85;Gefährlich
+Sonstige oberflächliche Verletzungen der Knöchelregion und des Fußes: Sonstige;S90.88;Gefährlich
+Spasmus (hemi)facialis;G51.3;Gefährlich
+Synovitis und Tenosynovitis, nicht näher bezeichnet: Oberarm [Humerus, Ellenbogengelenk];M65.92;Gefährlich
+Unterernährung beim Neugeborenen;P92.3;Gefährlich
+Sonstige sekundäre Thrombozytopenien, als transfusionsrefraktär bezeichnet;D69.57;Gefährlich
+Unterkieferfraktur: Processus condylaris;S02.61;Gefährlich
+Thrombose, Phlebitis und Thrombophlebitis der Beckenvenen;I80.20;Gefährlich
+Unterkieferfraktur: Teil nicht näher bezeichnet;S02.60;Gefährlich
+Zervikozephales Syndrom;M53.0;Gefährlich
+Sonstige näher bezeichnete Trisomien und partielle Trisomien der Autosomen;Q92.8;Gefährlich
+Thrombozytopenie, nicht näher bezeichnet: Als transfusionsrefraktär bezeichnet;D69.60;Gefährlich
+Sonstige Ticstörungen;F95.8;Gefährlich
+Tinea barbae und Tinea capitis;B35.0;Gefährlich
+Sonstige oberflächliche Verletzungen des Abdomens, der Lumbosakralgegend und des Beckens: Sonstige;S30.88;Gefährlich
+Sonstige zystische Nierenkrankheiten;Q61.8;Gefährlich
+Untersuchung und Test zur Feststellung einer Schwangerschaft;Z32;Gefährlich
+Toxische Wirkung von Seifen und Detergenzien;T55;Gefährlich
+Spastische Tetraparese und Tetraplegie: Chronische inkomplette Querschnittlähmung;G82.43;Gefährlich
+Vergiftung: Sonstige primär auf den Magen-Darmtrakt wirkende Mittel;T47.8;Gefährlich
+Sonstige näher bezeichnete nichtentzündliche Krankheiten der Vulva und des Perineums;N90.88;Gefährlich
+Vergiftung: Sonstige psychotrope Substanzen, anderenorts nicht klassifiziert;T43.8;Gefährlich
+Urticaria factitia;L50.3;Gefährlich
+Verletzung der Konjunktiva und Abrasio corneae ohne Angabe eines Fremdkörpers;S05.0;Gefährlich
+Urtikaria durch Kälte oder Wärme;L50.2;Gefährlich
+Verletzung der Nn. digitales sonstiger Finger;S64.4;Gefährlich
+Sonstige transitorische Störungen der Schilddrüsenfunktion beim Neugeborenen, anderenorts nicht klassifiziert;P72.2;Gefährlich
+Verletzung eines nicht näher bezeichneten Muskels oder einer nicht näher bezeichneten Sehne in Höhe des Unterschenkels;S86.9;Gefährlich
+Uvulaspalte;Q35.7;Gefährlich
+Verlust anderer Teile des Verdauungstraktes;Z90.4;Gefährlich
+Sonstige näher bezeichnete orthopädische Nachbehandlung;Z47.8;Gefährlich
+Vernachlässigen oder Imstichlassen;T74.0;Gefährlich
+Sonstige näher bezeichnete Verletzungen des Halses;S19.8;Gefährlich
+Verschluss und Stenose der A. carotis;I65.2;Gefährlich
+Sonstige näher bezeichnete Verletzungen des Kopfes;S09.8;Gefährlich
+Störung des Kohlenhydratstoffwechsels, nicht näher bezeichnet;E74.9;Gefährlich
+Varizen sonstiger näher bezeichneter Lokalisationen;I86.8;Gefährlich
+Versorgen mit und Anpassen eines nicht näher bezeichneten medizinischen Gerätes oder Hilfsmittels;Z46.9;Gefährlich
+Varusdeformität, anderenorts nicht klassifiziert: Knöchel und Fuß [Fußwurzel, Mittelfuß, Zehen, Sprunggelenk, sonstige Gelenke des Fußes];M21.17;Gefährlich
+Sonstige und nicht näher bezeichnete Infektionskrankheiten;B99;Gefährlich
+Sonstige oberflächliche Verletzungen des Handgelenkes und der Hand: Sonstige;S60.88;Gefährlich
+Störung des Sozialverhaltens mit oppositionellem, aufsässigem Verhalten;F91.3;Gefährlich
+Ventrikuläre Arrhythmie durch Re-entry;I47.0;Gefährlich
+Störung mit sozialer Ängstlichkeit des Kindesalters;F93.2;Gefährlich
+Sonstige oberflächliche Verletzungen des Unterarmes: Blasenbildung (nichtthermisch);S50.82;Gefährlich
+Sonstige prophylaktische Operation;Z40.8;Gefährlich
+Ventrikuläre Tachykardie;I47.2;Gefährlich
+Sonstige und nicht näher bezeichnete Nebennierenrindeninsuffizienz;E27.4;Gefährlich
+Sonstige näher bezeichnete Verletzungen des Unterarmes;S59.8;Gefährlich
+Verstauchung und Zerrung des Ellenbogens: Teil nicht näher bezeichnet;S53.40;Gefährlich
+Veränderungen der Globuline;R77.1;Gefährlich
+Verstauchung und Zerrung des oberen Sprunggelenkes: Sonstige Teile;S93.48;Gefährlich
+Veränderungen der Stuhlgewohnheiten;R19.4;Gefährlich
+Verstauchung und Zerrung eines oder mehrerer Finger: Sonstige Teile;S63.68;Gefährlich
+Verbrennung 1. Grades der Knöchelregion und des Fußes;T25.1;Gefährlich
+Sonstige und nicht näher bezeichnete oberflächliche Verletzungen der Mamma [Brustdrüse]: Insektenbiss oder -stich (ungiftig);S20.13;Gefährlich
+Verbrennung 1. Grades der Schulter und des Armes, ausgenommen Handgelenk und Hand: (Ober-) Arm und Schulterregion;T22.12;Gefährlich
+Sonstige reaktive Arthritiden: Knöchel und Fuß [Fußwurzel, Mittelfuß, Zehen, Sprunggelenk, sonstige Gelenke des Fußes];M02.87;Gefährlich
+Spinale Muskelatrophie, nicht näher bezeichnet;G12.9;Gefährlich
+Viruspneumonie, nicht näher bezeichnet;J12.9;Gefährlich
+Verbrennung 1. Grades des Rumpfes: Bauchdecke;T21.13;Gefährlich
+Vitamin-B-Mangel, nicht näher bezeichnet;E53.9;Gefährlich
+Sonstige und nicht näher bezeichnete Atelektase beim Neugeborenen;P28.1;Gefährlich
+Vitamin-E-Mangel;E56.0;Gefährlich
+Verbrennung Grad 2a der Knöchelregion und des Fußes;T25.20;Gefährlich
+Vollständige Trisomie, Mosaik (mitotische Non-disjunction);Q92.1;Gefährlich
+Sonstige näher bezeichnete Virusinfektionen, die durch Haut- und Schleimhautläsionen gekennzeichnet sind;B08.8;Gefährlich
+Strabismus concomitans convergens;H50.0;Gefährlich
+Spontaner Spannungspneumothorax;J93.0;Gefährlich
+Vorhandensein einer künstlichen Herzklappe;Z95.2;Gefährlich
+Staphylococcal scalded skin syndrome [SSS-Syndrom]: Befall von weniger als 30 % der Körperoberfläche;L00.0;Gefährlich
+Sonstige oberflächliche Verletzungen der Knöchelregion und des Fußes: Blasenbildung (nichtthermisch);S90.82;Gefährlich
+Sonstige näher bezeichnete periphere Gefäßkrankheiten;I73.8;Gefährlich
+Vorhandensein eines Kolostomas;Z93.3;Gefährlich
+Status epilepticus mit komplexfokalen Anfällen;G41.2;Gefährlich
+Sonstige Rückenschmerzen: Thorakolumbalbereich;M54.85;Gefährlich
+Status epilepticus, nicht näher bezeichnet;G41.9;Gefährlich
+Subarachnoidalblutung (nichttraumatisch) beim Feten und Neugeborenen;P52.5;Gefährlich
+Status migraenosus;G43.2;Gefährlich
+Vorhandensein von kardialem oder vaskulärem Implantat oder Transplantat, nicht näher bezeichnet;Z95.9;Gefährlich
+Verbrennung Grad 2a des Rumpfes: Sonstige Teile;T21.29;Gefährlich
+Subjektive Sehstörungen;H53.1;Gefährlich
+Sonstige näher bezeichnete Krankheiten des Weichteilgewebes: Hand [Finger, Handwurzel, Mittelhand, Gelenke zwischen diesen Knochen];M79.84;Gefährlich
+Sonstige unerwünschte Nebenwirkungen, anderenorts nicht klassifiziert;T78.8;Gefährlich
+Stein in der Harnblase;N21.0;Gefährlich
+Vorhofflimmern, paroxysmal;I48.0;Gefährlich
+Sonstige näher bezeichnete Lähmungssyndrome;G83.88;Gefährlich
+Sonstige unspezifische Lymphadenitis;I88.8;Gefährlich
+Verbrennung nicht näher bezeichneten Grades des Rumpfes: Rücken [jeder Teil];T21.04;Gefährlich
+Wangenabszess;K12.23;Gefährlich
+Sonstige Peritonitis beim Neugeborenen;P78.1;Gefährlich
+Wiskott-Aldrich-Syndrom;D82.0;Gefährlich
+Vergiftung: Anästhetikum, nicht näher bezeichnet;T41.4;Gefährlich
+Sonstige näher bezeichnete Störungen des Kohlenhydratstoffwechsels;E74.8;Gefährlich
+Vergiftung: Antiallergika und Antiemetika;T45.0;Gefährlich
+Sonstige Verletzungen des Auges und der Orbita;S05.8;Gefährlich
+Vergiftung: Antiepileptika, Sedativa und Hypnotika, nicht näher bezeichnet;T42.7;Gefährlich
+Tendinitis calcarea: Unterschenkel [Fibula, Tibia, Kniegelenk];M65.26;Gefährlich
+Vergiftung: Antikoagulanzien;T45.5;Gefährlich
+Tetraparese und Tetraplegie, nicht näher bezeichnet: Nicht näher bezeichnet;G82.59;Gefährlich
+Vergiftung: Antipsychotika und Neuroleptika auf Phenothiazin-Basis;T43.3;Gefährlich
+Thanatophore Dysplasie;Q77.1;Gefährlich
+Vergiftung: Auf den Elektrolyt-, Kalorien- und Wasserhaushalt wirkende Mittel;T50.3;Gefährlich
+Zerquetschung sonstiger und nicht näher bezeichneter Teile des Unterschenkels;S87.8;Gefährlich
+Vergiftung: Barbiturate;T42.3;Gefährlich
+Sonstige zervikale Bandscheibenschäden;M50.8;Gefährlich
+Vergiftung: Beta-Rezeptorenblocker, anderenorts nicht klassifiziert;T44.7;Gefährlich
+Thrombose, Phlebitis und Thrombophlebitis sonstiger tiefer Gefäße der unteren Extremitäten;I80.28;Gefährlich
+Vergiftung: Cannabis (-Derivate);T40.7;Gefährlich
+Zu starke Menstruation im Pubertätsalter;N92.2;Gefährlich
+Vergiftung: Insulin und orale blutzuckersenkende Arzneimittel [Antidiabetika];T38.3;Gefährlich
+Sonstige zervikale Bandscheibenverlagerung;M50.2;Gefährlich
+Vergiftung: Penicilline;T36.0;Gefährlich
+Sonstige Zysten der Mundregion, anderenorts nicht klassifiziert;K09.8;Gefährlich
+Vergiftung: Schilddrüsenhormone und Ersatzstoffe;T38.1;Gefährlich
+Tinea corporis;B35.4;Gefährlich
+Vergiftung: Sonstige Antazida und Magensekretionshemmer;T47.1;Gefährlich
+Zwilling, Geburt im Krankenhaus;Z38.3;Gefährlich
+Vergiftung: Sonstige Antiepileptika, Sedativa und Hypnotika;T42.6;Gefährlich
+Sonstige Zystitis;N30.8;Gefährlich
+Vergiftung: Sonstige Antihypertensiva, anderenorts nicht klassifiziert;T46.5;Gefährlich
+Zyste des Corpus luteum;N83.1;Gefährlich
+Sonstige primäre Thrombozytopenie: Als transfusionsrefraktär bezeichnet;D69.40;Gefährlich
+Sonstige oberflächliche Verletzungen der Schulter und des Oberarmes: Oberflächlicher Fremdkörper (Splitter);S40.84;Gefährlich
+Vergiftung: Sonstige nichtsteroidale Antiphlogistika [NSAID];T39.3;Gefährlich
+Sonstiger Hirninfarkt;I63.8;Gefährlich
+Vergiftung: Sonstige Opioide;T40.2;Gefährlich
+Subdurale Blutung (nichttraumatisch): Nicht näher bezeichnet;I62.09;Gefährlich
+Prämenstruelle Beschwerden;N94.3;Gefährlich
+Polyp der Nasenhöhle;J33.0;Gefährlich
+Sonstige näher bezeichnete Bandscheibenverlagerung;M51.2;Gefährlich
+Offene Wunde eines oder mehrerer Finger mit Schädigung des Nagels;S61.1;Gefährlich
+Sonstige idiopathische Skoliose: Thorakolumbalbereich;M41.25;Gefährlich
+Oberflächliche Verletzung des Ohres: Sonstige;S00.48;Gefährlich
+Sonstige näher bezeichnete Affektionen des Augenlides;H02.8;Gefährlich
+Oberflächliche Verletzung sonstiger Teile des Halses: Insektenbiss oder -stich (ungiftig);S10.83;Gefährlich
+Selektiver Immunglobulin-A-Mangel [IgA-Mangel];D80.2;Gefährlich
+Sepsis: Sonstige gramnegative Erreger;A41.58;Gefährlich
+Sonstige Hyperphenylalaninämien;E70.1;Gefährlich
+Peritonsillarabszess;J36;Gefährlich
+Sonstige Komplikationen bei Eingriffen, anderenorts nicht klassifiziert;T81.8;Gefährlich
+Sialadenitis;K11.2;Gefährlich
+Schmerzen in den Extremitäten: Schulterregion [Klavikula, Skapula, Akromioklavikular-, Schulter-, Sternoklavikulargelenk];M79.61;Gefährlich
+Sick-Sinus-Syndrom;I49.5;Gefährlich
+Paretischer Gang;R26.1;Gefährlich
+Situs inversus;Q89.3;Gefährlich
+Sonstige näher bezeichnete erworbene Deformitäten der Extremitäten: Mehrere Lokalisationen;M21.80;Gefährlich
+Probleme mit Bezug auf: Hilfsbedürftigkeit wegen eingeschränkter Mobilität;Z74.0;Gefährlich
+Sonstige näher bezeichnete Krankheiten der Harnblase;N32.8;Gefährlich
+Skoliose, nicht näher bezeichnet: Lumbalbereich;M41.96;Gefährlich
+Sonstige Hämoglobinopathien;D58.2;Gefährlich
+Skoliose, nicht näher bezeichnet: Mehrere Lokalisationen der Wirbelsäule;M41.90;Gefährlich
+Ödem, nicht näher bezeichnet;R60.9;Gefährlich
+Offene Wunde sonstiger und nicht näher bezeichneter äußerer Genitalorgane;S31.5;Gefährlich
+Sonstige jodmangelbedingte Schilddrüsenkrankheiten und verwandte Zustände;E01.8;Gefährlich
+Skoliose, nicht näher bezeichnet: Thorakalbereich;M41.94;Gefährlich
+Offene Wunde der Hüfte;S71.0;Gefährlich
+Pruritus vulvae;L29.2;Gefährlich
+Osteogenesis imperfecta;Q78.0;Gefährlich
+Somatisierungsstörung;F45.0;Gefährlich
+Prellung des Augapfels und des Orbitagewebes;S05.1;Gefährlich
+Notwendigkeit der Impfung gegen Diphtherie-Pertussis-Tetanus mit Poliomyelitis [DPT+Polio];Z27.3;Gefährlich
+Sonstige näher bezeichnete angeborene Fehlbildungen der Haut;Q82.8;Gefährlich
+Oberflächliche Verletzung der behaarten Kopfhaut: Art der Verletzung nicht näher bezeichnet;S00.00;Gefährlich
+Patau-Syndrom, nicht näher bezeichnet;Q91.7;Gefährlich
+Offene Wunde: Mund, Teil nicht näher bezeichnet;S01.50;Gefährlich
+Sonstige näher bezeichnete Deformitäten der Wirbelsäule und des Rückens: Zervikalbereich;M43.82;Gefährlich
+Psychische und Verhaltensstörungen durch andere Stimulanzien, einschließlich Koffein: Schädlicher Gebrauch;F15.1;Gefährlich
+Sonstige näher bezeichnete Gelenkkrankheiten: Sonstige [Hals, Kopf, Rippen, Rumpf, Schädel, Wirbelsäule];M25.88;Gefährlich
+Psychische und Verhaltensstörungen durch Cannabinoide: Akute Intoxikation [akuter Rausch];F12.0;Gefährlich
+Sepsis beim Neugeborenen durch Staphylococcus aureus;P36.2;Gefährlich
+Sonstige Adipositas: Body-Mass-Index [BMI] nicht näher bezeichnet;E66.89;Gefährlich
+Sepsis durch Staphylococcus aureus;A41.0;Gefährlich
+Petit-mal-Status;G41.1;Gefährlich
+Sonstige habituelle atlanto-axiale Subluxation;M43.4;Gefährlich
+Sonstige Affektionen der Tränendrüse;H04.1;Gefährlich
+Schlafapnoe, nicht näher bezeichnet;G47.39;Gefährlich
+Offene Wunde: Oberkieferregion;S01.42;Gefährlich
+Polyp des Magens und des Duodenums;K31.7;Gefährlich
+Psychische und Verhaltensstörungen durch multiplen Substanzgebrauch und Konsum anderer psychotroper Substanzen: Schädlicher Gebrauch;F19.1;Gefährlich
+Schlaffe Paraparese und Paraplegie: Chronische komplette Querschnittlähmung;G82.02;Gefährlich
+Psychische und Verhaltensstörungen durch Opioide: Entzugssyndrom mit Delir;F11.4;Gefährlich
+Sonstige infektiöse Otitis externa;H60.3;Gefährlich
+Oberflächliche Verletzung sonstiger Teile des Halses: Sonstige;S10.88;Gefährlich
+Sonstige kardiovaskuläre Krankheiten mit Ursprung in der Perinatalperiode;P29.8;Gefährlich
+Pulmonalklappeninsuffizienz;I37.1;Gefährlich
+Sonstige Komplikationen infolge Anästhesie;T88.5;Gefährlich
+Sonstige akute Myokarditis;I40.8;Gefährlich
+Schmerzen im Bereich der Brustwirbelsäule;M54.6;Gefährlich
+Phlegmone an der unteren Extremität;L03.11;Gefährlich
+Osteochondrosis dissecans;M93.2;Gefährlich
+Oberflächliche Verletzung der behaarten Kopfhaut: Insektenbiss oder -stich (ungiftig);S00.03;Gefährlich
+Offene Wunde der Nase: Teil nicht näher bezeichnet;S01.20;Gefährlich
+Purpura anaphylactoides;D69.0;Gefährlich
+Oberflächliche Verletzung der Knöchelregion und des Fußes, nicht näher bezeichnet;S90.9;Gefährlich
+Offene Wunde: Sonstige und mehrere Teile des Ohres und der Gehörstrukturen;S01.39;Gefährlich
+Sonstige näher bezeichnete abnorme Uterus- oder Vaginalblutung;N93.8;Gefährlich
+Sonstige Alopecia areata;L63.8;Gefährlich
+Pankreatogene Steatorrhoe;K90.3;Gefährlich
+Pyoderma gangraenosum;L88;Gefährlich
+Offene Wunde des Kopfes, Teil nicht näher bezeichnet;S01.9;Gefährlich
+Notwendigkeit der Impfung gegen sonstige näher bezeichnete einzelne Infektionskrankheiten;Z26.8;Gefährlich
+Notwendigkeit der Impfung gegen Grippe [Influenza];Z25.1;Gefährlich
+Pyonephrose;N13.6;Gefährlich
+Offene Wunde des Ohres: Teil nicht näher bezeichnet;S01.30;Gefährlich
+Qualitative Thrombozytendefekte;D69.1;Gefährlich
+Offene Wunde des Skrotums und der Testes;S31.3;Gefährlich
+Radikuläre Zyste;K04.8;Gefährlich
+Prellung und Hämatom der Leber;S36.11;Gefährlich
+Radikulopathie: Thorakalbereich;M54.14;Gefährlich
+Prellung und Hämatom der Niere;S37.01;Gefährlich
+Phobische Störung des Kindesalters;F93.1;Gefährlich
+Sonstige näher bezeichnete hämorrhagische Diathesen;D69.8;Gefährlich
+Offene Wunde: Wangenschleimhaut;S01.52;Gefährlich
+Perichondritis des äußeren Ohres;H61.0;Gefährlich
+Sonstige angeborene Fehlbildungen der Cauda equina;Q06.3;Gefährlich
+Sonstige näher bezeichnete Krankheiten der Atemwege;J98.8;Gefährlich
+Pityriasis rosea;L42;Gefährlich
+Offene Wunde einer oder mehrerer Zehen mit Schädigung des Nagels;S91.2;Gefährlich
+Pityriasis versicolor;B36.0;Gefährlich
+Sonstige Geburtsverletzungen der behaarten Kopfhaut;P12.8;Gefährlich
+Sonstige angeborene Fehlbildungen der Rippen;Q76.6;Gefährlich
+Polyp des Kolons;K63.5;Gefährlich
+Sonstige angeborene Fehlbildungen der Trachea;Q32.1;Gefährlich
+Sonstige Halluzinationen;R44.2;Gefährlich
+Sonstige angeborene Fehlbildungen der Trikuspidalklappe;Q22.8;Gefährlich
+Sonstige hämolytische Krankheiten beim Feten und Neugeborenen;P55.8;Gefährlich
+Reine Hypercholesterinämie;E78.0;Gefährlich
+Sonstige hyperkinetische Störungen;F90.8;Gefährlich
+Oberflächliche Verletzung der oberen Extremität, Höhe nicht näher bezeichnet: Insektenbiss oder -stich (ungiftig);T11.03;Gefährlich
+Sonstige Hyperthyreose;E05.8;Gefährlich
+Oberflächliche Verletzung sonstiger Teile des Kopfes: Sonstige;S00.88;Gefährlich
+Schlaffe Hemiparese und Hemiplegie;G81.0;Gefährlich
+Sonstige angeborene Fehlbildungen des Tränenapparates;Q10.6;Gefährlich
+Oberflächliche Verletzung des Abdomens, der Lumbosakralgegend und des Beckens, Teil nicht näher bezeichnet: Prellung;S30.95;Gefährlich
+Oberflächliche Verletzung sonstiger und nicht näher bezeichneter Teile des Thorax: Prellung;S20.85;Gefährlich
+Sonstige Ichthyosis congenita;Q80.8;Gefährlich
+Retinierte Zähne;K01.0;Gefährlich
+Polyzystische Niere, nicht näher bezeichnet;Q61.3;Gefährlich
+Sonstige angeborene Viruskrankheiten;P35.8;Gefährlich
+Orthostatische Proteinurie, nicht näher bezeichnet;N39.2;Gefährlich
+Oberflächliche Verletzung sonstiger und nicht näher bezeichneter Teile des Thorax: Schürfwunde;S20.81;Gefährlich
+Sonstige juvenile Arthritis: Mehrere Lokalisationen;M08.80;Gefährlich
+Retinopathien des Augenhintergrundes und Veränderungen der Netzhautgefäße;H35.0;Gefährlich
+Sonstige kombinierte Störung des Sozialverhaltens und der Emotionen;F92.8;Gefährlich
+Sonstige Aspergillose der Lunge;B44.1;Gefährlich
+Sonstige Komplikationen durch interne Prothesen, Implantate oder Transplantate, anderenorts nicht klassifiziert;T85.88;Gefährlich
+Pneumonie durch andere aerobe gramnegative Bakterien;J15.6;Gefährlich
+Oberflächliche Verletzung des Halses, Teil nicht näher bezeichnet: Prellung;S10.95;Gefährlich
+Sonstige bakterielle Meningitis;G00.8;Gefährlich
+Ösophagusverschluss;K22.2;Gefährlich
+Sonstige bakterielle Pneumonie;J15.8;Gefährlich
+Präkordiale Schmerzen;R07.2;Gefährlich
+Sonstige bakterielle Sepsis beim Neugeborenen;P36.8;Gefährlich
+Sonstige Krankheiten des Rachenraumes;J39.2;Gefährlich
+Rett-Syndrom;F84.2;Gefährlich
+Sonstige Kreislaufkomplikationen nach medizinischen Maßnahmen, anderenorts nicht klassifiziert;I97.8;Gefährlich
+Sonstige biomechanische Funktionsstörungen: Thorakalbereich [thorakolumbal];M99.82;Gefährlich
+Sonstige Läsionen des N. medianus;G56.1;Gefährlich
+Rezidivierende depressive Störung, nicht näher bezeichnet;F33.9;Gefährlich
+Offene Wunde der oberen Extremität, Höhe nicht näher bezeichnet;T11.1;Gefährlich
+Rezidivierende orale Aphthen;K12.0;Gefährlich
+Offene Wunde der Vagina und der Vulva;S31.4;Gefährlich
+Sonstige chronische Sinusitis;J32.8;Gefährlich
+Schnellender Finger;M65.3;Gefährlich
+Pneumonie durch Chlamydien;J16.0;Gefährlich
+Offene Wunde des Ellenbogens;S51.0;Gefährlich
+Rippenserienfraktur: Nicht näher bezeichnet;S22.40;Gefährlich
+Sonstige näher bezeichnete Affektionen der Konjunktiva;H11.8;Gefährlich
+Rissverletzung der Milz mit Beteiligung des Parenchyms;S36.03;Gefährlich
+Schwere Intelligenzminderung: Deutliche Verhaltensstörung, die Beobachtung oder Behandlung erfordert;F72.1;Gefährlich
+Pneumonie durch humanes Metapneumovirus;J12.3;Gefährlich
+Schwere Intelligenzminderung: Sonstige Verhaltensstörung;F72.8;Gefährlich
+Sonstige Dermatophytosen;B35.8;Gefährlich
+Oberflächliche Verletzung des Kopfes, Teil nicht näher bezeichnet: Schürfwunde;S00.91;Gefährlich
+Sonstige Dystonie;G24.8;Gefährlich
+Sonstige näher bezeichnete angeborene Fehlbildungen des Auges;Q15.8;Gefährlich
+Rückenschmerzen, nicht näher bezeichnet: Zervikalbereich;M54.92;Gefährlich
+Schwimmhautbildung an den Zehen;Q70.3;Gefährlich
+Opiatsubstitution;Z51.83;Gefährlich
+Sonstige näher bezeichnete angeborene Fehlbildungen des Ohres;Q17.8;Gefährlich
+Sonstige Enthesopathie des Fußes;M77.5;Gefährlich
+Pathologische Luxation und Subluxation eines Gelenkes, anderenorts nicht klassifiziert: Beckenregion und Oberschenkel [Becken, Femur, Gesäß, Hüfte, Hüftgelenk, Iliosakralgelenk];M24.35;Gefährlich
+Sakrale Spina bifida mit Hydrozephalus;Q05.3;Gefährlich
+Pectus excavatum;Q67.6;Gefährlich
+Sakrale Spina bifida ohne Hydrozephalus;Q05.8;Gefährlich
+Sonstige näher bezeichnete Blutungen beim Neugeborenen;P54.8;Gefährlich
+Oberflächliche Verletzungen mit Beteiligung mehrerer Regionen der unteren Extremität(en);T00.3;Gefährlich
+Sonstige näher bezeichnete Deformitäten der Wirbelsäule und des Rückens: Lumbalbereich;M43.86;Gefährlich
+Sonstige Enzephalitis, Myelitis und Enzephalomyelitis;G04.8;Gefährlich
+Sonstige näher bezeichnete degenerative Krankheiten des Nervensystems;G31.88;Gefährlich
+Oberflächliche Verletzung der behaarten Kopfhaut: Schürfwunde;S00.01;Gefährlich
+Oberflächliche Verletzung der Lippe und der Mundhöhle: Insektenbiss oder -stich (ungiftig);S00.53;Gefährlich
+Pneumonie durch Respiratory-Syncytial-Viren [RS-Viren];J12.1;Gefährlich
+Sonstige näher bezeichnete erythematöse Krankheiten;L53.8;Gefährlich
+Orale Mukositis (ulzerativ);K12.3;Gefährlich
+Sonstige näher bezeichnete Gelenkkrankheiten: Oberarm [Humerus, Ellenbogengelenk];M25.82;Gefährlich
+Schädigung des Feten und Neugeborenen durch Alkoholkonsum der Mutter;P04.3;Gefährlich
+Sonstige näher bezeichnete Gelenkkrankheiten: Unterschenkel [Fibula, Tibia, Kniegelenk];M25.86;Gefährlich
+Pneumonie, nicht näher bezeichnet;J18.9;Gefährlich
+Offene Wunde des Unterschenkels, Teil nicht näher bezeichnet;S81.9;Gefährlich
+Schädigung des Feten und Neugeborenen durch Chorioamnionitis;P02.7;Gefährlich
+Selektiver Mangel an Immunglobulin-G-Subklassen [IgG-Subklassen];D80.3;Gefährlich
+Schädigung des Feten und Neugeborenen durch Einnahme von abhängigkeitserzeugenden Arzneimitteln oder Drogen durch die Mutter;P04.4;Gefährlich
+Sepsis beim Neugeborenen durch Escherichia coli;P36.4;Gefährlich
+Schädigung des Feten und Neugeborenen durch hypertensive Krankheiten der Mutter;P00.0;Gefährlich
+Sonstige näher bezeichnete Komplikationen durch Prothesen, Implantate oder Transplantate im Herzen und in den Gefäßen;T82.8;Gefährlich
+Schädigung des Feten und Neugeborenen durch Placenta praevia;P02.0;Gefährlich
+Sonstige näher bezeichnete Krankheiten der Gingiva und des zahnlosen Alveolarkammes;K06.8;Gefährlich
+Oberflächliche Verletzung des Abdomens, der Lumbosakralgegend und des Beckens, Teil nicht näher bezeichnet: Art der Verletzung nicht näher bezeichnet;S30.90;Gefährlich
+Sonstige näher bezeichnete Krankheiten der Leber;K76.8;Gefährlich
+Schädigung des Feten und Neugeborenen durch sonstige Lage-, Haltungs- und Einstellungsanomalien sowie Missverhältnis während Wehen und Entbindung;P03.1;Gefährlich
+Sonstige näher bezeichnete Krankheiten der Nase und der Nasennebenhöhlen;J34.8;Gefährlich
+Polydipsie;R63.1;Gefährlich
+Periodische Atmung;R06.3;Gefährlich
+Organbegrenzte Amyloidose;E85.4;Gefährlich
+Hämorrhagie des Anus und des Rektums;K62.5;Gefährlich
+Multiple Frakturen der Mittelhandknochen;S62.4;Gefährlich
+Hypothyreose durch Arzneimittel oder andere exogene Substanzen;E03.2;Gefährlich
+Krankheitszustand der Haut, der für den Feten und das Neugeborene spezifisch ist, nicht näher bezeichnet;P83.9;Gefährlich
+Kombinierter Hörverlust durch Schallleitungs- und Schallempfindungsstörung, nicht näher bezeichnet;H90.8;Gefährlich
+Hereditärer Faktor-XII-Mangel;D68.25;Gefährlich
+Neuromyopathische Skoliose: Lumbosakralbereich;M41.47;Gefährlich
+Inaktivitätsosteoporose: Nicht näher bezeichnete Lokalisation;M81.29;Gefährlich
+Hereditäre erythropoetische Porphyrie;E80.0;Gefährlich
+Lageanomalie des Ohres;Q17.4;Gefährlich
+Multiple offene Wunden des Unterschenkels;S81.7;Gefährlich
+Fraktur eines Brustwirbels: T11 und T12;S22.06;Gefährlich
+Fremdkörper im Ohr;T16;Gefährlich
+Fütterstörung im frühen Kindesalter;F98.2;Gefährlich
+Hautabszess, Furunkel und Karbunkel am Gesäß;L02.3;Gefährlich
+Infektion durch Herpesviren, nicht näher bezeichnet;B00.9;Gefährlich
+Nicht näher bezeichnete Entwicklungsstörung;F89;Gefährlich
+Fraktur eines Brustwirbels: T3 und T4;S22.02;Gefährlich
+Nicht näher bezeichnetes nephritisches Syndrom: Art der morphologischen Veränderung nicht näher bezeichnet;N05.9;Gefährlich
+Fraktur eines Brustwirbels: T5 und T6;S22.03;Gefährlich
+Immunprophylaxe;Z29.1;Gefährlich
+Fraktur eines Brustwirbels: T7 und T8;S22.04;Gefährlich
+Multiple oberflächliche Verletzungen des Kopfes;S00.7;Gefährlich
+Infektiöse Myositis: Unterschenkel [Fibula, Tibia, Kniegelenk];M60.06;Gefährlich
+Myalgie: Mehrere Lokalisationen;M79.10;Gefährlich
+Laryngospasmus;J38.5;Gefährlich
+Nachbehandlung nach chirurgischem Eingriff, nicht näher bezeichnet;Z48.9;Gefährlich
+Larynxödem;J38.4;Gefährlich
+Nekrotisierende Fasziitis: Unterschenkel [Fibula, Tibia, Kniegelenk];M72.66;Gefährlich
+Leberfibrose;K74.0;Gefährlich
+Hämorrhagische Diathese durch Antikoagulanzien;D68.30;Gefährlich
+Leberkrankheit, nicht näher bezeichnet;K76.9;Gefährlich
+Fraktur des Daumens: Proximale Phalanx;S62.51;Gefährlich
+Hernia inguinalis, einseitig oder ohne Seitenangabe, ohne Einklemmung und ohne Gangrän: Rezidivhernie;K40.91;Gefährlich
+Krankheit der Zähne und des Zahnhalteapparates, nicht näher bezeichnet;K08.9;Gefährlich
+Gilbert-Meulengracht-Syndrom;E80.4;Gefährlich
+Nicht näher bezeichnete Intelligenzminderung: Keine oder geringfügige Verhaltensstörung;F79.0;Gefährlich
+Infektiöse Perikarditis;I30.1;Gefährlich
+Hemiparese und Hemiplegie, nicht näher bezeichnet;G81.9;Gefährlich
+Fraktur des Femurs, Teil nicht näher bezeichnet;S72.9;Gefährlich
+Nichteitrige Otitis media, nicht näher bezeichnet;H65.9;Gefährlich
+Leichte kognitive Störung;F06.7;Gefährlich
+Gemischte Hyperlipidämie;E78.2;Gefährlich
+Glanduläre Hypospadie;Q54.0;Gefährlich
+Klavikularfraktur durch Geburtsverletzung;P13.4;Gefährlich
+Leichte Rissverletzung der Leber;S36.13;Gefährlich
+Multiple Frakturen des Fußes;S92.7;Gefährlich
+Glukosurie;R81;Gefährlich
+Koma beim Neugeborenen;P91.5;Gefährlich
+Leukämie in der Familienanamnese;Z80.6;Gefährlich
+Kombinierte Störungen schulischer Fertigkeiten;F81.3;Gefährlich
+Linksherzinsuffizienz: Mit Beschwerden bei leichterer Belastung;I50.13;Gefährlich
+Gelbsucht, nicht näher bezeichnet;R17;Gefährlich
+Linksherzinsuffizienz: Mit Beschwerden in Ruhe;I50.14;Gefährlich
+Myositis, nicht näher bezeichnet: Sonstige [Hals, Kopf, Rippen, Rumpf, Schädel, Wirbelsäule];M60.98;Gefährlich
+Glykogenspeicherkrankheit [Glykogenose];E74.0;Gefährlich
+Nachweis von Opiaten im Blut;R78.1;Gefährlich
+Fraktur eines sonstigen Fingers: Distale Phalanx;S62.63;Gefährlich
+Hämoptoe;R04.2;Gefährlich
+Fraktur des 4. Halswirbels;S12.22;Gefährlich
+Hypertelorismus;Q75.2;Gefährlich
+Fraktur des Humerusschaftes;S42.3;Gefährlich
+Hypertonie beim Neugeborenen;P29.2;Gefährlich
+Lokalisierte Osteoporose [Lequesne]: Mehrere Lokalisationen;M81.60;Gefährlich
+Harnwegsinfektion beim Neugeborenen;P39.3;Gefährlich
+Heterophorie;H50.5;Gefährlich
+Gelenkschmerz: Beckenregion und Oberschenkel [Becken, Femur, Gesäß, Hüfte, Hüftgelenk, Iliosakralgelenk];M25.55;Gefährlich
+Hirninfarkt durch nicht näher bezeichneten Verschluss oder Stenose zerebraler Arterien;I63.5;Gefährlich
+Hypoplasie und Dysplasie der Lunge;Q33.6;Gefährlich
+Lokalisierte Schwellung, Raumforderung und Knoten der Haut und der Unterhaut an den oberen Extremitäten;R22.3;Gefährlich
+Krankheit der Gallenwege, nicht näher bezeichnet;K83.9;Gefährlich
+Intrauterine Hypoxie, nicht näher bezeichnet;P20.9;Gefährlich
+Nicht näher bezeichnete chronische Bronchitis;J42;Gefährlich
+Lokalisierte Schwellung, Raumforderung und Knoten der Haut und der Unterhaut, nicht näher bezeichnet;R22.9;Gefährlich
+Hautblutung beim Neugeborenen;P54.5;Gefährlich
+Longitudinaler Reduktionsdefekt des Femurs;Q72.4;Gefährlich
+Nicht näher bezeichnete Kontaktdermatitis, nicht näher bezeichnete Ursache;L25.9;Gefährlich
+Hirninfarkt durch Thrombose der Hirnvenen, nichteitrig;I63.6;Gefährlich
+Krankheiten der Meningen, anderenorts nicht klassifiziert;G96.1;Gefährlich
+Fraktur: Os ischium;S32.81;Gefährlich
+Hepatomegalie verbunden mit Splenomegalie, anderenorts nicht klassifiziert;R16.2;Gefährlich
+Lumboischialgie;M54.4;Gefährlich
+Idiopathische Skoliose beim Jugendlichen: Thorakolumbalbereich;M41.15;Gefährlich
+Fraktur: Sonstige und multiple Teile des Beckens;S32.89;Gefährlich
+Nichtinfektiöse Dermatosen des Augenlides;H01.1;Gefährlich
+Luxation der Hüfte: Nicht näher bezeichnet;S73.00;Gefährlich
+Hereditäre Hypogammaglobulinämie;D80.0;Gefährlich
+Luxation des Iliosakral- und des Sakro-Kokzygeal-Gelenkes;S33.2;Gefährlich
+Nichtorganische Störung des Schlaf-Wach-Rhythmus;F51.2;Gefährlich
+Gutartige Neubildung des Fettgewebes an sonstigen Lokalisationen;D17.7;Gefährlich
+Keratokonjunktivitis;H16.2;Gefährlich
+Lymphknotenvergrößerung, generalisiert;R59.1;Gefährlich
+Hyperhidrose, umschrieben;R61.0;Gefährlich
+Gutartige Neubildung des Ovars;D27;Gefährlich
+Multiple Frakturen der Schädel- und Gesichtsschädelknochen;S02.7;Gefährlich
+Intrazerebrale Blutung in die Großhirnhemisphäre, subkortikal;I61.0;Gefährlich
+Hämarthros: Beckenregion und Oberschenkel [Becken, Femur, Gesäß, Hüfte, Hüftgelenk, Iliosakralgelenk];M25.05;Gefährlich
+Lymphödem, anderenorts nicht klassifiziert;I89.0;Gefährlich
+Fraktur des Os sacrum;S32.1;Gefährlich
+Magendivertikel;K31.4;Gefährlich
+Multiple offene Wunden des Kopfes;S01.7;Gefährlich
+Magenvarizen;I86.4;Gefährlich
+Hyperlipidämie, nicht näher bezeichnet;E78.5;Gefährlich
+Gutartige Neubildung: Colon transversum;D12.3;Gefährlich
+Muskelkontraktur: Unterschenkel [Fibula, Tibia, Kniegelenk];M62.46;Gefährlich
+Makroglossie (angeboren);Q38.2;Gefährlich
+Myalgie: Schulterregion [Klavikula, Skapula, Akromioklavikular-, Schulter-, Sternoklavikulargelenk];M79.11;Gefährlich
+Ischialgie;M54.3;Gefährlich
+Myoglobinurie;R82.1;Gefährlich
+Malabsorption durch Intoleranz, anderenorts nicht klassifiziert;K90.4;Gefährlich
+Gelenkerguss: Beckenregion und Oberschenkel [Becken, Femur, Gesäß, Hüfte, Hüftgelenk, Iliosakralgelenk];M25.45;Gefährlich
+Gutartige Neubildung: Gehirn, supratentoriell;D33.0;Gefährlich
+Myotone Syndrome;G71.1;Gefährlich
+Hörverlust durch Schallleitungsstörung, nicht näher bezeichnet;H90.2;Gefährlich
+Nachuntersuchung nach nicht näher bezeichneter Behandlung wegen anderer Krankheitszustände;Z09.9;Gefährlich
+Mangel an sonstigen Vitaminen;E56.8;Gefährlich
+Fremdkörper im Nasenloch;T17.1;Gefährlich
+Marisken als Folgezustand von Hämorrhoiden;K64.4;Gefährlich
+Hämoperitoneum;K66.1;Gefährlich
+Gutartige Neubildung: Herz;D15.1;Gefährlich
+Nekrobiosis lipoidica, anderenorts nicht klassifiziert;L92.1;Gefährlich
+Massive Lungenblutung mit Ursprung in der Perinatalperiode;P26.1;Gefährlich
+Nervosität;R45.0;Gefährlich
+Hühneraugen und Horn- (Haut-) Schwielen;L84;Gefährlich
+Neubildung unsicheren oder unbekannten Verhaltens: Leber, Gallenblase und Gallengänge;D37.6;Gefährlich
+Mechanische Komplikation durch ein kardiales elektronisches Gerät;T82.1;Gefährlich
+Neugeborenenikterus durch sonstige näher bezeichnete Ursachen;P59.8;Gefährlich
+Gutartige Neubildung: Hirnnerven;D33.3;Gefährlich
+Kontakt mit und Exposition gegenüber Tuberkulose;Z20.1;Gefährlich
+Kammerflattern und Kammerflimmern;I49.0;Gefährlich
+Fremdkörper im Ösophagus;T18.1;Gefährlich
+Mechanische Komplikation durch sonstige Geräte und Implantate im Herzen und in den Gefäßen;T82.5;Gefährlich
+Gelenkkontraktur: Unterschenkel [Fibula, Tibia, Kniegelenk];M24.56;Gefährlich
+Mechanische Komplikation durch sonstige näher bezeichnete interne Prothesen, Implantate oder Transplantate;T85.6;Gefährlich
+Neugeborenes: Geburtsgewicht 750 bis unter 1000 Gramm;P07.02;Gefährlich
+Meckel-Divertikel;Q43.0;Gefährlich
+Neurofibromatose (nicht bösartig);Q85.0;Gefährlich
+Gutartige Neubildung: Sonstige näher bezeichnete Teile des Zentralnervensystems;D33.7;Gefährlich
+Hautabszess, Furunkel und Karbunkel an sonstigen Lokalisationen;L02.8;Gefährlich
+Kandidose an sonstigen Lokalisationen des Urogenitalsystems;B37.4;Gefährlich
+Fremdkörper in der Trachea;T17.4;Gefährlich
+Habituelle Luxation der Patella;M22.0;Gefährlich
+Fraktur des 2. Halswirbels;S12.1;Gefährlich
+Hydronephrose bei Obstruktion durch Nieren- und Ureterstein;N13.2;Gefährlich
+Krankheit der Haarfollikel, nicht näher bezeichnet;L73.9;Gefährlich
+Melanozytennävus des Rumpfes;D22.5;Gefährlich
+Krankheit des Blutes und der blutbildenden Organe, nicht näher bezeichnet;D75.9;Gefährlich
+Melanozytennävus sonstiger und nicht näher bezeichneter Teile des Gesichtes;D22.3;Gefährlich
+Krankheit des Gehirns, nicht näher bezeichnet;G93.9;Gefährlich
+Melanozytennävus, nicht näher bezeichnet;D22.9;Gefährlich
+Krankheit des Perikards, nicht näher bezeichnet;I31.9;Gefährlich
+Habituelle Luxation und Subluxation eines Gelenkes: Beckenregion und Oberschenkel [Becken, Femur, Gesäß, Hüfte, Hüftgelenk, Iliosakralgelenk];M24.45;Gefährlich
+Fraktur des Unterschenkels, Teil nicht näher bezeichnet;S82.9;Gefährlich
+Hydrops fetalis, nicht durch hämolytische Krankheit bedingt;P83.2;Gefährlich
+Krankheiten der Bronchien, anderenorts nicht klassifiziert;J98.0;Gefährlich
+Kandidose, nicht näher bezeichnet;B37.9;Gefährlich
+Hautinfektion beim Neugeborenen;P39.4;Gefährlich
+Nichttoxische diffuse Struma;E04.0;Gefährlich
+Hebephrene Schizophrenie;F20.1;Gefährlich
+Frakturen sonstiger Schädel- und Gesichtsschädelknochen;S02.8;Gefährlich
+Krankheiten der Mitral- und Aortenklappe, kombiniert;I08.0;Gefährlich
+Halluzinationen, nicht näher bezeichnet;R44.3;Gefährlich
+Nicht näher bezeichnete Verhaltens- oder emotionale Störungen mit Beginn in der Kindheit und Jugend;F98.9;Gefährlich
+Kardiomyopathie, nicht näher bezeichnet;I42.9;Gefährlich
+Nicht näher bezeichnete Verletzung des Thorax;S29.9;Gefährlich
+Gehbeschwerden, anderenorts nicht klassifiziert;R26.2;Gefährlich
+Funktionsstörung nach Kolostomie oder Enterostomie;K91.4;Gefährlich
+Hyperästhesie der Haut;R20.3;Gefährlich
+Krankheiten des Kiefergelenkes;K07.6;Gefährlich
+Fraktur der Skapula: Multipel;S42.19;Gefährlich
+Nichteitrige Thrombose des intrakraniellen Venensystems;I67.6;Gefährlich
+Mitralklappenprolaps;I34.1;Gefährlich
+Nichtinfektiöse Diarrhoe beim Neugeborenen;P78.3;Gefährlich
+Keimträger der Virushepatitis;Z22.5;Gefährlich
+Nichtneuropathische heredofamiliäre Amyloidose;E85.0;Gefährlich
+Mittelgradige Dysplasie der Cervix uteri;N87.1;Gefährlich
+Krankheiten des N. hypoglossus [XII. Hirnnerv];G52.3;Gefährlich
+Mittelgradige Intelligenzminderung: Keine oder geringfügige Verhaltensstörung;F71.0;Gefährlich
+Fraktur einer sonstigen Zehe;S92.5;Gefährlich
+Keimträger sonstiger Infektionskrankheiten;Z22.8;Gefährlich
+Immunkompromittierung nach Bestrahlung, Chemotherapie und sonstigen immunsuppressiven Maßnahmen;D90;Gefährlich
+Monarthritis, anderenorts nicht klassifiziert: Knöchel und Fuß [Fußwurzel, Mittelfuß, Zehen, Sprunggelenk, sonstige Gelenke des Fußes];M13.17;Gefährlich
+Hämangiom: Ohr, Nase, Mund und Rachen;D18.05;Gefährlich
+Kardiale Arrhythmie, nicht näher bezeichnet;I49.9;Gefährlich
+Erythema nodosum;L52;Gefährlich
+Abnorme Ergebnisse von Schilddrüsenfunktionsprüfungen;R94.6;Gefährlich
+Eitrige Arthritis, nicht näher bezeichnet: Mehrere Lokalisationen;M00.90;Gefährlich
+Augenkrankheit durch Herpesviren;B00.5;Gefährlich
+Angeborene(s) Fehlen, Atresie und Stenose des Dünndarmes, Teil nicht näher bezeichnet;Q41.9;Gefährlich
+Akute Virushepatitis, nicht näher bezeichnet;B17.9;Gefährlich
+Akute allergische Konjunktivitis;H10.1;Gefährlich
+Angeborene Aortenklappeninsuffizienz;Q23.1;Gefährlich
+Allergische Kontaktdermatitis durch Metalle;L23.0;Gefährlich
+Blepharokonjunktivitis;H10.5;Gefährlich
+Entzündliche Krankheiten der Mamma [Brustdrüse];N61;Gefährlich
+Dekubitus 1. Grades: Beckenkamm;L89.03;Gefährlich
+Abszess des äußeren Ohres;H60.0;Gefährlich
+Angeborene Fehlbildung des Herzseptums, nicht näher bezeichnet;Q21.9;Gefährlich
+Chronisches Ulkus der Haut, anderenorts nicht klassifiziert;L98.4;Gefährlich
+Blutung aus dem äußeren Gehörgang;H92.2;Gefährlich
+Crohn-Krankheit des Magens;K50.80;Gefährlich
+Angeborenes Fehlen oder Hypoplasie der A. umbilicalis;Q27.0;Gefährlich
+Ekzematoide Dermatitis;L30.3;Gefährlich
+Andere Neubildungen in der Eigenanamnese;Z86.0;Gefährlich
+Allergische Kontaktdermatitis, nicht näher bezeichnete Ursache;L23.9;Gefährlich
+Bakterielle Sepsis beim Neugeborenen, nicht näher bezeichnet;P36.9;Gefährlich
+Angeborene Luxation des Hüftgelenkes, beidseitig;Q65.1;Gefährlich
+Angeborene Fehlbildungssyndrome mit vermehrtem Gewebewachstum im frühen Kindesalter;Q87.3;Gefährlich
+Akute Sinusitis sphenoidalis;J01.3;Gefährlich
+Angeborene aplastische Anämie;D61.0;Gefährlich
+Anaphylaktischer Schock als unerwünschte Nebenwirkung eines indikationsgerechten Arzneimittels oder einer indikationsgerechten Droge bei ordnungsgemäßer Verabreichung;T88.6;Gefährlich
+Blutung aus den Atemwegen, nicht näher bezeichnet;R04.9;Gefährlich
+Atresie der Gallengänge;Q44.2;Gefährlich
+Ausstellung wiederholter Verordnung;Z76.0;Gefährlich
+Atresie und (angeborene) Stenose des Ureters;Q62.1;Gefährlich
+Dekubitus 2. Grades: Sonstige Lokalisationen der unteren Extremität;L89.18;Gefährlich
+Fallot-Tetralogie;Q21.3;Gefährlich
+Dekubitus 3. Grades: Beckenkamm;L89.23;Gefährlich
+Abnorme Reaktion auf Tuberkulintest;R76.1;Gefährlich
+Achondroplasie;Q77.4;Gefährlich
+Abnorme Uterus- oder Vaginalblutung, nicht näher bezeichnet;N93.9;Gefährlich
+Dekubitus 3. Grades: Sonstige Lokalisationen der unteren Extremität;L89.28;Gefährlich
+Ektropium des Augenlides;H02.1;Gefährlich
+Dekubitus 3. Grades: Sonstige und nicht näher bezeichnete Lokalisationen;L89.29;Gefährlich
+Angeborene Fehlbildung, nicht näher bezeichnet;Q89.9;Gefährlich
+Anogenitale (venerische) Warzen;A63.0;Gefährlich
+Chronische motorische oder vokale Ticstörung;F95.1;Gefährlich
+Dekubitus 4. Grades: Kreuzbein;L89.34;Gefährlich
+Akute Pelveoperitonitis bei der Frau;N73.3;Gefährlich
+Akute Bronchiolitis, nicht näher bezeichnet;J21.9;Gefährlich
+Allergische Rhinopathie, nicht näher bezeichnet;J30.4;Gefährlich
+Delir ohne Demenz;F05.0;Gefährlich
+Angeborene Fehlbildung des Herzens, nicht näher bezeichnet;Q24.9;Gefährlich
+Blutung der Konjunktiva;H11.3;Gefährlich
+Angeborene Fehlbildungen der Lippen, anderenorts nicht klassifiziert;Q38.0;Gefährlich
+Barrett-Ösophagus;K22.7;Gefährlich
+Erb-Lähmung durch Geburtsverletzung;P14.0;Gefährlich
+Bösartige Neubildung anderer Atmungs- und intrathorakaler Organe in der Eigenanamnese;Z85.2;Gefährlich
+Akute Lymphadenitis am Rumpf;L04.1;Gefährlich
+Bösartige Neubildung der Genitalorgane in der Familienanamnese;Z80.4;Gefährlich
+Erschöpfung durch übermäßige Anstrengung;T73.3;Gefährlich
+Dermatitis durch sonstige oral, enteral oder parenteral aufgenommene Substanzen;L27.8;Gefährlich
+Erworbene Keratosis palmoplantaris [Erworbenes Keratoma palmoplantare];L85.1;Gefährlich
+Bösartige Neubildung der Harnorgane in der Eigenanamnese;Z85.5;Gefährlich
+Chronisches nephritisches Syndrom: Diffuse mesangioproliferative Glomerulonephritis;N03.3;Gefährlich
+Anosmie;R43.0;Gefährlich
+Erythematöse Krankheit, nicht näher bezeichnet;L53.9;Gefährlich
+Abnorme Befunde in Untersuchungsmaterialien aus Verdauungsorganen und Bauchhöhle: Abnormer Enzymwert;R85.0;Gefährlich
+Essstörung, nicht näher bezeichnet;F50.9;Gefährlich
+Akute myeloblastische Leukämie [AML]: Ohne Angabe einer kompletten Remission;C92.00;Gefährlich
+Extrarenale Urämie;R39.2;Gefährlich
+Bösartige Neubildung in der Eigenanamnese, nicht näher bezeichnet;Z85.9;Gefährlich
+Andere bösartige Neubildungen des lymphatischen, blutbildenden oder verwandten Gewebes in der Familienanamnese;Z80.7;Gefährlich
+Fraktur der Klavikula: Laterales Drittel;S42.03;Gefährlich
+Bakterielle Meningoenzephalitis und Meningomyelitis, anderenorts nicht klassifiziert;G04.2;Gefährlich
+Fraktur der Klavikula: Mittleres Drittel;S42.02;Gefährlich
+Folgen einer offenen Wunde der unteren Extremität;T93.0;Gefährlich
+21-Hydroxylase-Mangel [AGS Typ 3], Late-onset-Form;E25.01;Gefährlich
+Crohn-Krankheit, nicht näher bezeichnet;K50.9;Gefährlich
+Angeborene subglottische Stenose;Q31.1;Gefährlich
+Fraktur der Großzehe;S92.4;Gefährlich
+Angeborene Subluxation des Hüftgelenkes, nicht näher bezeichnet;Q65.5;Gefährlich
+Chromosomenanomalie, nicht näher bezeichnet;Q99.9;Gefährlich
+Akutes und subakutes Leberversagen;K72.0;Gefährlich
+Ekzema herpeticatum Kaposi;B00.0;Gefährlich
+Akute Bronchitis durch Respiratory-Syncytial-Viren [RS-Viren];J20.5;Gefährlich
+Chromosomenduplikationen mit sonstigen komplexen Rearrangements;Q92.5;Gefährlich
+Angeborene Fehlbildung des Ohres, nicht näher bezeichnet;Q17.9;Gefährlich
+Chronische Krankheit der Gaumenmandeln und der Rachenmandel, nicht näher bezeichnet;J35.9;Gefährlich
+Beidseitiger Hörverlust durch Schallleitungsstörung;H90.0;Gefährlich
+Angeborene Fehlbildung der Niere, nicht näher bezeichnet;Q63.9;Gefährlich
+Angeborene Pneumonie durch Staphylokokken;P23.2;Gefährlich
+Ataktischer Gang;R26.0;Gefährlich
+Diskordante atrioventrikuläre Verbindung;Q20.5;Gefährlich
+Austritt von Liquor cerebrospinalis;G96.0;Gefährlich
+Angeborene Bronchusstenose;Q32.3;Gefährlich
+Enteritis durch Yersinia enterocolitica;A04.6;Gefährlich
+Angeborene Deformität der Hüfte, nicht näher bezeichnet;Q65.9;Gefährlich
+Akute Peritonitis;K65.0;Gefährlich
+Abnorme Befunde in Untersuchungsmaterialien aus anderen Körperorganen, -systemen und -geweben: Abnormer Hormonwert;R89.1;Gefährlich
+Allergische und alimentäre Gastroenteritis und Kolitis;K52.2;Gefährlich
+Dissoziative Bewegungsstörungen;F44.4;Gefährlich
+Entwicklungsstörung schulischer Fertigkeiten, nicht näher bezeichnet;F81.9;Gefährlich
+Brustschmerzen bei der Atmung;R07.1;Gefährlich
+Entzündliche Krankheit eines nicht näher bezeichneten männlichen Genitalorgans;N49.9;Gefährlich
+Dissoziierte Intelligenz: Keine oder geringfügige Verhaltensstörung;F74.0;Gefährlich
+Chronische Oberflächengastritis;K29.3;Gefährlich
+Benigne intrakranielle Hypertension [Pseudotumor cerebri];G93.2;Gefährlich
+Allgemeine Beratung zu Fragen der Kontrazeption;Z30.0;Gefährlich
+Bulimia nervosa;F50.2;Gefährlich
+Alveoläre und parietoalveoläre Krankheitszustände;J84.0;Gefährlich
+Distale Fraktur des Femurs: Interkondylär;S72.44;Gefährlich
+Amblyopia ex anopsia;H53.0;Gefährlich
+Distale Fraktur des Femurs: Suprakondylär;S72.43;Gefährlich
+Angeborene Anämie durch fetalen Blutverlust;P61.3;Gefährlich
+Distale Fraktur des Femurs: Teil nicht näher bezeichnet;S72.40;Gefährlich
+Angeborene(s) Fehlen, Atresie und Stenose des Jejunums;Q41.1;Gefährlich
+Distale Fraktur des Radius: Extensionsfraktur;S52.51;Gefährlich
+Erosion der Zähne;K03.2;Gefährlich
+Angeborene Zwerchfellhernie;Q79.0;Gefährlich
+Beobachtung bei Verdacht auf Tuberkulose;Z03.0;Gefährlich
+Abnorme Befunde bei der bildgebenden Diagnostik der Mamma [Brustdrüse];R92;Gefährlich
+Erworbene isolierte aplastische Anämie, nicht näher bezeichnet;D60.9;Gefährlich
+Acne vulgaris;L70.0;Gefährlich
+Atresie der Apertura mediana [Foramen Magendii] oder der Aperturae laterales [Foramina Luschkae] des vierten Ventrikels;Q03.1;Gefährlich
+Arthritis und Polyarthritis durch Staphylokokken: Hand [Finger, Handwurzel, Mittelhand, Gelenke zwischen diesen Knochen];M00.04;Gefährlich
+Erworbener Spitzfuß [Pes equinus];M21.62;Gefährlich
+Angeborene Pneumonie durch Viren;P23.0;Gefährlich
+Erythema infectiosum [Fünfte Krankheit];B08.3;Gefährlich
+Arthritis, nicht näher bezeichnet: Mehrere Lokalisationen;M13.90;Gefährlich
+Erythema toxicum neonatorum;P83.1;Gefährlich
+Arzneimittelinduzierte Agranulozytose und Neutropenie: Kritische Phase unter 4 Tage;D70.10;Gefährlich
+Essattacken bei anderen psychischen Störungen;F50.4;Gefährlich
+Allergie gegenüber anderen Antibiotika in der Eigenanamnese;Z88.1;Gefährlich
+Essentieller Tremor;G25.0;Gefährlich
+Angeborene Zystenlunge;Q33.0;Gefährlich
+Exanthema subitum [Sechste Krankheit];B08.2;Gefährlich
+Asperger-Syndrom;F84.5;Gefährlich
+Akute Cholezystitis;K81.0;Gefährlich
+Allergie gegenüber Penicillin in der Eigenanamnese;Z88.0;Gefährlich
+Fallhand oder Hängefuß (erworben): Knöchel und Fuß [Fußwurzel, Mittelfuß, Zehen, Sprunggelenk, sonstige Gelenke des Fußes];M21.37;Gefährlich
+Dysphonie;R49.0;Gefährlich
+Atrioventrikulärer Block 3. Grades;I44.2;Gefährlich
+Allergie gegenüber sonstigen Arzneimitteln, Drogen oder biologisch aktiven Substanzen in der Eigenanamnese;Z88.8;Gefährlich
+Andere desintegrative Störung des Kindesalters;F84.3;Gefährlich
+Asphyxie;R09.0;Gefährlich
+Chylöser (Pleura-) Erguss;J94.0;Gefährlich
+Abnorme Befunde in Untersuchungsmaterialien aus den weiblichen Genitalorganen: Abnorme zytologische Befunde;R87.6;Gefährlich
+Flexionsdeformität: Schulterregion [Klavikula, Skapula, Akromioklavikular-, Schulter-, Sternoklavikulargelenk];M21.21;Gefährlich
+Cholangitis;K83.0;Gefährlich
+Crohn-Krankheit des Dickdarmes;K50.1;Gefährlich
+Einfache chronische Bronchitis;J41.0;Gefährlich
+Crohn-Krankheit des Dünndarmes;K50.0;Gefährlich
+Chondromalacia patellae;M22.4;Gefährlich
+Akute Appendizitis mit lokalisierter Peritonitis mit Perforation oder Ruptur;K35.31;Gefährlich
+Einseitiger Hörverlust durch Schallleitungsstörung bei nicht eingeschränktem Hörvermögen der anderen Seite;H90.1;Gefährlich
+Folgezustände der Virusenzephalitis;B94.1;Gefährlich
+Asymptomatische HIV-Infektion [Humane Immundefizienz-Virusinfektion];Z21;Gefährlich
+Abszess, Furunkel und Karbunkel der Nase;J34.0;Gefährlich
+Allergische Kontaktdermatitis durch Drogen oder Arzneimittel bei Hautkontakt;L23.3;Gefährlich
+Angeborene Fehlbildungen des Gaumens, anderenorts nicht klassifiziert;Q38.5;Gefährlich
+Allergische Kontaktdermatitis durch Kosmetika;L23.2;Gefährlich
+Fraktur der Klavikula: Teil nicht näher bezeichnet;S42.00;Gefährlich
+Akutes Nierenversagen, nicht näher bezeichnet: Stadium nicht näher bezeichnet;N17.99;Gefährlich
+Diabetes mellitus, Typ 1: Mit Ketoazidose: Als entgleist bezeichnet;E10.11;Gefährlich
