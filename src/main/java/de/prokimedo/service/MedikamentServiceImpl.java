@@ -150,7 +150,7 @@ public class MedikamentServiceImpl implements MedikamentService {
     public HashMap saveVersion(MultipartFile file, String version) throws Throwable {
 //        String csvFile = this.transferToFile(file);
         List<Medikament> medikamementList = new ArrayList<>();
-        if (file.getName().contains(".csv")) {
+        if (file.getOriginalFilename().contains(".csv")) {
             medikamementList = this.readCsv(file);
         } else {
             medikamementList = this.readExcel(file);
@@ -224,7 +224,7 @@ public class MedikamentServiceImpl implements MedikamentService {
             try {
                 w = Workbook.getWorkbook(inputWorkbook);
                 // Get the first sheet
-                Sheet sheet = w.getSheet(1);
+                Sheet sheet = w.getSheet(0);
                 //loop over first 10 column and lines
 
                 for (int i = 1; i < sheet.getRows(); i++) {

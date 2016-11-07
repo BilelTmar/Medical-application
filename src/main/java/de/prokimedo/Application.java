@@ -14,8 +14,6 @@ package de.prokimedo;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
 import de.prokimedo.entity.Krankheit;
 import de.prokimedo.entity.Medikament;
 import de.prokimedo.entity.MedikamentVersion;
@@ -33,7 +31,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-
 /**
  *
  * @author Bilel-PC
@@ -47,21 +44,15 @@ public class Application {
         SpringApplication.run(Application.class);
     }
 
- @Bean
+    @Bean
     public CommandLineRunner demo(KrankheitRepo krankheitRepo, MedikamentVersionRepo medVersionRepo, MedikamentRepo medRepo) {
         return new CommandLineRunner() {
 
             public void run(String[] args) {
-                
-                Date d = new Date(2016, 10, 02);
-                Date d2 = new Date();
-                d2.setYear(115);
-                d2.setMonth(02);
-                d2.setDate(13);
-                System.out.println(d2);
+
                 Krankheit kr = new Krankheit();
-                kr.setTitle("hallo");
-                kr.setAutor("bilel");
+                kr.setTitle("Adenotonsillektomie");
+                kr.setAutor("Dr. Müller"); 
                 krankheitRepo.save(kr);
                 MedikamentVersion ver = new MedikamentVersion();
                 ver.setCurrent(Boolean.TRUE);
@@ -77,7 +68,7 @@ public class Application {
                 kr.setListMedikament(list);
                 krankheitRepo.save(kr);
                 List<Krankheit> l = krankheitRepo.findByListMedikamentPzn("126");
-                
+
             }
         };
     }

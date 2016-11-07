@@ -10,6 +10,7 @@ import de.prokimedo.entity.Krankheit;
 import de.prokimedo.entity.Icd;
 import de.prokimedo.entity.IcdUsed;
 import de.prokimedo.entity.IcdVersion;
+import de.prokimedo.entity.Medikament;
 import de.prokimedo.entity.Prozedur;
 import de.prokimedo.repository.IcdRepo;
 import de.prokimedo.repository.IcdVersionRepo;
@@ -18,10 +19,16 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -52,7 +59,8 @@ public class IcdServiceImpl implements IcdService {
     }
 
     /**
-     *Save icd
+     * Save icd
+     *
      * @param icd
      * @return icd
      */
@@ -73,7 +81,8 @@ public class IcdServiceImpl implements IcdService {
     }
 
     /**
-     *Search the list of all the medicaments in the actual version
+     * Search the list of all the medicaments in the actual version
+     *
      * @return list medicaments
      */
     @Override
@@ -86,14 +95,14 @@ public class IcdServiceImpl implements IcdService {
         }
     }
 
-
     @Override
     public Icd update(Icd icd) {
         return this.repo.save(icd);
     }
 
     /**
-     *delete medicament
+     * delete medicament
+     *
      * @param icd
      */
     @Override
@@ -112,16 +121,16 @@ public class IcdServiceImpl implements IcdService {
             return prozedur;
         }).forEach((prozedur) -> {
             this.prozedurService.save2(prozedur);
-        });        
+        });
         IcdVersion version = this.readCurrent();
         version.getListIcd().remove(icd);
         this.versionRepo.save(version);
         this.repo.delete(icd);
     }
 
-
     /**
      * read the actual version
+     *
      * @return IcdVersion
      */
     @Override
@@ -131,6 +140,7 @@ public class IcdServiceImpl implements IcdService {
 
     /**
      * save a new version from a CSV file
+     *
      * @param file
      * @param version
      * @return the new, deleted and updated medicaments
@@ -138,7 +148,37 @@ public class IcdServiceImpl implements IcdService {
      */
     @Override
     public HashMap saveVersion(MultipartFile file, String version) throws Throwable {
-        String csvFile = this.transferToFile(file);
+        List<Icd> icdList = new ArrayList<>();
+        if (file.getOriginalFilename().contains(".csv")) {
+            icdList = this.readCsv(file);
+        } else {
+            icdList = this.readExcel(file);
+        }
+
+        HashMap response = this.comparator(icdList);
+        IcdVersion oldVersion = readCurrent();
+        IcdVersion medVersion = new IcdVersion();
+        versionRepo.save(medVersion);
+        medVersion.setTitle(version);
+        medVersion.setCurrent(Boolean.TRUE);
+        ArrayList<Icd> list = new ArrayList<>();
+        icdList.stream().forEach((icd) -> {
+            Icd icd2 = repo.save(icd);
+            list.add(icd2);
+
+        });
+        medVersion.setListIcd(list);
+        versionRepo.save(medVersion);
+        if (oldVersion == null) {
+        } else {
+            oldVersion.setCurrent(Boolean.FALSE);
+            versionRepo.save(oldVersion);
+        }
+        return response;
+    }
+
+    public List readCsv(MultipartFile file) throws IOException {
+        File csvFile = this.convert(file);
         BufferedReader br = null;
         String line = "";
         String cvsSplitBy = ";";
@@ -168,32 +208,54 @@ public class IcdServiceImpl implements IcdService {
                 br.close();
             }
         }
-        HashMap response = this.comparator(icdList);
-        IcdVersion oldVersion = readCurrent();
-        IcdVersion medVersion = new IcdVersion();
-        versionRepo.save(medVersion);
-        medVersion.setTitle(version);
-        medVersion.setCurrent(Boolean.TRUE);
-        ArrayList<Icd> list = new ArrayList<>();
-        icdList.stream().forEach((icd) -> {
-            Icd icd2 = repo.save(icd);
-            list.add(icd2);
+        return icdList;
+    }
 
-        });
-        medVersion.setListIcd(list);
-        versionRepo.save(medVersion);
-        if (oldVersion == null) {
-        } else {
-            oldVersion.setCurrent(Boolean.FALSE);
-            versionRepo.save(oldVersion);
+    public List readExcel(MultipartFile file) {
+        List<Icd> listIcd = new ArrayList();
+        try {
+
+            File inputWorkbook = convert(file);
+            Workbook w;
+            try {
+                w = Workbook.getWorkbook(inputWorkbook);
+                // Get the first sheet
+                Sheet sheet = w.getSheet(0);
+                //loop over first 10 column and lines
+
+                for (int i = 1; i < sheet.getRows(); i++) {
+                    // for (int j = 1; j < sheet.getColumns(); j++) {
+                    Icd icd = new Icd(sheet.getCell(1, i).getContents(), sheet.getCell(0, i).getContents(), sheet.getCell(2, i).getContents());
+                    listIcd.add(icd);
+
+                }
+
+            } catch (BiffException e) {
+                System.out.println("BiffException");
+            } catch (IOException ex) {
+                Logger.getLogger(ImageServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } catch (IOException | IndexOutOfBoundsException ex) {
+            Logger.getLogger(ImageServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return response;
+        return listIcd;
+    }
+
+    public File convert(MultipartFile file) throws IOException {
+        File convFile = new File(file.getOriginalFilename());
+        convFile.createNewFile();
+        FileOutputStream fos = new FileOutputStream(convFile);
+        fos.write(file.getBytes());
+        fos.close();
+        return convFile;
     }
 
     /**
-     * compare two medicament lists 
+     * compare two medicament lists
+     *
      * @param list1
-     * @return 
+     * @return
      */
     public HashMap comparator(List<Icd> list1) {
         IcdVersion current = this.readCurrent();
@@ -216,8 +278,8 @@ public class IcdServiceImpl implements IcdService {
                         }
                         return icd2;
                     }).filter((icd2) -> (!icd.getType().equals(icd2.getType()))).forEach((_item) -> {
-                    type.add(_item);
-                });
+                        type.add(_item);
+                    });
                 }
                 HashMap result = new HashMap();
                 result.put("new", cp1);
@@ -263,6 +325,7 @@ public class IcdServiceImpl implements IcdService {
 
     /**
      * read all existing medicament's verion
+     *
      * @return
      */
     @Override
@@ -272,7 +335,8 @@ public class IcdServiceImpl implements IcdService {
     }
 
     /**
-     * read all medicaments of one version 
+     * read all medicaments of one version
+     *
      * @param title
      * @return
      */
@@ -284,6 +348,7 @@ public class IcdServiceImpl implements IcdService {
 
     /**
      * search the krankheit or the prozedur that are used one medicament
+     *
      * @param icdList
      * @return
      */
@@ -304,6 +369,5 @@ public class IcdServiceImpl implements IcdService {
 
         return result;
     }
-
 
 }
