@@ -246,13 +246,13 @@ public class ProzedurService {
         return list.get(0);
     }
 
-    public void versionnigBearbeiten(Prozedur prozedur) {
+    public void versioningBearbeiten(Prozedur prozedur) {
         Prozedur kr = this.read(prozedur.getTitle());
         kr.setTherapie(prozedur.getTherapie());
         this.save(kr);
     }
 
-    public void versionnigIcdBearbeiten(Prozedur prozedur) {
+    public void versioningIcdBearbeiten(Prozedur prozedur) {
         Prozedur kr = this.read(prozedur.getTitle());
         kr.setNotes(prozedur.getNotes());
         this.save(kr);

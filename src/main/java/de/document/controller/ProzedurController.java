@@ -67,16 +67,16 @@ public class ProzedurController {
         return ResponseEntity.ok().build();
     }
 
-    @RequestMapping(value = "/versionnig/bearbeiten", method = {RequestMethod.POST})
-    public ResponseEntity versionnigBearbeiten(@RequestBody Prozedur request) {
+    @RequestMapping(value = "/versioning/bearbeiten", method = {RequestMethod.POST})
+    public ResponseEntity versioningBearbeiten(@RequestBody Prozedur request) {
 
-        this.service.versionnigBearbeiten(request);
+        this.service.versioningBearbeiten(request);
         return ResponseEntity.ok().build();
     }
-    @RequestMapping(value = "/versionnig/icd/bearbeiten", method = {RequestMethod.POST})
-    public ResponseEntity versionnigIcdBearbeiten(@RequestBody Prozedur request) {
+    @RequestMapping(value = "/versioning/icd/bearbeiten", method = {RequestMethod.POST})
+    public ResponseEntity versioningIcdBearbeiten(@RequestBody Prozedur request) {
 
-        this.service.versionnigIcdBearbeiten(request);
+        this.service.versioningIcdBearbeiten(request);
         return ResponseEntity.ok().build();
     }
 

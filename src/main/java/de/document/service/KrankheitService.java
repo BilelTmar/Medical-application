@@ -1,16 +1,11 @@
 package de.document.service;
 
-import de.document.jenaspring.JenaTemplate;
-import de.document.jenaspring.SparqlTemplate;
-import de.document.entity.Krankheit;
-import de.document.entity.Prozedur;
-import de.document.entity.TextModel;
-import de.document.util.IdService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.jena.query.Dataset;
 import org.apache.jena.query.QuerySolution;
@@ -18,6 +13,15 @@ import org.apache.jena.query.ResultSet;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.tdb.TDBFactory;
 import org.springframework.stereotype.Service;
+
+import de.document.ProkimedoConfiguration;
+import de.document.entity.Krankheit;
+import de.document.entity.Prozedur;
+import de.document.entity.TextModel;
+import de.document.jenaspring.Application;
+import de.document.jenaspring.JenaTemplate;
+import de.document.jenaspring.SparqlTemplate;
+import de.document.util.IdService;
 
 @Service
 public class KrankheitService {
@@ -28,7 +32,7 @@ public class KrankheitService {
 
     private final String NS = "http://document/KR/";
 
-    private final String url = "D:\\PC-Bilel\\Documents\\NetBeansProjects\\MedicalKnowledge\\TDB\\test";
+//    private String url = "D:\\PC-Bilel\\Documents\\NetBeansProjects\\MedicalKnowledge\\TDB\\test";
 
     private String id;
 
@@ -262,13 +266,13 @@ public class KrankheitService {
         return list.get(0);
     }
 
-    public void versionnigBearbeiten(Krankheit krankheit) {
+    public void versioningBearbeiten(Krankheit krankheit) {
         Krankheit kr = this.read(krankheit.getTitle());
         kr.setTherapie(krankheit.getTherapie());
         this.update(kr);
     }
 
-    public void versionnigIcdBearbeiten(Krankheit krankheit) {
+    public void versioningIcdBearbeiten(Krankheit krankheit) {
         Krankheit kr = this.read(krankheit.getTitle());
         kr.setNotes(krankheit.getNotes());
         this.update(kr);
@@ -391,20 +395,24 @@ public class KrankheitService {
         temp.removeResource(NS + id2);
     }
 
+    public ProkimedoConfiguration getProkimedoConfiguration() {
+        return Application.getProkimedoConfiguration();
+    }
+
     public void connectJenaTemp() {
-        Dataset dataset = TDBFactory.createDataset(url);
+        Dataset dataset = TDBFactory.createDataset(getProkimedoConfiguration().prokimedoTdbUrl());
         Model model = dataset.getDefaultModel();
         temp.setModel(model);
     }
 
     public void connectSparqlTemp() {
-        Dataset dataset = TDBFactory.createDataset(url);
+        Dataset dataset = TDBFactory.createDataset(getProkimedoConfiguration().prokimedoTdbUrl());
         Model model = dataset.getDefaultModel();
         sparqlTemp.setModel(model);
     }
 
     public Model getModel() {
-        Dataset dataset = TDBFactory.createDataset(url);
+        Dataset dataset = TDBFactory.createDataset(getProkimedoConfiguration().prokimedoTdbUrl());
         Model model = dataset.getDefaultModel();
         return model;
     }

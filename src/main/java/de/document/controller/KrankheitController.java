@@ -48,15 +48,15 @@ public class KrankheitController {
         return ResponseEntity.ok(entity);
     }
 
-    @RequestMapping(value = "/versionnig/bearbeiten", method = { RequestMethod.POST })
-    public ResponseEntity versionnigBearbeiten(@RequestBody Krankheit request) {
-        this.service.versionnigBearbeiten(request);
+    @RequestMapping(value = "/versioning/bearbeiten", method = { RequestMethod.POST })
+    public ResponseEntity versioningBearbeiten(@RequestBody Krankheit request) {
+        this.service.versioningBearbeiten(request);
         return ResponseEntity.ok().build();
     }
 
-    @RequestMapping(value = "/versionnig/icd/bearbeiten", method = { RequestMethod.POST })
-    public ResponseEntity versionnigIcdBearbeiten(@RequestBody Krankheit request) {
-        this.service.versionnigIcdBearbeiten(request);
+    @RequestMapping(value = "/versioning/icd/bearbeiten", method = { RequestMethod.POST })
+    public ResponseEntity versioningIcdBearbeiten(@RequestBody Krankheit request) {
+        this.service.versioningIcdBearbeiten(request);
         return ResponseEntity.ok().build();
     }
 
