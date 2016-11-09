@@ -6,21 +6,17 @@
 package de.prokimedo.service;
 
 import com.google.common.collect.Lists;
-import de.prokimedo.QueryService;
 import de.prokimedo.entity.Image;
-import de.prokimedo.entity.Krankheit;
 import de.prokimedo.repository.ImageRepo;
-import de.prokimedo.repository.KrankheitRepo;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jca.cci.InvalidResultSetAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -42,14 +38,6 @@ public class ImageServiceImpl implements ImageService {
     @Override
     public Image read(String title) {
         Image img = this.repo.findByTitle(title).get(0);
-//        try {
-//            //FileOutputStream fos = new FileOutputStream("images\\output.jpg");  //windows
-//            FileOutputStream fos = new FileOutputStream("C:\\Users\\Tmar\\Pictures\\hallo.jpg");
-//            fos.write(img.getImage());
-//            fos.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
         return img;
     }
 
@@ -71,34 +59,44 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public void delete(String title) {
-        this.repo.delete(this.repo.findByTitle(title));
+    public Boolean delete(String title) {
+        try {
+            this.repo.delete(this.repo.findByTitle(title));
+            return true;
+        } catch (InvalidResultSetAccessException e) {
+            return false;
+        } catch (DataAccessException e1) {
+            return false;
+        }
     }
 
     @Override
     public Image save(MultipartFile file, String title) {
         String filename = file.getOriginalFilename();
         File convFile = new File(filename);
-        byte[] bFile = new byte[(int) convFile.length()];
         try {
             convFile.createNewFile();
             FileOutputStream fos;
             fos = new FileOutputStream(convFile);
             fos.write(file.getBytes());
             fos.close();
+            byte[] bFile = new byte[(int) convFile.length()];
 
             try (FileInputStream fileInputStream = new FileInputStream(convFile)) {
                 fileInputStream.read(bFile);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Image image = new Image();
-        image.setTitle(title);
-        image.setImage(bFile);
-        Image img = this.repo.save(image);
-        return img;
-    }
 
+            Image image = new Image();
+            image.setTitle(title);
+            image.setImage(bFile);
+
+            Image img = this.repo.save(image);
+            convFile.delete();
+            return img;
+        } catch (IOException e) {
+            return null;
+        }
+
+    }
 
 }

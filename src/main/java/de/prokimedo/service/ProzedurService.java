@@ -24,7 +24,7 @@ public interface ProzedurService {
 
     public List<Prozedur> query(String query);
 
-    public Prozedur update(Prozedur prozedur);
+//    public Prozedur update(Prozedur prozedur);
 
     public void delete(String id);
 

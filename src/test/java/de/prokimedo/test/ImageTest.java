@@ -1,14 +1,17 @@
 package de.prokimedo.test;
 
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import de.prokimedo.Application;
 import de.prokimedo.entity.Image;
 import de.prokimedo.repository.ImageRepo;
+import de.prokimedo.repository.KrankheitRepo;
+import de.prokimedo.repository.ProzedurRepo;
 import de.prokimedo.service.ImageService;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import org.junit.After;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,46 +34,58 @@ public class ImageTest {
     private int port;
     @Autowired
     ImageRepo imageRepo;
-    
+
     @Autowired
     ImageService imageService;
-    
+    @Autowired
+    KrankheitRepo krankheitRepo;
+    @Autowired
+    ProzedurRepo prozedurRepo;
 
     public ImageTest() {
     }
 
     @Before
     public void setUp() {
+        prozedurRepo.deleteAll();
+        krankheitRepo.deleteAll();
         imageRepo.deleteAll();
     }
 
     @Test
     public void imageTest() throws JsonProcessingException {
 
-         //File file = new File("images\\extjsfirstlook.jpg"); //windows
+        //File file = new File("images\\extjsfirstlook.jpg"); //windows
         File file = new File("C:\\Users\\Tmar\\Pictures\\test.jpg");
         byte[] bFile = new byte[(int) file.length()];
- 
+
         try {
-            FileInputStream fileInputStream = new FileInputStream(file);
-            fileInputStream.read(bFile);
-            fileInputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+            try (FileInputStream fileInputStream = new FileInputStream(file)) {
+                fileInputStream.read(bFile);
+            }
+        } catch (IOException e) {
         }
         Image image = new Image();
         image.setTitle("bilel");
         image.setImage(bFile);
         imageService.save(image);
         Image img = imageRepo.findByTitle("bilel").get(0);
- try{
-            //FileOutputStream fos = new FileOutputStream("images\\output.jpg");  //windows
-            FileOutputStream fos = new FileOutputStream("C:\\Users\\Tmar\\Pictures\\outpput.jpg");
-            fos.write(image.getImage());
-            fos.close();
-        }catch(Exception e){
-            e.printStackTrace();
+        try {
+            try ( //FileOutputStream fos = new FileOutputStream("images\\output.jpg");  //windows
+                    FileOutputStream fos = new FileOutputStream("C:\\Users\\Tmar\\Pictures\\outpput.jpg")) {
+                fos.write(image.getImage());
+            }
+        } catch (IOException e) {
         }
-        assertEquals("bilel",img.getTitle());
+        assertEquals("bilel", img.getTitle());
+    }
+
+    @After
+    public void TearDown() {
+
+        krankheitRepo.deleteAll();
+        prozedurRepo.deleteAll();
+        imageRepo.deleteAll();
+
     }
 }

@@ -8,12 +8,15 @@ package de.prokimedo.service;
 import com.google.common.collect.Lists;
 import de.prokimedo.QueryService;
 import de.prokimedo.entity.Icd;
+import de.prokimedo.entity.Image;
 import de.prokimedo.entity.Krankheit;
 import de.prokimedo.entity.Prozedur;
 import de.prokimedo.entity.Medikament;
 import de.prokimedo.repository.ProzedurRepo;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,8 +34,10 @@ public class ProzedurServiceImpl implements ProzedurService {
     @Autowired
     IcdService IcdService;
     @Autowired
-    KrankheitService krankheitService;
+    KrankheitService prozedurService;
     QueryService<Prozedur> search;
+    @Autowired
+    ImageService  ImageService;
 
     @Override
     public Prozedur read(String title) {
@@ -64,6 +69,16 @@ public class ProzedurServiceImpl implements ProzedurService {
         prozedur.setListMedikament(medikaments);
         List<Icd> icds = this.searchIcd(prozedur);
         prozedur.setListIcd(icds);
+        Set<Image> imageUebersichtTxt = this.searchImage(prozedur.getUebersichtTxt() + prozedur.getUebersichtNot());
+        prozedur.setListImgUebersicht(imageUebersichtTxt);
+        Set<Image> imageDiagnostikTxt = this.searchImage(prozedur.getDiagnostikTxt() + prozedur.getDiagnostikNot());
+        prozedur.setListImgDiagnostik(imageDiagnostikTxt);
+        Set<Image> imageTherapieTxt = this.searchImage(prozedur.getTherapieTxt() + prozedur.getTherapieNot());
+        prozedur.setListImgTherapie(imageTherapieTxt);
+        Set<Image> imageBeratung = this.searchImage(prozedur.getBeratungTxt() + prozedur.getBeratungNot());
+        prozedur.setListImgBeratung(imageBeratung);
+        Set<Image> imageNotes = this.searchImage(prozedur.getNotes());
+        prozedur.setListImgNotes(imageNotes);
         this.repo.save(prozedur);
         return prozedur;
     }
@@ -126,6 +141,31 @@ public class ProzedurServiceImpl implements ProzedurService {
         return icds2;
     }
 
+        /**
+     * Search of any Image existing in a String
+     *
+     * @param text
+     * @return
+     */
+    public Set<Image> searchImage(String text) {
+        Set<Image> images = new HashSet<>();
+        if (text != null) {
+            int intIndex = text.indexOf("image");
+            int intIndex2 = text.indexOf("(siehe Bild unten)");
+
+            while (intIndex >= 0 && intIndex2 >= 0) {
+               
+                String substring = text.substring(intIndex + 6, intIndex2);
+                System.out.println(substring);
+                Image img = this.ImageService.read(substring);
+                images.add(img);
+                intIndex = text.indexOf("image", intIndex + 1);
+                intIndex2 = text.indexOf("(siehe Bild unten)", intIndex2 + 1);
+
+            }
+        }
+        return images;
+    }
     /**
      * read all prozedur
      *
@@ -142,20 +182,20 @@ public class ProzedurServiceImpl implements ProzedurService {
         return this.search.query(query);
     }
 
-    /**
-     * update prozedur
-     *
-     * @param prozedur
-     * @return
-     */
-    @Override
-    public Prozedur update(Prozedur prozedur) {
-        List<Medikament> medikaments = this.searchMedikament(prozedur);
-        prozedur.setListMedikament(medikaments);
-        List<Icd> icds = this.searchIcd(prozedur);
-        prozedur.setListIcd(icds);
-        return this.repo.save(prozedur);
-    }
+//    /**
+//     * update prozedur
+//     *
+//     * @param prozedur
+//     * @return
+//     */
+//    @Override
+//    public Prozedur update(Prozedur prozedur) {
+//        List<Medikament> medikaments = this.searchMedikament(prozedur);
+//        prozedur.setListMedikament(medikaments);
+//        List<Icd> icds = this.searchIcd(prozedur);
+//        prozedur.setListIcd(icds);
+//        return this.repo.save(prozedur);
+//    }
 
     /**
      * delete prozedur
@@ -164,12 +204,12 @@ public class ProzedurServiceImpl implements ProzedurService {
      */
     @Override
     public void delete(String title) {
-        List<Krankheit> krankheits = this.krankheitService.readProzedurKrankheit(title);
-        krankheits.stream().map(krankheit -> {
-            krankheit.setProzedur(null);
-            return krankheit;
-        }).forEach(krankheit -> {
-            krankheitService.save(krankheit);
+        List<Krankheit> prozedurs = this.prozedurService.readProzedurKrankheit(title);
+        prozedurs.stream().map(prozedur -> {
+            prozedur.setProzedur(null);
+            return prozedur;
+        }).forEach(prozedur -> {
+            prozedurService.save(prozedur);
         });
         this.repo.delete(this.repo.findByTitle(title));
     }

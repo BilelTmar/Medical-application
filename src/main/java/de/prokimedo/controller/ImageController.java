@@ -32,7 +32,7 @@ public class ImageController {
     ImageService service;
 
     @RequestMapping(value = "/save/{title}", headers = "Content-Type= multipart/form-data", method = {RequestMethod.POST})
-    public ResponseEntity saveVersion(@PathVariable("title") String title, @RequestParam("file") MultipartFile file) throws Throwable {
+    public ResponseEntity save(@PathVariable("title") String title, @RequestParam("file") MultipartFile file) throws Throwable {
 
         Image entity = this.service.save(file, title);
         return ResponseEntity.ok(entity);
@@ -45,7 +45,7 @@ public class ImageController {
     }
 
     @RequestMapping(value = "/update", method = {RequestMethod.POST})
-    public ResponseEntity updateKrankheit(@RequestBody Image request) {
+    public ResponseEntity update(@RequestBody Image request) {
         Image entity = service.update(request);
         return ResponseEntity.ok(entity);
     }
@@ -58,8 +58,8 @@ public class ImageController {
 
     @RequestMapping(value = "/delete/{title}", method = {RequestMethod.GET})
     public ResponseEntity delete(@PathVariable("title") String title) {
-        this.service.delete(title);
-        return ResponseEntity.ok().build();
+        Boolean b = this.service.delete(title);
+        return ResponseEntity.ok(b);
     }
 
 }

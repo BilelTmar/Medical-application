@@ -24,8 +24,7 @@ public interface KrankheitService {
 
     public List<Krankheit> query(String query);
 
-    public Krankheit update(Krankheit krankheit);
-
+//    public Krankheit update(Krankheit krankheit);
     public void delete(String id);
 
     public List<Krankheit> readMedikamentKrankheit(String Pzn);

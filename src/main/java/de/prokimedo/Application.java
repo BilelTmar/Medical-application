@@ -14,22 +14,10 @@ package de.prokimedo;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import de.prokimedo.entity.Krankheit;
-import de.prokimedo.entity.Medikament;
-import de.prokimedo.entity.MedikamentVersion;
-import de.prokimedo.repository.KrankheitRepo;
-import de.prokimedo.repository.MedikamentRepo;
-import de.prokimedo.repository.MedikamentVersionRepo;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.CommandLineRunner;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
 /**
  *

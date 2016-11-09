@@ -26,7 +26,7 @@ public interface ImageService {
 
     public Image update(Image image);
 
-    public void delete(String title);
+    public Boolean delete(String title);
 
     public Image save(MultipartFile file, String title);
     

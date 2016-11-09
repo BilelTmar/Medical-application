@@ -17,11 +17,13 @@ import de.prokimedo.repository.IcdVersionRepo;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,6 +31,9 @@ import javax.persistence.EntityManager;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -148,7 +153,7 @@ public class IcdServiceImpl implements IcdService {
      */
     @Override
     public HashMap saveVersion(MultipartFile file, String version) throws Throwable {
-        List<Icd> icdList = new ArrayList<>();
+        List<Icd> icdList;
         if (file.getOriginalFilename().contains(".csv")) {
             icdList = this.readCsv(file);
         } else {
@@ -180,7 +185,7 @@ public class IcdServiceImpl implements IcdService {
     public List readCsv(MultipartFile file) throws IOException {
         File csvFile = this.convert(file);
         BufferedReader br = null;
-        String line = "";
+        String line;
         String cvsSplitBy = ";";
         int i = 0;
         List<Icd> icdList = new ArrayList<>();
@@ -208,6 +213,7 @@ public class IcdServiceImpl implements IcdService {
                 br.close();
             }
         }
+        csvFile.delete();
         return icdList;
     }
 
@@ -216,38 +222,65 @@ public class IcdServiceImpl implements IcdService {
         try {
 
             File inputWorkbook = convert(file);
-            Workbook w;
-            try {
-                w = Workbook.getWorkbook(inputWorkbook);
-                // Get the first sheet
-                Sheet sheet = w.getSheet(0);
-                //loop over first 10 column and lines
+            FileInputStream fis = new FileInputStream(inputWorkbook);
+            // Finds the workbook instance for XLSX file 
+            XSSFWorkbook myWorkBook = new XSSFWorkbook(fis);
+            // Return first sheet from the XLSX workbook 
+            XSSFSheet mySheet = myWorkBook.getSheetAt(0);
+            // Get iterator to all the rows in current sheet 
+            Iterator<Row> rowIterator = mySheet.iterator();
+            // Traversing over each row of XLSX file 
+            while (rowIterator.hasNext()) {
+                Row row = rowIterator.next();
+                if (!row.getCell(0).toString().equals("Diagnose")) {
+                    Icd icd = new Icd(row.getCell(1).toString(),
+                            row.getCell(0).toString(), row.getCell(2).toString());
 
-                for (int i = 1; i < sheet.getRows(); i++) {
-                    // for (int j = 1; j < sheet.getColumns(); j++) {
-                    Icd icd = new Icd(sheet.getCell(1, i).getContents(), sheet.getCell(0, i).getContents(), sheet.getCell(2, i).getContents());
                     listIcd.add(icd);
-
                 }
-
-            } catch (BiffException e) {
-                System.out.println("BiffException");
-            } catch (IOException ex) {
-                Logger.getLogger(ImageServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
+            inputWorkbook.delete();
 
-        } catch (IOException | IndexOutOfBoundsException ex) {
-            Logger.getLogger(ImageServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(MedikamentServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
+//        try {
+//
+//            File inputWorkbook = convert(file);
+//            
+//            Workbook w;
+//            try {
+//                w = Workbook.getWorkbook(inputWorkbook);
+//                // Get the first sheet
+//                Sheet sheet = w.getSheet(0);
+//                //loop over first 10 column and lines
+//
+//                for (int i = 1; i < sheet.getRows(); i++) {
+//                    // for (int j = 1; j < sheet.getColumns(); j++) {
+//                    Icd icd = new Icd(sheet.getCell(1, i).getContents(), sheet.getCell(0, i).getContents(), sheet.getCell(2, i).getContents());
+//                    listIcd.add(icd);
+//
+//                }
+//
+//            } catch (BiffException e) {
+//                System.out.println("BiffException");
+//            } catch (IOException ex) {
+//                Logger.getLogger(ImageServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            inputWorkbook.delete();
+//
+//        } catch (IOException | IndexOutOfBoundsException ex) {
+//            Logger.getLogger(ImageServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         return listIcd;
     }
 
     public File convert(MultipartFile file) throws IOException {
         File convFile = new File(file.getOriginalFilename());
         convFile.createNewFile();
-        FileOutputStream fos = new FileOutputStream(convFile);
-        fos.write(file.getBytes());
-        fos.close();
+        try (FileOutputStream fos = new FileOutputStream(convFile)) {
+            fos.write(file.getBytes());
+        }
         return convFile;
     }
 
@@ -314,7 +347,7 @@ public class IcdServiceImpl implements IcdService {
                     stream.write(bytes);
                 }
                 return filePath;
-            } catch (Exception e) {
+            } catch (IOException e) {
                 System.out.println("You failed to upload " + file.getOriginalFilename() + " => " + e.getMessage());
             }
         } else {
