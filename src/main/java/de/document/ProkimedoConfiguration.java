@@ -3,6 +3,8 @@
  */
 package de.document;
 
+import javax.inject.Singleton;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -16,10 +18,14 @@ import org.springframework.core.env.Environment;
  */
 @Configuration
 @ComponentScan(basePackageClasses = {ProkimedoConfiguration.class})
+@Singleton
 public class ProkimedoConfiguration {
 
 //    @Value("${prokimedo.tdb.url")
 //    private String prokimedoTdbUrl = "TDB";
+
+
+    private static ProkimedoConfiguration instance;
 
     @Autowired
     private Environment environment;
@@ -45,4 +51,12 @@ public class ProkimedoConfiguration {
     public String namespaceHttp() {
         return "http://" + serverName + "/" + prefix;
     }
+
+    public static ProkimedoConfiguration getInstance() {
+        if (instance == null) {
+            instance = new ProkimedoConfiguration();
+        }
+        return instance;
+    }
+
 }
