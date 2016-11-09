@@ -6,7 +6,6 @@ package de.prokimedo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
@@ -15,13 +14,7 @@ import org.springframework.core.env.Environment;
  * @created 2016-10-31
  */
 @Configuration
-@ComponentScan(basePackageClasses = {ProkimedoConfiguration.class, Application.class})
-//@Singleton
 public class ProkimedoConfiguration {
-
-//    @Value("${prokimedo.tdb.url")
-//    private String prokimedoTdbUrl = "TDB";
-
 
     public ProkimedoConfiguration() {
     }
