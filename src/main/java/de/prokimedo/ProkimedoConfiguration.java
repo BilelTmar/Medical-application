@@ -29,7 +29,7 @@ public class ProkimedoConfiguration {
     private int serverPort = 80;
 
     @Value("${prokimedo.server.prefix}")
-    private String serverPrefix = "prokimedo/standards";
+    private String serverPrefix = "standards/api";
 
     @Bean
     public String baseURLHttps() {
