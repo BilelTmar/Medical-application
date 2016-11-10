@@ -3,7 +3,9 @@ package de.prokimedo.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,15 +18,13 @@ import javax.persistence.TemporalType;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.Field;
 
-
-
 /**
  *
  * @author Bilel-PC
  */
 @Entity
 @Indexed
-public class Krankheit implements Serializable{
+public class Krankheit implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,31 +38,31 @@ public class Krankheit implements Serializable{
     @Column(length = 70, nullable = true)
     private String autor;
     @Field
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition = "TEXT")
     private String uebersichtTxt;
     @Field
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition = "TEXT")
     private String uebersichtNot;
     @Field
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition = "TEXT")
     private String diagnostikTxt;
     @Field
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition = "TEXT")
     private String diagnostikNot;
     @Field
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition = "TEXT")
     private String therapieTxt;
     @Field
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition = "TEXT")
     private String therapieNot;
     @Field
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition = "TEXT")
     private String beratungTxt;
     @Field
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition = "TEXT")
     private String beratungNot;
     @Field
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition = "TEXT")
     private String notes;
     @OneToOne
     private Prozedur prozedur;
@@ -70,6 +70,16 @@ public class Krankheit implements Serializable{
     private List<Icd> listIcd = new ArrayList<>();
     @ManyToMany
     private List<Medikament> listMedikament = new ArrayList<>();
+    @ManyToMany
+    private Set<Image> listImgUebersicht = new HashSet<>();
+    @ManyToMany
+    private Set<Image> listImgDiagnostik = new HashSet<>();
+    @ManyToMany
+    private Set<Image> listImgTherapie = new HashSet<>();
+    @ManyToMany
+    private Set<Image> listImgBeratung = new HashSet<>();
+    @ManyToMany
+    private Set<Image> listImgNotes = new HashSet<>();
 
     public Krankheit(String id, String title, Date date, String autor, String uebersichtTxt, String uebersichtNot, String diagnostikTxt, String diagnostikNot, String therapieTxt, String therapieNot, String beratungTxt, String beratungNot, String notes, Prozedur prozedur) {
         this.id = id;
@@ -90,8 +100,6 @@ public class Krankheit implements Serializable{
 
     public Krankheit() {
     }
-
-    
 
     public String getId() {
         return id;
@@ -221,12 +229,51 @@ public class Krankheit implements Serializable{
         this.listMedikament = listMedikament;
     }
 
+    public Set<Image> getListImgUebersicht() {
+        return listImgUebersicht;
+    }
+
+    public void setListImgUebersicht(Set<Image> listImgUebersicht) {
+        this.listImgUebersicht = listImgUebersicht;
+    }
+
+    public Set<Image> getListImgDiagnostik() {
+        return listImgDiagnostik;
+    }
+
+    public void setListImgDiagnostik(Set<Image> listImgDiagnostik) {
+        this.listImgDiagnostik = listImgDiagnostik;
+    }
+
+    public Set<Image> getListImgTherapie() {
+        return listImgTherapie;
+    }
+
+    public void setListImgTherapie(Set<Image> listImgTherapie) {
+        this.listImgTherapie = listImgTherapie;
+    }
+
+    public Set<Image> getListImgBeratung() {
+        return listImgBeratung;
+    }
+
+    public void setListImgBeratung(Set<Image> listImgBeratung) {
+        this.listImgBeratung = listImgBeratung;
+    }
+
+    public Set<Image> getListImgNotes() {
+        return listImgNotes;
+    }
+
+    public void setListImgNotes(Set<Image> listImgNotes) {
+        this.listImgNotes = listImgNotes;
+    }
+
+    
+
     @Override
     public String toString() {
         return "Krankheit{" + "id=" + id + ", title=" + title + ", date=" + date + ", autor=" + autor + ", uebersichtTxt=" + uebersichtTxt + ", uebersichtNot=" + uebersichtNot + ", diagnostikTxt=" + diagnostikTxt + ", diagnostikNot=" + diagnostikNot + ", therapieTxt=" + therapieTxt + ", therapieNot=" + therapieNot + ", beratungTxt=" + beratungTxt + ", beratungNot=" + beratungNot + ", notes=" + notes + ", prozedur=" + prozedur + '}';
     }
 
 }
-
-
-

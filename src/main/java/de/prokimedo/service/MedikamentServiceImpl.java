@@ -7,17 +7,22 @@ package de.prokimedo.service;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,9 +36,6 @@ import de.prokimedo.entity.MedikamentVersion;
 import de.prokimedo.entity.Prozedur;
 import de.prokimedo.repository.MedikamentRepo;
 import de.prokimedo.repository.MedikamentVersionRepo;
-import jxl.Sheet;
-import jxl.Workbook;
-import jxl.read.biff.BiffException;
 
 /**
  *
@@ -123,7 +125,6 @@ public class MedikamentServiceImpl implements MedikamentService {
         }).forEach((prozedur) -> {
             this.prozedurService.save2(prozedur);
         });
-        List<Krankheit> krankheits2 = this.krankheitService.readMedikamentKrankheit(medikament.getPzn());
         MedikamentVersion version = this.readCurrent();
         version.getListMedikament().remove(medikament);
         this.versionRepo.save(version);
@@ -151,7 +152,7 @@ public class MedikamentServiceImpl implements MedikamentService {
     @Override
     public HashMap saveVersion(MultipartFile file, String version) throws Throwable {
 //        String csvFile = this.transferToFile(file);
-        List<Medikament> medikamementList = new ArrayList<>();
+        List<Medikament> medikamementList;
         if (file.getOriginalFilename().contains(".csv")) {
             medikamementList = this.readCsv(file);
         } else {
@@ -182,7 +183,7 @@ public class MedikamentServiceImpl implements MedikamentService {
         List<Medikament> listMed = new ArrayList();
         File csvFile = this.convert(file);
         BufferedReader br = null;
-        String line = "";
+        String line;
         String cvsSplitBy = ";";
         int i = 0;
         try {
@@ -214,6 +215,8 @@ public class MedikamentServiceImpl implements MedikamentService {
                 br.close();
             }
         }
+        csvFile.delete();
+
         return listMed;
     }
 
@@ -222,32 +225,27 @@ public class MedikamentServiceImpl implements MedikamentService {
         try {
 
             File inputWorkbook = convert(file);
-            Workbook w;
-            try {
-                w = Workbook.getWorkbook(inputWorkbook);
-                // Get the first sheet
-                Sheet sheet = w.getSheet(0);
-                //loop over first 10 column and lines
-
-                for (int i = 1; i < sheet.getRows(); i++) {
-                    // for (int j = 1; j < sheet.getColumns(); j++) {
-                    Medikament med = new Medikament(null, sheet.getCell(2, i).getContents(),
-                            sheet.getCell(1, i).getContents(), sheet.getCell(4, i).getContents(),
-                            sheet.getCell(6, i).getContents(), sheet.getCell(3, i).getContents(),
-                            sheet.getCell(7, i).getContents());
+            FileInputStream fis = new FileInputStream(inputWorkbook);
+            // Finds the workbook instance for XLSX file
+            XSSFWorkbook myWorkBook = new XSSFWorkbook(fis);
+            // Return first sheet from the XLSX workbook
+            XSSFSheet mySheet = myWorkBook.getSheetAt(0);
+            // Get iterator to all the rows in current sheet
+            Iterator<Row> rowIterator = mySheet.iterator();
+            // Traversing over each row of XLSX file
+            while (rowIterator.hasNext()) {
+                Row row = rowIterator.next();
+                if (!row.getCell(1).toString().equals("PZN")) {
+                    Medikament med = new Medikament(null, row.getCell(2).toString(),
+                            row.getCell(1).toString(), row.getCell(4).toString(),
+                            row.getCell(6).toString(), row.getCell(3).toString(),
+                            row.getCell(7).toString());
                     listMed.add(med);
-                    System.out.println(sheet.getCell(7, i).getContents());
-
                 }
-
-            } catch (BiffException e) {
-                System.out.println("BiffException");
-            } catch (IOException ex) {
-                Logger.getLogger(ImageServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-        } catch (Throwable ex) {
-            Logger.getLogger(ImageServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            inputWorkbook.delete();
+        } catch (IOException ex) {
+            Logger.getLogger(MedikamentServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listMed;
     }
@@ -255,9 +253,9 @@ public class MedikamentServiceImpl implements MedikamentService {
     public File convert(MultipartFile file) throws IOException {
         File convFile = new File(file.getOriginalFilename());
         convFile.createNewFile();
-        FileOutputStream fos = new FileOutputStream(convFile);
-        fos.write(file.getBytes());
-        fos.close();
+        try (FileOutputStream fos = new FileOutputStream(convFile)) {
+            fos.write(file.getBytes());
+        }
         return convFile;
     }
 

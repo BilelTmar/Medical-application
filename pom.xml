@@ -89,7 +89,6 @@
             <groupId>org.apache.solr</groupId>
             <version>4.10.2</version>
         </dependency>
-
         <!-- Embedded server if used for testing
     <dependency>
       <artifactId>solr-core</artifactId>
@@ -133,11 +132,6 @@
         <type>jar</type>
     </dependency>
     <dependency>
-        <groupId>org.springframework.hateoas</groupId>
-        <artifactId>spring-hateoas</artifactId>
-        <type>jar</type>
-    </dependency>
-    <dependency>
         <groupId>commons-beanutils</groupId>
         <artifactId>commons-beanutils</artifactId>
         <type>jar</type>
@@ -152,11 +146,6 @@
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-batch</artifactId>
-        <type>jar</type>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-autoconfigure</artifactId>
         <type>jar</type>
     </dependency>
     <dependency>
@@ -226,6 +215,12 @@
     	<artifactId>javax.inject</artifactId>
     	<version>1</version>
     </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.11</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 
 <build>

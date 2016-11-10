@@ -6,7 +6,9 @@
 package de.prokimedo.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 
@@ -17,6 +19,7 @@ import com.google.common.collect.Lists;
 
 import de.prokimedo.QueryService;
 import de.prokimedo.entity.Icd;
+import de.prokimedo.entity.Image;
 import de.prokimedo.entity.Krankheit;
 import de.prokimedo.entity.Medikament;
 import de.prokimedo.repository.KrankheitRepo;
@@ -31,6 +34,8 @@ public class KrankheitServiceImpl implements KrankheitService {
     KrankheitRepo repo;
     @Autowired
     MedikamentService MedikamentService;
+    @Autowired
+    ImageService ImageService;
     @Autowired
     IcdService IcdService;
     QueryService<Krankheit> search;
@@ -48,7 +53,7 @@ public class KrankheitServiceImpl implements KrankheitService {
     @Autowired
     public KrankheitServiceImpl(KrankheitRepo repo, EntityManager em) {
         this.repo = repo;
-        this.search = new QueryService<>(em, Krankheit.class, "title", "autor","uebersichtTxt","uebersichtNot","diagnostikTxt", "diagnostikNot", "therapieTxt","therapieNot","beratungTxt","beratungNot","notes");
+        this.search = new QueryService<>(em, Krankheit.class, "title", "autor", "uebersichtTxt", "uebersichtNot", "diagnostikTxt", "diagnostikNot", "therapieTxt", "therapieNot", "beratungTxt", "beratungNot", "notes");
 
     }
 
@@ -64,6 +69,16 @@ public class KrankheitServiceImpl implements KrankheitService {
         krankheit.setListMedikament(medikaments);
         List<Icd> icds = this.searchIcd(krankheit);
         krankheit.setListIcd(icds);
+        Set<Image> imageUebersichtTxt = this.searchImage(krankheit.getUebersichtTxt() + krankheit.getUebersichtNot());
+        krankheit.setListImgUebersicht(imageUebersichtTxt);
+        Set<Image> imageDiagnostikTxt = this.searchImage(krankheit.getDiagnostikTxt() + krankheit.getDiagnostikNot());
+        krankheit.setListImgDiagnostik(imageDiagnostikTxt);
+        Set<Image> imageTherapieTxt = this.searchImage(krankheit.getTherapieTxt() + krankheit.getTherapieNot());
+        krankheit.setListImgTherapie(imageTherapieTxt);
+        Set<Image> imageBeratung = this.searchImage(krankheit.getBeratungTxt() + krankheit.getBeratungNot());
+        krankheit.setListImgBeratung(imageBeratung);
+        Set<Image> imageNotes = this.searchImage(krankheit.getNotes());
+        krankheit.setListImgNotes(imageNotes);
         this.repo.save(krankheit);
         return krankheit;
     }
@@ -127,6 +142,33 @@ public class KrankheitServiceImpl implements KrankheitService {
     }
 
     /**
+     * Search of any Image existing in a String
+     *
+     * @param text
+     * @return
+     */
+    public Set<Image> searchImage(String text) {
+        Set<Image> images = new HashSet<>();
+        if (text != null) {
+            int intIndex = text.indexOf("image");
+            int intIndex2 = text.indexOf("(siehe Bild unten)");
+
+            while (intIndex >= 0 && intIndex2 >= 0) {
+                System.out.println("Found image at index " + intIndex);
+                System.out.println("Found image at index " + intIndex2);
+                String substring = text.substring(intIndex + 6, intIndex2);
+                System.out.println(substring);
+                Image img = this.ImageService.read(substring);
+                images.add(img);
+                intIndex = text.indexOf("image", intIndex + 1);
+                intIndex2 = text.indexOf("(siehe Bild unten)", intIndex2 + 1);
+
+            }
+        }
+        return images;
+    }
+
+    /**
      * read all krankheit
      *
      * @return
@@ -136,25 +178,26 @@ public class KrankheitServiceImpl implements KrankheitService {
         Iterable<Krankheit> all = this.repo.findAll();
         return Lists.newArrayList(all);
     }
+
     @Override
     public List<Krankheit> query(String query) {
         return this.search.query(query);
     }
-    /**
-     * update krankheit
-     *
-     * @param krankheit
-     * @return
-     */
-    @Override
-    public Krankheit update(Krankheit krankheit) {
-        List<Medikament> medikaments = this.searchMedikament(krankheit);
-        krankheit.setListMedikament(medikaments);
-        List<Icd> icds = this.searchIcd(krankheit);
-        krankheit.setListIcd(icds);
-        return this.repo.save(krankheit);
-    }
 
+//    /**
+//     * update krankheit
+//     *
+//     * @param krankheit
+//     * @return
+//     */
+//    @Override
+//    public Krankheit update(Krankheit krankheit) {
+//        List<Medikament> medikaments = this.searchMedikament(krankheit);
+//        krankheit.setListMedikament(medikaments);
+//        List<Icd> icds = this.searchIcd(krankheit);
+//        krankheit.setListIcd(icds);
+//        return this.repo.save(krankheit);
+//    }
     @Override
     public void delete(String title) {
         this.repo.delete(this.repo.findByTitle(title));

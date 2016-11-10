@@ -2,12 +2,15 @@ package de.prokimedo.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,12 +23,12 @@ import org.hibernate.search.annotations.Indexed;
  */
 @Entity
 @Indexed
-public class Prozedur implements Serializable  {
+public class Prozedur implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
-     @Field
+    @Field
     @Column(length = 70, nullable = true)
     private String title;
     @Temporal(TemporalType.DATE)
@@ -33,40 +36,48 @@ public class Prozedur implements Serializable  {
     @Field
     @Column(length = 70, nullable = true)
     private String autor;
-        @Field
-    @Column(columnDefinition="TEXT")
+    @Field
+    @Column(columnDefinition = "TEXT")
     private String uebersichtTxt;
     @Field
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition = "TEXT")
     private String uebersichtNot;
     @Field
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition = "TEXT")
     private String diagnostikTxt;
     @Field
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition = "TEXT")
     private String diagnostikNot;
     @Field
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition = "TEXT")
     private String therapieTxt;
     @Field
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition = "TEXT")
     private String therapieNot;
     @Field
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition = "TEXT")
     private String beratungTxt;
     @Field
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition = "TEXT")
     private String beratungNot;
     @Field
-    @Column(columnDefinition="TEXT")
+    @Column(columnDefinition = "TEXT")
     private String notes;
-    @OneToMany
+    @ManyToMany
     private List<Icd> listIcd;
-    @OneToMany
+    @ManyToMany
     private List<Medikament> listMedikament;
+    @ManyToMany
+    private Set<Image> listImgUebersicht = new HashSet<>();
+    @ManyToMany
+    private Set<Image> listImgDiagnostik = new HashSet<>();
+    @ManyToMany
+    private Set<Image> listImgTherapie = new HashSet<>();
+    @ManyToMany
+    private Set<Image> listImgBeratung = new HashSet<>();
+    @ManyToMany
+    private Set<Image> listImgNotes = new HashSet<>();
 
-    
-    
     public String getId() {
         return id;
     }
@@ -186,4 +197,50 @@ public class Prozedur implements Serializable  {
     public void setListIcd(List<Icd> listIcd) {
         this.listIcd = listIcd;
     }
+
+    public Set<Image> getListImgUebersicht() {
+        return listImgUebersicht;
+    }
+
+    public void setListImgUebersicht(Set<Image> listImgUebersicht) {
+        this.listImgUebersicht = listImgUebersicht;
+    }
+
+    public Set<Image> getListImgDiagnostik() {
+        return listImgDiagnostik;
+    }
+
+    public void setListImgDiagnostik(Set<Image> listImgDiagnostik) {
+        this.listImgDiagnostik = listImgDiagnostik;
+    }
+
+    public Set<Image> getListImgTherapie() {
+        return listImgTherapie;
+    }
+
+    public void setListImgTherapie(Set<Image> listImgTherapie) {
+        this.listImgTherapie = listImgTherapie;
+    }
+
+    public Set<Image> getListImgBeratung() {
+        return listImgBeratung;
+    }
+
+    public void setListImgBeratung(Set<Image> listImgBeratung) {
+        this.listImgBeratung = listImgBeratung;
+    }
+
+    public Set<Image> getListImgNotes() {
+        return listImgNotes;
+    }
+
+    public void setListImgNotes(Set<Image> listImgNotes) {
+        this.listImgNotes = listImgNotes;
+    }
+
+    @Override
+    public String toString() {
+        return "Prozedur{" + "id=" + id + ", title=" + title + ", date=" + date + ", autor=" + autor + ", uebersichtTxt=" + uebersichtTxt + ", uebersichtNot=" + uebersichtNot + ", diagnostikTxt=" + diagnostikTxt + ", diagnostikNot=" + diagnostikNot + ", therapieTxt=" + therapieTxt + ", therapieNot=" + therapieNot + ", beratungTxt=" + beratungTxt + ", beratungNot=" + beratungNot + ", notes=" + notes + ", listImgUebersicht=" + listImgUebersicht + ", listImgDiagnostik=" + listImgDiagnostik + '}';
+    }
+    
 }

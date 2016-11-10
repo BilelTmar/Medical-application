@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(maxAge = 3600)
@@ -35,7 +34,7 @@ public class KrankheitController {
 
     @RequestMapping(value = "/update", method = {RequestMethod.POST})
     public ResponseEntity updateKrankheit(@RequestBody Krankheit request) {
-        Krankheit entity = service.update(request);
+        Krankheit entity = service.save(request);
         return ResponseEntity.ok(entity);
     }
 

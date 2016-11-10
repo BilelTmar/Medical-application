@@ -34,7 +34,7 @@ public class ProzedurController {
 
     @RequestMapping(value = "/update", method = {RequestMethod.POST})
     public ResponseEntity updateProzedur(@RequestBody Prozedur request) {
-        Prozedur entity = service.update(request);
+        Prozedur entity = service.save(request);
         return ResponseEntity.ok(entity);
     }
 
