@@ -25,9 +25,8 @@ public class UserServiceImpl implements UserService {
         List<User> list = repo.findByFirstNames(firstNames);
         if(list.isEmpty()) {
             return null;
-        } else {
-            return list.get(0);
         }
+        return list.get(0);
     }
 
     /**

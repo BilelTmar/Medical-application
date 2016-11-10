@@ -5,15 +5,6 @@
  */
 package de.prokimedo;
 
-/**
- *
- * @author Bilel-PC
- */
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -37,7 +28,7 @@ public class Application {
 //        return new CommandLineRunner() {
 //
 //            public void run(String[] args) {
-//                
+//
 //                Date d = new Date(2016, 10, 02);
 //                Date d2 = new Date();
 //                d2.setYear(115);
@@ -62,7 +53,7 @@ public class Application {
 //                kr.setListMedikament(list);
 //                krankheitRepo.save(kr);
 //                List<Krankheit> l = krankheitRepo.findByListMedikamentPzn("126");
-//                
+//
 //            }
 //        };
 //    }

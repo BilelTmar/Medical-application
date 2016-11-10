@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
  * @author Bilel-PC
  */
 @Service
-public class SerchServiceImpl implements SearchService {
+public class SearchServiceImpl implements SearchService {
 
     @Autowired
     KrankheitService krankheitService;

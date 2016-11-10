@@ -5,21 +5,25 @@
  */
 package de.prokimedo.service;
 
-import com.google.common.collect.Lists;
-import de.prokimedo.QueryService;
-import de.prokimedo.entity.Icd;
-import de.prokimedo.entity.Image;
-import de.prokimedo.entity.Krankheit;
-import de.prokimedo.entity.Prozedur;
-import de.prokimedo.entity.Medikament;
-import de.prokimedo.repository.ProzedurRepo;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import javax.persistence.EntityManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.google.common.collect.Lists;
+
+import de.prokimedo.QueryService;
+import de.prokimedo.entity.Icd;
+import de.prokimedo.entity.Image;
+import de.prokimedo.entity.Krankheit;
+import de.prokimedo.entity.Medikament;
+import de.prokimedo.entity.Prozedur;
+import de.prokimedo.repository.ProzedurRepo;
 
 /**
  *
@@ -45,9 +49,8 @@ public class ProzedurServiceImpl implements ProzedurService {
         List<Prozedur> list = repo.findByTitle(title);
         if (list.isEmpty()) {
             return null;
-        } else {
-            return list.get(0);
         }
+        return list.get(0);
     }
 
     @Autowired
@@ -104,8 +107,7 @@ public class ProzedurServiceImpl implements ProzedurService {
                 if (intIndex == -1) {
                     if (prozedur.getTherapieNot() != null) {
                         int intIndex2 = prozedur.getTherapieNot().indexOf(medikament.getPzn());
-                        if (intIndex2 == -1) {
-                        } else {
+                        if (intIndex2 >= 0) {
                             System.out.println("Found medikament at index " + intIndex2);
                             medikaments2.add(medikament);
                         }
@@ -131,8 +133,7 @@ public class ProzedurServiceImpl implements ProzedurService {
         if (icds != null) {
             icds.stream().filter(icd -> (prozedur.getNotes() != null)).forEach((icd) -> {
                 int intIndex = prozedur.getNotes().indexOf(icd.getCode());
-                if (intIndex == -1) {
-                } else {
+                if (intIndex >= 0) {
                     System.out.println("Found medikament at index " + intIndex);
                     icds2.add(icd);
                 }
@@ -154,7 +155,7 @@ public class ProzedurServiceImpl implements ProzedurService {
             int intIndex2 = text.indexOf("(siehe Bild unten)");
 
             while (intIndex >= 0 && intIndex2 >= 0) {
-               
+
                 String substring = text.substring(intIndex + 6, intIndex2);
                 System.out.println(substring);
                 Image img = this.ImageService.read(substring);

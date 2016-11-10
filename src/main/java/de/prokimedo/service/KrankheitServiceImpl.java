@@ -5,20 +5,24 @@
  */
 package de.prokimedo.service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.EntityManager;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.google.common.collect.Lists;
+
 import de.prokimedo.QueryService;
 import de.prokimedo.entity.Icd;
 import de.prokimedo.entity.Image;
 import de.prokimedo.entity.Krankheit;
 import de.prokimedo.entity.Medikament;
 import de.prokimedo.repository.KrankheitRepo;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import javax.persistence.EntityManager;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  *
@@ -42,9 +46,8 @@ public class KrankheitServiceImpl implements KrankheitService {
         List<Krankheit> list = repo.findByTitle(title);
         if (list.isEmpty()) {
             return null;
-        } else {
-            return list.get(0);
         }
+        return list.get(0);
     }
 
     @Autowired
@@ -95,15 +98,13 @@ public class KrankheitServiceImpl implements KrankheitService {
     public List<Medikament> searchMedikament(Krankheit krankheit) {
         List<Medikament> medikaments = this.MedikamentService.query();
         List<Medikament> medikaments2 = new ArrayList<>();
-        if (medikaments == null) {
-        } else {
+        if (medikaments != null) {
             medikaments.stream().filter(medikament -> (krankheit.getTherapieTxt() != null)).forEach((medikament) -> {
                 int intIndex = krankheit.getTherapieTxt().indexOf(medikament.getPzn());
                 if (intIndex == -1) {
                     if (krankheit.getTherapieNot() != null) {
                         int intIndex2 = krankheit.getTherapieNot().indexOf(medikament.getPzn());
-                        if (intIndex2 == -1) {
-                        } else {
+                        if (intIndex2 >= 0) {
                             System.out.println("Found medikament at index " + intIndex2);
                             medikaments2.add(medikament);
                         }
@@ -126,12 +127,10 @@ public class KrankheitServiceImpl implements KrankheitService {
     public List<Icd> searchIcd(Krankheit krankheit) {
         List<Icd> icds = this.IcdService.query();
         List<Icd> icds2 = new ArrayList<>();
-        if (icds == null) {
-        } else {
+        if (icds != null) {
             icds.stream().filter(icd -> (krankheit.getNotes() != null)).forEach((icd) -> {
                 int intIndex = krankheit.getNotes().indexOf(icd.getCode());
-                if (intIndex == -1) {
-                } else {
+                if (intIndex >= 0) {
                     System.out.println("Found medikament at index " + intIndex);
                     icds2.add(icd);
                 }
