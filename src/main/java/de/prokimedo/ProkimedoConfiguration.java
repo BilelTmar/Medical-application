@@ -25,15 +25,23 @@ public class ProkimedoConfiguration {
     @Value("${prokimedo.server.fqdn}")
     private String serverName = "localhost";
 
-    @Value("${prokimedo.server.prefix}")
-    private String prefix = "prokimedo/standards";
+    @Value("${prokimedo.server.port}")
+    private int serverPort = 80;
 
-    public String namespaceHttps() {
-        return "https://" + serverName + "/" + prefix;
+    @Value("${prokimedo.server.prefix}")
+    private String serverPrefix = "prokimedo/standards";
+
+    @Bean
+    public String baseURLHttps() {
+        return "https://" + serverName +
+                (serverPort == 443 ? "" : serverPort)
+                + "/" + serverPrefix;
     }
 
     @Bean
-    public String namespaceHttp() {
-        return "http://" + serverName + "/" + prefix;
+    public String baseURLHttp() {
+        return "http://" + serverName +
+                (serverPort == 80 ? "" : serverPort)
+                + "/" + serverPrefix;
     }
 }
