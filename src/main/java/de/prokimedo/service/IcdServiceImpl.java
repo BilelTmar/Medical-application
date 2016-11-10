@@ -95,9 +95,8 @@ public class IcdServiceImpl implements IcdService {
         IcdVersion version = this.readCurrent();
         if (version == null) {
             return null;
-        } else {
-            return version.getListIcd();
         }
+        return version.getListIcd();
     }
 
     @Override

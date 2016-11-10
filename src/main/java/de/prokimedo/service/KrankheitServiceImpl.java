@@ -104,8 +104,7 @@ public class KrankheitServiceImpl implements KrankheitService {
                 if (intIndex == -1) {
                     if (krankheit.getTherapieNot() != null) {
                         int intIndex2 = krankheit.getTherapieNot().indexOf(medikament.getPzn());
-                        if (intIndex2 == -1) {
-                        } else {
+                        if (intIndex2 >= 0) {
                             System.out.println("Found medikament at index " + intIndex2);
                             medikaments2.add(medikament);
                         }
@@ -131,8 +130,7 @@ public class KrankheitServiceImpl implements KrankheitService {
         if (icds != null) {
             icds.stream().filter(icd -> (krankheit.getNotes() != null)).forEach((icd) -> {
                 int intIndex = krankheit.getNotes().indexOf(icd.getCode());
-                if (intIndex == -1) {
-                } else {
+                if (intIndex >= 0) {
                     System.out.println("Found medikament at index " + intIndex);
                     icds2.add(icd);
                 }
