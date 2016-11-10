@@ -5,15 +5,6 @@
  */
 package de.prokimedo.service;
 
-import com.google.common.collect.Lists;
-import de.prokimedo.entity.Krankheit;
-import de.prokimedo.entity.MedUsed;
-import de.prokimedo.entity.Medikament;
-import de.prokimedo.entity.MedikamentVersion;
-import de.prokimedo.entity.Prozedur;
-import de.prokimedo.repository.MedikamentRepo;
-import de.prokimedo.repository.MedikamentVersionRepo;
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -24,13 +15,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.persistence.EntityManager;
-import jxl.Sheet;
-import jxl.Workbook;
-import jxl.read.biff.BiffException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.google.common.collect.Lists;
+
+import de.prokimedo.entity.Krankheit;
+import de.prokimedo.entity.MedUsed;
+import de.prokimedo.entity.Medikament;
+import de.prokimedo.entity.MedikamentVersion;
+import de.prokimedo.entity.Prozedur;
+import de.prokimedo.repository.MedikamentRepo;
+import de.prokimedo.repository.MedikamentVersionRepo;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
 
 /**
  *
@@ -89,9 +92,8 @@ public class MedikamentServiceImpl implements MedikamentService {
         MedikamentVersion version = this.readCurrent();
         if (version == null) {
             return null;
-        } else {
-            return version.getListMedikament();
         }
+        return version.getListMedikament();
     }
 
     @Override
@@ -169,8 +171,7 @@ public class MedikamentServiceImpl implements MedikamentService {
         });
         medVersion.setListMedikament(list);
         versionRepo.save(medVersion);
-        if (oldVersion == null) {
-        } else {
+        if (oldVersion != null) {
             oldVersion.setCurrent(Boolean.FALSE);
             versionRepo.save(oldVersion);
         }
@@ -190,20 +191,21 @@ public class MedikamentServiceImpl implements MedikamentService {
             while ((line = br.readLine()) != null) {
                 String[] medikament = line.split(cvsSplitBy);
                 if (i == 0) {
-                    if ("PZN".equals(medikament[1])) {
-                    } else {
+                    if (!"PZN".equals(medikament[1])) {
                         return null;
                     }
                 } else {
-
-                    if ("PZN".equals(medikament[1])) {
-                    } else {
+                    if (!"PZN".equals(medikament[1])) {
                         listMed.add(new Medikament(null, medikament[2], medikament[1], medikament[4], medikament[6], medikament[3], medikament[7]));
                     }
                 }
                 i++;
             }
 
+            /*
+             *  XXX please fix, IndexOutOfBoundsException *must not* be caught,
+             *  as this is basically a hidden programming error.
+             */
         } catch (IndexOutOfBoundsException e) {
             System.err.println("IndexOutOfBoundsException: " + e.getMessage());
             return null;

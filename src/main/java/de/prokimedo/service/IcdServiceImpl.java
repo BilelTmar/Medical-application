@@ -5,15 +5,6 @@
  */
 package de.prokimedo.service;
 
-import com.google.common.collect.Lists;
-import de.prokimedo.entity.Krankheit;
-import de.prokimedo.entity.Icd;
-import de.prokimedo.entity.IcdUsed;
-import de.prokimedo.entity.IcdVersion;
-import de.prokimedo.entity.Medikament;
-import de.prokimedo.entity.Prozedur;
-import de.prokimedo.repository.IcdRepo;
-import de.prokimedo.repository.IcdVersionRepo;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -25,13 +16,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.persistence.EntityManager;
-import jxl.Sheet;
-import jxl.Workbook;
-import jxl.read.biff.BiffException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.google.common.collect.Lists;
+
+import de.prokimedo.entity.Icd;
+import de.prokimedo.entity.IcdUsed;
+import de.prokimedo.entity.IcdVersion;
+import de.prokimedo.entity.Krankheit;
+import de.prokimedo.entity.Prozedur;
+import de.prokimedo.repository.IcdRepo;
+import de.prokimedo.repository.IcdVersionRepo;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
 
 /**
  *
@@ -169,8 +172,7 @@ public class IcdServiceImpl implements IcdService {
         });
         medVersion.setListIcd(list);
         versionRepo.save(medVersion);
-        if (oldVersion == null) {
-        } else {
+        if (oldVersion != null) {
             oldVersion.setCurrent(Boolean.FALSE);
             versionRepo.save(oldVersion);
         }
@@ -192,8 +194,7 @@ public class IcdServiceImpl implements IcdService {
                 if (i != 0) {
                     String[] icdNummer = line.split(cvsSplitBy);
 
-                    if ("Diagnose".equals(icdNummer[0])) {
-                    } else {
+                    if (!"Diagnose".equals(icdNummer[0])) {
                         icdList.add(new Icd(icdNummer[1], icdNummer[0], icdNummer[2]));
                     }
                 }
@@ -227,7 +228,6 @@ public class IcdServiceImpl implements IcdService {
                     // for (int j = 1; j < sheet.getColumns(); j++) {
                     Icd icd = new Icd(sheet.getCell(1, i).getContents(), sheet.getCell(0, i).getContents(), sheet.getCell(2, i).getContents());
                     listIcd.add(icd);
-
                 }
 
             } catch (BiffException e) {

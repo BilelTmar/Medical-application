@@ -5,23 +5,13 @@
  */
 package de.prokimedo.test;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import de.prokimedo.Application;
-import de.prokimedo.entity.Icd;
-import de.prokimedo.entity.Prozedur;
-import de.prokimedo.entity.Medikament;
-import de.prokimedo.repository.IcdRepo;
-import de.prokimedo.repository.IcdVersionRepo;
-import de.prokimedo.repository.KrankheitRepo;
-import de.prokimedo.repository.ProzedurRepo;
-import de.prokimedo.repository.MedikamentRepo;
-import de.prokimedo.repository.MedikamentVersionRepo;
-import de.prokimedo.service.IcdService;
-import de.prokimedo.service.ProzedurService;
-import de.prokimedo.service.MedikamentService;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
 import java.util.List;
+
 import org.junit.After;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,6 +22,23 @@ import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+
+import de.prokimedo.Application;
+import de.prokimedo.ProkimedoConfiguration;
+import de.prokimedo.entity.Icd;
+import de.prokimedo.entity.Medikament;
+import de.prokimedo.entity.Prozedur;
+import de.prokimedo.repository.IcdRepo;
+import de.prokimedo.repository.IcdVersionRepo;
+import de.prokimedo.repository.KrankheitRepo;
+import de.prokimedo.repository.MedikamentRepo;
+import de.prokimedo.repository.MedikamentVersionRepo;
+import de.prokimedo.repository.ProzedurRepo;
+import de.prokimedo.service.IcdService;
+import de.prokimedo.service.MedikamentService;
+import de.prokimedo.service.ProzedurService;
 
 /**
  *
@@ -64,11 +71,17 @@ public class ProzedurTest {
     @Autowired
     ProzedurService service;
 
+    @Autowired
+    ProkimedoConfiguration prokimedoConfiguration;
+
     public ProzedurTest() {
     }
 
     @Before
     public void setUp() {
+
+        assertNotNull(prokimedoConfiguration);
+
         krankheitRepo.deleteAll();
         prozedurRepo.deleteAll();
         medikamentVersionRepo.deleteAll();
