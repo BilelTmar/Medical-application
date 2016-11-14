@@ -340,25 +340,39 @@ public class ProzedurService {
         temp.removeResource(NS + entry);
     }
 
-    public void recolorMedicamentsInProzedurs(List<String> medicamentList, String color) {
+        /**
+     * Changes the color of the medicament links in all the Prozedur documents.
+     * 
+     * @param medikamentList All medicaments that have to be recolored.
+     * @param color The new color (blue or orange)
+     */
+    public void recolorMedikamentsInProzedurs(List<String> medikamentList, String color) {
         List<Prozedur> prozedurList = readAllProzedursCompletly();
         for (Prozedur prozedur : prozedurList) {
             TextModel therapie = new TextModel();
             if (prozedur.getTherapie() != null) {
                 if (prozedur.getTherapie().getText() != null) {
-                    therapie.setText(recolorMedicament(prozedur.getTherapie().getText(), medicamentList, color));
+                    therapie.setText(recolorMedikament(prozedur.getTherapie().getText(), medikamentList, color));
                 }
                 if (prozedur.getTherapie().getNotfall() != null) {
-                    therapie.setNotfall(recolorMedicament(prozedur.getTherapie().getNotfall(), medicamentList, color));
+                    therapie.setNotfall(recolorMedikament(prozedur.getTherapie().getNotfall(), medikamentList, color));
                 }
             }
             prozedur.setTherapie(therapie);
             save(prozedur);
         }
     }
-    private static String recolorMedicament(String text, List<String> medicamentList, String newColor) {
+    
+    /**
+     * Changes the color of all the medicament links in a string file if they
+     * are in the medicament list.
+     * 
+     * @param medikamentList All medicaments that have to be recolored.
+     * @param color The new color (blue or orange)
+     */
+    private static String recolorMedikament(String text, List<String> medikamentList, String newColor) {
         if (text != null) {
-            for (String PZN : medicamentList) {
+            for (String PZN : medikamentList) {
                 if (text.contains("><font color=#428BCD>" + PZN) && "orange".equals(newColor)) {
 
                     text = text.replace("><font color=#428BCD>" + PZN, " class=disabled><font color=#FF8000>" + PZN);
