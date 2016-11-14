@@ -27,39 +27,17 @@ import org.springframework.web.multipart.MultipartFile;
 public class MedikamentController {
     MedikamentService service = new MedikamentService();
 
-    /**
-     * Reads all the medicaments from the database to be displayed at the
-     * frontend.
-     * 
-     * @return List of all medicaments in the database
-     */
     @RequestMapping(value = "/query")
     public List<Medikament> readAll() {
         List<Medikament> list = service.readAll();
         return list;
     }
     
-    /**
-     * Reads a single medicament in the database to be displayed at the
-     * frontend.
-     * 
-     * @param pzn The identfication number of the medicament to display
-     * @return The medicament
-     */
-    @RequestMapping(value = "/info", method = {RequestMethod.POST})
+        @RequestMapping(value = "/info", method = {RequestMethod.POST})
     public Medikament readMedikament(@RequestBody String pzn) {
         return service.readMedikament(pzn);
     }
 
-    /**
-     * Saves a new list of medicaments in the database and sends a response
-     * to the frontend informing about deleted and new medicaments in the 
-     * database.
-     * 
-     * @param file Multipartfile containing the new uploaded medicament list
-     * @return The response to display
-     * @throws Throwable
-     */
     @RequestMapping(value = "/save/", headers = "Content-Type= multipart/form-data", method = {RequestMethod.POST})
     public HashMap save(@RequestParam("file") MultipartFile file) throws Throwable {
         return service.readFileMedikament(file);

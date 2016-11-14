@@ -39,15 +39,6 @@ public class MedikamentService {
 //    String url = "D:\\PC-Bilel\\Documents\\NetBeansProjects\\MedicalKnowledge\\TDB\\test";
     private String reTitle;
 
-    /**
-     * Reads a multipartfile containing medicaments, saves it as csvFile on the 
-     * system and enters the medicaments into the database. It also creates a 
-     * response for the frontend to display changes in the database.
-     * 
-     * @param file
-     * @return 
-     * @throws Throwable
-     */
     public HashMap readFileMedikament(MultipartFile file) throws Throwable {
         String csvFile = this.transferToFile(file);
         BufferedReader br = null;
@@ -80,14 +71,6 @@ public class MedikamentService {
         return response;
     }
 
-    /**
-     * Transfers the given MultipartFile back to a csvFile and saves it in the 
-     * sytem.
-     * 
-     * @param file
-     * @return The filepath of the saved file
-     * @throws Throwable
-     */
     public String transferToFile(MultipartFile file) throws Throwable {
         String filePath2 = Thread.currentThread()
                 .getContextClassLoader().getResource("medikament") + "\\" + file.getOriginalFilename();
@@ -111,15 +94,6 @@ public class MedikamentService {
         return null;
     }
 
-    /**
-     * Creates a response for the frontend after uploading a new medicament list
-     * into the database. It compares the new medicaments with the medicaments
-     * in the database and adds medicaments that are not in both lists to the
-     * response to be displayed as new or deleted medicament.
-     * 
-     * @param list1 The list of all the medicaments that have been uploaded
-     * @return The Response for the frontend
-     */
     public HashMap comparator(List<Medikament> list1) {
         List<Medikament> list2 = this.readAll();
         if (list2 == null) {
@@ -171,28 +145,16 @@ public class MedikamentService {
         }
     }
 
-    /**
-     * Saves all medicaments in the given medicament list. It first colors all
-     * medicaments that are in the database orange in the documents, than 
-     * deletes all medicaments in the database, saves the new medicament list
-     * in the database and then colors the medicaments that are back in the 
-     * database blue.
-     * 
-     * @param MedikamentList
-     */
     public void saveMedikamentList(List<Medikament> MedikamentList) {
         recolorMedicamentsInDocuments("orange");
-        deleteMedicamentsInDatabase();
+        deleteDatabase();
         for (Medikament med : MedikamentList) {
             save(med);
         }
         recolorMedicamentsInDocuments("blue");
     }
     
-    /**
-     * Deletes all medicaments in the RDF-database.
-     */
-    public void deleteMedicamentsInDatabase() {
+    public void deleteDatabase() {
         if (temp.getModel() != null) {
             if (temp.getModel().isClosed()) {
                 this.connectJenaTemp();
@@ -206,23 +168,14 @@ public class MedikamentService {
         });
     }
     
-    /**
-     * Changes the colors of the medicaments in the documents.
-     *
-     * @param color
-     */
     private void recolorMedicamentsInDocuments(String color) {
         List<String> medicamentPZNList = readAllPZNs();
         ProzedurService serviceP = new ProzedurService();
-        serviceP.recolorMedikamentsInProzedurs(medicamentPZNList, color);
+        serviceP.recolorMedicamentsInProzedurs(medicamentPZNList, color);
         KrankheitService serviceK = new KrankheitService();
         serviceK.recolorMedicamentsInKrankheits(medicamentPZNList, color);
     }
 
-    /**
-     *
-     * @return A list that contains all PZN(identificator) of all medicaments.
-     */
     public List<String> readAllPZNs() {
         if (sparqlTemp.getModel() != null) {
             if (sparqlTemp.getModel().isClosed()) {
@@ -244,12 +197,6 @@ public class MedikamentService {
         return pznList;
     }
 
-    /**
-     * Adds the given medicament entry into the database.
-     * 
-     * @param entry
-     * @return The medicament that has been added to the database.
-     */
     public Medikament save(Medikament entry) {
         try {
             if (temp.getModel() != null) {
@@ -293,12 +240,6 @@ public class MedikamentService {
         return entry;
     }
 
-    /**
-     * Reads a medicament with all attributes from the database.
-     * 
-     * @param pzn Identification number of the medicament to read.
-     * @return The medicament
-     */
     public Medikament readMedikament(String pzn) {
         if (sparqlTemp.getModel() != null) {
 
@@ -345,11 +286,6 @@ public class MedikamentService {
 
     }
 
-    /**
-     * Reads all medicaments with all attributes in the database.
-     * 
-     * @return A list of all medicaments in the database
-     */
     public List<Medikament> readAll() {
         if (sparqlTemp.getModel() != null) {
             if (sparqlTemp.getModel().isClosed()) {
