@@ -108,12 +108,10 @@ public class ProzedurServiceImpl implements ProzedurService {
                     if (prozedur.getTherapieNot() != null) {
                         int intIndex2 = prozedur.getTherapieNot().indexOf(medikament.getPzn());
                         if (intIndex2 >= 0) {
-                            System.out.println("Found medikament at index " + intIndex2);
                             medikaments2.add(medikament);
                         }
                     }
                 } else {
-                    System.out.println("Found medikament at index " + intIndex);
                     medikaments2.add(medikament);
                 }
             });
@@ -134,7 +132,6 @@ public class ProzedurServiceImpl implements ProzedurService {
             icds.stream().filter(icd -> (prozedur.getNotes() != null)).forEach((icd) -> {
                 int intIndex = prozedur.getNotes().indexOf(icd.getCode());
                 if (intIndex >= 0) {
-                    System.out.println("Found medikament at index " + intIndex);
                     icds2.add(icd);
                 }
             });
@@ -151,13 +148,12 @@ public class ProzedurServiceImpl implements ProzedurService {
     public Set<Image> searchImage(String text) {
         Set<Image> images = new HashSet<>();
         if (text != null) {
-            int intIndex = text.indexOf("image");
+            int intIndex = text.indexOf("Bild");
             int intIndex2 = text.indexOf("(siehe Bild unten)");
 
             while (intIndex >= 0 && intIndex2 >= 0) {
 
-                String substring = text.substring(intIndex + 6, intIndex2);
-                System.out.println(substring);
+                String substring = text.substring(intIndex + 5, intIndex2);
                 Image img = this.ImageService.read(substring);
                 images.add(img);
                 intIndex = text.indexOf("image", intIndex + 1);

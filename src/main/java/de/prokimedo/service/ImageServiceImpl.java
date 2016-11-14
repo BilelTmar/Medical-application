@@ -90,7 +90,7 @@ public class ImageServiceImpl implements ImageService {
             image.setTitle(title);
             image.setImage(bFile);
 
-            Image img = this.repo.save(image);
+            Image img = this.save(image);
             convFile.delete();
             return img;
         } catch (IOException e) {

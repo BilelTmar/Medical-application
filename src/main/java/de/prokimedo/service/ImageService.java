@@ -6,7 +6,6 @@
 package de.prokimedo.service;
 
 import de.prokimedo.entity.Image;
-import de.prokimedo.entity.Krankheit;
 import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,8 +20,6 @@ public interface ImageService {
     public Image save(Image image);
     
     public List<Image> query();
-
- //   public List<Krankheit> query(String query);
 
     public Image update(Image image);
 
