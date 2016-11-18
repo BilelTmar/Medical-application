@@ -83,7 +83,7 @@ public class MedikamentTest {
 
     @Test
     public void saveVersionTest() throws JsonProcessingException, IOException, Throwable {
-        File file = new File("src/test/resources/test.csv");
+        File file = new File("src/test/resources/medikamentTest.csv");
         FileInputStream input = new FileInputStream(file);
         MultipartFile multipartFile = new MockMultipartFile("file",
                 file.getName(), "text/plain", IOUtils.toByteArray(input));

@@ -57,7 +57,7 @@ public class KrankheitTest {
     @Autowired
     MedikamentVersionRepo medikamentVersionRepo;
     @Autowired
-    KrankheitService service;
+    KrankheitService krankheitService;
 
     public KrankheitTest() {
     }
@@ -140,7 +140,7 @@ public class KrankheitTest {
 //        k2.setAutor("bilel");
 //        k2.setTitle("title");
 //        this.krankheitRepo.save(k2);
-//        List<Krankheit> response = this.service.query("bilel");
+//        List<Krankheit> response = this.krankheitService.query("bilel");
 //        assertEquals(1, response.size());
 //
 //    }
@@ -156,7 +156,7 @@ public class KrankheitTest {
         k.setAutor("bilel");
         k.setTitle("test");
         k.setNotes("Z125");
-        this.service.save(k);
+        this.krankheitService.save(k);
         String URL2 = "http://localhost:" + port + "/krankheit/icd/test";
         List list = restTemplate.getForEntity(URL2, List.class).getBody();
         assertEquals(1, list.size());
@@ -172,7 +172,7 @@ public class KrankheitTest {
         k.setAutor("bilel");
         k.setTitle("test");
         k.setTherapieTxt("123");
-        this.service.save(k);
+        this.krankheitService.save(k);
         String URL2 = "http://localhost:" + port + "/krankheit/medikament/test";
         List list = restTemplate.getForEntity(URL2, List.class).getBody();
         assertEquals(1, list.size());
