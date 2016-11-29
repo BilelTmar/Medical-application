@@ -6,7 +6,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+<<<<<<< HEAD
 
+=======
+import java.util.List;
+>>>>>>> origin/master
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -57,7 +61,7 @@ public class ImageTest {
     }
 
     @Test
-    public void imageTest() throws JsonProcessingException {
+    public void saveImageTest() throws JsonProcessingException {
 
         //File file = new File("images\\extjsfirstlook.jpg"); //windows
         File file = new File("testdata" + File.separator + "Chimp_Aim_Banana_Stencil.jpg");
@@ -70,10 +74,43 @@ public class ImageTest {
         } catch (IOException e) {
         }
         Image image = new Image();
-        image.setTitle("bilel");
+        image.setTitle("test");
         image.setImage(bFile);
         imageService.save(image);
-        Image img = imageRepo.findByTitle("bilel").get(0);
+        Image img = imageService.read("test");
+        assertEquals("test", img.getTitle());
+    }
+
+    @Test
+    public void queryImageTest() throws JsonProcessingException {
+
+        File file = new File("test.jpg");
+        byte[] bFile = new byte[(int) file.length()];
+
+        try {
+            try (FileInputStream fileInputStream = new FileInputStream(file)) {
+                fileInputStream.read(bFile);
+            }
+        } catch (IOException e) {
+        }
+        Image image = new Image();
+        image.setTitle("test");
+        image.setImage(bFile);
+        imageService.save(image);
+        Image image2 = new Image();
+        image2.setTitle("test2");
+        image2.setImage(bFile);
+        imageService.save(image2);
+        List<Image> list = imageService.query();
+        assertEquals(2, list.size());
+    }
+
+    @Test
+    public void deleteImageTest() throws JsonProcessingException {
+
+        File file = new File("src/test/resources/test.jpg");
+        byte[] bFile = new byte[(int) file.length()];
+
         try {
             try ( //FileOutputStream fos = new FileOutputStream("images\\output.jpg");  //windows
                     FileOutputStream fos = new FileOutputStream("testdata" + File.separator + "output.jpg")) {
@@ -81,7 +118,13 @@ public class ImageTest {
             }
         } catch (IOException e) {
         }
-        assertEquals("bilel", img.getTitle());
+        Image image = new Image();
+        image.setTitle("test");
+        image.setImage(bFile);
+        imageService.save(image);
+        imageService.delete("test");
+        List<Image> list = imageService.query();
+        assertEquals(0, list.size());
     }
 
     @After
@@ -93,3 +136,4 @@ public class ImageTest {
 
     }
 }
+

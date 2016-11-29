@@ -90,7 +90,7 @@ public class MedikamentController {
 
     @RequestMapping(value = "/search/used/", method = {RequestMethod.POST})
     public ResponseEntity searchUsedListMedikament(@RequestBody Object listMedikament) throws IOException, ParseException {
-        List request = new ArrayList();
+        List request;
         List<Medikament> request2 = new ArrayList();
         request = (List) listMedikament;
         for (Object item : request) {

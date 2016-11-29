@@ -17,18 +17,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.persistence.EntityManager;
-
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.google.common.collect.Lists;
-
 import de.prokimedo.entity.Krankheit;
 import de.prokimedo.entity.MedUsed;
 import de.prokimedo.entity.Medikament;
@@ -126,7 +122,7 @@ public class MedikamentServiceImpl implements MedikamentService {
             this.prozedurService.save2(prozedur);
         });
         MedikamentVersion version = this.readCurrent();
-        version.getListMedikament().remove(medikament);
+        boolean remove = version.getListMedikament().remove(medikament);
         this.versionRepo.save(version);
         this.repo.delete(medikament);
     }
@@ -319,31 +315,6 @@ public class MedikamentServiceImpl implements MedikamentService {
         return null;
 
     }
-
-//    /**
-//     *
-//     * @param file
-//     * @return
-//     * @throws Throwable
-//     */
-//    public String transferToFile(MultipartFile file) throws Throwable {
-//        String filePath2 = Thread.currentThread().getContextClassLoader().getResource("medikament") + "\\" + file.getOriginalFilename();
-//        String filePath = filePath2.substring(6);
-//        if (!file.isEmpty()) {
-//            try {
-//                byte[] bytes = file.getBytes();
-//                try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)))) {
-//                    stream.write(bytes);
-//                }
-//                return filePath;
-//            } catch (Exception e) {
-//                System.out.println("You failed to upload " + file.getOriginalFilename() + " => " + e.getMessage());
-//            }
-//        } else {
-//            System.out.println("You failed to upload " + file.getOriginalFilename() + " because the file was empty.");
-//        }
-//        return null;
-//    }
     /**
      * read all existing medicament's verion
      *

@@ -105,12 +105,10 @@ public class KrankheitServiceImpl implements KrankheitService {
                     if (krankheit.getTherapieNot() != null) {
                         int intIndex2 = krankheit.getTherapieNot().indexOf(medikament.getPzn());
                         if (intIndex2 >= 0) {
-                            System.out.println("Found medikament at index " + intIndex2);
                             medikaments2.add(medikament);
                         }
                     }
                 } else {
-                    System.out.println("Found medikament at index " + intIndex);
                     medikaments2.add(medikament);
                 }
             });
@@ -131,7 +129,6 @@ public class KrankheitServiceImpl implements KrankheitService {
             icds.stream().filter(icd -> (krankheit.getNotes() != null)).forEach((icd) -> {
                 int intIndex = krankheit.getNotes().indexOf(icd.getCode());
                 if (intIndex >= 0) {
-                    System.out.println("Found medikament at index " + intIndex);
                     icds2.add(icd);
                 }
             });
@@ -148,14 +145,11 @@ public class KrankheitServiceImpl implements KrankheitService {
     public Set<Image> searchImage(String text) {
         Set<Image> images = new HashSet<>();
         if (text != null) {
-            int intIndex = text.indexOf("image");
+            int intIndex = text.indexOf("Bild");
             int intIndex2 = text.indexOf("(siehe Bild unten)");
 
             while (intIndex >= 0 && intIndex2 >= 0) {
-                System.out.println("Found image at index " + intIndex);
-                System.out.println("Found image at index " + intIndex2);
-                String substring = text.substring(intIndex + 6, intIndex2);
-                System.out.println(substring);
+                String substring = text.substring(intIndex + 5, intIndex2);
                 Image img = this.ImageService.read(substring);
                 images.add(img);
                 intIndex = text.indexOf("image", intIndex + 1);
@@ -182,20 +176,6 @@ public class KrankheitServiceImpl implements KrankheitService {
         return this.search.query(query);
     }
 
-//    /**
-//     * update krankheit
-//     *
-//     * @param krankheit
-//     * @return
-//     */
-//    @Override
-//    public Krankheit update(Krankheit krankheit) {
-//        List<Medikament> medikaments = this.searchMedikament(krankheit);
-//        krankheit.setListMedikament(medikaments);
-//        List<Icd> icds = this.searchIcd(krankheit);
-//        krankheit.setListIcd(icds);
-//        return this.repo.save(krankheit);
-//    }
     @Override
     public void delete(String title) {
         this.repo.delete(this.repo.findByTitle(title));
