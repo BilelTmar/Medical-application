@@ -5,8 +5,28 @@
  */
 package de.prokimedo.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
+import java.util.List;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.TestRestTemplate;
+import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.web.client.RestTemplate;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
+
 import de.prokimedo.Application;
+import de.prokimedo.ProkimedoConfiguration;
 import de.prokimedo.entity.Icd;
 import de.prokimedo.entity.Krankheit;
 import de.prokimedo.entity.Medikament;
@@ -19,19 +39,6 @@ import de.prokimedo.repository.ProzedurRepo;
 import de.prokimedo.service.IcdService;
 import de.prokimedo.service.KrankheitService;
 import de.prokimedo.service.MedikamentService;
-import java.util.List;
-import org.junit.After;
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.TestRestTemplate;
-import org.springframework.boot.test.WebIntegrationTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.web.client.RestTemplate;
 
 /**
  *
@@ -64,11 +71,19 @@ public class KrankheitTest {
     @Autowired
     KrankheitService service;
 
+    String urlBase;
+    @Autowired
+    ProkimedoConfiguration prokimedoConfiguration;
+
     public KrankheitTest() {
     }
 
     @Before
     public void setUp() {
+
+        assertNotNull(prokimedoConfiguration);
+        urlBase = "http://localhost:" + port + "/" + prokimedoConfiguration.getServerPrefix();
+
         krankheitRepo.deleteAll();
         prozedurRepo.deleteAll();
         medikamentVersionRepo.deleteAll();
@@ -83,9 +98,9 @@ public class KrankheitTest {
         Krankheit k = new Krankheit();
         k.setAutor("bilel");
         k.setTitle("test");
-        String URL = "http://localhost:" + port + "/krankheit/save";
+        String URL = urlBase + "/krankheit/save";
         restTemplate.postForEntity(URL, k, Krankheit.class);
-        String URL2 = "http://localhost:" + port + "/krankheit/test";
+        String URL2 = urlBase + "/krankheit/test";
         Krankheit krankheit = restTemplate.getForEntity(URL2, Krankheit.class).getBody();
         assertEquals("bilel", krankheit.getAutor());
     }
@@ -98,9 +113,9 @@ public class KrankheitTest {
         k.setTitle("test");
         Krankheit response = krankheitRepo.save(k);
         response.setNotes("Notes");
-        String URL = "http://localhost:" + port + "/krankheit/update";
+        String URL = urlBase + "/krankheit/update";
         restTemplate.postForEntity(URL, k, Krankheit.class);
-        String URL2 = "http://localhost:" + port + "/krankheit/test";
+        String URL2 = urlBase + "/krankheit/test";
         Krankheit krankheit = restTemplate.getForEntity(URL2, Krankheit.class).getBody();
         assertEquals("Notes", krankheit.getNotes());
     }
@@ -112,9 +127,9 @@ public class KrankheitTest {
         k.setAutor("bilel");
         k.setTitle("test");
         krankheitRepo.save(k);
-        String URL = "http://localhost:" + port + "/krankheit/delete/test";
+        String URL = urlBase + "/krankheit/delete/test";
         restTemplate.getForEntity(URL, Krankheit.class).getBody();
-        String URL2 = "http://localhost:" + port + "/krankheit/test";
+        String URL2 = urlBase + "/krankheit/test";
         Krankheit response = restTemplate.getForEntity(URL2, Krankheit.class).getBody();
         assertNull(response);
     }
@@ -130,7 +145,7 @@ public class KrankheitTest {
         k2.setAutor("bilel");
         k2.setTitle("test");
         this.krankheitRepo.save(k2);
-        String URL2 = "http://localhost:" + port + "/krankheit/query";
+        String URL2 = urlBase + "/krankheit/query";
         List list = restTemplate.getForEntity(URL2, List.class).getBody();
         assertEquals(2, list.size());
     }
@@ -162,7 +177,7 @@ public class KrankheitTest {
         k.setTitle("test");
         k.setNotes("Z125");
         this.service.save(k);
-        String URL2 = "http://localhost:" + port + "/krankheit/icd/test";
+        String URL2 = urlBase + "/krankheit/icd/test";
         List list = restTemplate.getForEntity(URL2, List.class).getBody();
         assertEquals(1, list.size());
     }
@@ -178,7 +193,7 @@ public class KrankheitTest {
         k.setTitle("test");
         k.setTherapieTxt("123");
         this.service.save(k);
-        String URL2 = "http://localhost:" + port + "/krankheit/medikament/test";
+        String URL2 = urlBase + "/krankheit/medikament/test";
         List list = restTemplate.getForEntity(URL2, List.class).getBody();
         assertEquals(1, list.size());
     }

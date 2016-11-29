@@ -1,18 +1,13 @@
 package de.prokimedo.test;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import de.prokimedo.Application;
-import de.prokimedo.entity.Image;
-import de.prokimedo.repository.ImageRepo;
-import de.prokimedo.repository.KrankheitRepo;
-import de.prokimedo.repository.ProzedurRepo;
-import de.prokimedo.service.ImageService;
+import static org.junit.Assert.assertEquals;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
 import org.junit.After;
-import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,6 +18,15 @@ import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+
+import de.prokimedo.Application;
+import de.prokimedo.entity.Image;
+import de.prokimedo.repository.ImageRepo;
+import de.prokimedo.repository.KrankheitRepo;
+import de.prokimedo.repository.ProzedurRepo;
+import de.prokimedo.service.ImageService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -56,7 +60,7 @@ public class ImageTest {
     public void imageTest() throws JsonProcessingException {
 
         //File file = new File("images\\extjsfirstlook.jpg"); //windows
-        File file = new File("C:\\Users\\Tmar\\Pictures\\test.jpg");
+        File file = new File("testdata" + File.separator + "Chimp_Aim_Banana_Stencil.jpg");
         byte[] bFile = new byte[(int) file.length()];
 
         try {
@@ -72,7 +76,7 @@ public class ImageTest {
         Image img = imageRepo.findByTitle("bilel").get(0);
         try {
             try ( //FileOutputStream fos = new FileOutputStream("images\\output.jpg");  //windows
-                    FileOutputStream fos = new FileOutputStream("C:\\Users\\Tmar\\Pictures\\outpput.jpg")) {
+                    FileOutputStream fos = new FileOutputStream("testdata" + File.separator + "output.jpg")) {
                 fos.write(image.getImage());
             }
         } catch (IOException e) {

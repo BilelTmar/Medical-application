@@ -71,6 +71,8 @@ public class ProzedurTest {
     @Autowired
     ProzedurService service;
 
+    String urlBase;
+
     @Autowired
     ProkimedoConfiguration prokimedoConfiguration;
 
@@ -81,6 +83,10 @@ public class ProzedurTest {
     public void setUp() {
 
         assertNotNull(prokimedoConfiguration);
+
+        urlBase = "http://localhost:" + port + "/" + prokimedoConfiguration.getServerPrefix();
+
+        assertNotNull(urlBase);
 
         krankheitRepo.deleteAll();
         prozedurRepo.deleteAll();
@@ -96,9 +102,9 @@ public class ProzedurTest {
         Prozedur k = new Prozedur();
         k.setAutor("bilel");
         k.setTitle("test");
-        String URL = "http://localhost:" + port + "/prozedur/save";
+        String URL = urlBase + "/prozedur/save";
         restTemplate.postForEntity(URL, k, Prozedur.class);
-        String URL2 = "http://localhost:" + port + "/prozedur/test";
+        String URL2 = urlBase + "/prozedur/test";
         Prozedur prozedur = restTemplate.getForEntity(URL2, Prozedur.class).getBody();
         assertEquals("bilel", prozedur.getAutor());
     }
@@ -111,9 +117,9 @@ public class ProzedurTest {
         k.setTitle("test");
         Prozedur response = prozedurRepo.save(k);
         response.setNotes("Notes");
-        String URL = "http://localhost:" + port + "/prozedur/update";
+        String URL = urlBase + "/prozedur/update";
         restTemplate.postForEntity(URL, k, Prozedur.class);
-        String URL2 = "http://localhost:" + port + "/prozedur/test";
+        String URL2 = urlBase + "/prozedur/test";
         Prozedur prozedur = restTemplate.getForEntity(URL2, Prozedur.class).getBody();
         assertEquals("Notes", prozedur.getNotes());
     }
@@ -125,9 +131,9 @@ public class ProzedurTest {
         k.setAutor("bilel");
         k.setTitle("test");
         prozedurRepo.save(k);
-        String URL = "http://localhost:" + port + "/prozedur/delete/test";
+        String URL = urlBase + "/prozedur/delete/test";
         restTemplate.getForEntity(URL, Prozedur.class).getBody();
-        String URL2 = "http://localhost:" + port + "/prozedur/test";
+        String URL2 = urlBase + "/prozedur/test";
         Prozedur response = restTemplate.getForEntity(URL2, Prozedur.class).getBody();
         assertNull(response);
     }
@@ -143,7 +149,7 @@ public class ProzedurTest {
         k2.setAutor("bilel");
         k2.setTitle("test");
         this.prozedurRepo.save(k2);
-        String URL2 = "http://localhost:" + port + "/prozedur/query";
+        String URL2 = urlBase + "/prozedur/query";
         List list = restTemplate.getForEntity(URL2, List.class).getBody();
         assertEquals(2, list.size());
     }
@@ -160,7 +166,7 @@ public class ProzedurTest {
         k.setTitle("test");
         k.setNotes("Z125");
         this.service.save(k);
-        String URL2 = "http://localhost:" + port + "/prozedur/icd/test";
+        String URL2 = urlBase + "/prozedur/icd/test";
         List list = restTemplate.getForEntity(URL2, List.class).getBody();
         assertEquals(1, list.size());
     }
@@ -176,7 +182,7 @@ public class ProzedurTest {
         k.setTitle("test");
         k.setTherapieTxt("123");
         this.service.save(k);
-        String URL2 = "http://localhost:" + port + "/prozedur/medikament/test";
+        String URL2 = urlBase + "/prozedur/medikament/test";
         List list = restTemplate.getForEntity(URL2, List.class).getBody();
         assertEquals(1, list.size());
     }

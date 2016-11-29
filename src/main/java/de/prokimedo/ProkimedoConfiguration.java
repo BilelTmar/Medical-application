@@ -31,6 +31,14 @@ public class ProkimedoConfiguration {
     @Value("${prokimedo.server.prefix}")
     private String serverPrefix = "standards/api";
 
+    public String getServerPrefix() {
+        return serverPrefix;
+    }
+
+    public Environment getEnvironment() {
+        return environment;
+    }
+
     @Bean
     public String baseURLHttps() {
         return "https://" + serverName +
