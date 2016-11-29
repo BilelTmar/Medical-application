@@ -171,7 +171,7 @@ public class KrankheitTest {
         k.setAutor("bilel");
         k.setTitle("test");
         k.setNotes("Z125");
-        this.service.save(k);
+        this.krankheitRepo.save(k);
         String URL2 = urlBase + "/krankheit/icd/test";
         List list = restTemplate.getForEntity(URL2, List.class).getBody();
         assertEquals(1, list.size());
@@ -187,7 +187,7 @@ public class KrankheitTest {
         k.setAutor("bilel");
         k.setTitle("test");
         k.setTherapieTxt("123");
-        this.service.save(k);
+        this.krankheitRepo.save(k);
         String URL2 = urlBase + "/krankheit/medikament/test";
         List list = restTemplate.getForEntity(URL2, List.class).getBody();
         assertEquals(1, list.size());

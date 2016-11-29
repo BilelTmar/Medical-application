@@ -6,11 +6,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-<<<<<<< HEAD
-
-=======
 import java.util.List;
->>>>>>> origin/master
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -114,17 +111,17 @@ public class ImageTest {
         try {
             try ( //FileOutputStream fos = new FileOutputStream("images\\output.jpg");  //windows
                     FileOutputStream fos = new FileOutputStream("testdata" + File.separator + "output.jpg")) {
+                Image image = new Image();
+                image.setTitle("test");
+                image.setImage(bFile);
                 fos.write(image.getImage());
+                imageService.save(image);
+                imageService.delete("test");
+                List<Image> list = imageService.query();
+                assertEquals(0, list.size());
             }
         } catch (IOException e) {
         }
-        Image image = new Image();
-        image.setTitle("test");
-        image.setImage(bFile);
-        imageService.save(image);
-        imageService.delete("test");
-        List<Image> list = imageService.query();
-        assertEquals(0, list.size());
     }
 
     @After
