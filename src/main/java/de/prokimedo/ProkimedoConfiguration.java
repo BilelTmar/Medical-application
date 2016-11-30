@@ -3,6 +3,11 @@
  */
 package de.prokimedo;
 
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+
+import org.slf4j.bridge.SLF4JBridgeHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -51,5 +56,13 @@ public class ProkimedoConfiguration {
         return "http://" + serverName +
                 (serverPort == 80 ? "" : serverPort)
                 + "/" + serverPrefix;
+    }
+
+    public static void configureLogger() {
+        LogManager.getLogManager().reset();
+        SLF4JBridgeHandler.removeHandlersForRootLogger();
+        SLF4JBridgeHandler.install();
+
+        Logger.getLogger("global").setLevel(Level.INFO);
     }
 }
