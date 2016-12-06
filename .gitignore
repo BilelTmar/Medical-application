@@ -6,3 +6,4 @@ TDB/*
 *.swo
 .settings
 .settings/*
+bin/*
