@@ -3,10 +3,6 @@
  */
 package de.prokimedo;
 
-import java.util.logging.Level;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
-
 import org.slf4j.bridge.SLF4JBridgeHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -59,10 +55,7 @@ public class ProkimedoConfiguration {
     }
 
     public static void configureLogger() {
-        LogManager.getLogManager().reset();
         SLF4JBridgeHandler.removeHandlersForRootLogger();
         SLF4JBridgeHandler.install();
-
-        Logger.getLogger("global").setLevel(Level.INFO);
     }
 }
