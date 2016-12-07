@@ -15,6 +15,7 @@
 
     <properties>
       <java.version>1.8</java.version>
+      <skipTests>true</skipTests>
     </properties>
 
     <dependencies>
@@ -27,10 +28,12 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-data-jpa</artifactId>
         <exclusions>
+          <!--
           <exclusion>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-access</artifactId>
           </exclusion>
+          -->
         </exclusions>
       </dependency>
       <dependency>
@@ -270,6 +273,19 @@
     	<version>2.1</version>
     	<type>maven-plugin</type>
     </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-tomcat</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+    	<groupId>ch.qos.logback</groupId>
+    	<artifactId>logback-core</artifactId>
+    </dependency>
+    <dependency>
+    	<groupId>ch.qos.logback</groupId>
+    	<artifactId>logback-classic</artifactId>
+    </dependency>
     </dependencies>
 
   <profiles>
@@ -278,77 +294,94 @@
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
-      <dependencies>
-        <dependency>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-starter-tomcat</artifactId>
-        </dependency>
-      </dependencies>
     </profile>
 
     <profile>
       <id>production</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.apache.tomcat.embed</groupId>
+          <artifactId>tomcat-embed-websocket</artifactId>
+          <exclusions>
+            <exclusion>
+              <groupId>org.apache.tomcat.embed</groupId>
+              <artifactId>tomcat-embed-websocket</artifactId>
+            </exclusion>
+          </exclusions>
+        </dependency>
+      </dependencies>
+      <properties>
+        <glassfish.host>prokimedo.forwiss.uni-passau.de</glassfish.host>
+        <glassfish.domain.adminPort>4848</glassfish.domain.adminPort>
+        <glassfish.glassfishDirectory>/mnt/fastdata/payara41/glassfish</glassfish.glassfishDirectory>
+        <glassfish.user>admin</glassfish.user>
+        <glassfish.passwordFile>/tmp/asadmin.password</glassfish.passwordFile>
+        <glassfish.adminPassword>7418</glassfish.adminPassword>
+        <glassfish.domain>domain1</glassfish.domain>
+        <glassfish.httpPort>8080</glassfish.httpPort>
+        <glassfish.adminPort>4848</glassfish.adminPort>
+      </properties>
     </profile>
-        <!--
-    <dependencies>
-      <dependency>
-        <exclusions>
-          <exclusion>
-            <artifactId>tomcat-embed-websocket</artifactId>
-            <groupId>org.apache.tomcat.embed</groupId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-    </dependencies>
-        -->
   </profiles>
 
 <build>
-    <plugins>
-        <plugin>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-        </plugin>
-        <plugin>
-          <groupId>org.glassfish.maven.plugin</groupId>
-          <artifactId>maven-glassfish-plugin</artifactId>
-          <version>2.1</version>
-          <configuration>
-            <glassfishDirectory>${local.glassfish.home}</glassfishDirectory>
-            <user>${local.glassfish.user}</user>
-            <passwordFile>${local.glassfish.passfile}</passwordFile>
-            <domain>
-              <name>${local.glassfish.domain}</name>
-              <httpPort>${local.glassfish.httpport}</httpPort>
-              <adminPort>${local.glassfish.adminport}</adminPort>
-            </domain>
+  <plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-surefire-plugin</artifactId>
+      <configuration>
+        <skitTests>${skipTests}</skitTests>
+      </configuration>
+    </plugin>
+    <plugin>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-maven-plugin</artifactId>
+    </plugin>
+    <plugin>
+      <groupId>org.glassfish.maven.plugin</groupId>
+      <artifactId>maven-glassfish-plugin</artifactId>
+      <version>2.1</version>
+      <configuration>
 
-            <components>
-              <component>
-                <name>${project.name}</name>
-                <artifact>target/${project.name}-${project.version}</artifact>
-              </component>
-            </components>
-            <debug>true</debug>
-            <terse>false</terse>
-            <echo>true</echo>
+        <glassfishDirectory>${glassfish.glassfishDirectory}</glassfishDirectory>
+        <user>${glassfish.user}</user>
+        <adminPassword>${glassfish.adminPassword}</adminPassword>
+        <passwordFile>${glassfish.passwordFile}</passwordFile>
+        <components>
+          <component>
+            <name>${project.name}</name>
+            <artifact>target/${project.name}-${project.version}</artifact>
+          </component>
+        </components>
+        <debug>true</debug>
+        <terse>true</terse>
+        <echo>true</echo>
+        <type>remote</type>
+        <autoCreate>true</autoCreate>
 
-          </configuration>
-        </plugin>
-    </plugins>
+        <domain>
+          <host>${glassfish.host}</host>
+          <name>${glassfish.domain}</name>
+          <httpPort>${glassfish.httpPort}</httpPort>
+          <adminPort>${glassfish.adminPort}</adminPort>
+        </domain>
+
+      </configuration>
+    </plugin>
+  </plugins>
 </build>
 
 <repositories>
-    <repository>
-        <id>spring-releases</id>
-        <name>Spring Releases</name>
-        <url>https://repo.spring.io/libs-release</url>
-    </repository>
-    <repository>
-        <id>org.jboss.repository.releases</id>
-        <name>JBoss Maven Release Repository</name>
-        <url>https://repository.jboss.org/nexus/content/repositories/releases</url>
-    </repository>
+  <repository>
+    <id>spring-releases</id>
+    <name>Spring Releases</name>
+    <url>https://repo.spring.io/libs-release</url>
+  </repository>
+  <repository>
+    <id>org.jboss.repository.releases</id>
+    <name>JBoss Maven Release Repository</name>
+    <url>https://repository.jboss.org/nexus/content/repositories/releases</url>
+  </repository>
 </repositories>
 
 <pluginRepositories>
@@ -371,6 +404,17 @@
         <artifactId>postgresql</artifactId>
         <version>9.1-901-1.jdbc4</version>
       </dependency>
+      <dependency>
+      	<groupId>ch.qos.logback</groupId>
+      	<artifactId>logback-classic</artifactId>
+      	<version>1.1.7</version>
+      </dependency>
+      <dependency>
+      	<groupId>ch.qos.logback</groupId>
+      	<artifactId>logback-core</artifactId>
+      	<version>1.1.7</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 </project>
+
