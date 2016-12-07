@@ -7,3 +7,5 @@ TDB/*
 .settings
 .settings/*
 bin/*
+tmp
+tmp/*
