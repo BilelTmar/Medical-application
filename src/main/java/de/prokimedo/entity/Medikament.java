@@ -1,6 +1,7 @@
 package de.prokimedo.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,7 +12,7 @@ public class Medikament implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
 
     private String bezeichnung;
 
@@ -28,7 +29,7 @@ public class Medikament implements Serializable {
     public Medikament() {
     }
 
-    public Medikament(String id, String bezeichnung, String pzn, String einheit, String roteListe, String darr, String inhaltsstoff) {
+    public Medikament(Long id, String bezeichnung, String pzn, String einheit, String roteListe, String darr, String inhaltsstoff) {
         this.id = id;
         this.bezeichnung = bezeichnung;
         this.pzn = pzn;
@@ -38,11 +39,11 @@ public class Medikament implements Serializable {
         this.inhaltsstoff = inhaltsstoff;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

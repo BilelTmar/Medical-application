@@ -5,9 +5,11 @@
  */
 package de.prokimedo.repository;
 
-import de.prokimedo.entity.Prozedur;
 import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
+
+import de.prokimedo.entity.Prozedur;
 
 /**
  *
@@ -15,7 +17,7 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface ProzedurRepo extends CrudRepository<Prozedur, Long> {
 
-    List<Prozedur> findById(String id);
+    List<Prozedur> findById(Long id);
 
     List<Prozedur> findByTitle(String title);
 

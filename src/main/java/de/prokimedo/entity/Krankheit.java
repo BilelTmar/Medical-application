@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,8 +16,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import org.hibernate.search.annotations.Indexed;
+
 import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
 
 /**
  *
@@ -28,7 +30,7 @@ public class Krankheit implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
     @Field
     @Column(length = 70, nullable = true)
     private String title;
@@ -81,7 +83,7 @@ public class Krankheit implements Serializable {
     @ManyToMany
     private Set<Image> listImgNotes = new HashSet<>();
 
-    public Krankheit(String id, String title, Date date, String autor, String uebersichtTxt, String uebersichtNot, String diagnostikTxt, String diagnostikNot, String therapieTxt, String therapieNot, String beratungTxt, String beratungNot, String notes, Prozedur prozedur) {
+    public Krankheit(Long id, String title, Date date, String autor, String uebersichtTxt, String uebersichtNot, String diagnostikTxt, String diagnostikNot, String therapieTxt, String therapieNot, String beratungTxt, String beratungNot, String notes, Prozedur prozedur) {
         this.id = id;
         this.title = title;
         this.date = date;
@@ -101,11 +103,11 @@ public class Krankheit implements Serializable {
     public Krankheit() {
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -269,7 +271,7 @@ public class Krankheit implements Serializable {
         this.listImgNotes = listImgNotes;
     }
 
-    
+
 
     @Override
     public String toString() {

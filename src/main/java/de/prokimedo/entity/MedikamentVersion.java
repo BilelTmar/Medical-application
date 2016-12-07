@@ -8,6 +8,7 @@ package de.prokimedo.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -25,7 +26,7 @@ public class MedikamentVersion implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
     private String title;
     private Boolean current;
     @OneToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
@@ -42,11 +43,11 @@ public class MedikamentVersion implements Serializable {
         this.title = title;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

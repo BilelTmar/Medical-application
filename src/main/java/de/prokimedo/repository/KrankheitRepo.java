@@ -5,13 +5,15 @@
  */
 package de.prokimedo.repository;
 
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+
 /**
  *
  * @author Bilel-PC
  */
 import de.prokimedo.entity.Krankheit;
-import java.util.List;
-import org.springframework.data.repository.CrudRepository;
 
 /**
  *
@@ -19,7 +21,7 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface KrankheitRepo extends CrudRepository<Krankheit, Long> {
 
-    List<Krankheit> findById(String id);
+    List<Krankheit> findById(Long id);
 
     List<Krankheit> findByTitle(String title);
 

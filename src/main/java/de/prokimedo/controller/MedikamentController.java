@@ -1,15 +1,12 @@
 package de.prokimedo.controller;
 
-import de.prokimedo.entity.MedUsed;
-import de.prokimedo.entity.Medikament;
-import de.prokimedo.entity.MedikamentVersion;
-import de.prokimedo.service.MedikamentService;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,6 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import de.prokimedo.entity.MedUsed;
+import de.prokimedo.entity.Medikament;
+import de.prokimedo.entity.MedikamentVersion;
+import de.prokimedo.service.MedikamentService;
 
 @CrossOrigin(maxAge = 3600)
 @RestController
@@ -95,7 +97,7 @@ public class MedikamentController {
         request = (List) listMedikament;
         for (Object item : request) {
             LinkedHashMap itemx = (LinkedHashMap) item;
-            request2.add(new Medikament(test(itemx.get("id")), test(itemx.get("bezeichnung")), test(itemx.get("pzn")), test(itemx.get("einheit")), test(itemx.get("roteListe")), test(itemx.get("darr")), test(itemx.get("inhaltsstoff"))));
+            request2.add(new Medikament(Long.parseLong(test(itemx.get("id"))), test(itemx.get("bezeichnung")), test(itemx.get("pzn")), test(itemx.get("einheit")), test(itemx.get("roteListe")), test(itemx.get("darr")), test(itemx.get("inhaltsstoff"))));
         }
         if (!request2.isEmpty()) {
             List response = service.searchUsedMedikament(request2);
@@ -107,9 +109,8 @@ public class MedikamentController {
     public String test(Object o) {
         if (o == null) {
             return null;
-        } else {
-            return o.toString();
         }
+        return o.toString();
     }
 
     @RequestMapping(value = "/search/used/medikament", method = {RequestMethod.POST})
@@ -119,8 +120,7 @@ public class MedikamentController {
         List<MedUsed> result = service.searchUsedMedikament(request);
         if (result.isEmpty()) {
             return null;
-        } else {
-            return ResponseEntity.ok(result.get(0));
         }
+        return ResponseEntity.ok(result.get(0));
     }
 }

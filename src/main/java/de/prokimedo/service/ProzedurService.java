@@ -5,8 +5,9 @@
  */
 package de.prokimedo.service;
 
-import de.prokimedo.entity.Prozedur;
 import java.util.List;
+
+import de.prokimedo.entity.Prozedur;
 
 /**
  *
@@ -26,7 +27,7 @@ public interface ProzedurService {
 
 //    public Prozedur update(Prozedur prozedur);
 
-    public void delete(String id);
+    public void delete(String title);
 
     public List<Prozedur> readMedikamentProzedur(String Pzn);
 

@@ -5,9 +5,11 @@
  */
 package de.prokimedo.repository;
 
-import de.prokimedo.entity.Image;
 import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
+
+import de.prokimedo.entity.Image;
 
 /**
  *
@@ -15,7 +17,7 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface ImageRepo extends CrudRepository<Image, Long> {
 
-    List<Image> findById(String id);
+    List<Image> findById(Long id);
     List<Image> findByTitle(String title);
 
 }

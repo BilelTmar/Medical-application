@@ -188,8 +188,8 @@ public class KrankheitServiceImpl implements KrankheitService {
      * @return
      */
     @Override
-    public List<Krankheit> readMedikamentKrankheit(String Pzn) {
-        List<Krankheit> list = repo.findByListMedikamentPzn(Pzn);
+    public List<Krankheit> readMedikamentKrankheit(String pzn) {
+        List<Krankheit> list = repo.findByListMedikamentPzn(pzn);
         return list;
     }
 

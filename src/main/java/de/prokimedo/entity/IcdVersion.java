@@ -8,6 +8,7 @@ package de.prokimedo.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,17 +25,17 @@ import javax.persistence.OneToMany;
 public class IcdVersion implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Long id;
     private String title;
     private Boolean current;
     @OneToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
-    private List<Icd> listIcd = new ArrayList(); 
+    private List<Icd> listIcd = new ArrayList();
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -61,6 +62,6 @@ public class IcdVersion implements Serializable {
     public void setListIcd(List<Icd> listIcd) {
         this.listIcd = listIcd;
     }
-    
-    
+
+
 }

@@ -5,8 +5,9 @@
  */
 package de.prokimedo.service;
 
-import de.prokimedo.entity.Krankheit;
 import java.util.List;
+
+import de.prokimedo.entity.Krankheit;
 
 /**
  *
@@ -25,9 +26,9 @@ public interface KrankheitService {
     public List<Krankheit> query(String query);
 
 //    public Krankheit update(Krankheit krankheit);
-    public void delete(String id);
+    public void delete(String title);
 
-    public List<Krankheit> readMedikamentKrankheit(String Pzn);
+    public List<Krankheit> readMedikamentKrankheit(String pzn);
 
     public List<Krankheit> readProzedurKrankheit(String title);
 

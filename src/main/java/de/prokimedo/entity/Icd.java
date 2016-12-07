@@ -6,6 +6,7 @@
 package de.prokimedo.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,12 +20,12 @@ import javax.persistence.Id;
 public class Icd implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
-    
+    private Long id;
+
     private String code;
-    
+
     private String diagnose;
-    
+
     private String type;
 
     public Icd() {
@@ -36,11 +37,11 @@ public class Icd implements Serializable {
         this.type = type;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
