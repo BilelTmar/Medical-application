@@ -1,7 +1,7 @@
 package de.prokimedo.service;
 import com.google.common.collect.Lists;
 import de.prokimedo.QueryService;
-import de.prokimedo.entity.User;
+import de.prokimedo.entity.ProkimedoUser;
 import de.prokimedo.repository.UserRepo;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +21,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User read(String firstNames) {
-        List<User> list = repo.findByFirstNames(firstNames);
+    public ProkimedoUser read(String firstNames) {
+        List<ProkimedoUser> list = repo.findByFirstNames(firstNames);
         if(list.isEmpty()) {
             return null;
         }
@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
      * Save user
      */
     @Override
-    public User save(User user) {
+    public ProkimedoUser save(ProkimedoUser user) {
         this.repo.save(user);
         return user;
     }

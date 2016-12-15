@@ -1,12 +1,12 @@
 package de.prokimedo.service;
 
-import de.prokimedo.entity.User;
+import de.prokimedo.entity.ProkimedoUser;
 import java.util.List;
 
 public interface UserService {
 
-    public User read(String firstNames);
+    public ProkimedoUser read(String firstNames);
 
-    public User save(User user);
+    public ProkimedoUser save(ProkimedoUser user);
 
 }
