@@ -1,6 +1,6 @@
 package de.prokimedo.controller;
 
-import de.prokimedo.entity.User;
+import de.prokimedo.entity.ProkimedoUser;
 import de.prokimedo.service.UserService;
 
 import java.util.List;
@@ -28,8 +28,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/addNewUser", method = {RequestMethod.POST})
-    public ResponseEntity addNewUser(@RequestBody User request) {
-        User entity = service.save(request);
+    public ResponseEntity addNewUser(@RequestBody ProkimedoUser request) {
+        ProkimedoUser entity = service.save(request);
         return ResponseEntity.ok(entity);
     }
 }
