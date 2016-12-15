@@ -7,7 +7,6 @@ package de.prokimedo.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,7 +27,7 @@ public class Image implements Serializable {
     private String title;
 
     @Lob
-    @Column( columnDefinition = "mediumblob")
+//    @Column(columnDefinition = "blob")
     private byte[] image;
 
     public Long getId() {
