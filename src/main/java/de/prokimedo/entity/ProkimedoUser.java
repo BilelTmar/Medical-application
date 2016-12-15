@@ -15,7 +15,7 @@ import org.hibernate.search.annotations.Indexed;
 //! \name A user like a doctor, nurse, etc.
 @Entity
 @Indexed
-public class User implements Serializable
+public class ProkimedoUser implements Serializable
 {
     //! \name Account
     //@{
@@ -51,12 +51,12 @@ public class User implements Serializable
 
 
     //! Constructor.
-    public User(Long id, String firstNames) {
+    public ProkimedoUser(Long id, String firstNames) {
         this.id = id;
         this.firstNames = firstNames;
     }
     //! Standard constructor.
-    public User() {
+    public ProkimedoUser() {
 
     }
 
