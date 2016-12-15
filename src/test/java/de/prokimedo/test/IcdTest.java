@@ -5,7 +5,34 @@
  */
 package de.prokimedo.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import org.apache.commons.io.IOUtils;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.TestRestTemplate;
+import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
+
 import de.prokimedo.Application;
+import de.prokimedo.ProkimedoConfiguration;
 import de.prokimedo.entity.Icd;
 import de.prokimedo.entity.IcdUsed;
 import de.prokimedo.entity.IcdVersion;
@@ -19,29 +46,6 @@ import de.prokimedo.repository.ProzedurRepo;
 import de.prokimedo.service.IcdService;
 import de.prokimedo.service.KrankheitService;
 import de.prokimedo.service.MedikamentService;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import org.apache.commons.io.IOUtils;
-import org.junit.After;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.TestRestTemplate;
-import org.springframework.boot.test.WebIntegrationTest;
-import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -73,6 +77,8 @@ public class IcdTest {
     MedikamentVersionRepo medikamentVersionRepo;
     @Autowired
     KrankheitService krankheitService;
+
+    ProkimedoConfiguration prokimedoConfiguration;
 
     public IcdTest() {
     }
@@ -129,7 +135,7 @@ public class IcdTest {
         Icd icdDelete = this.service.save(icd);
         Icd icd2 = new Icd("124", "diagnose", "type");
         this.service.save(icd2);
-        String URL = "http://localhost:" + port + "/icd/delete";
+        String URL = prokimedoConfiguration.baseURLHttp() + "/icd/delete";
         restTemplate.postForEntity(URL, icdDelete, Icd.class);
         List<Icd> response = this.service.query();
         assertEquals(1, response.size());
