@@ -6,14 +6,11 @@
 package de.prokimedo;
 
 import java.util.List;
+
 import javax.persistence.EntityManager;
+
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.query.dsl.QueryBuilder;
-
-/**
- *
- * @author Bilel-PC
- */
 
 /**
  *
@@ -23,7 +20,7 @@ import org.hibernate.search.query.dsl.QueryBuilder;
 public class QueryService<E> {
 
     String[] fields;
-    //   @PersistenceContext(type=PersistenceContextType.EXTENDED)  
+    //   @PersistenceContext(type=PersistenceContextType.EXTENDED)
     EntityManager em;
     Class<E> entity;
 
