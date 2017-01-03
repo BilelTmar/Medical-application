@@ -19,20 +19,29 @@ import org.springframework.core.env.Environment;
 @Configuration
 public class ProkimedoConfiguration {
 
-    public ProkimedoConfiguration() {
-    }
-
     @Autowired
     private Environment environment;
 
-    @Value("${prokimedo.server.fqdn}")
-    private String serverName = "localhost";
+    @Value("${prokimedo.server.fqdn:localhost}")
+    private String serverName;
 
-    @Value("${prokimedo.server.port}")
-    private String serverPort = "80";
+    @Value("${local.server.port:0}")
+    private int localServerPort;
 
-    @Value("${server.context-path}")
-    private String serverPrefix = "standards/api";
+    @Value("${prokimedo.server.port:80}")
+    private String serverPort;
+
+    @Value("${server.context-path:standards/api}")
+    private String serverPrefix;
+
+    @Value("${spring.profiles.active:development}")
+    private String springProfilesActive;
+
+    @Value("${logging.level.production:WARN}")
+    private String loggingLevelProduction;
+
+    @Value("${logging.level.development:INFO}")
+    private String loggingLevelDevelopment;
 
     public String getServerPrefix() {
         return serverPrefix;
@@ -44,6 +53,10 @@ public class ProkimedoConfiguration {
 
     @Bean
     public String baseURLHttps() {
+        if (localServerPort > 0) {
+            return "https://" + serverName + ":" + localServerPort
+                    + "/" + serverPrefix;
+        }
         return "https://" + serverName +
                 (serverPort.equals("443") ? "" : ":" + serverPort)
                 + "/" + serverPrefix;
@@ -51,6 +64,10 @@ public class ProkimedoConfiguration {
 
     @Bean
     public String baseURLHttp() {
+        if (localServerPort > 0) {
+            return "http://" + serverName + ":" + localServerPort
+                    + "/" + serverPrefix;
+        }
         return "http://" + serverName +
                 (serverPort.equals("80") ? "" : ":" + serverPort)
                 + "/" + serverPrefix;
