@@ -8,7 +8,6 @@ import java.util.logging.LogManager;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
@@ -25,13 +24,10 @@ public class ProkimedoConfiguration {
     @Value("${prokimedo.server.fqdn:localhost}")
     private String serverName;
 
-    @Value("${local.server.port:0}")
-    private int localServerPort;
-
     @Value("${prokimedo.server.port:80}")
     private String serverPort;
 
-    @Value("${server.context-path:standards/api}")
+    @Value("${server.context-path:/standards/api}")
     private String serverPrefix;
 
     @Value("${spring.profiles.active:development}")
@@ -51,26 +47,26 @@ public class ProkimedoConfiguration {
         return environment;
     }
 
-    @Bean
     public String baseURLHttps() {
+        int localServerPort = Integer.parseInt(environment.getProperty("local.server.port"));
         if (localServerPort > 0) {
             return "https://" + serverName + ":" + localServerPort
-                    + "/" + serverPrefix;
+                    + serverPrefix;
         }
         return "https://" + serverName +
                 (serverPort.equals("443") ? "" : ":" + serverPort)
                 + "/" + serverPrefix;
     }
 
-    @Bean
     public String baseURLHttp() {
+        int localServerPort = Integer.parseInt(environment.getProperty("local.server.port"));
         if (localServerPort > 0) {
             return "http://" + serverName + ":" + localServerPort
-                    + "/" + serverPrefix;
+                    + serverPrefix;
         }
         return "http://" + serverName +
                 (serverPort.equals("80") ? "" : ":" + serverPort)
-                + "/" + serverPrefix;
+                + serverPrefix;
     }
 
     public static void configureLogger() {
