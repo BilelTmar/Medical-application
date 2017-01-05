@@ -78,6 +78,7 @@ public class IcdTest {
     @Autowired
     KrankheitService krankheitService;
 
+    @Autowired
     ProkimedoConfiguration prokimedoConfiguration;
 
     public IcdTest() {
