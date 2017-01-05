@@ -65,13 +65,13 @@ public class KrankheitController {
     }
     
     @RequestMapping(value = "/icd/{title}", method = {RequestMethod.GET})
-    public ResponseEntity KrnakheitIcd(@PathVariable("title") String title) {
+    public ResponseEntity krankheitIcd(@PathVariable("title") String title) {
         List<Icd> entity = this.service.read(title).getListIcd();
         return ResponseEntity.ok(entity);
     }
     
     @RequestMapping(value = "/medikament/{title}", method = {RequestMethod.GET})
-    public ResponseEntity KrnakheitMedikament(@PathVariable("title") String title) {
+    public ResponseEntity krankheitMedikament(@PathVariable("title") String title) {
         List<Medikament> entity = this.service.read(title).getListMedikament();
         return ResponseEntity.ok(entity);
     }
