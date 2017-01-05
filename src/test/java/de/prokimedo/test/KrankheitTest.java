@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.After;
@@ -66,7 +67,6 @@ public class KrankheitTest {
     @Autowired
     KrankheitService krankheitService;
 
-    String urlBase;
     @Autowired
     ProkimedoConfiguration prokimedoConfiguration;
 
@@ -77,7 +77,6 @@ public class KrankheitTest {
     public void setUp() {
 
         assertNotNull(prokimedoConfiguration);
-        urlBase = "http://localhost:" + port + "/" + prokimedoConfiguration.getServerPrefix();
 
         krankheitRepo.deleteAll();
         prozedurRepo.deleteAll();
@@ -93,9 +92,9 @@ public class KrankheitTest {
         Krankheit k = new Krankheit();
         k.setAutor("bilel");
         k.setTitle("test");
-        String URL = urlBase + "/krankheit/save";
+        String URL = prokimedoConfiguration.baseURLHttp() + "/krankheit/save";
         restTemplate.postForEntity(URL, k, Krankheit.class);
-        String URL2 = urlBase + "/krankheit/test";
+        String URL2 = prokimedoConfiguration.baseURLHttp() + "/krankheit/test";
         Krankheit krankheit = restTemplate.getForEntity(URL2, Krankheit.class).getBody();
         assertEquals("bilel", krankheit.getAutor());
     }
@@ -108,9 +107,9 @@ public class KrankheitTest {
         k.setTitle("test");
         Krankheit response = krankheitRepo.save(k);
         response.setNotes("Notes");
-        String URL = urlBase + "/krankheit/update";
+        String URL = prokimedoConfiguration.baseURLHttp() + "/krankheit/update";
         restTemplate.postForEntity(URL, k, Krankheit.class);
-        String URL2 = urlBase + "/krankheit/test";
+        String URL2 = prokimedoConfiguration.baseURLHttp() + "/krankheit/test";
         Krankheit krankheit = restTemplate.getForEntity(URL2, Krankheit.class).getBody();
         assertEquals("Notes", krankheit.getNotes());
     }
@@ -122,9 +121,9 @@ public class KrankheitTest {
         k.setAutor("bilel");
         k.setTitle("test");
         krankheitRepo.save(k);
-        String URL = urlBase + "/krankheit/delete/test";
+        String URL = prokimedoConfiguration.baseURLHttp() + "/krankheit/delete/test";
         restTemplate.getForEntity(URL, Krankheit.class).getBody();
-        String URL2 = urlBase + "/krankheit/test";
+        String URL2 = prokimedoConfiguration.baseURLHttp() + "/krankheit/test";
         Krankheit response = restTemplate.getForEntity(URL2, Krankheit.class).getBody();
         assertNull(response);
     }
@@ -140,7 +139,7 @@ public class KrankheitTest {
         k2.setAutor("bilel");
         k2.setTitle("test");
         this.krankheitRepo.save(k2);
-        String URL2 = urlBase + "/krankheit/query";
+        String URL2 = prokimedoConfiguration.baseURLHttp() + "/krankheit/query";
         List list = restTemplate.getForEntity(URL2, List.class).getBody();
         assertEquals(2, list.size());
     }
@@ -171,8 +170,15 @@ public class KrankheitTest {
         k.setAutor("bilel");
         k.setTitle("test");
         k.setNotes("Z125");
+
+
+        List<Icd> listIcd = new ArrayList<>();
+        listIcd.add(icd);
+        k.setListIcd(listIcd);
+
+
         this.krankheitRepo.save(k);
-        String URL2 = urlBase + "/krankheit/icd/test";
+        String URL2 = prokimedoConfiguration.baseURLHttp() + "/krankheit/icd/test";
         List list = restTemplate.getForEntity(URL2, List.class).getBody();
         assertEquals(1, list.size());
     }
@@ -188,7 +194,7 @@ public class KrankheitTest {
         k.setTitle("test");
         k.setTherapieTxt("123");
         this.krankheitRepo.save(k);
-        String URL2 = urlBase + "/krankheit/medikament/test";
+        String URL2 = prokimedoConfiguration.baseURLHttp() + "/krankheit/medikament/test";
         List list = restTemplate.getForEntity(URL2, List.class).getBody();
         assertEquals(1, list.size());
     }
