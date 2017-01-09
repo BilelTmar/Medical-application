@@ -193,6 +193,13 @@ public class KrankheitTest {
         k.setAutor("bilel");
         k.setTitle("test");
         k.setTherapieTxt("123");
+
+
+        List<Medikament> listMedikament = new ArrayList<>();
+        listMedikament.add(med);
+        k.setListMedikament(listMedikament);
+
+
         this.krankheitRepo.save(k);
         String URL2 = prokimedoConfiguration.baseURLHttp() + "/krankheit/medikament/test";
         List list = restTemplate.getForEntity(URL2, List.class).getBody();
