@@ -37,6 +37,7 @@ import de.prokimedo.entity.Krankheit;
 import de.prokimedo.entity.Prozedur;
 import de.prokimedo.repository.IcdRepo;
 import de.prokimedo.repository.IcdVersionRepo;
+import java.util.stream.Collectors;
 
 /**
  *
