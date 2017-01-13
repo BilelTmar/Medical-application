@@ -79,6 +79,14 @@ public class Krankheit implements Serializable {
     @ManyToMany
     private Set<Image> listImgBeratung = new HashSet<>();
     @ManyToMany
+    private Set<Image> listImgUebersichtNot = new HashSet<>();
+    @ManyToMany
+    private Set<Image> listImgDiagnostikNot = new HashSet<>();
+    @ManyToMany
+    private Set<Image> listImgTherapieNot = new HashSet<>();
+    @ManyToMany
+    private Set<Image> listImgBeratungNot = new HashSet<>();
+    @ManyToMany
     private Set<Image> listImgNotes = new HashSet<>();
 
     public Krankheit(String id, String title, Date date, String autor, String uebersichtTxt, String uebersichtNot, String diagnostikTxt, String diagnostikNot, String therapieTxt, String therapieNot, String beratungTxt, String beratungNot, String notes, Prozedur prozedur) {
@@ -267,6 +275,38 @@ public class Krankheit implements Serializable {
 
     public void setListImgNotes(Set<Image> listImgNotes) {
         this.listImgNotes = listImgNotes;
+    }
+
+    public Set<Image> getListImgUebersichtNot() {
+        return listImgUebersichtNot;
+    }
+
+    public void setListImgUebersichtNot(Set<Image> listImgUebersichtNot) {
+        this.listImgUebersichtNot = listImgUebersichtNot;
+    }
+
+    public Set<Image> getListImgDiagnostikNot() {
+        return listImgDiagnostikNot;
+    }
+
+    public void setListImgDiagnostikNot(Set<Image> listImgDiagnostikNot) {
+        this.listImgDiagnostikNot = listImgDiagnostikNot;
+    }
+
+    public Set<Image> getListImgTherapieNot() {
+        return listImgTherapieNot;
+    }
+
+    public void setListImgTherapieNot(Set<Image> listImgTherapieNot) {
+        this.listImgTherapieNot = listImgTherapieNot;
+    }
+
+    public Set<Image> getListImgBeratungNot() {
+        return listImgBeratungNot;
+    }
+
+    public void setListImgBeratungNot(Set<Image> listImgBeratungNot) {
+        this.listImgBeratungNot = listImgBeratungNot;
     }
 
     

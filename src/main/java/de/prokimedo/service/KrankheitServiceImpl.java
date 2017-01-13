@@ -49,6 +49,7 @@ public class KrankheitServiceImpl implements KrankheitService {
         }
         return list.get(0);
     }
+    
 
     @Autowired
     public KrankheitServiceImpl(KrankheitRepo repo, EntityManager em) {
@@ -69,14 +70,22 @@ public class KrankheitServiceImpl implements KrankheitService {
         krankheit.setListMedikament(medikaments);
         List<Icd> icds = this.searchIcd(krankheit);
         krankheit.setListIcd(icds);
-        Set<Image> imageUebersichtTxt = this.searchImage(krankheit.getUebersichtTxt() + krankheit.getUebersichtNot());
+        Set<Image> imageUebersichtTxt = this.searchImage(krankheit.getUebersichtTxt());
         krankheit.setListImgUebersicht(imageUebersichtTxt);
-        Set<Image> imageDiagnostikTxt = this.searchImage(krankheit.getDiagnostikTxt() + krankheit.getDiagnostikNot());
+        Set<Image> imageDiagnostikTxt = this.searchImage(krankheit.getDiagnostikTxt());
         krankheit.setListImgDiagnostik(imageDiagnostikTxt);
-        Set<Image> imageTherapieTxt = this.searchImage(krankheit.getTherapieTxt() + krankheit.getTherapieNot());
+        Set<Image> imageTherapieTxt = this.searchImage(krankheit.getTherapieTxt());
         krankheit.setListImgTherapie(imageTherapieTxt);
-        Set<Image> imageBeratung = this.searchImage(krankheit.getBeratungTxt() + krankheit.getBeratungNot());
+        Set<Image> imageBeratung = this.searchImage(krankheit.getBeratungTxt());
         krankheit.setListImgBeratung(imageBeratung);
+        Set<Image> imageUebersichtNot = this.searchImage(krankheit.getUebersichtNot());
+        krankheit.setListImgUebersichtNot(imageUebersichtNot);
+        Set<Image> imageDiagnostikNot = this.searchImage(krankheit.getDiagnostikNot());
+        krankheit.setListImgDiagnostikNot(imageDiagnostikNot);
+        Set<Image> imageTherapieNot = this.searchImage(krankheit.getTherapieNot());
+        krankheit.setListImgTherapieNot(imageTherapieNot);
+        Set<Image> imageBeratungNot = this.searchImage(krankheit.getBeratungNot());
+        krankheit.setListImgBeratungNot(imageBeratungNot);
         Set<Image> imageNotes = this.searchImage(krankheit.getNotes());
         krankheit.setListImgNotes(imageNotes);
         this.repo.save(krankheit);
@@ -146,14 +155,15 @@ public class KrankheitServiceImpl implements KrankheitService {
         Set<Image> images = new HashSet<>();
         if (text != null) {
             int intIndex = text.indexOf("Bild");
-            int intIndex2 = text.indexOf("(siehe Bild unten)");
+            int intIndex2 = text.indexOf(" (siehe Bild unten)");
 
             while (intIndex >= 0 && intIndex2 >= 0) {
-                String substring = text.substring(intIndex + 5, intIndex2);
+                String substring = text.substring(intIndex + 6, intIndex2);
                 Image img = this.ImageService.read(substring);
                 images.add(img);
-                intIndex = text.indexOf("image", intIndex + 1);
-                intIndex2 = text.indexOf("(siehe Bild unten)", intIndex2 + 1);
+                intIndex = text.indexOf("Bild", intIndex + 1);
+                intIndex = text.indexOf("Bild", intIndex + 1);
+                intIndex2 = text.indexOf(" (siehe Bild unten)", intIndex2 + 1);
 
             }
         }

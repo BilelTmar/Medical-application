@@ -72,14 +72,22 @@ public class ProzedurServiceImpl implements ProzedurService {
         prozedur.setListMedikament(medikaments);
         List<Icd> icds = this.searchIcd(prozedur);
         prozedur.setListIcd(icds);
-        Set<Image> imageUebersichtTxt = this.searchImage(prozedur.getUebersichtTxt() + prozedur.getUebersichtNot());
+       Set<Image> imageUebersichtTxt = this.searchImage(prozedur.getUebersichtTxt());
         prozedur.setListImgUebersicht(imageUebersichtTxt);
-        Set<Image> imageDiagnostikTxt = this.searchImage(prozedur.getDiagnostikTxt() + prozedur.getDiagnostikNot());
+        Set<Image> imageDiagnostikTxt = this.searchImage(prozedur.getDiagnostikTxt());
         prozedur.setListImgDiagnostik(imageDiagnostikTxt);
-        Set<Image> imageTherapieTxt = this.searchImage(prozedur.getTherapieTxt() + prozedur.getTherapieNot());
+        Set<Image> imageTherapieTxt = this.searchImage(prozedur.getTherapieTxt());
         prozedur.setListImgTherapie(imageTherapieTxt);
-        Set<Image> imageBeratung = this.searchImage(prozedur.getBeratungTxt() + prozedur.getBeratungNot());
+        Set<Image> imageBeratung = this.searchImage(prozedur.getBeratungTxt());
         prozedur.setListImgBeratung(imageBeratung);
+        Set<Image> imageUebersichtNot = this.searchImage(prozedur.getUebersichtNot());
+        prozedur.setListImgUebersichtNot(imageUebersichtNot);
+        Set<Image> imageDiagnostikNot = this.searchImage(prozedur.getDiagnostikNot());
+        prozedur.setListImgDiagnostikNot(imageDiagnostikNot);
+        Set<Image> imageTherapieNot = this.searchImage(prozedur.getTherapieNot());
+        prozedur.setListImgTherapieNot(imageTherapieNot);
+        Set<Image> imageBeratungNot = this.searchImage(prozedur.getBeratungNot());
+        prozedur.setListImgBeratungNot(imageBeratungNot);
         Set<Image> imageNotes = this.searchImage(prozedur.getNotes());
         prozedur.setListImgNotes(imageNotes);
         this.repo.save(prozedur);
@@ -149,15 +157,16 @@ public class ProzedurServiceImpl implements ProzedurService {
         Set<Image> images = new HashSet<>();
         if (text != null) {
             int intIndex = text.indexOf("Bild");
-            int intIndex2 = text.indexOf("(siehe Bild unten)");
+            int intIndex2 = text.indexOf(" (siehe Bild unten)");
 
             while (intIndex >= 0 && intIndex2 >= 0) {
 
-                String substring = text.substring(intIndex + 5, intIndex2);
+                String substring = text.substring(intIndex + 6, intIndex2);
                 Image img = this.ImageService.read(substring);
                 images.add(img);
-                intIndex = text.indexOf("image", intIndex + 1);
-                intIndex2 = text.indexOf("(siehe Bild unten)", intIndex2 + 1);
+                intIndex = text.indexOf("Bild", intIndex + 1);
+                intIndex = text.indexOf("Bild", intIndex + 1);
+                intIndex2 = text.indexOf(" (siehe Bild unten)", intIndex2 + 1);
 
             }
         }
