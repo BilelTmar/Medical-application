@@ -27,8 +27,10 @@ public class IcdVersion implements Serializable {
     private String id;
     private String title;
     private Boolean current;
-    @OneToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<Icd> listIcd = new ArrayList(); 
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private List<Icd> listKonfliktIcd = new ArrayList(); 
 
     public String getId() {
         return id;
@@ -60,6 +62,14 @@ public class IcdVersion implements Serializable {
 
     public void setListIcd(List<Icd> listIcd) {
         this.listIcd = listIcd;
+    }
+
+    public List<Icd> getListKonfliktIcd() {
+        return listKonfliktIcd;
+    }
+
+    public void setListKonfliktIcd(List<Icd> listKonfliktIcd) {
+        this.listKonfliktIcd = listKonfliktIcd;
     }
     
     

@@ -98,7 +98,6 @@ public class IcdController {
             request2.add(new Icd(itemx.get("code").toString(), itemx.get("diagnose").toString(), itemx.get("type").toString()));
 
         }
-        System.out.println(request2);
         if (!request2.isEmpty()) {
             List response = service.searchUsedIcd(request2);
             return ResponseEntity.ok(response);
@@ -124,5 +123,11 @@ public class IcdController {
         } else {
             return ResponseEntity.ok(result.get(0));
         }
+    }
+    @RequestMapping(value = "/read/conflict", method = {RequestMethod.GET})
+    public ResponseEntity searchConflictIcd() throws IOException, ParseException {
+        List response = service.readConflictIcd();
+            return ResponseEntity.ok(response);
+        
     }
 }

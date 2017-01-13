@@ -392,6 +392,31 @@ public class IcdServiceImpl implements IcdService {
     @Override
     public List searchUsedIcd(List<Icd> icdList) {
         List<IcdUsed> result = new ArrayList();
+        List<Icd> list = new ArrayList();
+
+        icdList.stream().forEach((Icd icd) -> {
+            List<Krankheit> krankheits = this.krankheitService.readIcdKrankheit(icd.getCode());
+            List<Prozedur> prozedurs = this.prozedurService.readIcdProzedur(icd.getCode());
+            if (!krankheits.isEmpty() || !prozedurs.isEmpty()) {
+                IcdUsed icdStandardList = new IcdUsed();
+                icdStandardList.setKrankheits(krankheits);
+                icdStandardList.setProzedurs(prozedurs);
+                icdStandardList.setIcd(icd);
+                result.add(icdStandardList);
+                list.add(icd);
+            }
+        });
+        IcdVersion version = this.readCurrent();
+        version.setListKonfliktIcd(list);
+        this.versionRepo.save(version);
+        return result;
+    }
+
+    @Override
+    public List readConflictIcd() {
+        List<IcdUsed> result = new ArrayList();
+        List<Icd> icdList = this.readCurrent().getListKonfliktIcd();
+
         icdList.stream().forEach((Icd icd) -> {
             List<Krankheit> krankheits = this.krankheitService.readIcdKrankheit(icd.getCode());
             List<Prozedur> prozedurs = this.prozedurService.readIcdProzedur(icd.getCode());
@@ -406,5 +431,4 @@ public class IcdServiceImpl implements IcdService {
 
         return result;
     }
-
 }

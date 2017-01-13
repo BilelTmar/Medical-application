@@ -32,9 +32,11 @@ public interface IcdService {
     public HashMap saveVersion(MultipartFile file, String version) throws Throwable;
 
     public List<IcdVersion> readVersions();
-    
+
     public List<Icd> readVersionIcd(String title);
-    
+
     public List searchUsedIcd(List<Icd> icdList);
+
+    public List readConflictIcd();
 
 }
