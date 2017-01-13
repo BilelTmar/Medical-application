@@ -122,9 +122,15 @@ public class MedikamentServiceImpl implements MedikamentService {
             this.prozedurService.save2(prozedur);
         });
         MedikamentVersion version = this.readCurrent();
-        boolean remove = version.getListMedikament().remove(medikament);
+        Medikament l = new Medikament();
+        for (Medikament medikament1 : version.getListMedikament()) {
+            if (medikament1.getPzn().equals(medikament.getPzn())) {
+                l = medikament1;
+            }
+        }
+        version.getListMedikament().remove(l);
         this.versionRepo.save(version);
-        this.repo.delete(medikament);
+      //  this.repo.delete(medikament);
     }
 
     /**

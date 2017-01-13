@@ -37,7 +37,6 @@ import de.prokimedo.entity.Krankheit;
 import de.prokimedo.entity.Prozedur;
 import de.prokimedo.repository.IcdRepo;
 import de.prokimedo.repository.IcdVersionRepo;
-import java.util.stream.Collectors;
 
 /**
  *
@@ -128,9 +127,15 @@ public class IcdServiceImpl implements IcdService {
             this.prozedurService.save2(prozedur);
         });
         IcdVersion version = this.readCurrent();
-        version.getListIcd().remove(icd);
+        Icd l = new Icd();
+        for (Icd icd1 : version.getListIcd()) {
+            if (icd1.getCode().equals(icd.getCode())) {
+                l = icd1;
+            }
+        }
+        version.getListIcd().remove(l);
         this.versionRepo.save(version);
-        this.repo.delete(icd);
+        //this.repo.delete(icd);
     }
 
     /**
