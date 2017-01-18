@@ -130,7 +130,7 @@ public class MedikamentServiceImpl implements MedikamentService {
         }
         version.getListMedikament().remove(l);
         this.versionRepo.save(version);
-      //  this.repo.delete(medikament);
+        //  this.repo.delete(medikament);
     }
 
     /**
@@ -321,6 +321,7 @@ public class MedikamentServiceImpl implements MedikamentService {
         return null;
 
     }
+
     /**
      * read all existing medicament's verion
      *
@@ -347,25 +348,101 @@ public class MedikamentServiceImpl implements MedikamentService {
     /**
      * search the krankheit or the prozedur that are used one medicament
      *
+     * @param medList
      * @param medikamentList
      * @return
      */
+//    @Override
+//    public List searchUsedMedikament(List<Medikament> medikamentList) {
+//        List<MedUsed> result = new ArrayList();
+//        medikamentList.stream().forEach((Medikament medikament) -> {
+//            List<Krankheit> krankheits = this.krankheitService.readMedikamentKrankheit(medikament.getPzn());
+//            List<Prozedur> prozedurs = this.prozedurService.readMedikamentProzedur(medikament.getPzn());
+//            if (!krankheits.isEmpty() || !prozedurs.isEmpty()) {
+//                MedUsed medikamentStandardList = new MedUsed();
+//                medikamentStandardList.setKrankheits(krankheits);
+//                medikamentStandardList.setProzedurs(prozedurs);
+//                medikamentStandardList.setMedikament(medikament);
+//                result.add(medikamentStandardList);
+//            }
+//        });
+//
+//        return result;
+//    }
     @Override
-    public List searchUsedMedikament(List<Medikament> medikamentList) {
+    public List searchUsedMedikament(List<Medikament> medList) {
         List<MedUsed> result = new ArrayList();
-        medikamentList.stream().forEach((Medikament medikament) -> {
-            List<Krankheit> krankheits = this.krankheitService.readMedikamentKrankheit(medikament.getPzn());
-            List<Prozedur> prozedurs = this.prozedurService.readMedikamentProzedur(medikament.getPzn());
+        List<Medikament> list = new ArrayList();
+
+        medList.stream().forEach((Medikament med) -> {
+            List<Krankheit> krankheits = this.krankheitService.readMedikamentKrankheit(med.getPzn());
+            List<Prozedur> prozedurs = this.prozedurService.readMedikamentProzedur(med.getPzn());
             if (!krankheits.isEmpty() || !prozedurs.isEmpty()) {
-                MedUsed medikamentStandardList = new MedUsed();
-                medikamentStandardList.setKrankheits(krankheits);
-                medikamentStandardList.setProzedurs(prozedurs);
-                medikamentStandardList.setMedikament(medikament);
-                result.add(medikamentStandardList);
+                MedUsed icdStandardList = new MedUsed();
+                icdStandardList.setKrankheits(krankheits);
+                icdStandardList.setProzedurs(prozedurs);
+                icdStandardList.setMedikament(med);
+                result.add(icdStandardList);
+                list.add(med);
+            }
+        });
+        MedikamentVersion version = this.readCurrent();
+        version.setListKonfliktMedikament(list);
+        this.versionRepo.save(version);
+        return result;
+    }
+
+    @Override
+    public MedUsed searchUsedMedikament(Medikament med) {
+        MedUsed medUsed = new MedUsed();
+        List<Krankheit> krankheits = this.krankheitService.readMedikamentKrankheit(med.getPzn());
+        List<Prozedur> prozedurs = this.prozedurService.readMedikamentProzedur(med.getPzn());
+        if (!krankheits.isEmpty() || !prozedurs.isEmpty()) {
+
+            medUsed.setKrankheits(krankheits);
+            medUsed.setProzedurs(prozedurs);
+            medUsed.setMedikament(med);
+        }
+        return medUsed;
+    }
+
+    @Override
+    public List readConflictMedikament() {
+        List<MedUsed> result = new ArrayList();
+        List<Medikament> medikamentList = this.readCurrent().getListKonfliktMedikament();
+
+        medikamentList.stream().forEach((Medikament icd) -> {
+            List<Krankheit> krankheits = this.krankheitService.readMedikamentKrankheit(icd.getPzn());
+            List<Prozedur> prozedurs = this.prozedurService.readMedikamentProzedur(icd.getPzn());
+            if (!krankheits.isEmpty() || !prozedurs.isEmpty()) {
+                MedUsed medUsedList = new MedUsed();
+                medUsedList.setKrankheits(krankheits);
+                medUsedList.setProzedurs(prozedurs);
+                medUsedList.setMedikament(icd);
+                result.add(medUsedList);
             }
         });
 
         return result;
+    }
+
+    @Override
+    public void deleteConflictMedikament(Medikament med) {
+        MedikamentVersion version = this.readCurrent();
+        Medikament l = new Medikament();
+        for (Medikament icd1 : version.getListKonfliktMedikament()) {
+            if (icd1.getPzn().equals(med.getPzn())) {
+                l = icd1;
+            }
+        }
+        version.getListKonfliktMedikament().remove(l);
+        this.versionRepo.save(version);
+
+    }
+
+    @Override
+    public List<Medikament> query2() {
+        return (List<Medikament>) this.repo.findAll();
     }
 
 }

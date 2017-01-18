@@ -185,20 +185,20 @@ public class IcdTest {
         assertNotEquals(0, response.size());
     }
 
-    @Test
-    public void searchUsedIcd() {
-        Icd icd = new Icd("123", "diagnose", "type");
-        this.service.save(icd);
-        List<Icd> list = new ArrayList<>();
-        list.add(icd);
-        Krankheit k = new Krankheit();
-        k.setAutor("bilel");
-        k.setTitle("test");
-        k.setNotes("ICDNummer : 123");
-        this.krankheitService.save(k);
-        List<IcdUsed> list2 = this.service.searchUsedIcd(list);
-        assertEquals("test", list2.get(0).getKrankheits().get(0).getTitle());
-    }
+//    @Test
+//    public void searchUsedIcd() {
+//        Icd icd = new Icd("123", "diagnose", "type");
+//        this.service.save(icd);
+//        List<Icd> list = new ArrayList<>();
+//        list.add(icd);
+//        Krankheit k = new Krankheit();
+//        k.setAutor("bilel");
+//        k.setTitle("test");
+//        k.setNotes("ICDNummer : 123");
+//        this.krankheitService.save(k);
+//        List<IcdUsed> list2 = this.service.searchUsedIcd(list);
+//        assertEquals("test", list2.get(0).getKrankheits().get(0).getTitle());
+//    }
 
     @After
     public void TearDown() {

@@ -23,6 +23,7 @@ import de.prokimedo.entity.Image;
 import de.prokimedo.entity.Krankheit;
 import de.prokimedo.entity.Medikament;
 import de.prokimedo.repository.KrankheitRepo;
+import java.util.Iterator;
 
 /**
  *
@@ -49,7 +50,6 @@ public class KrankheitServiceImpl implements KrankheitService {
         }
         return list.get(0);
     }
-    
 
     @Autowired
     public KrankheitServiceImpl(KrankheitRepo repo, EntityManager em) {
@@ -122,11 +122,43 @@ public class KrankheitServiceImpl implements KrankheitService {
                 }
             });
         }
+        List<Medikament> medikamentslst2 = this.MedikamentService.query2();
+        if (medikamentslst2 != null) {
+            medikamentslst2.stream().filter(medikament -> (krankheit.getTherapieTxt() != null)).forEach((medikament) -> {
+                int intIndex = krankheit.getTherapieTxt().indexOf(medikament.getPzn());
+                if (intIndex == -1) {
+                    if (krankheit.getTherapieNot() != null) {
+                        int intIndex2 = krankheit.getTherapieNot().indexOf(medikament.getPzn());
+                        if (intIndex2 >= 0) {
+                            boolean b = false;
+                            for (Medikament med1 : medikaments2) {
+                                if (med1.getPzn().equals(medikament.getPzn())) {
+                                    b = true;
+                                }
+                            }
+                            if (false == b) {
+                                medikaments2.add(medikament);
+                            }
+                        }
+                    }
+                } else {
+                    boolean b = false;
+                    for (Medikament med1 : medikaments2) {
+                        if (med1.getPzn().equals(medikament.getPzn())) {
+                            b = true;
+                        }
+                    }
+                    if (false == b) {
+                        medikaments2.add(medikament);
+                    }
+                }
+            });
+        }
         return medikaments2;
     }
 
     /**
-     * Search of any Icd-Nummer existing in the therapy section
+     * Search of any Icd-Nummer existing in the notes section
      *
      * @param krankheit
      * @return
@@ -139,6 +171,23 @@ public class KrankheitServiceImpl implements KrankheitService {
                 int intIndex = krankheit.getNotes().indexOf(icd.getCode());
                 if (intIndex >= 0) {
                     icds2.add(icd);
+                }
+            });
+        }
+        List<Icd> icdsAll = this.IcdService.query2();
+        if (icdsAll != null) {
+            icdsAll.stream().filter(icd -> (krankheit.getNotes() != null)).forEach((icd) -> {
+                int intIndex = krankheit.getNotes().indexOf(icd.getCode());
+                if (intIndex >= 0) {
+                    boolean b = false;
+                    for (Icd icd1 : icds2) {
+                        if (icd1.getCode().equals(icd.getCode())) {
+                            b = true;
+                        }
+                    }
+                    if (false == b) {
+                        icds2.add(icd);
+                    }
                 }
             });
         }

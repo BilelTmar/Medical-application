@@ -124,6 +124,38 @@ public class ProzedurServiceImpl implements ProzedurService {
                 }
             });
         }
+         List<Medikament> medikamentslst2 = this.MedikamentService.query2();
+        if (medikamentslst2 != null) {
+            medikamentslst2.stream().filter(medikament -> (prozedur.getTherapieTxt() != null)).forEach((medikament) -> {
+                int intIndex = prozedur.getTherapieTxt().indexOf(medikament.getPzn());
+                if (intIndex == -1) {
+                    if (prozedur.getTherapieNot() != null) {
+                        int intIndex2 = prozedur.getTherapieNot().indexOf(medikament.getPzn());
+                        if (intIndex2 >= 0) {
+                            boolean b = false;
+                            for (Medikament med1 : medikaments2) {
+                                if (med1.getPzn().equals(medikament.getPzn())) {
+                                    b = true;
+                                }
+                            }
+                            if (false == b) {
+                                medikaments2.add(medikament);
+                            }
+                        }
+                    }
+                } else {
+                    boolean b = false;
+                    for (Medikament med1 : medikaments2) {
+                        if (med1.getPzn().equals(medikament.getPzn())) {
+                            b = true;
+                        }
+                    }
+                    if (false == b) {
+                        medikaments2.add(medikament);
+                    }
+                }
+            });
+        }
         return medikaments2;
     }
 
@@ -141,6 +173,23 @@ public class ProzedurServiceImpl implements ProzedurService {
                 int intIndex = prozedur.getNotes().indexOf(icd.getCode());
                 if (intIndex >= 0) {
                     icds2.add(icd);
+                }
+            });
+        }
+        List<Icd> icdsAll = this.IcdService.query2();
+        if (icdsAll != null) {
+            icdsAll.stream().filter(icd -> (prozedur.getNotes() != null)).forEach((icd) -> {
+                int intIndex = prozedur.getNotes().indexOf(icd.getCode());
+                if (intIndex >= 0) {
+                    boolean b = false;
+                    for (Icd icd1 : icds2) {
+                        if (icd1.getCode().equals(icd.getCode())) {
+                            b = true;
+                        }
+                    }
+                    if (false == b) {
+                        icds2.add(icd);
+                    }
                 }
             });
         }

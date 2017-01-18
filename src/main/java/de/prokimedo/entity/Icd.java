@@ -26,6 +26,7 @@ public class Icd implements Serializable {
     private String diagnose;
     
     private String type;
+    
 
     public Icd() {
     }

@@ -5,6 +5,7 @@
  */
 package de.prokimedo.service;
 
+import de.prokimedo.entity.MedUsed;
 import de.prokimedo.entity.Medikament;
 import de.prokimedo.entity.MedikamentVersion;
 import java.util.HashMap;
@@ -23,6 +24,8 @@ public interface MedikamentService {
 
     public List<Medikament> query();
 
+    public List<Medikament> query2();
+
     public Medikament update(Medikament medikament);
 
     public void delete(Medikament medikament);
@@ -32,9 +35,15 @@ public interface MedikamentService {
     public HashMap saveVersion(MultipartFile file, String version) throws Throwable;
 
     public List<MedikamentVersion> readVersions();
-    
+
     public List<Medikament> readVersionMediakment(String title);
-    
+
     public List searchUsedMedikament(List<Medikament> medikamentList);
+
+    public List readConflictMedikament();
+
+    public void deleteConflictMedikament(Medikament medikament);
+
+    public MedUsed searchUsedMedikament(Medikament medikament);
 
 }

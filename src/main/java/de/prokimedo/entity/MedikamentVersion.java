@@ -22,16 +22,22 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class MedikamentVersion implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
     private String title;
     private Boolean current;
-    @OneToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
-    private List<Medikament> listMedikament = new ArrayList<>();
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private List<Medikament> listMedikament = new ArrayList(); 
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private List<Medikament> listKonfliktMedikament = new ArrayList(); 
 
-    public MedikamentVersion() {
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -40,14 +46,6 @@ public class MedikamentVersion implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public Boolean getCurrent() {
@@ -66,4 +64,13 @@ public class MedikamentVersion implements Serializable {
         this.listMedikament = listMedikament;
     }
 
+    public List<Medikament> getListKonfliktMedikament() {
+        return listKonfliktMedikament;
+    }
+
+    public void setListKonfliktMedikament(List<Medikament> listKonfliktMedikament) {
+        this.listKonfliktMedikament = listKonfliktMedikament;
+    }
+    
+    
 }

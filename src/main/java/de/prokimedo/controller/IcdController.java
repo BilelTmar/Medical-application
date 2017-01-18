@@ -115,19 +115,23 @@ public class IcdController {
 
     @RequestMapping(value = "/search/used/icd", method = {RequestMethod.POST})
     public ResponseEntity searchUsedIcd(@RequestBody Icd icd) throws IOException, ParseException {
-        List<Icd> request = new ArrayList();
-        request.add(icd);
-        List<IcdUsed> result = service.searchUsedIcd(request);
-        if (result.isEmpty()) {
-            return null;
-        } else {
-            return ResponseEntity.ok(result.get(0));
-        }
+
+        IcdUsed result = service.searchUsedIcd(icd);
+        return ResponseEntity.ok(result);
+
     }
+
     @RequestMapping(value = "/read/conflict", method = {RequestMethod.GET})
     public ResponseEntity searchConflictIcd() throws IOException, ParseException {
         List response = service.readConflictIcd();
-            return ResponseEntity.ok(response);
-        
+        return ResponseEntity.ok(response);
+
+    }
+
+    @RequestMapping(value = "/delete/conflict", method = {RequestMethod.POST})
+    public ResponseEntity deleteConflictIcd(@RequestBody Icd icd) throws IOException, ParseException {
+        service.deleteConflictIcd(icd);
+        return ResponseEntity.ok().build();
+
     }
 }

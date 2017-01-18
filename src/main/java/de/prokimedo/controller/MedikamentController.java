@@ -47,7 +47,6 @@ public class MedikamentController {
         return ResponseEntity.ok(entity);
     }
 
-
     @RequestMapping(value = "/query", method = {RequestMethod.GET})
     public ResponseEntity query() {
         List entity = this.service.query();
@@ -114,13 +113,25 @@ public class MedikamentController {
 
     @RequestMapping(value = "/search/used/medikament", method = {RequestMethod.POST})
     public ResponseEntity searchUsedMedikament(@RequestBody Medikament medikament) throws IOException, ParseException {
-        List<Medikament> request = new ArrayList();
-        request.add(medikament);
-        List<MedUsed> result = service.searchUsedMedikament(request);
-        if (result.isEmpty()) {
-            return null;
-        } else {
-            return ResponseEntity.ok(result.get(0));
-        }
+
+        MedUsed result = service.searchUsedMedikament(medikament);
+        return ResponseEntity.ok(result);
+
+    }
+
+
+
+    @RequestMapping(value = "/read/conflict", method = {RequestMethod.GET})
+    public ResponseEntity searchConflictIcd() throws IOException, ParseException {
+        List response = service.readConflictMedikament();
+        return ResponseEntity.ok(response);
+
+    }
+
+    @RequestMapping(value = "/delete/conflict", method = {RequestMethod.POST})
+    public ResponseEntity deleteConflictIcd(@RequestBody Medikament medikament) throws IOException, ParseException {
+        service.deleteConflictMedikament(medikament);
+        return ResponseEntity.ok().build();
+
     }
 }

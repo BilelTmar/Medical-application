@@ -6,6 +6,7 @@
 package de.prokimedo.service;
 
 import de.prokimedo.entity.Icd;
+import de.prokimedo.entity.IcdUsed;
 import de.prokimedo.entity.IcdVersion;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +24,8 @@ public interface IcdService {
 
     public List<Icd> query();
 
+    public List<Icd> query2();
+
     public Icd update(Icd icd);
 
     public void delete(Icd icd);
@@ -38,5 +41,9 @@ public interface IcdService {
     public List searchUsedIcd(List<Icd> icdList);
 
     public List readConflictIcd();
+
+    public void deleteConflictIcd(Icd icd);
+
+    public IcdUsed searchUsedIcd(Icd icd);
 
 }

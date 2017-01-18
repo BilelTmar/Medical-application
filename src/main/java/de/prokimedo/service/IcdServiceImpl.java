@@ -99,6 +99,17 @@ public class IcdServiceImpl implements IcdService {
         return version.getListIcd();
     }
 
+    /**
+     * Search the list of all the medicaments in the actual version
+     *
+     * @return list medicaments
+     */
+    @Override
+    public List<Icd> query2() {
+
+        return (List<Icd>) this.repo.findAll();
+    }
+
     @Override
     public Icd update(Icd icd) {
         return this.repo.save(icd);
@@ -413,6 +424,20 @@ public class IcdServiceImpl implements IcdService {
     }
 
     @Override
+    public IcdUsed searchUsedIcd(Icd icd) {
+        IcdUsed icdUsed = new IcdUsed();
+        List<Krankheit> krankheits = this.krankheitService.readIcdKrankheit(icd.getCode());
+        List<Prozedur> prozedurs = this.prozedurService.readIcdProzedur(icd.getCode());
+        if (!krankheits.isEmpty() || !prozedurs.isEmpty()) {
+
+            icdUsed.setKrankheits(krankheits);
+            icdUsed.setProzedurs(prozedurs);
+            icdUsed.setIcd(icd);
+        }
+        return icdUsed;
+    }
+
+    @Override
     public List readConflictIcd() {
         List<IcdUsed> result = new ArrayList();
         List<Icd> icdList = this.readCurrent().getListKonfliktIcd();
@@ -430,5 +455,19 @@ public class IcdServiceImpl implements IcdService {
         });
 
         return result;
+    }
+
+    @Override
+    public void deleteConflictIcd(Icd icd) {
+        IcdVersion version = this.readCurrent();
+        Icd l = new Icd();
+        for (Icd icd1 : version.getListKonfliktIcd()) {
+            if (icd1.getCode().equals(icd.getCode())) {
+                l = icd1;
+            }
+        }
+        version.getListKonfliktIcd().remove(l);
+        this.versionRepo.save(version);
+
     }
 }
