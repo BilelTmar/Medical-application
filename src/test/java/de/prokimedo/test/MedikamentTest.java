@@ -181,22 +181,22 @@ public class MedikamentTest {
         assertEquals("test", med2.getBezeichnung());
     }
 
-    @Test
-    public void searchUsedMedikamentTest() {
-        Medikament med = new Medikament();
-        med.setPzn("123");
-        med.setBezeichnung("test");
-        this.medikamentService.save(med);
-        List<Medikament> list = new ArrayList<>();
-        list.add(med);
-        Krankheit k = new Krankheit();
-        k.setAutor("bilel");
-        k.setTitle("test");
-        k.setTherapieTxt("123");
-        this.service.save(k);
-        List<MedUsed> list2 = this.medikamentService.searchUsedMedikament(list);
-        assertEquals("test", list2.get(0).getKrankheits().get(0).getTitle());
-    }
+//    @Test
+//    public void searchUsedMedikamentTest() {
+//        Medikament med = new Medikament();
+//        med.setPzn("123");
+//        med.setBezeichnung("test");
+//        this.medikamentService.save(med);
+//        List<Medikament> list = new ArrayList<>();
+//        list.add(med);
+//        Krankheit k = new Krankheit();
+//        k.setAutor("bilel");
+//        k.setTitle("test");
+//        k.setTherapieTxt("123");
+//        this.service.save(k);
+//        List<MedUsed> list2 = this.medikamentService.searchUsedMedikament(list);
+//        assertEquals("test", list2.get(0).getKrankheits().get(0).getTitle());
+//    }
 
     @After
     public void TearDown() {
